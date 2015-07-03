@@ -1,0 +1,406 @@
+$baseColor: #1691ac;
+$fontPrimary: "Open Sans", Arial;
+$fontSecondary: "Questrial", Arial;
+$transitionValue: all 0.3s ease-in-out;
+
+@mixin transition($transitionValue) {
+  -webkit-transition: $transitionValue;
+  -moz-transition: $transitionValue;
+  -ms-transition: $transitionValue;
+  -o-transition: $transitionValue;
+  transition: $transitionValue;
+}
+
+@mixin placeholderColor($placeholderColorValue) {
+  input::-webkit-input-placeholder {
+    color: $placeholderColorValue;
+  }
+  input:-moz-placeholder {
+    /* Firefox 18- */
+    color: $placeholderColorValue;
+  }
+  input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $placeholderColorValue;
+  }
+  input:-ms-input-placeholder {
+    color: $placeholderColorValue;
+  }
+}
+
+@mixin boxShadow($boxShadowValue) {
+  -webkit-box-shadow: $boxShadowValue;
+  -moz-box-shadow: $boxShadowValue;
+  box-shadow: $boxShadowValue;
+}
+
+@mixin sameWidthHeight($sameWidthHeightValue) {
+  width: $sameWidthHeightValue;
+  height: $sameWidthHeightValue;
+}
+
+.cm-offset-0, .cm-offset-single-0 {
+  padding: 0 !important;
+}
+
+.cm-offset-left-0 {
+  padding-left: 0 !important;
+}
+
+.cm-offset-right-0 {
+  padding-right: 0 !important;
+}
+
+body, html {
+  font-size: 13px;
+  height: 100%;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  color: #333;
+  font-family: 'Open Sans', Arial;
+  font-weight: normal;
+  -webkit-text-size-adjust: 100%;
+  background:#f5f5f5;
+}
+
+object, embed, a, a:focus, a:active,
+button::-moz-focus-inner,
+input:focus,
+input[type="reset"]::-moz-focus-inner,
+button:focus,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  outline: 0 !important;
+}
+
+a {
+  cursor: pointer;
+  color: inherit;
+  @include transition($transitionValue);
+  &:hover{
+    text-decoration: none;
+  }
+  &:focus{
+    text-decoration: none;
+  }
+}
+
+input::-moz-focus-inner {
+  border: 0;
+}
+
+img {
+  border: none;
+}
+
+.dg-btn{
+  @include transition(all 0.1s ease-in-out);
+  &:hover{
+    text-decoration: none;
+  }
+  &:active{
+    outline: 0;
+    @include boxShadow(inset 0 3px 5px rgba(0,0,0,.125));
+    text-decoration: none;
+  }
+  &:focus{
+    text-decoration:none;
+  }
+}
+
+/* Header */
+
+.dg-header{
+  background:none;
+  @include boxShadow(0px 2px 3px 0px rgba(0, 0, 0, 0.4));
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index: 1;
+  .dg-topBar{
+    background:$baseColor;
+    .dg-logo{
+      background:url(/images/logo/logo.png) no-repeat center;
+      width:168px;
+      height:38px;
+      display:block;
+      float:left;
+      margin:5px 0;
+    }
+    .dg-headerExtraLinks{
+      margin: 12px 0 0 0;
+      padding: 0;
+      list-style: none;
+      float: right;
+      li{
+        float:left;
+        margin:0 0 0 10px;
+        padding: 0;
+        a{
+          display: block;
+          padding: 3px 15px;
+          font-size: 10px;
+          color: #fff;
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.2);
+          text-transform: uppercase;
+          font-weight: bold;
+          &:hover{
+            background: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
+  .dg-mainNavBar{
+    margin:0;
+    background:#333;
+    border:none;
+    border-radius:0;
+    .navbar-collapse{
+      padding:0;
+      .navbar-nav{
+        li{
+          a{
+            color: #eee;
+            font-weight: 600;
+            padding: 13px 20px 0;
+            height: 50px;
+            border-right:1px solid rgba(0,0,0,0.1);
+            &:hover{
+              background:#333 + 10;
+            }
+          }
+          &.active{
+            a{
+              background:#000;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Header */
+
+/* Content */
+
+.dg-mainContentWrapper{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  overflow: auto;
+  height: 100%;
+  padding-top: 98px;
+  position: relative;
+  .dg-sideBarContentLayout{
+    display: table-row;
+    height: 100%;
+    .dg-sideBarWrapper{
+      background-color: #ffffff;
+      vertical-align: top;
+      width: 256px;
+      display: table-cell;
+      border-right:1px solid #eee;
+      padding:20px 10px;
+      position: relative;
+      overflow: hidden;
+      &.dg-close{
+        width:0;
+      }
+    }
+    .dg-innerContentWrapper{
+      vertical-align: top;
+      width: 100%;
+      display: table-cell;
+      padding: 30px 15px 30px 30px;
+      position: relative;
+      .dg-sideBarExpandBtn{
+        position: absolute;
+        left: -1px;
+        top: 30px;
+        font-size: 14px;
+        padding: 3px 6px 4px 4px;
+        background: $baseColor;
+        color:#fff;
+        border-radius: 0 6px 6px 0;
+      }
+    }
+  }
+}
+
+.dg-sBWidget{
+  margin-bottom:20px;
+  .dg-sBWidgetHeader{
+    background:$baseColor;
+    color:#fff;
+    border-radius:5px 5px 0 0;
+    overflow:hidden;
+    padding:5px 15px;
+    .dg-sBWidgetTitle{
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      float:left;
+    }
+    .dg-sBWidgetHeaderLink{
+      float:right;
+      font-size:10px;
+      color:#fff;
+      display:block;
+    }
+  }
+  .dg-sbWidgetBody{
+    padding:10px 0;
+  }
+}
+
+.dg-form{
+  .form-group{
+    .form-control{
+      border-radius:1px;
+      @include boxShadow(none);
+    }
+  }
+}
+
+.dg-miniForm{
+  label{
+    font-size:12px;
+  }
+  .checkbox{
+    margin:5px 0;
+  }
+  .form-group{
+    margin-bottom:5px;
+    .form-control{
+      height: 27px;
+      padding: 4px 12px;
+      font-size: 12px;
+    }
+    .input-group-addon {
+      padding: 4px 12px;
+    }
+  }
+}
+
+.dg-sideBarListNav{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  li{
+    margin:0 0 1px 0;
+    padding: 0;
+    background:#f5f5f5;
+    position: relative;
+    &:before{
+      content:" ";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 4px 0 4px 3px;
+      border-color: transparent transparent transparent $baseColor;
+      left: 10px;
+      top: 8px;
+    }
+    a, a:focus{
+      font-size:12px;
+      padding:3px 12px 3px 24px;
+      display: block;
+      &:hover{
+        background:#f5f5f5 - 10;
+      }
+    }
+  }
+}
+
+.dg-pageHeader{
+  .dg-pageHeaderTop{
+    .dg-pageTitle{
+      margin:0;
+      padding: 0;
+      font-size:25px;
+      font-weight: bold;
+      text-transform:capitalize;
+      float:left;
+      .dg-pageMiniTitle{
+        font-size:16px;
+        display:block;
+      }
+    }
+    .dg-pageExtraLinks{
+      list-style: none;
+      margin:12px 0 0 0;
+      padding: 0;
+      float:right;
+      li{
+        border-right:1px dashed #ccc;
+        float:left;
+        &:last-child{
+          border:none;
+        }
+        a, a:focus{
+          display: block;
+          padding:2px 10px;
+          font-size:11px;
+          color:#999;
+          font-weight: 600;
+          &:hover{
+            text-decoration:underline;
+          }
+        }
+      }
+    }
+  }
+  .dg-backToLink{
+    font-size:11px;
+    display: inline-block;
+    text-transform: uppercase;
+    color:$baseColor;
+    font-weight: 600;
+    margin-top:10px;
+    .fa{
+      font-size: 14px;
+      margin-right: 5px;
+
+    }
+  }
+  .dg-pageActionsLinks{
+    text-align: center;
+    margin:20px 0 0 0;
+    padding: 0;
+    list-style: none;
+    > li{
+      display:inline-block;
+      margin:0 3px;
+      > a, > a:focus{
+        display: block;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 2px 16px;
+        .caret{
+          margin-left: 5px;
+          position: relative;
+          top: -1px;
+        }
+        &:hover{
+          background:$baseColor;
+          border-color:$baseColor - 10;
+          color:#fff;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu{
+  font-size:12px;
+}

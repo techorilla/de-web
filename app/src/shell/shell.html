@@ -1,0 +1,14 @@
+<header class="dg-header">
+    <div class="dg-topBar" ui-view="topNavBar"></div>
+    <nav class="navbar navbar-default dg-mainNavBar" ui-view="subNavBar"></nav>
+</header>
+
+<div class="dg-mainContentWrapper">
+    <div class="dg-sideBarContentLayout">
+        <side-bar is-open="true"></side-bar>
+        <section class="dg-innerContentWrapper">
+            <a ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn"><i class="fa fa-angle-double-left"></i></a>
+            <page-header></page-header>
+        </section>
+    </div>
+</div>

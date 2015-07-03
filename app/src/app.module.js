@@ -14,7 +14,12 @@
   /**
     * Application modules
   **/
-    'app.welcome'
+    'app.welcome',
+    'app.shell',
+    'app.product',
+    'app.businessPartner',
+    'app.transaction',
+    'app.widgets'
   ]);
 
 }());

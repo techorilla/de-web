@@ -6,13 +6,13 @@
   <!-- build:css styles/main.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
   <!-- endbower -->
   <link rel="stylesheet" href="styles/css/main.css"/>
   <!-- endbuild -->
 </head>
 
-  <body class="container">
-    <h3> ngSuper Generator </h3>
+  <body>
     <div ui-view></div>
   </body>
 
@@ -30,12 +30,21 @@
   <!-- endbower -->
   <script src="src/core/core.module.js"></script>
   <script src="src/common/common.module.js"></script>
+  <script src="src/shell/shell.module.js"></script>
+  <script src="src/product/product.module.js"></script>
+  <script src="src/businessPartner/businessPartner.module.js"></script>
+  <script src="src/transaction/transaction.module.js"></script>
+  <script src="src/widgets/widgets.module.js"></script>
   <script src="src/app.module.js"></script>
   <script src="src/core/restangular.config.js"></script>
   <script src="src/core/router.config.js"></script>
   <script src="src/core/httpStatus.constant.js"></script>
   <script src="src/welcome/welcome.module.js"></script>
   <script src="src/welcome/welcome.controller.js"></script>
+  <script src="src/widgets/sideBar.directive.js"></script>
+  <script src="src/widgets/pageHeader.directive.js"></script>
+  <script src="src/common/navigation.factory.js"></script>
+  <script src="src/shell/shell.controller.js"></script>
   <!-- endbuild -->
 
 </html>
