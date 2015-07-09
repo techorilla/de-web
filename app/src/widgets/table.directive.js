@@ -25,7 +25,9 @@
       restrict: 'E',
       templateUrl: 'src/widgets/table.template.html',
       scope: {
-        test: '='
+        test: '=',
+        colHeadings: '=',
+        rows: '='
       }
     };
 

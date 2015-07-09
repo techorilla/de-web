@@ -20,6 +20,14 @@
         title:'Products',
         subNavTitle: 'Products',
         subNav: true,
+        resolve: {
+          product: 'product',
+          allProducts: function(product){
+              return product.getAllProducts().then(function(res){
+                  return res.data;
+              });
+          }
+        },
         views:{
             'content@shell':{
                 templateUrl:'src/product/products.template.html',

@@ -13,7 +13,7 @@
 		.controller('Product', Product);
 
   /* @ngInject */
-	function Product(product){
+	function Product(allProducts){
 		var vm = this;
         init();
         vm.allProductData = ''; 
@@ -30,14 +30,26 @@
      * My Description rules
      */
     function init(){
-        console.info('This is a test function');
+            vm.orderByReverse = false
+            vm.allProducts = allProducts;
+            vm.allProducts.tableHeadings =  [
+                                                "Product Code",
+                                                "Name",
+                                                "Quality",
+                                                "Created By",
+                                                "Created On",
+                                                "Last Updated By",
+                                                "Last Updated On"
+                                            ];
             vm.headerAnchor = [
                 {
                     text: 'Add new Product',
                     state: 'shell.products.addProduct'
                 }
             ];
-            console.log(vm.headerAnchor);
+            vm.invertOrderByReverse = function(){
+                vm.orderByReverse = !vm.orderByReverse;
+            }
         }
     function testFunction(num){
 			console.info('This is a test function');

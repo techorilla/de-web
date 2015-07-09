@@ -21,7 +21,8 @@
     'app.widgets',
     'app.tradebook',
     'app.authentication',
-    'app.dashboard'
+    'app.dashboard',
+    'app.setup'
   ]);
 
   angular.module('app').config(function ($httpProvider) {

@@ -1,0 +1,29 @@
+// Large Screens
+@media (min-width: 1024px) {
+  .container{
+    width:1024px;
+  }
+}
+
+// Medium Screens
+@media (min-width:992px) and (max-width: 1023px) {
+}
+
+//Small Screens
+@media (min-width:768px) and (max-width: 991px) {
+
+}
+
+// XSmall Screens
+@media (max-width:767px) {
+
+}
+
+//.cm-container {
+//  width: 1024px !important;
+//  margin:0 auto;
+//  padding-left:15px;
+//  padding-right:15px;
+//}
+
+

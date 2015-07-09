@@ -13,7 +13,7 @@
 		.factory('product', product);
 
   /* @ngInject */
-  function product(){
+  function product($http){
 		return {
 			testFunction: testFunction,
             getAllProducts: getAllProducts

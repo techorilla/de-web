@@ -19,6 +19,9 @@
 		vm.isFullScreen = false;
         vm.goToFullScreen = goToFullScreen;
         vm.logOut = logOut;
+        vm.onSetupPage = function(){
+            return ($state.current.name === 'shell.setup');
+        }
 
     /////////////////////
 
