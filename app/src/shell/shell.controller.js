@@ -15,9 +15,12 @@
   /* @ngInject */
 	function Shell(navigation){
 		var vm = this;
-
-		vm.invertSideBar = invertSideBar;
-        vm.sideBarStatus = navigation.sideBarStatus();
+        init();
+        function init(){
+            vm.invertSideBar = invertSideBar;
+            vm.sideBarStatus = navigation.sideBarStatus;   
+        }    
+		
 
     /////////////////////
 

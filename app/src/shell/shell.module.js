@@ -21,13 +21,16 @@
               url:'',
               views: {
                   '@': {
-                      templateUrl:'src/shell/shell.html'
+                      templateUrl:'src/shell/shell.html',
+                      controller: 'Shell as vm'
                   },
                   'topNavBar@shell': {
-                      templateUrl: 'src/shell/topNavBar.html'
+                      templateUrl: 'src/shell/topNavBar.html',
+                      controller: 'TopNavBar as vm'
                   },
                   'subNavBar@shell': {
-                      templateUrl: 'src/shell/subNavBar.html'
+                      templateUrl: 'src/shell/subNavBar.html',
+                      controller: 'SubNavBar as vm'
                   }
               }
           });

@@ -1,10 +1,11 @@
 <div class="container-fluid clearfix">
     <a  class="dg-logo"></a>
     <ul class="dg-headerExtraLinks">
+        <li><a ng-click="vm.goToFullScreen()" ng-class="{'orangeBg': vm.isFullScreen}">Full Screen</a></li>
         <li><a >Setup</a></li>
         <li><a >System Log</a></li>
         <li><a >Help</a></li>
-        <li><a >Log Out</a></li>
+        <li><a ng-click="vm.logOut()" >Log Out</a></li>
     </ul>
     <!-- Brand and toggle get grouped for better mobile display -->
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"

@@ -18,8 +18,15 @@
     'app.shell',
     'app.product',
     'app.businessPartner',
-    'app.transaction',
-    'app.widgets'
+    'app.widgets',
+    'app.tradebook',
+    'app.authentication',
+    'app.dashboard'
   ]);
+
+  angular.module('app').config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+  });
+  
 
 }());

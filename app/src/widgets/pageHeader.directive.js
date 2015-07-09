@@ -25,7 +25,9 @@
       restrict: 'E',
       templateUrl: 'src/widgets/pageHeader.template.html',
       scope: {
-        test: '='
+        subHeading: '@',
+        heading: '@',
+        buttonList: '='
       },
       replace: true
     };
@@ -33,7 +35,7 @@
     /////////////////////
 
     function link(scope, elem, attrs){
-      console.info('This is a link function of the directive');
+      
     }
   }
 

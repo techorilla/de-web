@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
 @media (min-width: 1024px) {
   /* line 3, ../partials/_media.scss */
   .container {
@@ -298,19 +299,24 @@ img {
 }
 
 /* line 293, ../partials/_theme.scss */
+.input-group .form-control {
+  z-index: 0 !important;
+}
+
+/* line 297, ../partials/_theme.scss */
 .dg-sideBarListNav {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 297, ../partials/_theme.scss */
+/* line 301, ../partials/_theme.scss */
 .dg-sideBarListNav li {
   margin: 0 0 1px 0;
   padding: 0;
   background: #f5f5f5;
   position: relative;
 }
-/* line 302, ../partials/_theme.scss */
+/* line 306, ../partials/_theme.scss */
 .dg-sideBarListNav li:before {
   content: " ";
   position: absolute;
@@ -322,18 +328,18 @@ img {
   left: 10px;
   top: 8px;
 }
-/* line 313, ../partials/_theme.scss */
+/* line 317, ../partials/_theme.scss */
 .dg-sideBarListNav li a, .dg-sideBarListNav li a:focus {
   font-size: 12px;
   padding: 3px 12px 3px 24px;
   display: block;
 }
-/* line 317, ../partials/_theme.scss */
+/* line 321, ../partials/_theme.scss */
 .dg-sideBarListNav li a:hover, .dg-sideBarListNav li a:focus:hover {
   background: #ebebeb;
 }
 
-/* line 326, ../partials/_theme.scss */
+/* line 330, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageTitle {
   margin: 0;
   padding: 0;
@@ -342,28 +348,28 @@ img {
   text-transform: capitalize;
   float: left;
 }
-/* line 333, ../partials/_theme.scss */
+/* line 337, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageTitle .dg-pageMiniTitle {
   font-size: 16px;
   display: block;
 }
-/* line 338, ../partials/_theme.scss */
+/* line 342, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks {
   list-style: none;
   margin: 12px 0 0 0;
   padding: 0;
   float: right;
 }
-/* line 343, ../partials/_theme.scss */
+/* line 347, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li {
   border-right: 1px dashed #ccc;
   float: left;
 }
-/* line 346, ../partials/_theme.scss */
+/* line 350, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li:last-child {
   border: none;
 }
-/* line 349, ../partials/_theme.scss */
+/* line 353, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li a, .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li a:focus {
   display: block;
   padding: 2px 10px;
@@ -371,11 +377,11 @@ img {
   color: #999;
   font-weight: 600;
 }
-/* line 355, ../partials/_theme.scss */
+/* line 359, ../partials/_theme.scss */
 .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li a:hover, .dg-pageHeader .dg-pageHeaderTop .dg-pageExtraLinks li a:focus:hover {
   text-decoration: underline;
 }
-/* line 362, ../partials/_theme.scss */
+/* line 366, ../partials/_theme.scss */
 .dg-pageHeader .dg-backToLink {
   font-size: 11px;
   display: inline-block;
@@ -384,45 +390,309 @@ img {
   font-weight: 600;
   margin-top: 10px;
 }
-/* line 369, ../partials/_theme.scss */
+/* line 373, ../partials/_theme.scss */
 .dg-pageHeader .dg-backToLink .fa {
   font-size: 14px;
   margin-right: 5px;
 }
-/* line 375, ../partials/_theme.scss */
-.dg-pageHeader .dg-pageActionsLinks {
+
+/* line 381, ../partials/_theme.scss */
+.dg-pageActionsLinks {
   text-align: center;
   margin: 20px 0 0 0;
   padding: 0;
   list-style: none;
 }
-/* line 380, ../partials/_theme.scss */
-.dg-pageHeader .dg-pageActionsLinks > li {
+/* line 386, ../partials/_theme.scss */
+.dg-pageActionsLinks > li {
   display: inline-block;
   margin: 0 3px;
 }
-/* line 383, ../partials/_theme.scss */
-.dg-pageHeader .dg-pageActionsLinks > li > a, .dg-pageHeader .dg-pageActionsLinks > li > a:focus {
+/* line 389, ../partials/_theme.scss */
+.dg-pageActionsLinks > li > a, .dg-pageActionsLinks > li > a:focus {
   display: block;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 2px 16px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7f7f7+0,eaeaea+100 */
+  background: #f7f7f7;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f7f7f7 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 );
+  /* IE6-9 */
 }
-/* line 389, ../partials/_theme.scss */
-.dg-pageHeader .dg-pageActionsLinks > li > a .caret, .dg-pageHeader .dg-pageActionsLinks > li > a:focus .caret {
+/* line 404, ../partials/_theme.scss */
+.dg-pageActionsLinks > li > a .caret, .dg-pageActionsLinks > li > a:focus .caret {
   margin-left: 5px;
   position: relative;
   top: -1px;
 }
-/* line 394, ../partials/_theme.scss */
-.dg-pageHeader .dg-pageActionsLinks > li > a:hover, .dg-pageHeader .dg-pageActionsLinks > li > a:focus:hover {
+/* line 409, ../partials/_theme.scss */
+.dg-pageActionsLinks > li > a:hover, .dg-pageActionsLinks > li > a:focus:hover {
   background: #1691ac;
   border-color: #0c87a2;
   color: #fff;
 }
 
-/* line 404, ../partials/_theme.scss */
+/* line 418, ../partials/_theme.scss */
 .dropdown-menu {
   font-size: 12px;
+}
+
+/* line 422, ../partials/_theme.scss */
+.dg-table {
+  background: #fff;
+  font-size: 12px;
+}
+/* line 425, ../partials/_theme.scss */
+.dg-table .dg-tableActionBtn, .dg-table .dg-tableActionBtn:focus, .dg-table .dg-tableActionBtn:hover {
+  display: inline-block;
+  margin: 0;
+  padding: 0 5px 0 8px;
+  color: #027d98;
+  text-decoration: underline;
+  border-left: 1px solid #eee;
+  font-weight: 600;
+}
+/* line 434, ../partials/_theme.scss */
+.dg-table input[type="checkbox"] {
+  position: relative;
+  top: 2px;
+}
+/* line 438, ../partials/_theme.scss */
+.dg-table .dg-checkBoxTxt {
+  margin-right: 5px;
+}
+/* line 441, ../partials/_theme.scss */
+.dg-table tbody > tr > td, .dg-table tbody > tr > th, .dg-table tfoot > tr > td, .dg-table tfoot > tr > th, .dg-table thead > tr > td, .dg-table thead > tr > th {
+  padding: 5px 8px;
+}
+/* line 445, ../partials/_theme.scss */
+.dg-table thead tr {
+  color: #fff;
+  background: #1691AC;
+}
+/* line 448, ../partials/_theme.scss */
+.dg-table thead tr th {
+  border-bottom: none;
+}
+
+/* line 455, ../partials/_theme.scss */
+.dg-tablePanelWrap {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+}
+/* line 461, ../partials/_theme.scss */
+.dg-tablePanelWrap .dg-tablePanelHead {
+  margin: 0 0 15px 0;
+}
+/* line 463, ../partials/_theme.scss */
+.dg-tablePanelWrap .dg-tablePanelHead .dg-tablePanelTitle {
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 1px 0 0 0px;
+}
+/* line 469, ../partials/_theme.scss */
+.dg-tablePanelWrap .dg-tablePanelHead .dg-pageActionsLinks {
+  float: right;
+  margin: 0;
+}
+
+/* line 3, ../partials/_login.scss */
+#signIn label {
+  font-family: icon;
+  text-shadow: 0 -1px 0 #666;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 8, ../partials/_login.scss */
+#block, #option {
+  width: 230px;
+  height: 113px;
+  margin: auto;
+}
+
+/* line 13, ../partials/_login.scss */
+#block {
+  background: #1691ac;
+  margin-top: 100px;
+}
+
+/* line 17, ../partials/_login.scss */
+#block:before {
+  content: '';
+  display: block;
+  width: 230px;
+  height: 3px;
+}
+
+/* line 24, ../partials/_login.scss */
+#block:after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: #1691ac;
+  transform: rotate(-45deg);
+  margin: 10px 18px;
+  position: absolute;
+}
+
+/* line 34, ../partials/_login.scss */
+#block label, #submit {
+  position: absolute;
+  width: 33px;
+  height: 32px;
+  background: #dedede;
+  margin: 15px;
+  text-align: center;
+  line-height: 2.6;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+/* line 45, ../partials/_login.scss */
+.errorMsg {
+  font-size: 12px !important;
+  color: #1691ac;
+  text-transform: none !important;
+}
+
+/* line 50, ../partials/_login.scss */
+#block label#pass {
+  position: absolute;
+  width: 33px;
+  background: #dedede;
+  margin: -5px 15px;
+}
+
+/* line 56, ../partials/_login.scss */
+#submit {
+  color: #eee;
+  border: 0;
+  margin: -27px 182px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  font-family: icon;
+  background: #333;
+  font-size: 12px;
+  line-height: 2.8;
+  padding: 0;
+}
+
+/* line 70, ../partials/_login.scss */
+#submit:hover {
+  color: #eee;
+  cursor: pointer;
+  background: #3d3d3d;
+}
+
+/* line 75, ../partials/_login.scss */
+#user, #pass {
+  box-shadow: 0.1px 0 2px #6c5B6d;
+}
+
+/* line 78, ../partials/_login.scss */
+#block input[type=text], #block input[type=password], #option p {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 83, ../partials/_login.scss */
+#block input[type=text], #block input[type=password] {
+  width: 200px;
+  height: 32px;
+  margin: 15px 15px;
+  border: 0;
+  border-radius: 2px;
+  outline: 0;
+  display: block;
+  font-size: 18px;
+}
+
+/* line 93, ../partials/_login.scss */
+#block input[type=password] {
+  width: 200px;
+  height: 32px;
+  margin: -5px 15px;
+}
+
+/* line 98, ../partials/_login.scss */
+#submit {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* line 102, ../partials/_login.scss */
+#option {
+  width: 230px;
+  height: 80px;
+  overflow: hidden;
+  margin: auto;
+}
+
+/* line 108, ../partials/_login.scss */
+#option p {
+  font-size: 24px;
+  text-transform: uppercase;
+  padding: 0px 18px;
+  margin-top: 15px;
+  display: block;
+  float: left;
+  -webkit-font-smoothing: antialiased;
+  /*text-shadow:0 -1px 0 #000;*/
+}
+
+/* line 118, ../partials/_login.scss */
+#option a {
+  -webkit-font-smoothing: antialiased;
+  /*text-shadow:0 -1px 0 #000;*/
+  font-size: 12px;
+  display: block;
+  float: right;
+  margin: 26px 15px;
+}
+
+/* line 127, ../partials/_login.scss */
+#signIn input {
+  padding-left: 40px;
+}
+
+/* line 128, ../partials/_login.scss */
+#block:active > #block:before {
+  background-position: 100px 100px;
+}
+
+/* line 131, ../partials/_login.scss */
+.orangeBg {
+  background: #F47414 !important;
+}
+
+/* line 134, ../partials/_login.scss */
+.submitBtn {
+  background: #EEEEEE !important;
+}
+
+/* line 137, ../partials/_login.scss */
+.blueBorder {
+  border: 1px solid #1691ac;
 }

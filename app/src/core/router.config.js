@@ -15,7 +15,7 @@
   /* @ngInject */
   function configuration($urlRouterProvider){
 
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/login');
 
   }
 
@@ -29,7 +29,7 @@
     //on routing error
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
       //do some title setting
-      $rootScope.pageTitle = toState.title || 'app';
+      $rootScope.pageTitle = toState.title || 'Doni Enterprises';
     });
   }
 

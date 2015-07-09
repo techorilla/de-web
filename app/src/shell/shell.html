@@ -3,12 +3,13 @@
     <nav class="navbar navbar-default dg-mainNavBar" ui-view="subNavBar"></nav>
 </header>
 
-<div class="dg-mainContentWrapper">
+<div class="dg-mainContentWrapper"> 
     <div class="dg-sideBarContentLayout">
-        <side-bar is-open="true"></side-bar>
+        <side-bar is-open="vm.sideBarStatus()"></side-bar>
         <section class="dg-innerContentWrapper">
-            <a ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn"><i class="fa fa-angle-double-left"></i></a>
-            <page-header></page-header>
+            <a ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn" ng-class="{'orangeBg': !vm.sideBarStatus()}">
+            <i class="fa" ng-class="{'fa-angle-double-left':vm.sideBarStatus(),'fa-angle-double-right':!vm.sideBarStatus()}"></i></a>
+            <div ui-view="content"><div>
         </section>
     </div>
 </div>

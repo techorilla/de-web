@@ -1,0 +1,139 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+
+#signIn label{
+	font-family:icon;
+	text-shadow:0 -1px 0 #666;
+	-webkit-font-smoothing: antialiased; 
+}
+#block,#option{
+	width:230px;
+	height:113px;
+	margin:auto;
+}
+#block{
+	background:$baseColor;
+	margin-top:100px;
+}
+#block:before{
+	content:'';
+	display:block;
+	width:230px;
+	height:3px;
+
+}
+#block:after{
+	content:'';
+	display:block;
+	width:15px;
+	height:15px;
+	background:$baseColor;
+	transform:rotate(-45deg);
+	margin:10px 18px;
+	position:absolute;
+}
+#block label, #submit{
+	position:absolute;
+	width:33px;
+	height:32px;
+	background:#dedede;
+	margin:15px;
+	text-align:center;
+	line-height:2.6;
+	border-top-left-radius:2px;
+	border-bottom-left-radius:2px;
+}
+.errorMsg{
+	font-size:12px !important;
+	color:$baseColor;
+	text-transform: none !important; 	
+}
+#block label#pass{
+	position:absolute;
+	width:33px;
+	background:#dedede;
+	margin:-5px 15px;
+}
+#submit{
+	color:#eee;
+	border:0;
+	margin:-27px 182px;
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+	border-top-right-radius:2px;
+	border-bottom-right-radius:2px;
+	font-family:icon;
+	background:#333;
+	font-size:12px;
+	line-height:2.8;
+	padding:0;
+}
+#submit:hover{
+	color:#eee;
+	cursor: pointer;
+	background:#3d3d3d;
+}
+#user, #pass{
+	box-shadow:0.1px 0 2px #6c5B6d;
+}
+#block input[type=text],#block  input[type=password], #option p {
+	font-family:'Open Sans';
+	font-weight:300;
+	-webkit-font-smoothing: antialiased;
+}
+#block input[type=text],#block  input[type=password]{
+	width:200px;
+	height:32px;
+	margin:15px 15px;
+	border:0;
+	border-radius:2px;
+	outline:0;
+	display:block;
+	font-size:18px;
+}
+#block input[type=password]{
+	width:200px;
+	height:32px;	
+	margin:-5px 15px;
+}
+#submit{
+	font-size:12px;
+	font-weight:bold;
+}
+#option{
+	width:230px;
+	height:80px;
+	overflow:hidden;
+	margin:auto;
+}
+#option p{
+	font-size:24px;
+	text-transform:uppercase;
+	padding:0px 18px;
+	margin-top:15px;
+	display:block;
+	float:left;
+	-webkit-font-smoothing: antialiased;
+/*text-shadow:0 -1px 0 #000;*/	
+}
+#option a{
+	-webkit-font-smoothing: antialiased;
+	/*text-shadow:0 -1px 0 #000;*/
+	font-size:12px;
+	display:block;
+	float:right;
+	margin:26px 15px;
+}
+
+#signIn input{padding-left:40px;}
+#block:active > #block:before{
+	background-position:100px 100px;
+}
+.orangeBg{
+    background: #F47414 !important;
+}
+.submitBtn{
+	background:#EEEEEE!important; 
+}
+.blueBorder{
+	border: 1px solid $baseColor;
+}

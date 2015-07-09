@@ -3,16 +3,21 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title ng-bind="pageTitle"></title>
+  <link rel="icon" type="image/png" href="/images/logo/favIcon.png" />
   <!-- build:css styles/main.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.css" />
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+  <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+  <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css" />
   <!-- endbower -->
   <link rel="stylesheet" href="styles/css/main.css"/>
   <!-- endbuild -->
 </head>
 
-  <body>
+  <body ng-scrollbars>
     <div ui-view></div>
   </body>
 
@@ -27,14 +32,28 @@
   <script src="bower_components/restangular/dist/restangular.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-fullscreen/src/angular-fullscreen.js"></script>
+  <script src="bower_components/ng-scrollbar/dist/ng-scrollbar.js"></script>
+  <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+  <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+  <script src="bower_components/sifter/sifter.js"></script>
+  <script src="bower_components/microplugin/src/microplugin.js"></script>
+  <script src="bower_components/selectize/dist/js/selectize.js"></script>
+  <script src="bower_components/angular-selectize2/dist/selectize.js"></script>
   <!-- endbower -->
   <script src="src/core/core.module.js"></script>
   <script src="src/common/common.module.js"></script>
   <script src="src/shell/shell.module.js"></script>
   <script src="src/product/product.module.js"></script>
   <script src="src/businessPartner/businessPartner.module.js"></script>
-  <script src="src/transaction/transaction.module.js"></script>
   <script src="src/widgets/widgets.module.js"></script>
+  <script src="src/tradebook/tradebook.module.js"></script>
+  <script src="src/authentication/authentication.module.js"></script>
+  <script src="src/dashboard/dashboard.module.js"></script>
   <script src="src/app.module.js"></script>
   <script src="src/core/restangular.config.js"></script>
   <script src="src/core/router.config.js"></script>
@@ -45,6 +64,23 @@
   <script src="src/widgets/pageHeader.directive.js"></script>
   <script src="src/common/navigation.factory.js"></script>
   <script src="src/shell/shell.controller.js"></script>
+  <script src="src/product/product.controller.js"></script>
+  <script src="src/businessPartner/businesspartner.controller.js"></script>
+  <script src="src/shell/topnavbar.controller.js"></script>
+  <script src="src/shell/subnavbar.controller.js"></script>
+  <script src="src/tradebook/tradebook.controller.js"></script>
+  <script src="src/product/product.factory.js"></script>
+  <script src="src/tradebook/tradebook.factory.js"></script>
+  <script src="src/authentication/authentication.controller.js"></script>
+  <script src="src/dashboard/dashboard.controller.js"></script>
+  <script src="src/authentication/authSerivce.factory.js"></script>
+  <script src="src/common/authInterceptorService.factory.js"></script>
+  <script src="src/widgets/table.directive.js"></script>
+  <script src="src/dashboard/dashboard.factory.js"></script>
+  <script src="src/businessPartner/businessPartner.factory.js"></script>
+  <script src="src/tradebook/tradebook.factory.js"></script>
+  <script src="src/widgets/pageBlueContainer.directive.js"></script>
+  <script src="src/tradebook/addtransaction.controller.js"></script>
   <!-- endbuild -->
 
 </html>

@@ -14,15 +14,26 @@
 
   /* @ngInject */
   function configuration($stateProvider){
-
-    //add your state mappings here
-    //$stateProvider
-    //  .state('Welcome', {
-    //    url:'/welcome',
-    //    templateUrl:'src/welcome/welcome.html',
-    //    controller: 'WelcomeCtrl as vm'
-    //  }
-    //);
+    $stateProvider
+     .state('shell.businessPartner', {
+       url:'/businessPartner',
+       subNav: true,
+       subNavTitle: 'Business Partner', 
+       views:{
+            'content@shell':{
+                templateUrl: 'src/businessPartner/businessPartner.template.html',
+                controller: 'BusinessPartner as vm' 
+            }
+        } 
+     }
+    ).state('shell.businessPartner.addBusinessPartner',{
+      url:'/add',
+      views:{
+            'content@shell':{
+              templateUrl:'src/businessPartner/addBusinessPartner.html'
+            } 
+      }
+    });
   }
 
 }());
