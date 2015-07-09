@@ -3,12 +3,11 @@
         	<form>
 				  <div class="form-group col-xs-6">
 				    	<label for="exampleInputEmail1">Buyer</label>
-				    	<selectize placeholder='Pick some people...' config="emailsConfig" class='contacts' ng-model="emails"></selectize>
-					    
+				    	<selectize placeholder='Select a Buyer...' config="singleConfig" ng-model="single"></selectize>					    
 				  </div>
 				  <div class="form-group col-xs-6">
 				    <label for="exampleInputPassword1">Seller</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Name">
+				    <selectize placeholder='Select a Seller...' config="singleConfig" ng-model="single"></selectize>	
 				  </div>
 				  <div class="form-group col-xs-6">
 				    <label for="exampleInputPassword1">Buyer Contract Type</label>
@@ -16,7 +15,7 @@
 				  </div>				  
 				  <div class="form-group col-xs-6">
 				    <label for="exampleInputPassword1">Product</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
+				    <selectize placeholder='Select a Product...' config="singleConfig" ng-model="single"></selectize>	
 				  </div>
 				  <div class="form-group col-xs-6">
 				    <label for="exampleInputPassword1">Transaction Date</label>
