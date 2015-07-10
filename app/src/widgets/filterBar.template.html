@@ -1,14 +1,18 @@
- <div class="dg-filterPanel">
-  <div class="row">
-    <custom-filter></custom-filter>
-    <custom-filter></custom-filter>
-    <custom-filter></custom-filter>
-    <div class="col-sm-3">
-      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-      <span></span> <b class="caret"></b>
-      </div>
+<div class="row" ng-show="datePickerNeeded">
+    <div class="col-sm-4 col-sm-offset-8">
+        <div id="reportrange" class="pull-right myDatePicker dg-filterDropdown">
+            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            <span></span> <b class="caret"></b>
+        </div>
     </div>
+</div>
+<div class="dg-filterPanel">
+  <div class="row">
+    <custom-filter ng-if="buyer" filter-type="buyer"></custom-filter>
+    <custom-filter ng-if="seller"  filter-type="seller"></custom-filter>
+    <custom-filter ng-if="product" filter-type="product"></custom-filter>
+    <custom-filter ng-if="bpTypes" filter-type="bpTypes"></custom-filter>
+    <custom-filter ng-if="tranStatus" filter-type="tranStatus"></custom-filter>
   </div>
 </div>
 <script type="text/javascript">

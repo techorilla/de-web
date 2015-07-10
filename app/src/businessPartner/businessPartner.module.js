@@ -30,7 +30,8 @@
       url:'/add',
       views:{
             'content@shell':{
-              templateUrl:'src/businessPartner/addBusinessPartner.html'
+              templateUrl:'src/businessPartner/addBusinessPartner.html',
+              controller: 'AddBusinessPartner as vm'
             } 
       }
     });

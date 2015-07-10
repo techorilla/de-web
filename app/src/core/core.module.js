@@ -29,15 +29,10 @@
 
 	angular.module('app.core').config(function (ScrollBarsProvider) {
 	    ScrollBarsProvider.defaults = {
-	        scrollButtons: {
-	            enable: false // enable scrolling buttons by default 
-	        },
-	        axis: 'y', // enable 2 axis scrollbars by default, 
-	 
-	        // the following settings are defined for all scrollbars unless the 
-	        // scrollbar has local scope configuration 
 	        theme: 'dark',
 	        autoHideScrollbar: true,
+            scrollbarPosition: 'inside',
+            axis:'y'
 	    };
 	});
 

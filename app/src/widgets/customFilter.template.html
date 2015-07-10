@@ -1,25 +1,49 @@
-<div class="col-sm-3">
-  <div class="dg-filterDropdown">
-    <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng>Dropdown<span class="caret"></span></div>
+<div class="col-sm-3 pull-right">
+  <div class="dg-filterDropdown" ng-if="(filterType==='buyer')||(filterType==='seller')">
+    <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
     <div class="dg-filterDropdownMenu" ng-show="showOptions">
-      <ul>
-        <li class="dg-head">
-          <input type="checkbox">
-          <span class="dg-value"><input type="text" class="form-control"></span>
-        </li>
+      <ul class="dg-head">
         <li>
-          <input type="checkbox">
-          <span class="dg-value">Islamabad</span>
+            <input type="checkbox">
+            <span class="dg-value"><input type="text" class="form-control"></span>
         </li>
-        <li>
+      </ul>
+      <ul ng-scrollbars>
+        <li ng-repeat="value in dropDownValues">
           <input type="checkbox">
-          <span class="dg-value">Islamabad</span>
-        </li>
-        <li>
-          <input type="checkbox">
-          <span class="dg-value">Islamabad</span>
+          <span class="dg-value filterHeading">{{value.Name}}</span>
+          <span class="dg-value">{{value.Location}}</span>
         </li>
       </ul>
     </div>
+  </div>
+  <div class="dg-filterDropdown" ng-if="(filterType==='bpTypes')||(filterType==='tranStatus')">
+        <div class="dg-filterDropdownField" ng-click="invertShowOptions()"><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
+        <div class="dg-filterDropdownMenu" ng-show="showOptions">
+            <ul ng-scrollbars>
+                <li ng-repeat="value in dropDownValues">
+                    <input type="checkbox">
+                    <span class="dg-value">{{value.name}}</span>
+                </li>
+            </ul>
+        </div>
+  </div>
+  <div class="dg-filterDropdown" ng-if="filterType==='product'">
+        <div class="dg-filterDropdownField" ng-click="invertShowOptions()"><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
+        <div class="dg-filterDropdownMenu" ng-show="showOptions">
+            <ul class="dg-head">
+                <li>
+                    <input type="checkbox">
+                    <span class="dg-value"><input type="text" class="form-control"></span>
+                </li>
+            </ul>
+            <ul ng-scrollbars>
+                <li ng-repeat="value in dropDownValues">
+                    <input type="checkbox">
+                    <span class="dg-value  filterHeading">{{value.ProductCode}}</span>
+                    <span class="dg-value">{{'Name: '+value.ProductName+'  Quality: '+value.ProductQuality}}</span>
+                </li>
+            </ul>
+        </div>
   </div>
 </div>

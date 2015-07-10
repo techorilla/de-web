@@ -26,7 +26,12 @@
       templateUrl: 'src/widgets/filterBar.template.html',
       scope: {
         test: '=',
-        datePickerNeeded:'='
+        datePickerNeeded:'=',
+        seller:'=',
+        buyer:'=',
+        product:'=',
+        tranStatus:'=',
+        bpTypes:'='
       }
 
     };

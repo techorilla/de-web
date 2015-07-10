@@ -112,7 +112,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 1000;
 }
 /* line 124, ../partials/_theme.scss */
 .dg-header .dg-topBar {
@@ -633,7 +633,7 @@ img {
 
 /* line 573, ../partials/_theme.scss */
 .dg-filterPanel {
-  background: #fff;
+  background: #333;
   border: 1px solid #ddd;
   padding: 10px;
   margin: 20px 0;
@@ -687,7 +687,7 @@ img {
   min-width: 160px;
   padding: 10px;
   margin-top: 5px;
-  z-index: 10;
+  z-index: 1;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -706,29 +706,35 @@ img {
   overflow: hidden;
   border-bottom: 1px solid #eee;
 }
-/* line 627, ../partials/_theme.scss */
-.dg-filterDropdown .dg-filterDropdownMenu ul li.dg-head {
+/* line 628, ../partials/_theme.scss */
+.dg-filterDropdown .dg-filterDropdownMenu ul li input[type="checkbox"] {
+  display: block;
+  float: left;
+}
+/* line 632, ../partials/_theme.scss */
+.dg-filterDropdown .dg-filterDropdownMenu ul li span {
+  margin-left: 30px;
+  display: block;
+  line-height: 15px;
+  font-size: 10px;
+}
+/* line 639, ../partials/_theme.scss */
+.dg-filterDropdown .dg-filterDropdownMenu ul.dg-head {
+  height: auto;
+  margin-bottom: 10px;
+}
+/* line 642, ../partials/_theme.scss */
+.dg-filterDropdown .dg-filterDropdownMenu ul.dg-head li {
   background: #eee;
 }
-/* line 629, ../partials/_theme.scss */
-.dg-filterDropdown .dg-filterDropdownMenu ul li.dg-head .form-control, .dg-filterDropdown .dg-filterDropdownMenu ul li.dg-head .form-control:focus {
+/* line 644, ../partials/_theme.scss */
+.dg-filterDropdown .dg-filterDropdownMenu ul.dg-head li .form-control, .dg-filterDropdown .dg-filterDropdownMenu ul.dg-head li .form-control:focus {
   height: 20px;
   background: url(/images/icons/search-mini-icon.png) no-repeat right center #fff;
   padding: 4px 22px 4px 12px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-}
-/* line 636, ../partials/_theme.scss */
-.dg-filterDropdown .dg-filterDropdownMenu ul li input[type="checkbox"] {
-  display: block;
-  float: left;
-}
-/* line 640, ../partials/_theme.scss */
-.dg-filterDropdown .dg-filterDropdownMenu ul li span {
-  margin-left: 30px;
-  display: block;
-  line-height: 20px;
 }
 
 /* line 3, ../partials/_login.scss */
@@ -906,10 +912,52 @@ img {
 
 /* line 134, ../partials/_login.scss */
 .submitBtn {
-  background: #EEEEEE !important;
+  background: #333333 !important;
+  color: #ddd;
+  border: none;
 }
 
-/* line 137, ../partials/_login.scss */
+/* line 139, ../partials/_login.scss */
+.submitBtn:hover {
+  opacity: 0.9;
+  color: #ddd !important;
+}
+
+/* line 143, ../partials/_login.scss */
 .blueBorder {
   border: 1px solid #1691ac;
+}
+
+/* line 146, ../partials/_login.scss */
+.filterHeading {
+  color: #1691ac;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+/* line 151, ../partials/_login.scss */
+button, a:focus {
+  outline: 0;
+}
+
+/* line 152, ../partials/_login.scss */
+input, textarea, select, a, button {
+  outline: none;
+}
+
+/* line 154, ../partials/_login.scss */
+.panel-default > .panel-heading {
+  color: #ddd;
+  background-color: #333333;
+  border-color: #ddd;
+}
+
+/* line 159, ../partials/_login.scss */
+.myDatePicker {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 2px solid #333;
+  background: #F2F2F2;
+  font-weight: bold;
+  font-size: 12px;
 }

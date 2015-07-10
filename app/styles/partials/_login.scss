@@ -131,9 +131,34 @@
 .orangeBg{
     background: #F47414 !important;
 }
-.submitBtn{
-	background:#EEEEEE!important; 
+.submitBtn {
+  background: #333333 !important;
+  color: #ddd;
+  border:none;
+}
+.submitBtn:hover{
+  opacity: 0.9;
+  color: #ddd !important;
 }
 .blueBorder{
 	border: 1px solid $baseColor;
+}
+.filterHeading{
+  color:$baseColor;
+  font-weight: bold;
+  font-size: 11px;
+}
+button,a:focus {outline:0;}
+input, textarea, select, a, button { outline: none; }
+
+.panel-default > .panel-heading {
+  color: #ddd;
+  background-color: #333333;
+  border-color: #ddd;
+}
+.myDatePicker{
+  cursor: pointer; padding: 5px 10px; border: 2px solid #333;
+  background: #F2F2F2;
+  font-weight: bold;
+  font-size:12px;
 }

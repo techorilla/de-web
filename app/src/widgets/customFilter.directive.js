@@ -18,14 +18,14 @@
     .directive('customFilter', customFilter);
 
   /* @ngInject */
-  function customFilter(){
+  function customFilter(tabFilter){
 
     return {
       link: link,
       restrict: 'E',
       templateUrl: 'src/widgets/customFilter.template.html',
       scope: {
-        test: '='
+        filterType: '@'
       },
       replace:true
     };
@@ -34,10 +34,41 @@
 
     function link(scope, elem, attrs){
       scope.showOptions = false;
+      scope.dropDownValues={};
       scope.invertShowOptions = function(){
         scope.showOptions = !scope.showOptions;
       }
-      console.info('This is a link function of the directive');
+      if(scope.filterType==='product'){
+          scope.title= 'Product';
+          tabFilter.getProductFilter().then(function(res){
+            scope.dropDownValues = res.data.products;
+        });
+      }
+      if(scope.filterType==='buyer'){
+          scope.title= 'Buyer';
+          tabFilter.getBuyerFilter().then(function(res){
+            scope.dropDownValues = res.data.buyer;
+        });
+      }
+      if(scope.filterType==='seller'){
+          scope.title='Seller';
+          tabFilter.getSellerFilter().then(function(res){
+            scope.dropDownValues = res.data.seller;
+        });
+      }
+      if(scope.filterType==='bpTypes'){
+          scope.title= 'Business Partner Type';
+          tabFilter.getBusinessPartnerTypes().then(function(res){
+              scope.dropDownValues = res.data.bpTypes;
+          });
+      }
+      if(scope.filterType==='tranStatus'){
+          scope.title='Transaction Status';
+          tabFilter.getTransactionStatus().then(function(res){
+              scope.dropDownValues = res.data.status;
+          });
+
+      }
     }
   }
 

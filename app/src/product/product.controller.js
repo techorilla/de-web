@@ -52,14 +52,6 @@
                                                 {
                                                   name:"Created On",
                                                   filter:false
-                                                },
-                                                {
-                                                  name:"Last Updated By",
-                                                  fitler:false
-                                                },
-                                                {
-                                                  name:"Last Updated On",
-                                                  filter:false
                                                 }
                                             ];
             vm.headerAnchor = [

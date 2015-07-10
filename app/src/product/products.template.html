@@ -2,7 +2,7 @@
 <div class="dg-pageContent">
     <div class="dg-tablePanelWrap">
         <div class="dg-tablePanelHead clearfix">
-            <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.data.length}} Products</small></div>
+            <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.products.length}} Products</small></div>
             <ul class="dg-pageActionsLinks">
                 <li><a href="#">Delete</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Clone<span class="caret"></span></a>
@@ -31,23 +31,19 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td><input type="text" class="form-control"></td> 
+                        <td><input type="text" class="form-control"></td>
                         <td><input type="text" class="form-control"></td>
                         <td></td>
                         <td></td>
-                        <td></td>                        
                         <td></td>
-                        <td></td>                        
                     </tr>
-                    <tr ng-repeat="row in vm.allProducts.data">
+                    <tr ng-repeat="row in vm.allProducts.products">
                         <td><input class="dg-checkBoxTxt" type="checkbox"> <a class="dg-tableActionBtn dg-edit"><i class="fa fa-pencil-square-o"></i></a> <a class="dg-tableActionBtn dg-delete"><i class="fa fa-trash"></i></a> </td>
                         <td ng-bind="row.ProductCode"></td>
                         <td ng-bind="row.ProductName"></td>
                         <td ng-bind="row.ProductQuality"></td>
                         <td ng-bind="row.CreatedOn"></td>
                         <td ng-bind="row.CreatedBy"></td>
-                        <td ng-bind="row.LastUpdatedOn"></td>
-                        <td ng-bind="row.LastUpdatedBy"></td>
                     </tr>
                 </tbody>
             </table>
