@@ -213,6 +213,9 @@ img {
       &.dg-close{
         width:0;
       }
+      input{
+        z-index:0;
+      }
     }
     .dg-innerContentWrapper{
       vertical-align: top;
@@ -564,5 +567,82 @@ img {
     border:1px solid #ddd;
     border-top:none;
     padding:10px;
+  }
+}
+
+.dg-filterPanel{
+  background:#fff;
+  border:1px solid #ddd;
+  padding:10px;
+  margin:20px 0;
+}
+
+.dg-filterDropdown{
+  cursor: pointer;
+  position: relative;
+  .dg-filterDropdownField{
+    border:1px solid #ccc;
+    padding:5px 25px 5px 12px;
+    position: relative;
+    border-radius:5px;
+    font-weight: 600;
+    background: rgb(247,247,247); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(247,247,247,1) 0%, rgba(234,234,234,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(100%,rgba(234,234,234,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(247,247,247,1) 0%,rgba(234,234,234,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(247,247,247,1) 0%,rgba(234,234,234,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(247,247,247,1) 0%,rgba(234,234,234,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(247,247,247,1) 0%,rgba(234,234,234,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+    .caret{
+      display: block;
+      position: absolute;
+      right: 9px;
+      top: 11px;
+    }
+  }
+  .dg-filterDropdownMenu{
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width:100%;
+    min-width:160px;
+    padding:10px;
+    margin-top:5px;
+    z-index: 10;
+    @include boxShadow(0 6px 12px rgba(0,0,0,.175));
+    ul{
+      margin:0;
+      padding:0;
+      list-style: none;
+      height: 150px;
+      li{
+        margin:0;
+        padding:5px;
+        overflow: hidden;
+        border-bottom:1px solid #eee;
+        &.dg-head{
+          background: #eee;
+          .form-control, .form-control:focus{
+            height: 20px;
+            background:url(/images/icons/search-mini-icon.png) no-repeat right center #fff;
+            padding:4px 22px 4px 12px;
+            @include boxShadow(none);
+          }
+        }
+        input[type="checkbox"]{
+          display:block;
+          float:left;
+        }
+        span{
+          margin-left:30px;
+          display:block;
+          line-height: 20px;
+        }
+      }
+    }
   }
 }

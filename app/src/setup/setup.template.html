@@ -1,0 +1,18 @@
+<div class="dg-tabPanelWrap">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-repeat="state in vm.setupStates"  ui-sref="{{state.name}}" ui-sref-active="active">
+            	<a role="tab" data-toggle="tab">
+            		{{state.inSetupTitle}}
+            	</a>
+            </li>
+            <!-- <li role="presentation"><a aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+            <li role="presentation"><a aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+            <li role="presentation"><a aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li> -->
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" ui-view="subContent">
+            </div>
+        </div>

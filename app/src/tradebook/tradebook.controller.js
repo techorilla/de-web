@@ -13,7 +13,7 @@
 		.controller('Tradebook', Tradebook);
 
   /* @ngInject */
-	function Tradebook(){
+	function Tradebook(tradebook){
 		var vm = this;
         init();
 		vm.testFunction = testFunction;
@@ -35,6 +35,44 @@
                     state: 'shell.tradebook.newTransaction'
                 }
             ];
+            vm.allTransactions = {};
+            tradebook.getTransactionList().then(function(res){
+                vm.allTransactions.data = res.data.transationList;
+            });
+            vm.allTransactions.tableHeadings =  [
+                                    {
+                                      name:"File No",
+                                      filter: true
+                                    },
+                                    {
+                                      name:"Date",
+                                      filter:true
+                                    },
+                                    {
+                                      name:"Buyer",
+                                      filter:true
+                                    },
+                                    {
+                                      name:"Seller",
+                                      filter:true
+                                    },
+                                    {
+                                      name:"Product",
+                                      filter:false
+                                    },
+                                    {
+                                      name:"Quantity",
+                                      fitler:false
+                                    },
+                                    {
+                                      name:"Rate",
+                                      fitler:false
+                                    },
+                                    {
+                                        name:'Net Commission',
+                                        filter:false
+                                    }
+                                ];
         }
     function testFunction(num){
 			console.info('This is a test function');

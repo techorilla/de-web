@@ -21,32 +21,39 @@
           url:'/setup',
           views:{
             'content@shell':{
-                templateUrl: 'src/setup/setup.html'
+                templateUrl: 'src/setup/setup.template.html',
+                controller: 'Setup as vm'
             }
           }
         }
       ).
       state('shell.setup.newUser',{
         url:'/newUser',
+        inSetup: 'true',
+        inSetupTitle: 'New User',
         views:{
             'subContent@shell.setup':{
-                templateUrl: 'src/setup/addNewUser.html'
+                templateUrl: 'src/setup/addNewUser.template.html'
             }
         }
       }).
       state('shell.setup.userRights',{
-         url:'/userRights',
+        url:'/userRights',
+        inSetup: 'true',
+        inSetupTitle: 'User Rights',
          views:{
              'subContent@shell.setup':{
-                 templateUrl: 'src/setup/userRights.html'
+                 templateUrl: 'src/setup/userRights.template.html'
              }
          }
       }).
-      state('shell.setup.brokerBook',{
-         url:'/brokerBook',
+      state('shell.setup.brokerBookSetup',{
+        url:'/brokerBookSetup',
+        inSetup: 'true',
+        inSetupTitle: 'Broker Book Setup',
          views:{
              'subContent@shell.setup':{
-                 templateUrl:''
+                 templateUrl:'src/setup/brokerBookSetup.template.html'
              }
          }
       });

@@ -13,9 +13,10 @@
 		.factory('tradebook', tradebook);
 
   /* @ngInject */
-  function tradebook(){
+  function tradebook($http){
 		return {
-			testFunction: testFunction
+			testFunction: testFunction,
+            getTransactionList: getTransactionList
 		};
 
 		////////////////////
@@ -36,6 +37,10 @@
 		function testFunction(id){
 			console.info('This is a test function');
 		}
+
+        function getTransactionList(){
+            return $http.get('datastore/transactionList.json');
+        }
 	}
 
 }());

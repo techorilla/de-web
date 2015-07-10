@@ -20,7 +20,7 @@
         vm.goToFullScreen = goToFullScreen;
         vm.logOut = logOut;
         vm.onSetupPage = function(){
-            return ($state.current.name === 'shell.setup');
+            return ($state.current.name.substring( 0, 11 )==='shell.setup');
         }
 
     /////////////////////

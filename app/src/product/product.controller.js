@@ -33,13 +33,34 @@
             vm.orderByReverse = false
             vm.allProducts = allProducts;
             vm.allProducts.tableHeadings =  [
-                                                "Product Code",
-                                                "Name",
-                                                "Quality",
-                                                "Created By",
-                                                "Created On",
-                                                "Last Updated By",
-                                                "Last Updated On"
+                                                {
+                                                  name:"Product Code",
+                                                  filter: true
+                                                },
+                                                {
+                                                  name:"Name",
+                                                  filter:true
+                                                },
+                                                {
+                                                  name:"Quality",
+                                                  filter:true
+                                                },
+                                                {
+                                                  name:"Created By",
+                                                  filter:true
+                                                },
+                                                {
+                                                  name:"Created On",
+                                                  filter:false
+                                                },
+                                                {
+                                                  name:"Last Updated By",
+                                                  fitler:false
+                                                },
+                                                {
+                                                  name:"Last Updated On",
+                                                  filter:false
+                                                }
                                             ];
             vm.headerAnchor = [
                 {

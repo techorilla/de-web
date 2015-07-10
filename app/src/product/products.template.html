@@ -2,9 +2,8 @@
 <div class="dg-pageContent">
     <div class="dg-tablePanelWrap">
         <div class="dg-tablePanelHead clearfix">
-            <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total 34 Products</small></div>
+            <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.data.length}} Products</small></div>
             <ul class="dg-pageActionsLinks">
-                <li><a href="#">Edit</a></li>
                 <li><a href="#">Delete</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Clone<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -14,7 +13,11 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Start Workflow</a></li>
+                <li>
+                    <a ng-click="vm.invertOrderByReverse()">
+                        <i class="fa" ng-class="{'fa-arrow-down':vm.orderByReverse,'fa-arrow-up':!vm.orderByReverse}"></i>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="dg-tablePanelBody">
@@ -22,33 +25,29 @@
                 <thead>
                 <tr>
                     <th><input class="dg-checkBoxTxt" type="checkbox"> Action</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Sales Price</th>
-                    <th>Date</th>
-                    <th>Line Description</th>
-                    <th class="text-center">Start Workflow</th>
+                    <th ng-repeat="heading in vm.allProducts.tableHeadings" ng-bind="heading.name"></th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
+                        <td><input type="text" class="form-control"></td> 
                         <td><input type="text" class="form-control"></td>
                         <td></td>
                         <td></td>
-                        <td class="text-center"><input type="checkbox"></td>
+                        <td></td>                        
+                        <td></td>
+                        <td></td>                        
                     </tr>
-                    <tr ng-repeat="row in vm.allProducts">
+                    <tr ng-repeat="row in vm.allProducts.data">
                         <td><input class="dg-checkBoxTxt" type="checkbox"> <a class="dg-tableActionBtn dg-edit"><i class="fa fa-pencil-square-o"></i></a> <a class="dg-tableActionBtn dg-delete"><i class="fa fa-trash"></i></a> </td>
                         <td ng-bind="row.ProductCode"></td>
                         <td ng-bind="row.ProductName"></td>
                         <td ng-bind="row.ProductQuality"></td>
                         <td ng-bind="row.CreatedOn"></td>
                         <td ng-bind="row.CreatedBy"></td>
-                        <td ng-bind="row.UpdatedOn"></td>
-                        <td ng-bind="row.UpdatedBy"></td>
+                        <td ng-bind="row.LastUpdatedOn"></td>
+                        <td ng-bind="row.LastUpdatedBy"></td>
                     </tr>
                 </tbody>
             </table>

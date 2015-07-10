@@ -1,6 +1,6 @@
 /**
  * @ngdoc directive
- * @name app.widgets.directive:filterBar
+ * @name app.widgets.directive:customFilter
  * @scope true
  * @param {object} test test object
  * @restrict E
@@ -15,25 +15,28 @@
 
   angular
     .module('app.widgets')
-    .directive('filterBar', filterBar);
+    .directive('customFilter', customFilter);
 
   /* @ngInject */
-  function filterBar(){
+  function customFilter(){
 
     return {
       link: link,
       restrict: 'E',
-      templateUrl: 'src/widgets/filterBar.template.html',
+      templateUrl: 'src/widgets/customFilter.template.html',
       scope: {
-        test: '=',
-        datePickerNeeded:'='
-      }
-
+        test: '='
+      },
+      replace:true
     };
 
     /////////////////////
 
     function link(scope, elem, attrs){
+      scope.showOptions = false;
+      scope.invertShowOptions = function(){
+        scope.showOptions = !scope.showOptions;
+      }
       console.info('This is a link function of the directive');
     }
   }

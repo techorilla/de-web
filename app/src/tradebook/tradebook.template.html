@@ -1,1 +1,48 @@
 <page-header heading="Transactions" sub-heading="Manage" button-list="vm.headerAnchor"></page-header>
+<filter-bar date-picker-needed="true"></filter-bar>
+<div class="dg-pageContent">
+    <div class="dg-tablePanelWrap">
+        <div class="dg-tablePanelHead clearfix">
+            <div class="dg-tablePanelTitle">Transactions (Standard)<br><small>Total {{vm.allTransactions.data.length}} Transactions</small></div>
+            <ul class="dg-pageActionsLinks">
+                <li><a href="#">Delete</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Clone<span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a ng-click="vm.invertOrderByReverse()">
+                        <i class="fa" ng-class="{'fa-arrow-down':vm.orderByReverse,'fa-arrow-up':!vm.orderByReverse}"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="dg-tablePanelBody">
+            <table class="table table-bordered dg-table">
+                <thead>
+                <tr>
+                    <th><input class="dg-checkBoxTxt" type="checkbox"> Action</th>
+                    <th ng-repeat="heading in vm.allTransactions.tableHeadings" ng-bind="heading.name"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in vm.allTransactions.data">
+		                <td><input class="dg-checkBoxTxt" type="checkbox"> <a class="dg-tableActionBtn dg-edit"><i class="fa fa-pencil-square-o"></i></a> <a class="dg-tableActionBtn dg-delete"><i class="fa fa-trash"></i></a> <a class="dg-tableActionBtn dg-delete"><i class="fa fa-info-circle"></i></a> </td>
+		                <td ng-bind="row.FileNo"></td>
+		                <td ng-bind="row.Date"></td>
+		                <td ng-bind="row.Buyer"></td>
+		                <td ng-bind="row.Seller"></td>
+		                <td ng-bind="row.Product"></td>
+		                <td ng-bind="row.Quantity"></td>
+		                <td ng-bind="row.Rate"></td>
+		                <td ng-bind="row.NetCommission"></td>
+              		</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
