@@ -35,6 +35,7 @@
     function link(scope, elem, attrs){
       scope.showOptions = false;
       scope.dropDownValues={};
+      scope.textFilter = '';
       scope.invertShowOptions = function(){
         scope.showOptions = !scope.showOptions;
       }
@@ -67,7 +68,13 @@
           tabFilter.getTransactionStatus().then(function(res){
               scope.dropDownValues = res.data.status;
           });
-
+      }
+      if(scope.filterType==='country'){
+        scope.title='Country';
+        tabFilter.getAllCountries().then(function(res){
+            scope.dropDownValues = res.data.country;
+            console.log(scope.dropDownValues);
+        });
       }
     }
   }

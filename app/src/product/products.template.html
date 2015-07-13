@@ -43,7 +43,7 @@
                         <td ng-bind="row.ProductName"></td>
                         <td ng-bind="row.ProductQuality"></td>
                         <td ng-bind="row.CreatedOn"></td>
-                        <td ng-bind="row.CreatedBy"></td>
+                        <td ng-bind="row.CreatedBy| date:'MM/dd/yyyy'"></td>
                     </tr>
                 </tbody>
             </table>

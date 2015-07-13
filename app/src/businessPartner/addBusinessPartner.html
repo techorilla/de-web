@@ -4,62 +4,68 @@
     </br>
     <div class="row">
         <div class="col-xs-12">
-            <accordion close-others="false">
+            <accordion close-others="true">
                 <accordion-group is-open="vm.generalInfoOpen">
                     <accordion-heading>
                         Basic Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.generalInfoOpen, 'glyphicon-chevron-right': !vm.generalInfoOpen}"></i>
                     </accordion-heading>
                     <div class="form-horizontal dg-infoDivTable">
                         <div class="clearfix">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-sm-12 control-label">Opportunity Owner</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Jason Venable</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Account Name</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="Please enter the value">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Opportunity Name</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Edge Emergency Generator</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Type</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Existing Customer - Replacement</p>
+                                    <div class="col-sm-12 control-label">
+                                        <label class="col-sm-12 control-label marginLeft15">Business Partner Name</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="vm.businessPartner.name" placeholder="Please enter business partner name here">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Ammount</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">$275,000.000</p>
+                                    <div class="col-sm-12 control-label">
+                                        <label class="col-sm-12 control-label marginLeft15">Country</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <selectize placeholder='Please enter Country' config="vm.singleConfig" ng-model="vm.businessPartner.country"></selectize>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Close Date</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" placeholder="Please enter the value">
+                                    <div class="col-sm-12 control-label">
+                                        <label class="col-sm-12 control-label marginLeft15">Website</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="vm.businessPartner.website" placeholder="Please enter business partner website here">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Stage</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">Id. Decision Maker</p>
+                                    <label class="col-sm-12 control-label">Business Partner Type</label>
+                                    <div class="col-sm-3" ng-repeat="type in vm.possibleBPTypes">
+                                        <input type="checkbox" class="bpChecks" ng-model="type.isChecked">
+                                        <p class="form-control-static">{{type.name}}</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label">Probability (%)</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">60%</p>
+                                    <label class="col-sm-12 control-label">Credibility Rating</label>
+                                    <div class="col-sm-12">
+                                        <input type="number" min="0" max="5" class="form-control" ng-model="vm.businessPartner.creditRating" placeholder="Credibility Rating">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-12 control-label">
+                                        <label class="col-sm-12 control-label marginLeft15">Fax Number</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="vm.businessPartner.faxNumber" placeholder="Please enter business partner FAX number here">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="vm.possibleBPTypes[0].isChecked">
+                                    <label class="col-sm-12 control-label">Buyer Contract Type</label>
+                                    <div class="col-sm-6" ng-repeat="type in vm.buyerContractTypes">
+                                        <input type="checkbox" class="bpChecks" ng-model="type.isChecked">
+                                        <p class="form-control-static">{{type.name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -68,59 +74,53 @@
                 </accordion-group>
                 <accordion-group is-open="vm.addressInfoOpen">
                     <accordion-heading>
-                        Address <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.addressInfoOpen, 'glyphicon-chevron-right': !vm.addressInfoOpen}"></i>
+                        Address <span ng-if="vm.businessPartner.address.length>0">({{vm.businessPartner.address.length}})</span>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.addressInfoOpen, 'glyphicon-chevron-right': !vm.addressInfoOpen}"></i>
                     </accordion-heading>
                     <div class="form-horizontal dg-infoDivTable">
                         <div class="clearfix">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Opportunity Owner</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Jason Venable</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Account Name</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="Please enter the value">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Opportunity Name</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Edge Emergency Generator</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Type</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Existing Customer - Replacement</p>
-                                    </div>
-                                </div>
+                            <div class="col-md-12">
+                                <i ng-click="vm.addAddress()" class="addSubtract pull-right glyphicon glyphicon-plus"></i>
+                                <i ng-click="vm.subAddress()" class="addSubtract pull-right glyphicon glyphicon-minus"></i>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">Ammount</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">$275,000.000</p>
+                            <div ng-repeat="address in vm.businessPartner.address" class="marginTop1 row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15 largerFont">Address No. {{$index + 1}}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Address Line 1</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" ng-model="address.line1" placeholder="Please enter Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Address Line 2</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" ng-model="address.line2" placeholder="Please enter Line 2">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">Close Date</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" placeholder="Please enter the value">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Postal Code</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" ng-model="address.zipCode" placeholder="Please enter postal code">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">City</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" ng-model="address.city" placeholder="Please enter postal city">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">Stage</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">Id. Decision Maker</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">Probability (%)</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">60%</p>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">State</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" ng-model="address.state" placeholder="Please enter postal state">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,46 +129,81 @@
                 </accordion-group>
                 <accordion-group is-open="vm.contactPersonInfoOpen">
                     <accordion-heading>
-                        Contact Person <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.contactPersonInfoOpen, 'glyphicon-chevron-right': !vm.contactPersonInfoOpen}"></i>
+                        Contact Person<span ng-if="vm.businessPartner.contactPerson.length>0">({{vm.businessPartner.contactPerson.length}})</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': vm.contactPersonInfoOpen, 'glyphicon-chevron-right': !vm.contactPersonInfoOpen}"></i>
                     </accordion-heading>
                     <div class="form-horizontal dg-infoDivTable">
                         <div class="clearfix">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
+                                <i ng-click="vm.addContactPerson()"    class="addSubtract pull-right glyphicon glyphicon-plus"></i>
+                                <i ng-click="vm.subContactPerson" class="addSubtract pull-right glyphicon glyphicon-minus"></i>
                             </div>
-                            <div class="col-md-6">
-                            </div>
-                        </div>
-                    </div>
-                </accordion-group>
-                <accordion-group >
-                    <accordion-heading>
-                        Evaluation Notes <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </accordion-heading>
-                    <div class="form-horizontal dg-infoDivTable">
-                        <div class="clearfix">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-12 control-label">Opportunity Owner</label>
-                                    <div class="col-sm-12">
-                                        <p class="form-control-static">Jason Venable</p>
+                            <div ng-repeat="contactPerson in vm.businessPartner.contactPerson">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15 largerFont">Contact No. {{$index + 1}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15">Title</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="contact.title" placeholder="Title">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15">First Name</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="contact.firstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15">Last Name</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="contact.lastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label marginLeft15">Designation</label>
+                                        <div class="col-sm-12 marginLeft15">
+                                            <input type="text" class="form-control" ng-model="contact.designation" placeholder="Designation">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group marginLeft15">
+                                        <label class="col-sm-12 control-label">Email Address</label>
+                                        <div class="col-sm-12">
+                                            <tags-input ng-model="contact.emails"
+                                                        placeholder="Add business partner e-mail">
+                                            </tags-input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group marginLeft15">
+                                        <label class="col-sm-12 control-label">Contact Numbers</label>
+                                        <div class="col-sm-12">
+                                            <tags-input ng-model="contact.contactNumbers"
+                                                        placeholder="Add business partner e-mail">
+                                            </tags-input>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">Ammount</label>
-                                    <div class="col-sm-8">
-                                        <p class="form-control-static">$275,000.000</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </accordion-group>
             </accordion>
         </div>
     </div>
-    <button type="submit" class="btn btn-default submitBtn">Submit</button>
+    <button type="submit" class="btn btn-default submitBtn" ng-click="vm.saveBusinessPartner()">Submit</button>
     <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
 </page-blue-container>
 

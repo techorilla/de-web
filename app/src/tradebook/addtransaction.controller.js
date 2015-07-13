@@ -26,7 +26,7 @@
     options: [{value: 1, text: 'Chuck Testa', email:'chucktesla@gmail,com'}, {value: 2, text:'Nikola Tesla',email:'nuckTesla@gmail.com'}],
     create: true,
     sortField: 'text',
-    maxItems: 1,
+    maxItems: 1
   }
   
  

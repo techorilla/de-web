@@ -18,7 +18,8 @@
     'angular-loading-bar', 
     'ngAnimate',
     'LocalStorageModule',
-    'selectize'
+    'selectize',
+    'ngTagsInput'
   ]);
 
   	angular.module('app.core').config(function (localStorageServiceProvider) {

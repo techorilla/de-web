@@ -2,19 +2,23 @@
     "bpTypes":[
         {
             "id": 1,
-            "name": "Buyer"
+            "name": "Buyer",
+            "isChecked": false
         },
         {
             "id": 2,
-            "name": "Seller"
+            "name": "Seller",
+            "isChecked": false
         },
         {
             "id": 3,
-            "name": "Broker"
+            "name": "Broker",
+            "isChecked": false
         },
         {
             "id": 4,
-            "name": "Shipper"
+            "name": "Shipper",
+            "isChecked": false
         }
     ]
 }

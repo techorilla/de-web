@@ -31,7 +31,8 @@
         buyer:'=',
         product:'=',
         tranStatus:'=',
-        bpTypes:'='
+        bpTypes:'=',
+        country:'='
       }
 
     };

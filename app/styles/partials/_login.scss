@@ -157,8 +157,57 @@ input, textarea, select, a, button { outline: none; }
   border-color: #ddd;
 }
 .myDatePicker{
-  cursor: pointer; padding: 5px 10px; border: 2px solid #333;
-  background: #F2F2F2;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #1691AC;
+  background: #FFFFFF;
   font-weight: bold;
-  font-size:12px;
+  font-size: 12px;
+}
+.bpChecks{
+  float: left;
+  margin-right: 10px !important;
+  margin-top: 6px !important;
+}
+
+.marginLeft15{
+  margin-left: -15px !important;
+}
+
+.addSubtract{
+  margin-left:10px;
+  cursor: pointer;
+}
+.addSubtract:hover{
+  color: #F47414 !important;
+}
+
+.largerFont{
+  font-size: larger;
+}
+
+.tags .tag-list .tag-item{
+  background:#333 !important;
+  color:#eee !important;
+  font-size:10px;
+}
+.tags{
+  box-shadow: none !important;
+  border: none !important;
+  margin:0px !important;
+  margin-left: -5px !important;
+  color:#333 !important;
+  width:100% !important;
+}
+
+.tags .input{
+  width:100% !important;
+  font:inherit !important;
+  font-style: italic !important;
+  color:#333 !important;
+}
+
+.marginTop1{
+  margin-top: 20px;
+
 }

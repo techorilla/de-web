@@ -633,8 +633,8 @@ img {
 
 /* line 573, ../partials/_theme.scss */
 .dg-filterPanel {
-  background: #333;
-  border: 1px solid #ddd;
+  background: #FFF;
+  border: 1px solid #1691AC;
   padding: 10px;
   margin: 20px 0;
 }
@@ -956,8 +956,66 @@ input, textarea, select, a, button {
 .myDatePicker {
   cursor: pointer;
   padding: 5px 10px;
-  border: 2px solid #333;
-  background: #F2F2F2;
+  border: 1px solid #1691AC;
+  background: #FFFFFF;
   font-weight: bold;
   font-size: 12px;
+}
+
+/* line 167, ../partials/_login.scss */
+.bpChecks {
+  float: left;
+  margin-right: 10px !important;
+  margin-top: 6px !important;
+}
+
+/* line 173, ../partials/_login.scss */
+.marginLeft15 {
+  margin-left: -15px !important;
+}
+
+/* line 177, ../partials/_login.scss */
+.addSubtract {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* line 181, ../partials/_login.scss */
+.addSubtract:hover {
+  color: #F47414 !important;
+}
+
+/* line 185, ../partials/_login.scss */
+.largerFont {
+  font-size: larger;
+}
+
+/* line 189, ../partials/_login.scss */
+.tags .tag-list .tag-item {
+  background: #333 !important;
+  color: #eee !important;
+  font-size: 10px;
+}
+
+/* line 194, ../partials/_login.scss */
+.tags {
+  box-shadow: none !important;
+  border: none !important;
+  margin: 0px !important;
+  margin-left: -5px !important;
+  color: #333 !important;
+  width: 100% !important;
+}
+
+/* line 203, ../partials/_login.scss */
+.tags .input {
+  width: 100% !important;
+  font: inherit !important;
+  font-style: italic !important;
+  color: #333 !important;
+}
+
+/* line 210, ../partials/_login.scss */
+.marginTop1 {
+  margin-top: 20px;
 }

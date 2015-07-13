@@ -28,6 +28,24 @@
      }
     ).state('shell.businessPartner.addBusinessPartner',{
       url:'/add',
+      resolve:{
+          tabFilter: 'tabFilter',
+          country: function(tabFilter){
+              return tabFilter.getAllCountries().then(function(res){
+                  return res.data.country;
+              });
+          },
+          bpTypes: function(tabFilter){
+              return tabFilter.getBusinessPartnerTypes().then(function(res){
+                  return res.data.bpTypes;
+              });
+          },
+          contractTypes: function(tabFilter){
+              return tabFilter.getBuyerContractTypes().then(function(res){
+                 return res.data.contractTypes;
+              });
+          }
+      },
       views:{
             'content@shell':{
               templateUrl:'src/businessPartner/addBusinessPartner.html',
