@@ -4,46 +4,22 @@
         <div class="dg-tablePanelHead clearfix">
             <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.products.length}} Products</small></div>
             <ul class="dg-pageActionsLinks">
-                <li><a href="#">Delete</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Clone<span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a ng-click="vm.invertOrderByReverse()">
-                        <i class="fa" ng-class="{'fa-arrow-down':vm.orderByReverse,'fa-arrow-up':!vm.orderByReverse}"></i>
-                    </a>
-                </li>
+                <li><input ng-model="vm.searchProduct" type="text" class="form-control" id="exampleInputAmount" placeholder="Find product">
             </ul>
         </div>
         <div class="dg-tablePanelBody">
             <table class="table table-bordered dg-table">
                 <thead>
                 <tr>
-                    <th><input class="dg-checkBoxTxt" type="checkbox"> Action</th>
                     <th ng-repeat="heading in vm.allProducts.tableHeadings" ng-bind="heading.name"></th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr ng-repeat="row in vm.allProducts.products">
-                        <td><input class="dg-checkBoxTxt" type="checkbox"> <a class="dg-tableActionBtn dg-edit"><i class="fa fa-pencil-square-o"></i></a> <a class="dg-tableActionBtn dg-delete"><i class="fa fa-trash"></i></a> </td>
-                        <td ng-bind="row.ProductCode"></td>
-                        <td ng-bind="row.ProductName"></td>
-                        <td ng-bind="row.ProductQuality"></td>
-                        <td ng-bind="row.CreatedOn"></td>
-                        <td ng-bind="row.CreatedBy| date:'MM/dd/yyyy'"></td>
+                    <tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">
+                        <td><a ui-sref="shell.products.viewProduct({id:row.details.id})">{{row.details.name}}</a></td>
+                        <td><span  class="paddingRow" ng-repeat="quality in row.quality" ng-bind="quality.text"></span></td>
+                        <td ng-bind="row.origin"></td>
+                        <td><a ui-sref="shell.tradebook.viewTransaction({id:row.lastTraded.id})" ng-bind="row.lastTraded.time| date:'MM/dd/yyyy'"></a></td>
                     </tr>
                 </tbody>
             </table>

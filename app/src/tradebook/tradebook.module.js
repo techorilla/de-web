@@ -22,12 +22,11 @@
        subNavTitle: 'Trade Book',
        views:{
             'content@shell':{
-                templateUrl: 'src/tradebook/tradebook.template.html', 
+                templateUrl: 'src/tradebook/tradebook.template.html',
                 controller: 'Tradebook as vm'
             }
         } 
-     }
-    ).state('shell.tradebook.newTransaction',{
+     }).state('shell.tradebook.newTransaction',{
       url:'/new',
       views:{
         'content@shell':{
@@ -35,7 +34,15 @@
           controller:'AddTransaction as vm'
         }
       }
-    });
+    }).state('shell.tradebook.viewTransaction',{
+            url:'/view/:id',
+            views:{
+                'content@shell':{
+                    templateUrl:'src/tradebook/addTransaction.html',
+                    controller:'AddTransaction as vm'
+                }
+            }
+        });
   }
 
 }());

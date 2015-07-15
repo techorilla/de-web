@@ -39,10 +39,42 @@
       url:'/addProducts',
       views:{
         'content@shell':{
-            templateUrl:'src/product/addProduct.template.html'
+            templateUrl:'src/product/addProduct.template.html',
+            controller: 'AddProduct as vm'
         }
+      },
+      resolve: {
+        tabFilter: 'tabFilter',
+        country: function (tabFilter) {
+          return tabFilter.getAllCountries().then(function (res) {
+              return res.data.country;
+          });
+        },
+        productInfo: null
       }
-    });;
+    }).state('shell.products.viewProduct',{
+        url:'/product/:id',
+        views:{
+            'content@shell':{
+                templateUrl:'src/product/addProduct.template.html',
+                controller: 'AddProduct as vm'
+            }
+        },
+        resolve: {
+            tabFilter: 'tabFilter',
+            product: 'product',
+            country: function (tabFilter) {
+                return tabFilter.getAllCountries().then(function (res) {
+                    return res.data.country;
+                });
+            },
+            productInfo: function(product){
+                return product.getProductById($stateParams.id).then(function(res){
+                   return res.data.product;
+                });
+            }
+        }
+    });
   }
 
 }());

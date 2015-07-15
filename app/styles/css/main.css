@@ -990,32 +990,55 @@ input, textarea, select, a, button {
   font-size: larger;
 }
 
-/* line 189, ../partials/_login.scss */
-.tags .tag-list .tag-item {
-  background: #333 !important;
-  color: #eee !important;
-  font-size: 10px;
-}
-
 /* line 194, ../partials/_login.scss */
 .tags {
   box-shadow: none !important;
-  border: none !important;
-  margin: 0px !important;
-  margin-left: -5px !important;
-  color: #333 !important;
-  width: 100% !important;
+  width: 99% !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px;
 }
 
-/* line 203, ../partials/_login.scss */
-.tags .input {
-  width: 100% !important;
-  font: inherit !important;
-  font-style: italic !important;
-  color: #333 !important;
+/* line 200, ../partials/_login.scss */
+.tags .tag-item.selected {
+  background: #F47414 !important;
 }
 
-/* line 210, ../partials/_login.scss */
+/* line 212, ../partials/_login.scss */
+.paddingRow {
+  padding-left: 5px;
+}
+
+/* line 216, ../partials/_login.scss */
+tbody tr td {
+  font-weight: bold;
+}
+
+/* line 220, ../partials/_login.scss */
+tbody tr td a {
+  text-decoration: underline;
+}
+
+/* line 223, ../partials/_login.scss */
 .marginTop1 {
   margin-top: 20px;
+}
+
+/* line 227, ../partials/_login.scss */
+.tableHeading {
+  border-bottom: 1px solid #1691AC;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333333;
+  margin-top: 20px;
+  font-weight: bolder;
+}
+/* line 236, ../partials/_login.scss */
+.tableHeading label {
+  margin-left: -15px;
+}
+
+/* line 241, ../partials/_login.scss */
+.width96 {
+  width: 96%;
 }

@@ -1,248 +1,43 @@
 {
        "products": [
         {
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Channa",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
-        },{
-            "ProductId": "1",
-            "ProductCode": "DX-90291",
-            "ProductName": "Kali Masooor",
-            "ProductQuality": "A*",
-            "CreatedBy": 1429467492457,
-            "CreatedOn": "Immad Imtiaz",
-            "LastUpdatedBy": "Ali Moeen",
-            "LastUpdatedOn": 1429467492457
+            "details": {
+               "id":1,
+               "name": "Mash"
+            },
+            "quality": [
+                {
+                    "text": "A*"
+                },
+                {
+                    "text": "B-"
+                }
+            ],
+            "origin": "Pakistan",
+            "lastTraded": {
+                "time":1429467492457,
+                "id": 3
+            }
+
+        },
+        {
+            "details": {
+                "id":2,
+                "name": "Mash"
+            },
+            "quality": [
+                {
+                   "text": "A*"
+                },
+                {
+                   "text": "B-"
+                }
+            ],
+            "origin": "China",
+            "lastTraded": {
+                "time":1429467492457,
+                "id": 3
+            }
         }
     ]
 }

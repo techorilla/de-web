@@ -185,29 +185,59 @@ input, textarea, select, a, button { outline: none; }
 .largerFont{
   font-size: larger;
 }
-
-.tags .tag-list .tag-item{
-  background:#333 !important;
-  color:#eee !important;
-  font-size:10px;
-}
+//
+//.tags .tag-list .tag-item{
+//  background:#333 !important;
+//  color:#eee !important;
+//  font-size:10px;
+//}
 .tags{
   box-shadow: none !important;
-  border: none !important;
-  margin:0px !important;
-  margin-left: -5px !important;
-  color:#333 !important;
-  width:100% !important;
+  width:99% !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px;
+}
+.tags .tag-item.selected {
+  background: #F47414 !important
+}
+//
+//.tags .input{
+//  width:100% !important;
+//  font:inherit !important;
+//  font-style: italic !important;
+//  color:#333 !important;
+//}
+
+
+.paddingRow{
+  padding-left: 5px;
 }
 
-.tags .input{
-  width:100% !important;
-  font:inherit !important;
-  font-style: italic !important;
-  color:#333 !important;
+tbody tr td{
+  font-weight: bold;
 }
 
+tbody tr td a{
+  text-decoration: underline;
+}
 .marginTop1{
   margin-top: 20px;
+}
 
+.tableHeading{
+  border-bottom:1px solid #1691AC;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333333;
+  margin-top:20px;
+
+  font-weight: bolder;
+    label{
+      margin-left:-15px;
+    }
+}
+
+.width96{
+  width:96%;
 }

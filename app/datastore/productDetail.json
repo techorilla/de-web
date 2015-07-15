@@ -1,0 +1,23 @@
+{
+    "product": [
+        {
+            "name": "Masoor Daal",
+            "origin": "China",
+            "quality": [
+                {
+                    "text":"A*"
+                },
+                {
+                    "text": "B+"
+                }
+            ],
+            "specification":{
+                "purity":"",
+                "moisture":"",
+                "splits":"",
+                "broken":"",
+                "weeviled":""
+            }
+        }
+    ]
+}

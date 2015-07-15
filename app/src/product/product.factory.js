@@ -16,7 +16,8 @@
   function product($http){
 		return {
 			testFunction: testFunction,
-            getAllProducts: getAllProducts
+            getAllProducts: getAllProducts,
+            getProductById:getProductById
 		};
 
 		////////////////////
@@ -40,6 +41,10 @@
 
         function getAllProducts(){
             return $http.get('datastore/allProducts.json');
+        }
+
+        function getProductById(id){
+            return $http.get(datastore/productDetail.json);
         }
 	}
 

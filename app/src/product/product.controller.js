@@ -16,8 +16,6 @@
 	function Product(allProducts){
 		var vm = this;
         init();
-        vm.allProductData = ''; 
-        vm.testFunction = testFunction;
 
     /////////////////////
 
@@ -30,28 +28,25 @@
      * My Description rules
      */
     function init(){
-            vm.orderByReverse = false
+            vm.orderByReverse = false;
+            vm.searchProduct = '';
             vm.allProducts = allProducts;
             vm.allProducts.tableHeadings =  [
                                                 {
-                                                  name:"Product Code",
-                                                  filter: true
-                                                },
-                                                {
                                                   name:"Name",
-                                                  filter:true
+                                                  filter: true
                                                 },
                                                 {
                                                   name:"Quality",
                                                   filter:true
                                                 },
                                                 {
-                                                  name:"Created By",
+                                                  name:"Origin",
                                                   filter:true
                                                 },
                                                 {
-                                                  name:"Created On",
-                                                  filter:false
+                                                  name:"Last Traded",
+                                                  filter:true
                                                 }
                                             ];
             vm.headerAnchor = [
@@ -60,13 +55,7 @@
                     state: 'shell.products.addProduct'
                 }
             ];
-            vm.invertOrderByReverse = function(){
-                vm.orderByReverse = !vm.orderByReverse;
-            }
         }
-    function testFunction(num){
-			console.info('This is a test function');
-		}
 
 	}
 
