@@ -44,7 +44,7 @@
         }
 
         function getProductById(id){
-            return $http.get(datastore/productDetail.json);
+            return $http.get('datastore/productDetail.json');
         }
 	}
 

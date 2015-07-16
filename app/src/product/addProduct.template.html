@@ -1,4 +1,6 @@
-<page-header heading="New Product" sub-heading="Add" ></page-header>
+<page-header ng-if="vm.viewMode" heading="{{vm.newProduct.name}}" sub-heading="View" button-list="vm.headerAnchor" go-back="true" ></page-header>
+<page-header ng-if="vm.editMode" heading="{{vm.newProduct.name}}" sub-heading="Edit" button-list="vm.headerAnchor" go-back="true" ></page-header>
+<page-header ng-if="vm.addMode" heading="New Product" sub-heading="Add" go-back="true"></page-header>
 	<page-blue-container>
         	<form>
                   <div class="row">
@@ -8,11 +10,11 @@
                           </div>
                           <div class="form-group col-lg-6">
                               <label for="pName">Name</label>
-                              <input type="text" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                              <input type="text"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
                           </div>
                           <div class="form-group col-lg-6">
                               <label>Origin</label>
-                              <selectize placeholder='Please enter Country' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
+                              <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
                           </div>
                       </div>
                   </div>
@@ -22,7 +24,7 @@
                       </div>
                       <div class="col-lg-12">
                           <tags-input ng-model="vm.newProduct.quality"
-                                      placeholder="Add product quality">
+                                      placeholder="Add product quality" ng-disabled="vm.viewMode">
                           </tags-input>
                       </div>
                       <div class="col-lg-12 tableHeading width96">
@@ -31,27 +33,27 @@
                       <div class="col-md-4">
                           <div class="form-group">
                               <label for="pPurity">Purity</label>
-                              <input type="number" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Enter Product Purity">
+                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Enter Product Purity">
                           </div>
                           <div class="form-group">
                               <label for="pPurity">Moisture</label>
-                              <input type="number" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Enter Product Moisture">
+                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Enter Product Moisture">
                           </div>
                           <div class="form-group">
                               <label for="pSplits">Splits</label>
-                              <input type="number" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Enter Product Splits">
+                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Enter Product Splits">
                           </div>
                           <div class="form-group">
                               <label for="pBroken">Broken</label>
-                              <input type="number" ng-model="vm.newProduct.specs.broken" class="form-control" id="pBroken" placeholder="Enter Product Broken">
+                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.broken" class="form-control" id="pBroken" placeholder="Enter Product Broken">
                           </div>
                           <div class="form-group">
                               <label for="pWeeviled">Weeviled</label>
-                              <input type="number" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Enter Product Weeviled">
+                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Enter Product Weeviled">
                           </div>
                       </div>
                   </div>
-				  <button type="submit" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Save Product</button>
-				  <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
+				  <button type="submit" ng-show="!vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Save Product</button>
+				  <button type="submit" ng-show="!vm.viewMode" class="btn btn-default" ui-sref="^">Cancel</button>
 			</form>
 	</page-blue-container>

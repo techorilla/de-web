@@ -2,8 +2,8 @@
     <div class="dg-pageHeaderTop clearfix">
         <h1 class="dg-pageTitle"><span class="dg-pageMiniTitle">{{subHeading}}</span>{{heading}}</h1>
         <ul class="dg-pageExtraLinks">
-            <li ui-sref="{{button.state}}" ng-repeat="button in buttonList"><a>{{button.text}}</a></li>            
+            <li ui-sref="{{button.state}}" ng-repeat="button in buttonList"><a>{{button.text}}</a></li>
         </ul>
     </div>
-    <!-- <a href="#" class="dg-backToLink"><i class="fa fa-angle-double-left"></i>Back to List: Dashboards</a>     -->
+    <a ng-if="goBack" ng-click="goToBack()" class="dg-backToLink"><i class="fa fa-angle-double-left"></i>Back</a>
 </div>

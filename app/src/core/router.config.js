@@ -14,9 +14,7 @@
 
   /* @ngInject */
   function configuration($urlRouterProvider){
-
     $urlRouterProvider.otherwise('/login');
-
   }
 
   /* @ngInject */
@@ -30,6 +28,7 @@
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
       //do some title setting
       $rootScope.pageTitle = toState.title || 'Doni Enterprises';
+      $rootScope.fromState = fromState;
     });
   }
 

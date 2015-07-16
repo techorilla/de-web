@@ -36,7 +36,7 @@
         }
       }
     ).state('shell.products.addProduct',{
-      url:'/addProducts',
+      url:'/add',
       views:{
         'content@shell':{
             templateUrl:'src/product/addProduct.template.html',
@@ -50,10 +50,12 @@
               return res.data.country;
           });
         },
-        productInfo: null
+        productInfo: function () {
+            return null;
+        }
       }
     }).state('shell.products.viewProduct',{
-        url:'/product/:id',
+        url:'/:id',
         views:{
             'content@shell':{
                 templateUrl:'src/product/addProduct.template.html',
@@ -68,13 +70,15 @@
                     return res.data.country;
                 });
             },
-            productInfo: function(product){
-                return product.getProductById($stateParams.id).then(function(res){
-                   return res.data.product;
+            productInfo: function(product,$stateParams) {
+                return product.getProductById($stateParams.id).then(function (res) {
+                    return res.data.product;
                 });
             }
         }
-    });
+    }).state('shell.products.viewProduct.edit',{
+            url:'/edit/:id'
+        });
   }
 
 }());

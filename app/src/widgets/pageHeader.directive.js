@@ -18,7 +18,7 @@
     .directive('pageHeader', pageHeader);
 
   /* @ngInject */
-  function pageHeader(){
+  function pageHeader($rootScope,$state){
 
     return {
       link: link,
@@ -27,7 +27,8 @@
       scope: {
         subHeading: '@',
         heading: '@',
-        buttonList: '='
+        buttonList: '=',
+        goBack:'='
       },
       replace: true
     };
@@ -35,7 +36,9 @@
     /////////////////////
 
     function link(scope, elem, attrs){
-      
+        scope.goToBack = function(){
+           $state.go($rootScope.fromState.name);
+        }
     }
   }
 

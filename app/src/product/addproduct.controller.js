@@ -13,7 +13,7 @@
 		.controller('AddProduct', AddProduct);
 
   /* @ngInject */
-	function AddProduct(country, productInfo){
+	function AddProduct(country, productInfo, $state){
 		var vm = this;
         init();
         vm.addProduct = addProduct;
@@ -30,7 +30,23 @@
      * My Description rules
      */
     function init(){
-			vm.newProduct = new newProduct();
+        vm.viewMode = false;
+        vm.editMode = false;
+        vm.addMode = false;
+
+        if($state.current.name === 'shell.products.viewProduct'){
+            vm.newProduct = productInfo[0];
+            vm.viewMode = true;
+        }
+        else if($state.current.name === 'shell.products.viewProduct.edit'){
+            vm.newProduct = productInfo[0];
+            vm.editMode = true;
+        }
+        else{
+            vm.newProduct = new newProduct();
+            vm.addMode = true;
+        }
+
             vm.singleConfig = {
                 valueField: 'code',
                 labelField: 'text',
@@ -54,6 +70,12 @@
     function addProduct(){
             console.log(vm.newProduct);
         }
+    vm.headerAnchor = [
+        {
+            text: 'Edit Product',
+            state: 'shell.products.viewProduct.edit({id:vm.newProduct.id})'
+        }
+    ];
 	}
 
 }());
