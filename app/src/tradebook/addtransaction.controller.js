@@ -13,10 +13,47 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction($scope){
+	function AddTransaction($scope, navigation,staticDropDown){
+        console.log(staticDropDown.shipmentStatus);
 		var vm = this;
-
 		vm.testFunction = testFunction;
+        vm.shipmentStatusConfig = {
+            options: staticDropDown.shipmentStatus,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        };
+        vm.transactionStatusConfig = {
+            options: staticDropDown.transactionStatus,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        };
+        vm.commissionTypeConfig = {
+            options: staticDropDown.commissionType,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        };
+        vm.buyerConfig = {
+            options: staticDropDown.commissionType,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        };
+        vm.sellerConfig = {
+            options: staticDropDown.commissionType,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        };
+        vm.productConfig = {
+            options: staticDropDown.commissionType,
+            create: true,
+            sortField: 'text',
+            maxItems:1
+        }
+
     //=======================================================
   //Single Item Select
   //=======================================================
@@ -28,8 +65,43 @@
     sortField: 'text',
     maxItems: 1
   }
-  
- 
+
+     vm.newTransaction = {
+         buyer: '',
+         seller: '',
+         date: '',
+         contractType: '',
+         product:'',
+         quality: {
+            mt: '',
+            fcl: '',
+            oneFcl: ''
+         },
+         rate: '',
+         fileNo: '',
+         contractNo: '',
+         commissionDetails: {
+             brokerInvolved: false,
+             broker:'',
+             commissionType: '',
+             brokerCommission: '',
+             dif: '',
+             netCommission: ''
+         },
+         shipmentStatus: '',
+         transactionStatus: '',
+         notes: [
+
+         ]
+     }
+
+     vm.newTransaction.notes = new notes();
+
+     function notes(note, time, addedBy){
+            this.note = note | '',
+            this.time = navigation.getTime();
+            this.addedBy = (navigation.getCurrentUser()).id;
+        }
 
     /////////////////////
 
@@ -41,6 +113,7 @@
      * @description
      * My Description rules
      */
+
     function testFunction(num){
 			console.info('This is a test function');
 		}

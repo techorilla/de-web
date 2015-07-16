@@ -936,23 +936,30 @@ img {
 }
 
 /* line 151, ../partials/_login.scss */
+.singleFilterHeading {
+  padding-top: 4px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* line 156, ../partials/_login.scss */
 button, a:focus {
   outline: 0;
 }
 
-/* line 152, ../partials/_login.scss */
+/* line 157, ../partials/_login.scss */
 input, textarea, select, a, button {
   outline: none;
 }
 
-/* line 154, ../partials/_login.scss */
+/* line 159, ../partials/_login.scss */
 .panel-default > .panel-heading {
   color: #ddd;
   background-color: #333333;
   border-color: #ddd;
 }
 
-/* line 159, ../partials/_login.scss */
+/* line 164, ../partials/_login.scss */
 .myDatePicker {
   cursor: pointer;
   padding: 5px 10px;
@@ -962,35 +969,35 @@ input, textarea, select, a, button {
   font-size: 12px;
 }
 
-/* line 167, ../partials/_login.scss */
+/* line 172, ../partials/_login.scss */
 .bpChecks {
   float: left;
   margin-right: 10px !important;
   margin-top: 6px !important;
 }
 
-/* line 173, ../partials/_login.scss */
+/* line 178, ../partials/_login.scss */
 .marginLeft15 {
   margin-left: -15px !important;
 }
 
-/* line 177, ../partials/_login.scss */
+/* line 182, ../partials/_login.scss */
 .addSubtract {
   margin-left: 10px;
   cursor: pointer;
 }
 
-/* line 181, ../partials/_login.scss */
+/* line 186, ../partials/_login.scss */
 .addSubtract:hover {
   color: #F47414 !important;
 }
 
-/* line 185, ../partials/_login.scss */
+/* line 190, ../partials/_login.scss */
 .largerFont {
   font-size: larger;
 }
 
-/* line 194, ../partials/_login.scss */
+/* line 199, ../partials/_login.scss */
 .tags {
   box-shadow: none !important;
   width: 99% !important;
@@ -998,32 +1005,32 @@ input, textarea, select, a, button {
   border-radius: 3px;
 }
 
-/* line 200, ../partials/_login.scss */
+/* line 205, ../partials/_login.scss */
 .tags .tag-item.selected {
   background: #F47414 !important;
 }
 
-/* line 212, ../partials/_login.scss */
+/* line 217, ../partials/_login.scss */
 .paddingRow {
   padding-left: 5px;
 }
 
-/* line 216, ../partials/_login.scss */
+/* line 221, ../partials/_login.scss */
 tbody tr td {
   font-weight: bold;
 }
 
-/* line 220, ../partials/_login.scss */
+/* line 225, ../partials/_login.scss */
 tbody tr td a {
   text-decoration: underline;
 }
 
-/* line 223, ../partials/_login.scss */
+/* line 228, ../partials/_login.scss */
 .marginTop1 {
   margin-top: 20px;
 }
 
-/* line 227, ../partials/_login.scss */
+/* line 232, ../partials/_login.scss */
 .tableHeading {
   border-bottom: 1px solid #1691AC;
   margin-left: 15px;
@@ -1033,12 +1040,64 @@ tbody tr td a {
   margin-top: 20px;
   font-weight: bolder;
 }
-/* line 236, ../partials/_login.scss */
+/* line 241, ../partials/_login.scss */
 .tableHeading label {
   margin-left: -15px;
 }
 
-/* line 241, ../partials/_login.scss */
+/* line 246, ../partials/_login.scss */
 .width96 {
   width: 96%;
+}
+
+/* line 250, ../partials/_login.scss */
+textarea {
+  border-radius: 2px;
+  border: 1px solid #D0D0D0;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+/* line 258, ../partials/_login.scss */
+.formCheckBox input {
+  height: 20px;
+  margin-left: 20px;
+}
+/* line 262, ../partials/_login.scss */
+.formCheckBox label {
+  height: 20px;
+}
+
+/* line 267, ../partials/_login.scss */
+.marginTop5 {
+  margin-top: 5px;
+}
+
+/* line 271, ../partials/_login.scss */
+.subTableHeading {
+  margin-left: 1px;
+  margin-top: 0px;
+}
+
+/* line 276, ../partials/_login.scss */
+.width106 {
+  width: 104% !important;
+}
+
+/* line 280, ../partials/_login.scss */
+.datePickerAddTran {
+  top: -34px;
+  right: 0;
+}
+/* line 283, ../partials/_login.scss */
+.datePickerAddTran button {
+  border-top-left-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  border-top-right-radius: 1px !important;
+  border-bottom-right-radius: 1px !important;
+}
+
+/* line 291, ../partials/_login.scss */
+.marginTop50 {
+  margin-top: -50px !important;
 }

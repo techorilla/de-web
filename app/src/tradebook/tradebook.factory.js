@@ -16,7 +16,8 @@
   function tradebook($http){
 		return {
 			testFunction: testFunction,
-            getTransactionList: getTransactionList
+            getTransactionList: getTransactionList,
+            getStaticDropDown: getStaticDropDown
 		};
 
 		////////////////////
@@ -40,6 +41,9 @@
 
         function getTransactionList(){
             return $http.get('datastore/transactionList.json');
+        }
+        function getStaticDropDown(){
+            return $http.get('datastore/addTransactionBasicFilters.json');
         }
 	}
 

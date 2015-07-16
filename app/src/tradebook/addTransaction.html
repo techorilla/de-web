@@ -1,73 +1,123 @@
 <page-header heading="Transactions" sub-heading="Add New" button-list="vm.headerAnchor"></page-header>
 <page-blue-container>
         	<form>
-				  <div class="form-group col-xs-6">
-				    	<label for="exampleInputEmail1">Buyer</label>
-				    	<selectize placeholder='Select a Buyer...' config="singleConfig" ng-model="single"></selectize>					    
-				  </div>
-				  <div class="form-group col-xs-6">
-				    <label for="exampleInputPassword1">Seller</label>
-				    <selectize placeholder='Select a Seller...' config="singleConfig" ng-model="single"></selectize>	
-				  </div>
-				  <div class="form-group col-xs-6">
-				    <label for="exampleInputPassword1">Buyer Contract Type</label>
-				    <selectize placeholder='Select a Product...' config="singleConfig" ng-model="single"></selectize>
-				  </div>				  
-				  <div class="form-group col-xs-6">
-				    <label for="exampleInputPassword1">Product</label>
-				    <selectize placeholder='Select a Product...' config="singleConfig" ng-model="single"></selectize>	
-				  </div>
-				  <div class="form-group col-xs-6">
-				    <label for="exampleInputPassword1">Transaction Date</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-3">
-				    <label for="exampleInputPassword1">Quatity</label>
-				    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-3">
-				    <label for="exampleInputPassword1">Rate</label>
-				    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Commision Type</label>
-				    <selectize placeholder='Select a Product...' config="singleConfig" ng-model="single"></selectize>
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Commision</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Broker Commision</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Diff</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Discount</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Net Commision</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group col-xs-2">
-				    <label for="exampleInputPassword1">Shipper Same as Seller</label>
-				    
-				  </div> 
-				  <div class="form-group col-xs-4">
-				    <label for="exampleInputPassword1">Shipper</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group  col-xs-2">
-				    <label for="exampleInputPassword1">FileId</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Quality">
-				  </div>
-				  <div class="form-group  col-xs-12">
-				  <button type="submit" class="btn btn-default submitBtn">Submit</button>
-				  <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
+                  <div class="row">
+                    <div class="col-lg-12  marginLeft15">
+                        <div class="col-lg-12 tableHeading">
+                            <label>Transaction Info</label>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Buyer</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Seller</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label>File Id</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label>Contract Id</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label>Product</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                        </div>
+
+                        <div class="form-group col-xs-4">
+                            <label>Date of Transaction</label>
+                            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                            <span class="input-group-btn datePickerAddTran">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
+
+                        <div class="form-group col-xs-4">
+                            <label for="pName">Quantity</label>
+                            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label for="pName">Price</label>
+                            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12  marginLeft15  marginTop50">
+                        <div class="col-md-12 tableHeading">
+                            <label>Comission Details</label>
+                        </div>
+                        <div class="form-group col-md-4 formCheckBox">
+                            <label>Broker Involved</label>
+                            <input class=" pull-right"  type="checkbox" name="vehicle" value="Bike"/>
+                        </div>
+                        <div class="form-group col-md-8 marginTop5">
+                            <label>Broker</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter broker involved' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
+                        </div>
+                        <div class="col-md-8 col-md-offset-4">
+                            <div class="col-lg-12 tableHeading subTableHeading">
+                                <label>Details</label>
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Commision</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"  placeholder="Enter Product Name">
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Comission Type</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control" placeholder="Enter Product Name">
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Broker Comission</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"placeholder="Enter Product Name">
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Differance</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"placeholder="Enter Product Name">
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Discount</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"  placeholder="Enter Product Name">
+                            </div>
+                            <div class="form-group col-lg-12 marginLeft15 width106">
+                                <label>Net Commision</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control" placeholder="Enter Product Name">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12  marginLeft15">
+                        <div class="col-lg-12 tableHeading">
+                            <label>Status</label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label>Shipment Status</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter shipment status' config="vm.shipmentStatusConfig" ng-model="vm.newTransaction.shipmentStatus"></selectize>
+                        </div>
+                        <div class="form-group col-lg-8">
+                            <label>Transaction Status</label>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.newTransaction.transactionStatus"></selectize>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12  marginLeft15">
+                        <div class="col-lg-12 tableHeading">
+                            <label>Notes</label>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <textarea  ng-disabled="vm.viewMode" rows="5" class="col-xs-12" placeholder="Add notes here..."></textarea>
+                        </div>
+                    </div>
+                  </div>
+
+				  <div class="form-group  col-xs-12 marginLeft15">
+                      <button type="submit" class="btn btn-default submitBtn">Submit</button>
+                      <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
 				  </div>
 				  </br>
 				  

@@ -23,7 +23,7 @@
             <ul ng-scrollbars>
                 <li ng-repeat="value in dropDownValues">
                     <input type="checkbox">
-                    <span class="dg-value filterHeading">{{value.name}}</span>
+                    <span class="dg-value singleFilterHeading">{{value.name}}</span>
                 </li>
             </ul>
         </div>
@@ -56,10 +56,8 @@
             </ul>
             <ul ng-scrollbars>
                 <li ng-repeat="value in dropDownValues|filter:textFilter">
-                    <input type="checkbox">
-                    <span class="dg-value  filterHeading">{{value.ProductCode}}</span>
-                    <span class="dg-value">{{'Name: '+value.ProductName}}</span>
-                    <span class="dg-value">{{'Quality: '+value.ProductQuality}}</span>
+                    <input type="checkbox" value="value.details.id">
+                    <span class="dg-value singleFilterHeading">{{value.details.name}}</span>
                 </li>
             </ul>
         </div>

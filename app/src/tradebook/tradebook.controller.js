@@ -29,6 +29,7 @@
      * My Description rules
      */
      function init(){
+            vm.searchTransaction = '';
             vm.headerAnchor = [
                 {
                     text: 'Add new Transaction',
@@ -69,7 +70,7 @@
                                       fitler:false
                                     },
                                     {
-                                        name:'Net Commission',
+                                        name:'Commission',
                                         filter:false
                                     }
                                 ];

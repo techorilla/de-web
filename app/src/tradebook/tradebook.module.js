@@ -33,6 +33,14 @@
           templateUrl:'src/tradebook/addTransaction.html',
           controller:'AddTransaction as vm'
         }
+      },
+      resolve:{
+          tradebook: 'tradebook',
+          staticDropDown: function (tradebook) {
+              return tradebook.getStaticDropDown().then(function (res) {
+                  return res.data;
+              });
+          }
       }
     }).state('shell.tradebook.viewTransaction',{
             url:'/view/:id',

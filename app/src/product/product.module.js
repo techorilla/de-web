@@ -77,7 +77,13 @@
             }
         }
     }).state('shell.products.viewProduct.edit',{
-            url:'/edit/:id'
+            url:'/edit',
+            views:{
+                'content@shell':{
+                    templateUrl:'src/product/addProduct.template.html',
+                    controller: 'AddProduct as vm'
+                }
+            }
         });
   }
 

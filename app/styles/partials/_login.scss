@@ -148,6 +148,11 @@
   font-weight: bold;
   font-size: 11px;
 }
+.singleFilterHeading{
+  padding-top: 4px;
+  font-weight: bold;
+  font-size: 12px
+}
 button,a:focus {outline:0;}
 input, textarea, select, a, button { outline: none; }
 
@@ -240,4 +245,49 @@ tbody tr td a{
 
 .width96{
   width:96%;
+}
+
+textarea{
+  border-radius: 2px;
+  border: 1px solid #D0D0D0;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.formCheckBox{
+  input{
+    height:20px;
+    margin-left: 20px;
+  }
+  label{
+    height:20px;
+  }
+}
+
+.marginTop5{
+  margin-top: 5px;
+}
+
+.subTableHeading{
+  margin-left: 1px;
+  margin-top: 0px;
+
+}
+.width106{
+  width:104% !important;
+}
+
+.datePickerAddTran{
+  top: -34px;
+  right: 0;
+  button{
+    border-top-left-radius: 2px !important;
+    border-bottom-left-radius: 2px !important;
+    border-top-right-radius: 1px !important;
+    border-bottom-right-radius: 1px !important;
+  }
+}
+
+.marginTop50{
+  margin-top: -50px !important;
 }

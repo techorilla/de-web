@@ -1,0 +1,18 @@
+{
+    "shipmentStatus": [
+        {"text":"Not Shipped"},
+        {"text":"Shipped"},
+        {"text":"At Port"},
+        {"text":"Cleared"}
+    ],
+    "transactionStatus":[
+        {"text":"In Progress"},
+        {"text":"Completed"},
+        {"text":"Washout at Port"},
+        {"text":"Washout at X"}
+    ],
+    "commissionType":[
+        {"text":"Fixed"},
+        {"text":"Percentage"}
+    ]
+}

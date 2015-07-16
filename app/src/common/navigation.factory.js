@@ -15,10 +15,16 @@
   /* @ngInject */
   function navigation(){
         var isSideBarOpen = true;
+        var currentUser = {
+            "name": "Immad Imtiaz",
+            "id": 1245
+        };
 		return {
 			testFunction: testFunction,
             invertSideBarState: invertSideBarState,
-            sideBarStatus: sideBarStatus
+            sideBarStatus: sideBarStatus,
+            getCurrentUser: getCurrentUser,
+            getTime: getTime
 		};
 
 		////////////////////
@@ -35,7 +41,12 @@
      * </pre>
      * @param {int} entity id
      */
-
+        function getCurrentUser(){
+            return currentUser;
+        }
+        function getTime(){
+            return (new Date()).getTime();
+        }
 		function testFunction(id){
 			console.info('This is a test function');
 		}
