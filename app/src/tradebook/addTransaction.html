@@ -8,40 +8,63 @@
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Buyer</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter buyer' config="vm.buyerConfig" ng-model="vm.newTransaction.buyer"></selectize>
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Seller</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter seller' config="vm.sellerConfig" ng-model="vm.newTransaction.seller"></selectize>
                         </div>
                         <div class="form-group col-xs-4">
                             <label>File Id</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                            <input class="form-control" ng-disabled="vm.viewMode" placeholder='Please enter file id'ng-model="vm.newTransaction.fileNo">
                         </div>
                         <div class="form-group col-xs-4">
                             <label>Contract Id</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                            <input class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='Please enter contract id' ng-model="vm.newTransaction.contractNo">
                         </div>
                         <div class="form-group col-xs-4">
                             <label>Product</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="" ng-model=""></selectize>
+                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter product' config="vm.productConfig" ng-model="vm.newTransaction.product"></selectize>
                         </div>
 
                         <div class="form-group col-xs-4">
                             <label>Date of Transaction</label>
-                            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                            <input type="text" class="form-control" datepicker-popup='dd/MM/yyyy' ng-model="vm.newTransaction.date" is-open="vm.datePickerOpened" min-date="'1970-01-01'" max-date="'{{vm.newTransaction.date}}'" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
                             <span class="input-group-btn datePickerAddTran">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="btn btn-default" ng-click="vm.openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </div>
-
                         <div class="form-group col-xs-4">
-                            <label for="pName">Quantity</label>
-                            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                            <label>Price/Rate</label>
+                            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.rate" class="form-control" placeholder="Enter price/rate">
                         </div>
-                        <div class="form-group col-xs-4">
-                            <label for="pName">Price</label>
-                            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                        <div class="col-md-12 tableHeading">
+                            <label>Quantiy Info</label>
+                        </div>
+                        <div class="form-group col-md-4 formCheckBox">
+                            <label>FCL/MT</label>
+                            <input class=" pull-right" name="contractType"  type="checkbox" ng-model="vm.newTransaction.quantity.mt"/>
+                            <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.quantity.fcl"/>
+                        </div>
+                        <div class="form-group col-md-4 marginTop5">
+                            <label>Conversion (FCL To MT)</label>
+                            <input class="form-control" type="number" ng-disabled="!vm.newTransaction.quantity.fcl" placeholder='Please enter conversion rate' ng-model="vm.newTransaction.quantity.oneFcl" >
+                        </div>
+                        <div class="form-group col-md-4 marginTop5">
+                            <label>Quantity</label>
+                            <input class="form-control" ng-disabled="!vm.newTransaction.quantity.fcl && !vm.newTransaction.quantity.mt" type="number" placeholder='Please enter amount in unit selected' ng-model="vm.newTransaction.quantity.value" >
+                        </div>
+                        <div class="col-md-12 tableHeading">
+                            <label>Contract Type</label>
+                        </div>
+                        <div class="form-group col-md-4 formCheckBox">
+                            <label>Doni Contact/Own Contract</label>
+                            <input class=" pull-right" name="contractType"  type="checkbox" ng-model="vm.newTransaction.doniContract"/>
+                            <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.ownContract"/>
+                        </div>
+                        <div class="form-group col-md-8 marginTop5">
+                            <label>Contractual Buyer</label>
+                            <selectize ng-disabled="!vm.newTransaction.doniContract && !vm.newTransaction.ownContract" placeholder='Please enter contractual Buyer involved' config="vm.contractualBuyerConfig" ng-model="vm.newTransaction.contractualBuyer"></selectize>
                         </div>
                     </div>
                   </div>
@@ -52,39 +75,39 @@
                         </div>
                         <div class="form-group col-md-4 formCheckBox">
                             <label>Broker Involved</label>
-                            <input class=" pull-right"  type="checkbox" name="vehicle" value="Bike"/>
+                            <input class=" pull-right"  type="checkbox" ng-model="vm.newTransaction.commissionDetails.brokerInvolved"/>
                         </div>
                         <div class="form-group col-md-8 marginTop5">
                             <label>Broker</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter broker involved' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
+                            <selectize ng-disabled="!vm.newTransaction.commissionDetails.brokerInvolved" placeholder='Please enter broker involved' config="vm.brokerConfig" ng-model="vm.newTransaction.commissionDetails.broker"></selectize>
                         </div>
                         <div class="col-md-8 col-md-offset-4">
                             <div class="col-lg-12 tableHeading subTableHeading">
                                 <label>Details</label>
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
-                                <label>Commision</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"  placeholder="Enter Product Name">
+                                <label>Comission Type</label>
+                                <selectize  ng-disabled="vm.viewMode" placeholder="Enter commission Type" config="vm.commissionTypeConfig" ng-model="vm.newTransaction.commissionDetails.commType"></selectize>
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
-                                <label>Comission Type</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control" placeholder="Enter Product Name">
+                                <label>Commision</label>
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.commissionDetails.comm" class="form-control"  placeholder="Enter commission">
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
                                 <label>Broker Comission</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"placeholder="Enter Product Name">
+                                <input type="number"  ng-disabled="vm.viewMode || !vm.newTransaction.commissionDetails.brokerInvolved" ng-model="vm.newTransaction.commissionDetails.brokerComm" class="form-control"placeholder="Enter broker commision">
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
                                 <label>Differance</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"placeholder="Enter Product Name">
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.commissionDetails.diff" class="form-control"placeholder="Enter differance">
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
                                 <label>Discount</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control"  placeholder="Enter Product Name">
+                                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.commissionDetails.discount" class="form-control"  placeholder="Enter discount">
                             </div>
                             <div class="form-group col-lg-12 marginLeft15 width106">
                                 <label>Net Commision</label>
-                                <input type="number"  ng-disabled="vm.viewMode" ng-model="" class="form-control" placeholder="Enter Product Name">
+                                <input type="text" ng-bind="vm.newTransaction.commissionDetails.comm * vm.quantityValue" ng-disabled="vm.viewMode" ng-model="vm.newTransaction.commissionDetails.netComm" class="form-control" placeholder="Enter Product Name">
                             </div>
                         </div>
                     </div>
@@ -100,7 +123,7 @@
                         </div>
                         <div class="form-group col-lg-8">
                             <label>Transaction Status</label>
-                            <selectize ng-disabled="vm.viewMode" placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.newTransaction.transactionStatus"></selectize>
+                            <selectize placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.newTransaction.transactionStatus"></selectize>
                         </div>
                     </div>
                   </div>
@@ -116,11 +139,11 @@
                   </div>
 
 				  <div class="form-group  col-xs-12 marginLeft15">
-                      <button type="submit" class="btn btn-default submitBtn">Submit</button>
+                      <button type="submit" class="btn btn-default submitBtn" ng-click="vm.saveTransaction()">Submit</button>
                       <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
 				  </div>
 				  </br>
-				  
+
 			</form>
 </page-blue-container>
 

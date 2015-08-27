@@ -1091,13 +1091,50 @@ textarea {
 }
 /* line 283, ../partials/_login.scss */
 .datePickerAddTran button {
-  border-top-left-radius: 2px !important;
-  border-bottom-left-radius: 2px !important;
-  border-top-right-radius: 1px !important;
-  border-bottom-right-radius: 1px !important;
+  margin-left: calc(100% - 39px) !important;
 }
 
-/* line 291, ../partials/_login.scss */
+/* line 288, ../partials/_login.scss */
 .marginTop50 {
   margin-top: -50px !important;
+}
+
+/* line 292, ../partials/_login.scss */
+.btn-info {
+  color: #fff !important;
+  background-color: #1691AC !important;
+  border-color: #333333 !important;
+}
+
+/* line 298, ../partials/_login.scss */
+.btn-danger {
+  color: #fff;
+  background-color: #44A6BC !important;
+  border-color: #333333 !important;
+}
+
+/* line 304, ../partials/_login.scss */
+.btn-success {
+  color: #fff;
+  background-color: #333333 !important;
+  border-color: #AFAFAF !important;
+}
+
+/* line 310, ../partials/_login.scss */
+.btn-success:hover {
+  background-color: #333356 !important;
+}
+
+/* line 314, ../partials/_login.scss */
+.width33 {
+  width: 24%;
+  float: left;
+  margin-left: 16px;
+}
+
+/* line 320, ../partials/_login.scss */
+*:before, *:after {
+  -webkit-box-sizing: none !important;
+  -moz-box-sizing: none !important;
+  box-sizing: none !important;
 }

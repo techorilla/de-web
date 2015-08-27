@@ -16,11 +16,10 @@
   function navigation(){
         var isSideBarOpen = true;
         var currentUser = {
-            "name": "Immad Imtiaz",
-            "id": 1245
+            'name': 'Immad Imtiaz',
+            'id': 1245
         };
 		return {
-			testFunction: testFunction,
             invertSideBarState: invertSideBarState,
             sideBarStatus: sideBarStatus,
             getCurrentUser: getCurrentUser,
@@ -47,9 +46,6 @@
         function getTime(){
             return (new Date()).getTime();
         }
-		function testFunction(id){
-			console.info('This is a test function');
-		}
         function invertSideBarState(){
             isSideBarOpen = !isSideBarOpen;
         }

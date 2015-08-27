@@ -15,7 +15,6 @@
   /* @ngInject */
   function product($http){
 		return {
-			testFunction: testFunction,
             getAllProducts: getAllProducts,
             getProductById:getProductById
 		};
@@ -35,11 +34,7 @@
      * @param {int} entity id
      */
 
-		function testFunction(id){
-			console.info('This is a test function');
-		}
-
-        function getAllProducts(){
+		function getAllProducts(){
             return $http.get('datastore/allProducts.json');
         }
 

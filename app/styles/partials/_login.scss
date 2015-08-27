@@ -281,13 +281,44 @@ textarea{
   top: -34px;
   right: 0;
   button{
-    border-top-left-radius: 2px !important;
-    border-bottom-left-radius: 2px !important;
-    border-top-right-radius: 1px !important;
-    border-bottom-right-radius: 1px !important;
+    margin-left: calc(100% - 39px) !important;
   }
 }
 
 .marginTop50{
   margin-top: -50px !important;
+}
+
+.btn-info {
+  color: #fff !important;
+  background-color: #1691AC !important;
+  border-color: #333333 !important;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #44A6BC !important;
+  border-color: #333333 !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #333333 !important;
+  border-color: #AFAFAF !important;
+}
+
+.btn-success:hover{
+  background-color: #333356 !important;
+}
+
+.width33{
+  width: 24%;
+  float: left;
+  margin-left: 16px;
+}
+
+*:before, *:after {
+  -webkit-box-sizing: none !important;
+  -moz-box-sizing: none !important;
+  box-sizing: none !important;
 }

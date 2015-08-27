@@ -15,13 +15,11 @@
   /* @ngInject */
   function authService($http, $q, localStorageService, $state){
         var serviceBase = 'http://localhost:43158/api/';
-        var authServiceFactory = {};
         var _authentication = {
             isAuth:false,
             userName:''
         };
 		return {
-			testFunction: testFunction,
             login: login,
             logOut: logOut
 		};
@@ -42,13 +40,13 @@
      */
         function login(loginData){
 
-            var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.userPass;
+            var data = 'grant_type=password&username=' + loginData.userName + '&password=' + loginData.userPass;
  
             var deferred = $q.defer();
      
             $http.post(serviceBase + 'authentication/login/', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
      
-                localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+                localStorageService.set('authorizationData', { token: response.accessToken, userName: loginData.userName });
      
                 _authentication.isAuth = true;
                 _authentication.userName = loginData.userName;
@@ -56,20 +54,16 @@
                 deferred.resolve(response);
      
             }).error(function (err, status) {
-                console.log(status.code);
                 logOut();
                 deferred.reject(err);
             });
      
         return deferred.promise;
         }
-		function testFunction(id){
-			console.info('This is a test function');
-		}
         function logOut(){
             localStorageService.remove('authorizationData');
             _authentication.isAuth = false;
-            _authentication.userName = "";
+            _authentication.userName = '';
         }
 	}
 

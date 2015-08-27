@@ -33,19 +33,19 @@
             vm.allProducts = allProducts;
             vm.allProducts.tableHeadings =  [
                                                 {
-                                                  name:"Name",
+                                                  name:'Name',
                                                   filter: true
                                                 },
                                                 {
-                                                  name:"Quality",
+                                                  name:'Quality',
                                                   filter:true
                                                 },
                                                 {
-                                                  name:"Origin",
+                                                  name:'Origin',
                                                   filter:true
                                                 },
                                                 {
-                                                  name:"Last Traded",
+                                                  name:'Last Traded',
                                                   filter:true
                                                 }
                                             ];

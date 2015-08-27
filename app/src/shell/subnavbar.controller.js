@@ -15,9 +15,8 @@
   /* @ngInject */
 	function SubNavBar($state){
 		var vm = this;
-		vm.testFunction = testFunction;        
-    vm.navStates = [];
-    init();    
+        vm.navStates = [];
+        init();
     
 
     /////////////////////
@@ -30,18 +29,14 @@
      * @description
      * My Description rules
      */
-    function testFunction(num){
-			console.info('This is a test function');
-		}
-
-    function init(){
-      $state.get()
-        .forEach(function(state){          
-          if(state.subNav === true){
-            vm.navStates.push(state);
-          }
-        });
-    }
+        function init(){
+          $state.get()
+            .forEach(function(state){
+              if(state.subNav === true){
+                vm.navStates.push(state);
+              }
+            });
+        }
 	}
 
 

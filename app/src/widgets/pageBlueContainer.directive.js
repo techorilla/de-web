@@ -33,7 +33,7 @@
     /////////////////////
 
     function link(scope, elem, attrs){
-      console.info('This is a link function of the directive');
+
     }
   }
 

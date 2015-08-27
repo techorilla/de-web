@@ -16,8 +16,6 @@
 	function Tradebook(tradebook){
 		var vm = this;
         init();
-		vm.testFunction = testFunction;
-
     /////////////////////
 
     /**
@@ -40,33 +38,34 @@
             tradebook.getTransactionList().then(function(res){
                 vm.allTransactions.data = res.data.transationList;
             });
+            vm.saveTransaction = saveTransaction;
             vm.allTransactions.tableHeadings =  [
                                     {
-                                      name:"File No",
+                                      name:'File No',
                                       filter: true
                                     },
                                     {
-                                      name:"Date",
+                                      name:'Date',
                                       filter:true
                                     },
                                     {
-                                      name:"Buyer",
+                                      name:'Buyer',
                                       filter:true
                                     },
                                     {
-                                      name:"Seller",
+                                      name:'Seller',
                                       filter:true
                                     },
                                     {
-                                      name:"Product",
+                                      name:'Product',
                                       filter:false
                                     },
                                     {
-                                      name:"Quantity",
+                                      name:'Quantity',
                                       fitler:false
                                     },
                                     {
-                                      name:"Rate",
+                                      name:'Rate',
                                       fitler:false
                                     },
                                     {
@@ -75,9 +74,9 @@
                                     }
                                 ];
         }
-    function testFunction(num){
-			console.info('This is a test function');
-		}
+    function saveTransaction(){
+
+        }
 	}
 
 }());

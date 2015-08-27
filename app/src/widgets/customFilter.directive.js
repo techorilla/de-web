@@ -38,7 +38,7 @@
       scope.textFilter = '';
       scope.invertShowOptions = function(){
         scope.showOptions = !scope.showOptions;
-      }
+      };
       if(scope.filterType==='product'){
           scope.title= 'Product';
           tabFilter.getProductFilter().then(function(res){
@@ -73,7 +73,6 @@
         scope.title='Country';
         tabFilter.getAllCountries().then(function(res){
             scope.dropDownValues = res.data.country;
-            console.log(scope.dropDownValues);
         });
       }
     }

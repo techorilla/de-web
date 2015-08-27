@@ -15,14 +15,14 @@
   /* @ngInject */
   function filter($http){
 		return {
-			testFunction: testFunction,
             getBuyerFilter: getBuyerFilter,
             getSellerFilter:getSellerFilter,
             getProductFilter:getProductFilter,
             getBusinessPartnerTypes: getBusinessPartnerTypes,
             getTransactionStatus: getTransactionStatus,
             getBuyerContractTypes: getBuyerContractTypes,
-            getAllCountries: getAllCountries
+            getAllCountries: getAllCountries,
+            filterFromDb: filterFromDb
 		};
 
 		////////////////////
@@ -39,6 +39,9 @@
      * </pre>
      * @param {int} entity id
      */
+        function filterFromDb(){
+            return $http.get('datastore/filterFromDb.json');
+        }
         function getBuyerFilter(){
             return $http.get('datastore/filterBuyer.json');
         }
@@ -55,14 +58,11 @@
             return $http.get('datastore/businessPartnerTypes.json');
         }
         function getBuyerContractTypes(){
-            return $http.get('datastore/buyerContractTypes.json')
+            return $http.get('datastore/buyerContractTypes.json');
         }
         function getTransactionStatus(){
             return $http.get('datastore/transactionStatus.json');
         }
-		function testFunction(id){
-			console.info('This is a test function');
-		}
 	}
 
 }());

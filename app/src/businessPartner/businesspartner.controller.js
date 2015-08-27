@@ -16,7 +16,6 @@
 	function BusinessPartner(){
 		var vm = this;
         init();
-		vm.testFunction = testFunction;
 
     /////////////////////
 
@@ -35,12 +34,12 @@
                     state: 'shell.businessPartner.addBusinessPartner'
                 }
             ];
-            console.log("sdsd");
+            vm.allBusinessPartner = {};
+            vm.allBusinessPartner.tableHeadings = [
+                {name: 'Name'},{name:'Contact Person'},{name:'Type'},{name:'Origin'},{name:'Rating'},{name:'Last Transaction On'}
+            ];
 
         }
-    function testFunction(num){
-			console.info('This is a test function');
-		}
 	}
 
 }());

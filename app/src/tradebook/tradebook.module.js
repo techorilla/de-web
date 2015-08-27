@@ -28,22 +28,38 @@
         } 
      }).state('shell.tradebook.newTransaction',{
       url:'/new',
+      resolve:{
+          staticDropDown: function (tradebook) {
+              return tradebook.getStaticDropDown().then(function (res) {
+                  return res.data;
+              });
+          },
+          filterFromDb: function(tabFilter){
+              return tabFilter.filterFromDb().then(function(res){
+                  return res.data;
+              });
+          }
+      },
       views:{
         'content@shell':{
           templateUrl:'src/tradebook/addTransaction.html',
           controller:'AddTransaction as vm'
         }
-      },
-      resolve:{
-          tradebook: 'tradebook',
-          staticDropDown: function (tradebook) {
-              return tradebook.getStaticDropDown().then(function (res) {
-                  return res.data;
-              });
-          }
       }
     }).state('shell.tradebook.viewTransaction',{
             url:'/view/:id',
+            resolve:{
+                staticDropDown: function (tradebook) {
+                    return tradebook.getStaticDropDown().then(function (res) {
+                        return res.data;
+                    });
+                },
+                filterFromDb: function(tabFilter){
+                    return tabFilter.filterFromDb().then(function(res){
+                        return res.data;
+                    });
+                }
+            },
             views:{
                 'content@shell':{
                     templateUrl:'src/tradebook/addTransaction.html',

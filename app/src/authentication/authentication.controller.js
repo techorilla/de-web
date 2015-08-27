@@ -13,7 +13,7 @@
 		.controller('Authentication', Authentication);
 
   /* @ngInject */
-	function Authentication($state, authService){
+	function Authentication($state, authService, $location){
 		var vm = this;
 
 		vm.testFunction = testFunction;
@@ -46,7 +46,7 @@
             $location.path('/dashboard'); 
         },
          function (err) {
-             vm.message = err.error_description;
+             vm.message = err.errorDescription;
          });
         }
 	}

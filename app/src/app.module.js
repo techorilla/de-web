@@ -14,14 +14,13 @@
   /**
     * Application modules
   **/
-    'app.welcome',
     'app.shell',
     'app.product',
     'app.businessPartner',
     'app.widgets',
     'app.tradebook',
     'app.authentication',
-    'app.dashboard',
+    'app.dashboard',
     'app.setup'
   ]);
 

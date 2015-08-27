@@ -1,18 +1,18 @@
 {
     "shipmentStatus": [
-        {"text":"Not Shipped"},
-        {"text":"Shipped"},
-        {"text":"At Port"},
-        {"text":"Cleared"}
+        {"value":"1","text":"Not Shipped"},
+        {"value":"2","text":"Shipped"},
+        {"value":"3","text":"At Port"},
+        {"value":"4","text":"Cleared"}
     ],
     "transactionStatus":[
-        {"text":"In Progress"},
-        {"text":"Completed"},
-        {"text":"Washout at Port"},
-        {"text":"Washout at X"}
+        {"value":"1","text":"In Progress"},
+        {"value":"2","text":"Completed"},
+        {"value":"3","text":"Washout at Port"},
+        {"value":"4","text":"Washout at X"}
     ],
     "commissionType":[
-        {"text":"Fixed"},
-        {"text":"Percentage"}
+        {"value":"1","text":"Fixed"},
+        {"value":"2","text":"Percentage"}
     ]
 }

@@ -36,7 +36,7 @@
      */
 
 		function testFunction(id){
-			console.info('This is a test function');
+
 		}
 
         function getTransactionList(){

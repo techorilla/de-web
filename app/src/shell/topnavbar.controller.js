@@ -21,7 +21,7 @@
         vm.logOut = logOut;
         vm.onSetupPage = function(){
             return ($state.current.name.substring( 0, 11 )==='shell.setup');
-        }
+        };
 
     /////////////////////
 
@@ -33,9 +33,6 @@
      * @description
      * My Description rules
      */
-    function testFunction(num){
-			console.info('This is a test function');
-		} 
 
     function logOut(){
         authService.logOut();

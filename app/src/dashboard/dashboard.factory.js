@@ -15,7 +15,7 @@
   /* @ngInject */
   function dashboard(){
 		return {
-			testFunction: testFunction
+
 		};
 
 		////////////////////
@@ -33,9 +33,6 @@
      * @param {int} entity id
      */
 
-		function testFunction(id){
-			console.info('This is a test function');
-		}
 	}
 
 }());

@@ -46,7 +46,7 @@
             vm.viewMode = false;
         }
         else{
-            vm.newProduct = new newProduct();
+            vm.newProduct = new NewProduct();
         }
             vm.singleConfig = {
                 valueField: 'code',
@@ -56,16 +56,16 @@
                 maxItems: 1
             };
 		}
-    function newProduct(name, origin, quality, purity, moisture, splits, broken, weeviled){
+    function NewProduct(name, origin, quality, specs){
         this.name = name;
         this.origin = origin;
         this.quality = quality | {};
         this.specs = {};
-        this.specs.purity = purity;
-        this.specs.moisture = moisture;
-        this.specs.splits = splits;
-        this.specs.broken = broken;
-        this.specs.weeviled = weeviled;
+        this.specs.purity = specs.purity;
+        this.specs.moisture = specs.moisture;
+        this.specs.splits = specs.splits;
+        this.specs.broken = specs.broken;
+        this.specs.weeviled = specs.weeviled;
         }
 
     function addProduct(){
@@ -77,7 +77,6 @@
                 vm.newProduct.editedBy = (navigation.getCurrentUser()).id;
                 vm.newProduct.editedOn = navigation.getTime();
             }
-            console.log(vm.newProduct);
         }
     vm.headerAnchor = [
         {
