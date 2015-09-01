@@ -33,9 +33,30 @@
         inSetupTitle: 'New User',
         views:{
             'subContent@shell.setup':{
-                templateUrl: 'src/setup/addNewUser.template.html'
+                templateUrl: 'src/setup/newUser/addNewUser.template.html',
+                controller: 'NewUser as vm'
             }
         }
+      }).
+
+      state('shell.setup.allUsers',{
+          url:'/allUsers',
+          inSetup: 'true',
+          inSetupTitle: 'All Users',
+          resolve: {
+              setup: 'setup',
+              allUsers: function (setup) {
+                  return setup.getAllUsers().then(function (res) {
+                      return res.data.allUsers;
+                  });
+              }
+          },
+          views:{
+              'subContent@shell.setup':{
+                    templateUrl: 'src/setup/allUsers/allUsers.template.html',
+                    controller: 'AllUsers as vm'
+              }
+          }
       }).
       state('shell.setup.userRights',{
         url:'/userRights',

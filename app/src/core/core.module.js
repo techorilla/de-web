@@ -19,7 +19,10 @@
     'ngAnimate',
     'LocalStorageModule',
     'selectize',
-    'ngTagsInput'
+    'ngTagsInput',
+    'angularMoment',
+    'uiSwitch',
+    'toastr'
   ]);
 
   	angular.module('app.core').config(function (localStorageServiceProvider) {

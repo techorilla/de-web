@@ -56,16 +56,16 @@
                 maxItems: 1
             };
 		}
-    function NewProduct(name, origin, quality, specs){
+    function NewProduct(name, origin, quality, purity, moisture, splits, broken, weeviled){
         this.name = name;
         this.origin = origin;
         this.quality = quality | {};
         this.specs = {};
-        this.specs.purity = specs.purity;
-        this.specs.moisture = specs.moisture;
-        this.specs.splits = specs.splits;
-        this.specs.broken = specs.broken;
-        this.specs.weeviled = specs.weeviled;
+        this.specs.purity = purity;
+        this.specs.moisture = moisture;
+        this.specs.splits = splits;
+        this.specs.broken = broken;
+        this.specs.weeviled = weeviled;
         }
 
     function addProduct(){

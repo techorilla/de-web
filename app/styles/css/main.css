@@ -737,6 +737,23 @@ img {
   box-shadow: none;
 }
 
+/* line 656, ../partials/_theme.scss */
+.textDecoNone {
+  text-decoration: none;
+}
+
+/* line 660, ../partials/_theme.scss */
+.isAdminChkBox {
+  height: 20px !important;
+  width: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* line 666, ../partials/_theme.scss */
+.marginBottom20px {
+  margin-bottom: 20px;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

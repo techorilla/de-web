@@ -1,0 +1,28 @@
+<div class="dg-pageContent">
+    <div class="dg-tablePanelWrap">
+        <div class="dg-tablePanelHead clearfix">
+            <div class="dg-tablePanelTitle">System Users<br><small>Total {{vm.allUsers.users.length}} Users</small></div>
+            <ul class="dg-pageActionsLinks">
+                <li><input ng-model="vm.searchUser" type="text" class="form-control" id="exampleInputAmount" placeholder="Find User">
+            </ul>
+        </div>
+        <div class="dg-tablePanelBody">
+            <table class="table table-bordered dg-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="heading in vm.allUsers.heading" ng-bind="heading"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in vm.allUsers.users| filter:vm.searchUser">
+                    <td><a ui-sref="" class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a></td>
+                    <td ng-bind="user.designation"></td>
+                    <td ng-bind="user.email"></td>
+                    <td am-time-ago="user.lastActive" am-preprocess="unix"></td>
+                    <td ng-bind="user.createdBy"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
