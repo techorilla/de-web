@@ -16,6 +16,7 @@
 	function Product(allProducts){
 		var vm = this;
         init();
+        console.log(allProducts);
 
     /////////////////////
 
@@ -30,7 +31,8 @@
     function init(){
             vm.orderByReverse = false;
             vm.searchProduct = '';
-            vm.allProducts = allProducts;
+            vm.allProducts = {};
+            vm.allProducts.products = allProducts;
             vm.allProducts.tableHeadings =  [
                                                 {
                                                   name:'Name',

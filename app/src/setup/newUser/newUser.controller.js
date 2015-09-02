@@ -13,19 +13,30 @@
 		.controller('NewUser', NewUser);
 
   /* @ngInject */
-	function NewUser(toastr){
+	function NewUser(toastr, userRights){
 		var vm = this;
         toastr.success('Hello world!', 'Toastr fun!');
 		vm.testFunction = testFunction;
+        vm.userRights = userRights;
         vm.newUser = {
             initials: '',
             firstName: '',
             lastName: '',
             email: '',
             password: '',
-            reTypePassword: ''
+            reTypePassword: '',
+            isAdmin: true
         };
         vm.viewMode = false;
+        vm.titleConfig = {
+            valueField: 'text',
+            labelField: 'text',
+            options: [
+                { text: 'Mr' }, { text: 'Mrs' }, { text: 'Miss' }
+            ],
+            sortField: 'text',
+            maxItems: 1
+        };
 
     /////////////////////
 

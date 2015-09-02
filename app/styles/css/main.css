@@ -754,6 +754,17 @@ img {
   margin-bottom: 20px;
 }
 
+/* line 670, ../partials/_theme.scss */
+.subheading1 {
+  text-transform: capitalize;
+  font-size: 12px !important;
+}
+
+/* line 675, ../partials/_theme.scss */
+.marginLeftPlus15 {
+  margin-left: 15px;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

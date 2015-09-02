@@ -17,9 +17,11 @@
                 <tbody>
                     <tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">
                         <td><a ui-sref="shell.products.viewProduct({id:row.details.id})">{{row.details.name}}</a></td>
-                        <td><span  class="paddingRow" ng-repeat="quality in row.quality" ng-bind="quality.text"></span></td>
+                        <td ng-if="row.quality !== null" ng-bind="row.quality"></td>
+                        <td ng-if="row.quality === null" >Not Added</td>
                         <td ng-bind="row.origin"></td>
-                        <td><a ui-sref="shell.tradebook.viewTransaction({id:row.lastTraded.id})" ng-bind="row.lastTraded.time| date:'dd/MM/yyyy'"></a></td>
+                        <td ng-if="row.lastTraded.time === null">No Transaction Done</td>
+                        <td ng-if="row.lastTraded.time !== null"><a ui-sref="shell.tradebook.viewTransaction({id:row.lastTraded.id})" ng-bind="row.lastTraded.time| date:'dd/MM/yyyy'"></a></td>
                     </tr>
                 </tbody>
             </table>

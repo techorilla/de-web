@@ -19,14 +19,17 @@
     'app.businessPartner',
     'app.widgets',
     'app.tradebook',
-    'app.authentication',
     'app.dashboard',
     'app.setup'
   ]);
 
-  angular.module('app').config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptorService');
-  });
+    angular.module('app').config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ]);
+
+
   
 
 }());

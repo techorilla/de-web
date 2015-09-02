@@ -13,7 +13,7 @@
 		.factory('product', product);
 
   /* @ngInject */
-  function product($http){
+  function product($http,appConfig){
 		return {
             getAllProducts: getAllProducts,
             getProductById:getProductById
@@ -35,7 +35,7 @@
      */
 
 		function getAllProducts(){
-            return $http.get('datastore/allProducts.json');
+            return $http.get(appConfig.apiHost+'product');
         }
 
         function getProductById(id){

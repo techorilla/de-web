@@ -15,7 +15,8 @@
   /* @ngInject */
   function setup($http){
 		return {
-			getAllUsers: getAllUsers
+			getAllUsers: getAllUsers,
+            getUserRights: getUserRights
 		};
 
 		////////////////////
@@ -36,6 +37,9 @@
 		function getAllUsers(){
             return $http.get('datastore/allUsers.json');
 		}
+        function getUserRights(){
+            return $http.get('datastore/userRights.json');
+        }
 	}
 
 }());

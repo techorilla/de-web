@@ -36,6 +36,13 @@
                 templateUrl: 'src/setup/newUser/addNewUser.template.html',
                 controller: 'NewUser as vm'
             }
+        },
+        resolve:{
+            userRights: function(setup){
+                return setup.getUserRights().then(function(res){
+                    return res.data.userRights;
+                });
+            }
         }
       }).
 

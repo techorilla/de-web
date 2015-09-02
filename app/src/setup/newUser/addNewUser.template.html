@@ -6,11 +6,7 @@
         <div class="col-md-12">
             <div class="form-group col-md-2" >
                 <label for="">Initials</label>
-                <select ng-model="vm.newUser.initials" class="form-control">
-                    <option selected="true">Mr</option>
-                    <option>Mrs</option>
-                    <option>Miss</option>
-                </select>
+                <selectize ng-disabled="vm.viewMode" placeholder='Mr' config="vm.titleConfig" ng-model="vm.newUser.initials"></selectize>
             </div>
             <div class="form-group col-md-5">
                 <label for="">First Name</label>
@@ -20,19 +16,19 @@
                 <label for="">Last Name</label>
                 <input type="text" ng-disabled="vm.viewMode" ng-model="vm.newUser.lastName" class="form-control" placeholder="Doni">
             </div>
-            <div class="form-group   col-md-6">
+            <div class="form-group   col-md-5">
                 <label for="">Email</label>
                 <input type="email" ng-disabled="vm.viewMode" ng-model="vm.newUser.email" class="form-control" placeholder="bilaldoni@donigroup.com">
             </div>
-            <div class="form-group   col-md-6">
+            <div class="form-group   col-md-5">
                 <label for="">Designation</label>
                 <input type="text" ng-disabled="vm.viewMode" ng-model="vm.newUser.designation" class="form-control" placeholder="Cheif Executive">
             </div>
-            <div class="form-group    col-md-6">
+            <div class="form-group col-md-5 col-md-offset-2">
                 <label for="">Password</label>
                 <input type="password" ng-disabled="vm.viewMode" ng-model="vm.newUser.password" class="form-control" placeholder="******">
             </div>
-            <div class="form-group    col-md-6">
+            <div class="form-group    col-md-5">
                 <label for="">Re-enter Password</label>
                 <input type="password" ng-disabled="vm.viewMode" ng-model="vm.newUser.reTypePassword" class="form-control" placeholder="******">
             </div>
@@ -43,8 +39,22 @@
             <label>New User Rights</label>
         </div>
         <div class="col-md-12 marginBottom20px">
-            <input class="isAdminChkBox" type="checkbox"/>
+            <input class="isAdminChkBox" type="checkbox" ng-model="vm.newUser.isAdmin"/>
             <label for="">Is Admin User</label>
+            </br>
+            <page-blue-container ng-show="!vm.newUser.isAdmin" class="col-md-8">
+                <div class="col-lg-12 width96">
+                    <label>Select rights you want to assign to user</label>
+                    <div  ng-repeat="right in vm.userRights" >
+                        <div class="col-lg-12 subheading1 width96 tableHeading">
+                            <label ng-bind="right.domain"></label>
+                        </div>
+                        <div ng-repeat="action in right.rights" class="marginLeftPlus15">
+                            <input id="{{right.domain}}.{{action}}" type="checkbox"/><label class="subheading1 marginLeftPlus15" ng-bind="action" for="{{right.domain}}.{{action}}"></label>
+                        </div>
+                    </div>
+                </div>
+            </page-blue-container>
         </div>
     </div>
     <button type="submit" ng-show="!vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Create User</button>

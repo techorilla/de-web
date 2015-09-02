@@ -77,6 +77,7 @@
                 vm.newProduct.editedBy = (navigation.getCurrentUser()).id;
                 vm.newProduct.editedOn = navigation.getTime();
             }
+            console.log(vm.newProduct);
         }
     vm.headerAnchor = [
         {
