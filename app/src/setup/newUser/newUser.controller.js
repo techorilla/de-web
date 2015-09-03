@@ -13,21 +13,11 @@
 		.controller('NewUser', NewUser);
 
   /* @ngInject */
-	function NewUser(toastr, userRights){
+	function NewUser(toastr, userRights,$scope, setup, $state){
 		var vm = this;
-        toastr.success('Hello world!', 'Toastr fun!');
+
 		vm.testFunction = testFunction;
         vm.userRights = userRights;
-        vm.newUser = {
-            initials: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            reTypePassword: '',
-            isAdmin: true
-        };
-        vm.viewMode = false;
         vm.titleConfig = {
             valueField: 'text',
             labelField: 'text',
@@ -37,6 +27,40 @@
             sortField: 'text',
             maxItems: 1
         };
+        vm.newUser = {
+            initials: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            reTypePassword: '',
+            designation:'',
+            isAdmin: false
+        };
+        vm.viewMode = false;
+        vm.addNewUser = function(){
+            if($scope.addNewUser.$valid) {
+                setup.addNewUser(vm.newUser).then(
+                    function(res){
+                        if(res.data === 'AlreadyExist'){
+                            toastr.error('User with this email already exist', 'Error');
+                        }
+                        else if(res.data === 'Saved'){
+                            toastr.success('New app user Created', 'Success');
+                            $state.go($state.current, {}, {reload: true});
+                        }
+                        else if(res.data === 'Error'){
+                            toastr.error('User was not saved due to some error on server', 'Error');
+                        }
+                    }
+                );
+            }
+            else{
+
+            }
+
+        }
+
 
     /////////////////////
 

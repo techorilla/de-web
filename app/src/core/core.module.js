@@ -22,7 +22,9 @@
     'ngTagsInput',
     'angularMoment',
     'uiSwitch',
-    'toastr'
+    'toastr',
+    'ngMessages',
+    'ui.validate'
   ]);
 
   	angular.module('app.core').config(function (localStorageServiceProvider) {

@@ -35,7 +35,7 @@
      */
 
 		function getAllProducts(){
-            return $http.get(appConfig.apiHost+'product');
+            return $http.get(appConfig.apiHost+'getAllproducts');
         }
 
         function getProductById(id){

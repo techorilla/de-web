@@ -1,9 +1,9 @@
 <form id="signIn" name="form">
 	<div id="block">
 		<label id="user" for="name"><i class="fa fa-user"></i></label>
-		<input type="text" name="name" id="name" placeholder="Username" ng-model="vm.loginData.userName" required/>
+		<input type="text" name="name" id="name" placeholder="Username" ng-model="vm.email" required/>
 		<label id="pass" for="password"><i class="fa fa-key"></i></label>
-		<input type="password" name="password" id="password" placeholder="Password" required ng-model="vm.loginData.userPass"/>
+		<input type="password" name="password" id="password" placeholder="Password" required ng-model="vm.pass"/>
 		<a id="submit" ng-click="vm.login()">
         	<i class="fa fa-arrow-right"></i>
         </a>

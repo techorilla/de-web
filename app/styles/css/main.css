@@ -765,6 +765,17 @@ img {
   margin-left: 15px;
 }
 
+/* line 679, ../partials/_theme.scss */
+.errorValidation {
+  color: darkred;
+  font-weight: bold;
+}
+
+/* line 684, ../partials/_theme.scss */
+.marginTopMinus20 {
+  margin-top: -20px !important;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;
