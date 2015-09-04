@@ -24,6 +24,7 @@
         vm.message = '';
         vm.login = function(){
             authentication.userLogin(vm.email, vm.pass).then(function(res){
+                console.log('back');
                 if(res.data === 'Successful Login'){
                     $state.go('shell.dashboard');
                 }
