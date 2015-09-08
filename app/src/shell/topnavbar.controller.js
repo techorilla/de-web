@@ -13,7 +13,7 @@
 		.controller('TopNavBar', TopNavBar);
 
   /* @ngInject */
-	function TopNavBar(Fullscreen, $state){
+	function TopNavBar(authentication, Fullscreen, $state){
 		var vm = this;
 
 		vm.isFullScreen = false;
@@ -35,7 +35,7 @@
      */
 
     function logOut(){
-
+        authentication.userLogOut();
     }   
 
     function goToFullScreen(){

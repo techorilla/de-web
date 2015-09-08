@@ -22,19 +22,22 @@
         vm.pass = '';
         vm.hideLogin = false;
         vm.message = '';
+
         vm.login = function(){
-            authentication.userLogin(vm.email, vm.pass).then(function(res){
-                console.log('back');
-                if(res.data === 'Successful Login'){
+            authentication.userLogin(vm.email, vm.pass,function (response) {
+                console.log(response);
+                if (response.success) {
+                    authentication.SetCredentials(vm.email, vm.pass);
                     $state.go('shell.dashboard');
-                }
-                else{
+                } else {
+                    vm.message = response.message;
                     vm.hideLogin = true;
-                    vm.message = res.data;
-                    vm.invalidUserNamePass  = true;
+                    vm.invalidUserNamePass = true;
                 }
             });
         };
+
+
 
     /////////////////////
 
