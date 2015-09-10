@@ -12,6 +12,7 @@
                 <thead>
                 <tr>
                     <th ng-repeat="heading in vm.allProducts.tableHeadings" ng-bind="heading.name"></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                         <td ng-bind="row.origin"></td>
                         <td ng-if="row.lastTraded.time === null">No Transaction Done</td>
                         <td ng-if="row.lastTraded.time !== null"><a ui-sref="shell.tradebook.viewTransaction({id:row.lastTraded.id})" ng-bind="row.lastTraded.time| date:'dd/MM/yyyy'"></a></td>
+                        <td><a class="deleteTrash" ng-click="vm.deleteProduct(row.details.name,row.details.id, $index)"><i class="fa fa-trash"></i></a></td>
                     </tr>
                 </tbody>
             </table>

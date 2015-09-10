@@ -27,7 +27,7 @@
             authentication.userLogin(vm.email, vm.pass,function (response) {
                 console.log(response);
                 if (response.success) {
-                    authentication.SetCredentials(vm.email, vm.pass);
+                    authentication.SetCredentials(vm.email, vm.pass, response.userId);
                     $state.go('shell.dashboard');
                 } else {
                     vm.message = response.message;

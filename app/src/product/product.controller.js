@@ -13,10 +13,9 @@
 		.controller('Product', Product);
 
   /* @ngInject */
-	function Product(allProducts){
+	function Product(allProducts,product, toastr ){
 		var vm = this;
         init();
-        console.log(allProducts);
 
     /////////////////////
 
@@ -55,8 +54,23 @@
                 {
                     text: 'Add new Product',
                     state: 'shell.products.addProduct'
+                },
+                {
+                    text: 'All Products Complete Report',
+                    state: 'shell.products.all.report'
                 }
             ];
+        vm.deleteProduct = function(name, id, index){
+                product.deleteProduct(name, id,function(response){
+                    if (response.success) {
+                        toastr.success(response.message, 'Success');
+                        vm.allProducts.products.splice(index, 1);
+                    }
+                    else{
+                        toastr.error(response.message, 'Error');
+                    }
+                });
+            }
         }
 
 	}

@@ -15,8 +15,14 @@
   /* @ngInject */
   function configuration($stateProvider){
     $stateProvider
-      .state('shell.products', {
-        url:'/products',
+      .state('shell.products',{
+          url:'/products',
+          controller: function($state){
+             $state.go('shell.products.all');
+          }
+        })
+      .state('shell.products.all', {
+        url:'/all',
         title:'Products',
         subNavTitle: 'Products',
         subNav: true,
@@ -70,21 +76,31 @@
                     return res.data.country;
                 });
             },
-            productInfo: function(product,$stateParams) {
-                return product.getProductById($stateParams.id).then(function (res) {
+            productInfo: function (product, $stateParams) {
+                return  product.getProductById($stateParams.id).then(function (res) {
                     return res.data.product;
                 });
             }
         }
-    }).state('shell.products.viewProduct.edit',{
-            url:'/edit',
-            views:{
-                'content@shell':{
-                    templateUrl:'src/product/addProduct.template.html',
-                    controller: 'AddProduct as vm'
-                }
+    })
+    .state('shell.products.viewProduct.edit',{
+        url:'/edit',
+        views:{
+            'content@shell':{
+                templateUrl:'src/product/addProduct.template.html',
+                controller: 'AddProduct as vm'
             }
-        });
+        }
+    })
+    .state('shell.products.all.report',{
+        url:'/report',
+        views:{
+            'content@shell':{
+                templateUrl:'src/product/allProductsPdf.html',
+                controller: 'AllProductPdf as vm'
+            }
+        }
+    });
   }
 
 }());

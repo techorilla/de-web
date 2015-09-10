@@ -21,12 +21,15 @@
     'app.tradebook',
     'app.dashboard',
     'app.setup',
-    'app.authentication'
+    'app.authentication',
+    'app.modal'
     ]);
 
     angular.module('app').config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
     }]);
 
 

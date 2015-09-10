@@ -13,10 +13,11 @@
 		.controller('AddProduct', AddProduct);
 
   /* @ngInject */
-	function AddProduct(country, productInfo, $state, navigation){
+	function AddProduct(country, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
 		var vm = this;
         init();
         vm.addProduct = addProduct;
+        vm.deleteProduct = deleteProduct;
 
 
     /////////////////////
@@ -33,23 +34,41 @@
         vm.viewMode = false;
         vm.editMode = false;
         vm.addMode = false;
+        vm.quality;
         vm.viewMode = ($state.current.name === 'shell.products.viewProduct');
         vm.editMode = ($state.current.name === 'shell.products.viewProduct.edit');
         vm.addMode = ($state.current.name === 'shell.products.addProduct');
 
 
-        if($state.current.name === 'shell.products.viewProduct'){
-            vm.newProduct = productInfo[0];
+
+        if(vm.viewMode ||  vm.editMode) {
+            vm.newProduct = productInfo;
+            if (productInfo.quality !== null || productInfo.quality!== '') {
+                var quality = productInfo.quality.split(', ');
+                vm.quality = [];
+                angular.forEach(quality, function (value, key) {
+                    vm.quality.push({'text': value});
+                });
+            }
+            if (vm.viewMode) {
+                vm.headerAnchor = [
+                    {
+                        text: 'Edit Product',
+                        state: 'shell.products.viewProduct.edit({id:' + vm.newProduct.id + '})'
+                    }
+                ];
+            }
+            else {
+                vm.viewMode = false;
+            }
         }
-        else if($state.current.name === 'shell.products.viewProduct.edit'){
-            vm.newProduct = productInfo[0];
-            vm.viewMode = false;
-        }
-        else{
+
+
+        else if(vm.addMode){
             vm.newProduct = new NewProduct();
         }
             vm.singleConfig = {
-                valueField: 'code',
+                valueField: 'text',
                 labelField: 'text',
                 options: country,
                 sortField: 'text',
@@ -59,7 +78,7 @@
     function NewProduct(name, origin, quality, purity, moisture, splits, broken, weeviled){
         this.name = name;
         this.origin = origin;
-        this.quality = quality | {};
+        this.quality = '';
         this.specs = {};
         this.specs.purity = purity;
         this.specs.moisture = moisture;
@@ -68,23 +87,41 @@
         this.specs.weeviled = weeviled;
         }
 
-    function addProduct(){
-            if($state.current.name === 'shell.products.addProduct'){
-                vm.newProduct.createdBy = (navigation.getCurrentUser()).id;
-                vm.newProduct.createdOn = (new Date()).getTime();
+    function deleteProduct(){
+        product.deleteProduct(vm.newProduct.name, vm.newProduct.id,function(response){
+            if (response.success) {
+                toastr.success(response.message, 'Success');
+                $state.go('shell.products.all');
             }
-            else if($state.current.name === 'shell.products.viewProduct.edit'){
+            else{
+                toastr.error(response.message, 'Error');
+            }
+        });
+    }
+
+    function addProduct(){
+            console.log($state.current.name);
+            if($state.current.name === 'shell.products.addProduct'){
+                console.log(vm.newProduct);
+                var quality = _.pluck(vm.quality,'text');
+                quality = quality.join(', ');
+                vm.newProduct.quality = quality;
+                product.addNewProduct(vm.newProduct,function(response){
+                    if (response.success) {
+                        toastr.success(response.message, 'Success');
+                    }
+                    else{
+                        toastr.error(response.message, 'Error');
+                    }
+                });
+            }
+            else if($state.current.name === 'shell.viewProduct.edit'){
                 vm.newProduct.editedBy = (navigation.getCurrentUser()).id;
                 vm.newProduct.editedOn = navigation.getTime();
             }
-            console.log(vm.newProduct);
+
         }
-    vm.headerAnchor = [
-        {
-            text: 'Edit Product',
-            state: 'shell.products.viewProduct.edit({id:'+vm.newProduct.id+'})'
-        }
-    ];
+
 	}
 
 }());

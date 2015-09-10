@@ -37,7 +37,13 @@
 
     function link(scope, elem, attrs){
         scope.goToBack = function(){
-           $state.go($state.current.prevState,$state.current.prevParam);
+            if($state.current.prevState){
+                $state.go($state.current.prevState,$state.current.prevParam);
+            }
+            else{
+                $state.go('^');
+            }
+
         };
     }
   }

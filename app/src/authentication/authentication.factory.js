@@ -16,7 +16,7 @@
 
     angular
         .module('app.authentication').factory('authentication',
-            function (Base64, $http,  $rootScope, appConfig, $state) {
+            function (Base64, $http,  $rootScope, appConfig, $state,  $cookies,$cookieStore) {
                 var service = {};
 
                 service.userLogin = function (username, password, callback) {
@@ -26,24 +26,29 @@
                         });
                 };
 
-                service.SetCredentials = function (username, password) {
+                service.SetCredentials = function (username, password, user) {
+                    console.log('UserId:'+user);
                     var authdata = Base64.encode(username + ':' + password);
+                    var userId = Base64.encode(user + ':' + username);
 
                     $rootScope.globals = {
                         currentUser: {
                             username: username,
-                            authdata: authdata
+                            authdata: authdata,
+                            userId: userId
                         }
                     };
 
-                    $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-                    //$cookieStore.put('globals', $rootScope.globals);
+                    $http.defaults.headers.common['Authorization'] = 'basic ' + authdata; // jshint ignore:line
+                    $http.defaults.headers.common['userId'] = userId;
+                    $cookieStore.put('globals', $rootScope.globals);
                 };
 
                 service.ClearCredentials = function () {
                     $rootScope.globals = {};
-                    //$cookieStore.remove('globals');
-                    $http.defaults.headers.common.Authorization = 'Basic ';
+                    $cookieStore.remove('globals');
+                    $http.defaults.headers.common.Authorization = 'basic ';
+                    $http.defaults.headers.common.userId = 'userId';
                 };
 
                 service.userLogOut = function(){

@@ -776,6 +776,17 @@ img {
   margin-top: -20px !important;
 }
 
+/* line 688, ../partials/_theme.scss */
+.marginTopPlus150px {
+  margin-top: 150px !important;
+}
+
+/* line 692, ../partials/_theme.scss */
+.deleteTrash:hover {
+  color: darkred;
+  font-weight: bold;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;
