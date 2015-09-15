@@ -12,14 +12,50 @@
 		.module('app.product')
 		.controller('AllProductPdf', AllProductPdf);
 
+
   /* @ngInject */
-	function AllProductPdf(){
-		var vm = this;
+	function AllProductPdf($scope, pdf, SaveAs  ){
+        //console.log(pdf);
+        var vm = this;
+        vm.file = new Blob([pdf.data], { type: 'application/pdf' });
+        vm.fileURL = URL.createObjectURL(vm.file);
+        console.log(vm.fileURL);
+        vm.fileName = 'AllProductsDetails-DhoniGroup.pdf';
+        init();
+        function init(){
+            vm.pdf = pdf;
+
+
+            console.log(vm.x);
+        }
+
         vm.message = 'ALL PDF';
+        $scope.file = vm.file;
+        $scope.pdfName = vm.fileName;
+        $scope.pdfUrl = vm.fileURL;
+        $scope.scroll = 0;
+        $scope.loading = 'loading';
+        $scope.download = function(){
+            SaveAs.download(vm.file,vm.fileName);
+        };
 
-        vm.generatePDF = generatePDF;
+        $scope.getNavStyle = function(scroll) {
+            if(scroll > 100) return 'pdf-controls fixed';
+            else return 'pdf-controls';
+        }
 
-		vm.testFunction = testFunction;
+        $scope.onError = function(error) {
+            console.log(error);
+        }
+
+        $scope.onLoad = function() {
+            $scope.loading = '';
+        }
+
+        $scope.onProgress = function(progress) {
+            console.log(progress);
+        }
+
 
     /////////////////////
 
@@ -31,12 +67,7 @@
      * @description
      * My Description rules
      */
-    function generatePDF(){
-        var doc = new jsPDF();
-    }
-    function testFunction(num){
-			console.info('This is a test function');
-		}
+
 	}
 
 }());

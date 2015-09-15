@@ -18,7 +18,8 @@
             getAllProducts: getAllProducts,
             getProductById:getProductById,
             addNewProduct: addNewProduct,
-            deleteProduct: deleteProduct
+            deleteProduct: deleteProduct,
+            getAllProductPdf: getAllProductPdf
 		};
 
 		////////////////////
@@ -38,6 +39,10 @@
 
 		function getAllProducts(){
             return $http.get(appConfig.apiHost+'getAllproducts');
+        }
+
+        function getAllProductPdf(){
+            return $http.get(appConfig.apiHost+'getAllProductPDF', {responseType: "arraybuffer"});
         }
 
         function deleteProduct(name, id, callback){

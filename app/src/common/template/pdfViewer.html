@@ -1,0 +1,35 @@
+<nav ng-class="getNavStyle(scroll)">
+    <button class="btn btn-default" ng-click="goPrevious()">Previous Page</span></button>
+    <button class="btn btn-default" ng-click="goNext()">Next Page</span></button>
+
+    <button class="btn btn-default" ng-click="zoomIn()">+</span></button>
+    <button class="btn btn-default" ng-click="zoomOut()">-</span></button>
+
+    <span>Page: </span>
+    <input type="text" min=1 ng-model="pageNum">
+    <span> / {{pageCount}}</span>
+
+    &nbsp;&nbsp;
+    <a class="btn btn-default" ng-click="download()">Download</a>
+</nav>
+
+<hr>
+
+{{loading}}
+<canvas id="pdf" class="rotate0"></canvas>
+        </br>
+<nav ng-class="getNavStyle(scroll)">
+    <button class="btn btn-default" ng-click="goPrevious()">Previous Page</span></button>
+    <button class="btn btn-default" ng-click="goNext()">Next Page</span></button>
+
+    <button class="btn btn-default" ng-click="zoomIn()">+</span></button>
+    <button class="btn btn-default" ng-click="zoomOut()">-</span></button>
+
+
+    <span>Page: </span>
+    <input type="text" min=1 ng-model="pageNum">
+    <span> / {{pageCount}}</span>
+
+    &nbsp;&nbsp;
+    <a class="btn btn-default"  ng-click="download()">Download</a>
+</nav>

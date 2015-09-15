@@ -24,7 +24,10 @@
     'toastr',
     'ngMessages',
     'ui.validate',
-    'ngCookies'
+    'ngCookies',
+    'pdf',
+    'fileSaver'
+
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {

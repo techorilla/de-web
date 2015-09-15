@@ -99,6 +99,13 @@
                 templateUrl:'src/product/allProductsPdf.html',
                 controller: 'AllProductPdf as vm'
             }
+        },
+        resolve:{
+            pdf: function(product){
+                return product.getAllProductPdf().then(function(res){
+                    return res;
+                })
+            }
         }
     });
   }
