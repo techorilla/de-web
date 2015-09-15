@@ -2,7 +2,7 @@
 <page-header ng-if="vm.editMode" heading="{{vm.newProduct.name}}" sub-heading="Edit" button-list="" go-back="true" ></page-header>
 <page-header ng-if="vm.addMode" heading="New Product" sub-heading="Add" go-back="true"></page-header>
 	<page-blue-container>
-        	<form>
+        	<form name="vm.productForm" novalidate>
                   <div class="row">
                       <div class="col-lg-12  marginLeft15">
                           <div class="col-lg-12 tableHeading">
@@ -10,11 +10,17 @@
                           </div>
                           <div class="form-group col-lg-6">
                               <label for="pName">Name</label>
-                              <input type="text"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                              <input name="pname" ng-required="true" type="text"  ng-disabled="vm.viewMode" ng-model="vm.newProduct.name" class="form-control" id="pName" placeholder="Enter Product Name">
+                              <ng-messages for="vm.productForm.pname.$error" ng-if='vm.productForm.pname.$dirty || vm.productForm.$submitted'>
+                                  <div ng-message="required" class="errorValidation">Product name is required.</div>
+                              </ng-messages>
                           </div>
                           <div class="form-group col-lg-6">
                               <label>Origin</label>
-                              <selectize ng-disabled="vm.viewMode" placeholder='Please enter Country' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
+                              <selectize name="pOrigin" ng-required="true" ng-disabled="vm.viewMode" placeholder='Please enter Country' config="vm.singleConfig" ng-model="vm.newProduct.origin"></selectize>
+                              <ng-messages for="vm.productForm.pOrigin.$error" ng-if='vm.productForm.pOrigin.$dirty || vm.productForm.$submitted'>
+                                  <div ng-message="required" class="errorValidation">Product Origin is required.</div>
+                              </ng-messages>
                           </div>
                       </div>
                   </div>
@@ -33,23 +39,23 @@
                       <div class="col-md-4">
                           <div class="form-group">
                               <label for="pPurity">Purity</label>
-                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Enter Product Purity">
+                              <input name="pPurity" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Enter Product Purity">
                           </div>
                           <div class="form-group">
-                              <label for="pPurity">Moisture</label>
-                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Enter Product Moisture">
+                              <label for="pMoisture">Moisture</label>
+                              <input name="pMoisture" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Enter Product Moisture">
                           </div>
                           <div class="form-group">
                               <label for="pSplits">Splits</label>
-                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Enter Product Splits">
+                              <input name="pSplits" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Enter Product Splits">
                           </div>
                           <div class="form-group">
                               <label for="pBroken">Broken</label>
-                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.broken" class="form-control" id="pBroken" placeholder="Enter Product Broken">
+                              <input name="pBroken" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.broken" class="form-control" id="pBroken" placeholder="Enter Product Broken">
                           </div>
                           <div class="form-group">
                               <label for="pWeeviled">Weeviled</label>
-                              <input type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Enter Product Weeviled">
+                              <input name="pWeeviled" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Enter Product Weeviled">
                           </div>
                       </div>
                   </div>

@@ -13,12 +13,13 @@
 		.controller('AddProduct', AddProduct);
 
   /* @ngInject */
-	function AddProduct(country, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
+	function AddProduct($scope, country, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
 		var vm = this;
         init();
         vm.addProduct = addProduct;
         vm.deleteProduct = deleteProduct;
         vm.saveProduct = saveProduct;
+        ;
 
 
     /////////////////////
@@ -102,30 +103,44 @@
     }
 
     function saveProduct(){
-        prodict.editProduct(vm.newProduct);
+        if(!vm.productForm.$valid) {
+            toastr.error('Invalid Information', 'Error');
+            return;
+        }
+        var quality = _.pluck(vm.quality,'text');
+        quality = quality.join(', ');
+        vm.newProduct.quality = quality;
+        product.editProduct(vm.newProduct,function(response){
+            if (response.success) {
+                toastr.success(response.message, 'Success');
+                $state.go('shell.products.all');
+            }
+            else{
+                toastr.error(response.message, 'Error');
+            }
+        });
     }
 
     function addProduct(){
-            console.log($state.current.name);
+        if(!vm.productForm.$valid) {
+            toastr.error('Invalid Information', 'Error');
+            return;
+        }
+
             if($state.current.name === 'shell.products.addProduct'){
-                console.log(vm.newProduct);
                 var quality = _.pluck(vm.quality,'text');
                 quality = quality.join(', ');
                 vm.newProduct.quality = quality;
                 product.addNewProduct(vm.newProduct,function(response){
                     if (response.success) {
                         toastr.success(response.message, 'Success');
+                        $state.go('shell.products.all');
                     }
                     else{
                         toastr.error(response.message, 'Error');
                     }
                 });
             }
-            else if($state.current.name === 'shell.viewProduct.edit'){
-                vm.newProduct.editedBy = (navigation.getCurrentUser()).id;
-                vm.newProduct.editedOn = navigation.getTime();
-            }
-
         }
 
 	}

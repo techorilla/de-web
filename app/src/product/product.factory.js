@@ -38,8 +38,19 @@
      * @param {int} entity id
      */
 
-        function editProduct(product){
-            console.log(product);
+        function editProduct(product,callback){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'editProduct',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {product: product}
+            }
+            return $http(req)
+                .success(function (response) {
+                    callback(response);
+                });
         }
 		function getAllProducts(){
             return $http.get(appConfig.apiHost+'getAllproducts');

@@ -18,8 +18,8 @@
                 <tbody>
                     <tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">
                         <td><a ui-sref="shell.products.viewProduct({id:row.details.id})">{{row.details.name}}</a></td>
-                        <td ng-if="row.quality !== null" ng-bind="row.quality"></td>
-                        <td ng-if="row.quality === null" >Not Added</td>
+                        <td ng-if="row.quality !== null && row.quality!==''" ng-bind="row.quality"></td>
+                        <td ng-if="row.quality === null || row.quality===''" >Not Added</td>
                         <td ng-bind="row.origin"></td>
                         <td ng-if="row.lastTraded.time === null">No Transaction Done</td>
                         <td ng-if="row.lastTraded.time !== null"><a ui-sref="shell.tradebook.viewTransaction({id:row.lastTraded.id})" ng-bind="row.lastTraded.time| date:'dd/MM/yyyy'"></a></td>
