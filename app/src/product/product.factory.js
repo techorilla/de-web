@@ -19,7 +19,8 @@
             getProductById:getProductById,
             addNewProduct: addNewProduct,
             deleteProduct: deleteProduct,
-            getAllProductPdf: getAllProductPdf
+            getAllProductPdf: getAllProductPdf,
+            editProduct: editProduct
 		};
 
 		////////////////////
@@ -37,6 +38,9 @@
      * @param {int} entity id
      */
 
+        function editProduct(product){
+            console.log(product);
+        }
 		function getAllProducts(){
             return $http.get(appConfig.apiHost+'getAllproducts');
         }

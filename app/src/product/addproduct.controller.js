@@ -18,6 +18,7 @@
         init();
         vm.addProduct = addProduct;
         vm.deleteProduct = deleteProduct;
+        vm.saveProduct = saveProduct;
 
 
     /////////////////////
@@ -43,7 +44,8 @@
 
         if(vm.viewMode ||  vm.editMode) {
             vm.newProduct = productInfo;
-            if (productInfo.quality !== null || productInfo.quality!== '') {
+            console.log(vm.newProduct);
+            if (productInfo.quality !== null && productInfo.quality!== '') {
                 var quality = productInfo.quality.split(', ');
                 vm.quality = [];
                 angular.forEach(quality, function (value, key) {
@@ -97,6 +99,10 @@
                 toastr.error(response.message, 'Error');
             }
         });
+    }
+
+    function saveProduct(){
+        prodict.editProduct(vm.newProduct);
     }
 
     function addProduct(){

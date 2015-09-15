@@ -53,8 +53,9 @@
                           </div>
                       </div>
                   </div>
-				  <button type="submit" ng-show="!vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Save Product</button>
-                <button type="submit" ng-show="vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.deleteProduct()">Delete Product</button>
+				  <button type="submit" ng-show="vm.addMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Add New Product</button>
+                  <button type="submit" ng-show="vm.editMode" class="btn btn-default submitBtn" ng-click="vm.saveProduct()">Save Changes</button>
+                  <button type="submit" ng-show="vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.deleteProduct()">Delete Product</button>
 				  <button type="submit"  class="btn btn-default" ui-sref="shell.products.all">Cancel</button>
 			</form>
 	</page-blue-container>

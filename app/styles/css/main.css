@@ -787,6 +787,14 @@ img {
   font-weight: bold;
 }
 
+/* line 697, ../partials/_theme.scss */
+#pdf {
+  border: 0px solid #333 !important;
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;
