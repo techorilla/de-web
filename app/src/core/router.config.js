@@ -27,6 +27,7 @@
     //on routing error
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
       //do some title setting
+      console.log(event);
       $rootScope.pageTitle = toState.title || 'Doni Enterprises';
       fromState.wentTo = toState.name;
       if(toState.wentTo !== fromState.name){

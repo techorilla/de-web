@@ -26,7 +26,8 @@
     'ui.validate',
     'ngCookies',
     'pdf',
-    'fileSaver'
+    'fileSaver',
+    'angularSpinner'
 
   ]);
 

@@ -13,8 +13,9 @@
 		.controller('Shell', Shell);
 
   /* @ngInject */
-	function Shell(navigation){
+	function Shell(navigation, usSpinnerService){
 		var vm = this;
+        usSpinnerService.spin('spinner-1');
         init();
         function init(){
             vm.invertSideBar = invertSideBar;

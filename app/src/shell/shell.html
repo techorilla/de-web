@@ -10,6 +10,7 @@
             <a ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn" ng-class="{'orangeBg': !vm.sideBarStatus()}">
             <i class="fa" ng-class="{'fa-angle-double-left':vm.sideBarStatus(),'fa-angle-double-right':!vm.sideBarStatus()}"></i></a>
             <div ui-view="content"><div>
+            <span us-spinner spinner-key="spinner-1"></span>
         </section>
     </div>
 </div>
