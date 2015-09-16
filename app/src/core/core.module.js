@@ -27,7 +27,8 @@
     'ngCookies',
     'pdf',
     'fileSaver',
-    'angularSpinner'
+    'angularSpinner',
+    'rzModule'
 
   ]);
 

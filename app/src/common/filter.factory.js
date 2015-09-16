@@ -13,11 +13,11 @@
 		.factory('tabFilter', filter);
 
   /* @ngInject */
-  function filter($http){
+  function filter($http, appConfig){
 		return {
             getBuyerFilter: getBuyerFilter,
             getSellerFilter:getSellerFilter,
-            getProductFilter:getProductFilter,
+            getProductFilterForTagInput:getProductFilterForTagInput,
             getBusinessPartnerTypes: getBusinessPartnerTypes,
             getTransactionStatus: getTransactionStatus,
             getBuyerContractTypes: getBuyerContractTypes,
@@ -51,8 +51,16 @@
         function getSellerFilter(){
             return $http.get('datastore/filterSeller.json');
         }
-        function getProductFilter(){
-            return $http.get('datastore/allProducts.json');
+        function getProductFilterForTagInput(input){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getProductListTagInputs/'+input,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            };
+            return $http.get(req.url,{cache:true});
         }
         function getBusinessPartnerTypes(){
             return $http.get('datastore/businessPartnerTypes.json');

@@ -243,6 +243,18 @@ tbody tr td a{
     }
 }
 
+.innerHeading{
+  border-bottom:1px dashed #333;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #333333;
+  font-weight: bolder;
+  padding-bottom: 2px;
+  label{
+    margin-left:-15px;
+  }
+}
+
 .width96{
   width:96%;
 }

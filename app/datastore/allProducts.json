@@ -1,43 +1,26 @@
-{
-       "products": [
-        {
-            "details": {
-               "id":1,
-               "name": "Mash"
-            },
-            "quality": [
-                {
-                    "text": "A*"
-                },
-                {
-                    "text": "B-"
-                }
-            ],
-            "origin": "Pakistan",
-            "lastTraded": {
-                "time":1429467492457,
-                "id": 3
-            }
+[
 
+        {
+            "value":1,
+            "text": "Kali Masoor"
         },
         {
-            "details": {
-                "id":2,
-                "name": "Mash"
-            },
-            "quality": [
-                {
-                   "text": "A*"
-                },
-                {
-                   "text": "B-"
-                }
-            ],
-            "origin": "China",
-            "lastTraded": {
-                "time":1429467492457,
-                "id": 3
-            }
+            "value":3,
+            "text": "Yellow Mash"
+        },
+        {
+            "value": 4,
+            "text": "Orange Mash"
+        },
+        {
+            "value": 5,
+            "text": "Black Mash"
+        },
+        {
+            "value": 6,
+            "text": "Zinda Mash"
         }
-    ]
-}
+
+
+
+]

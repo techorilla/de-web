@@ -144,54 +144,118 @@
                     <!--</div>-->
                 <!--</accordion-group>-->
             <!--</accordion>-->
-            <form>
-                <div class="row">
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Basic Information</label>
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label>Business Partner Name</label>
-                            <input class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='Please enter business partner name' ng-model="vm.businessPartner.name"/>
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label>Website</label>
-                            <input class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='Please enter business partner website (optional)' ng-model="vm.businessPartner.website"/>
-                        </div>
+            </br>
+            <div class="col-xs-12 businessPartnerSteps">
+                <div ng-class="{'active':step.isActive}" class="col-xs-2 step" ng-repeat="step in vm.steps">
+                    <div ng-bind="step.caption"></div>
+                </div>
+            </div>
+            <form name="vm.businessPartnerForm" novalidate>
+                <page-blue-container  ng-if="vm.currentStep===0" >
 
-                        <div class="form-group col-xs-12">
-                            <label class="col-sm-12 control-label">Business Partner Type</label>
-                            <div class="col-xs-12 col-md-6" ng-repeat="type in vm.possibleBPTypes">
-                                <input type="checkbox" class="bpChecks" ng-model="type.isChecked">
-                                <p class="form-control-static">{{type.name}}</p>
+                        <div class="col-lg-12  marginLeft15">
+                            <div class="col-lg-12 tableHeading">
+                                <label>Basic Information</label>
                             </div>
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label>Credibility Rating</label>
-                            <input class="col-xs-12" type="range" min="0" max="5"  type="text" ng-disabled="vm.viewMode" placeholder='Please enter rating for Business Partner' ng-model="vm.businessPartner.creditRating"/><div>{{vm.businessPartner.creditRating}}</div>
+                            <div class="form-group col-xs-12">
+                                <label>Business Partner Name</label>
+                                <input name="bpName" class="form-control" type="text" ng-disabled="vm.viewMode" ng-required="true" placeholder='Please enter business partner name' ng-model="vm.businessPartner.name"/>
+                                <div ng-messages='vm.businessPartnerForm.bpName.$error'
+                                     ng-if='vm.businessPartnerForm.bpName.$dirty || vm.businessPartnerForm.$submitted'>
+                                    <div class="errorValidation" ng-message="required">Business partner name is required.</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label>Website</label>
+                                <input name="website" type="url" class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='https://www.google.com (optional)' ng-model="vm.businessPartner.website"/>
+
+                                <div ng-messages='vm.businessPartnerForm.website.$error'
+                                     ng-if='vm.businessPartnerForm.website.$dirty || vm.businessPartnerForm.$submitted'>
+                                    <div class="errorValidation" ng-message="url">Invalid web address provided.</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
+                                <label class="col-sm-12 control-label">Business Partner Type</label>
+                                <div class="col-xs-12 col-md-6" ng-repeat="type in vm.possibleBPTypes">
+                                    <input type="checkbox" class="bpChecks" ng-model="type.isChecked">
+                                    <p class="form-control-static">{{type.name}}</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label>Credibility Rating</label>
+                                <rzslider
+                                        rz-slider-model="vm.businessPartner.creditRating"
+                                        rz-slider-floor="0"
+                                        rz-slider-ceil="5"></rzslider>
+
+                            </div>
+
                         </div>
 
+                </page-blue-container>
+                <page-blue-container ng-if="vm.currentStep===1"  >
+                    <div class="row">
+                        <div class="col-lg-12  marginLeft15">
+                            <div class="col-lg-12 tableHeading">
+                                <label>Products</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <tags-input ng-model="vm.BusinessPartnerProducts" add-on-paste="false"
+                                            replace-spaces-with-dashes="false"
+                                            add-from-autocomplete-only="true"
+                                            placeholder="Add product tags for business partner "
+                                            key-property="value"
+                                            min-length="1" display-property="text">
+                                    <auto-complete source="vm.loadProducts($query)" min-length="0"
+                                                   load-on-focus="true"
+                                                   template="productTagInput"
+                                                   max-results-to-show="32">
+                                    </auto-complete>
+                                </tags-input>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <div class="row">
+                </page-blue-container>
+                <div ng-if="vm.currentStep===2"  class="row">
                     <div class="col-lg-12  marginLeft15">
                         <div class="col-lg-12 tableHeading">
-                            <label>Products</label>
+                            <label>Business Partner Contact Details </label>
                         </div>
 
                     </div>
                 </div>
-                <div class="row">
+                <div ng-if="vm.currentStep===3"  class="row">
                     <div class="col-lg-12  marginLeft15">
                         <div class="col-lg-12 tableHeading">
                             <label>Bank Details</label>
+                            <label class="pull-right">
+                                <i class="fa fa-plus-circle orangeFont" ng-click="vm.addBankDetails()"></i>
+                            </label>
+                        </div>
+                        <div class="col-lg-12" ng-repeat="bankDetails in vm.businessPartner.bankDetails">
+                            <div class="col-lg-12 innerHeading">
+                                <label>Bank Detail {{$index+1}}</label>
+                                <label class="pull-right">
+                                    <i class="fa fa-trash deleteTrash" ng-click="vm.removeBankDetails('Bank Detail '+($index+1), $index)"></i>
+                                    &nbsp;&nbsp;
+                                    <i class="fa fa-pencil editPen"></i>
+                                </label>
+                            </div>
+                            </br>
+                            <textarea class="form-control" ></textarea>
+                            </br>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div ng-if="vm.currentStep===4"  class="row">
                     <div class="col-lg-12  marginLeft15">
                         <div class="col-lg-12 tableHeading">
-                            <label>Contact Information</label>
+                            <label>Contact Person Information</label>
+                            <label class="pull-right">
+                                <i class="fa fa-plus-circle orangeFont"></i>
+                            </label>
                         </div>
 
                     </div>
@@ -199,7 +263,7 @@
 
                 </br>
                 <div class="form-group  col-xs-12 marginLeft15">
-                    <button type="submit" class="btn btn-default submitBtn" ng-click="vm.saveTransaction()">Submit</button>
+                    <button type="submit" class="btn btn-default submitBtn pull-right" ng-click="vm.next()">Next</button>
                     <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
                 </div>
                 </br>
@@ -210,4 +274,15 @@
     </div>
 
 </page-blue-container>
+
+<script type="text/ng-template" id="productTagInput">
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+        <span class="pull-right">
+            <span><b>Origin: </b>{{data.origin}}</span>
+            <span ng-if="data.quality!==null">, <b>Quality: </b>{{data.quality}}</span>
+        </span>
+    </div>
+</script>
 

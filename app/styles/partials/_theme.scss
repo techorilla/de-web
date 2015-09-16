@@ -2,6 +2,7 @@ $baseColor: #1691ac;
 $fontPrimary: "Open Sans", Arial;
 $fontSecondary: "Questrial", Arial;
 $transitionValue: all 0.3s ease-in-out;
+$orangeColor: #F47414;
 
 @mixin transition($transitionValue) {
   -webkit-transition: $transitionValue;
@@ -678,7 +679,9 @@ img {
 
 .errorValidation{
   color:darkred;
+  font-size: 10px;
   font-weight: bold;
+  margin-top: 2px;
 }
 
 .marginTopMinus20{
@@ -688,13 +691,70 @@ img {
 .marginTopPlus150px{
   margin-top: 150px !important;
 }
-
+.deleteTrash{
+  cursor: pointer;
+}
 .deleteTrash:hover{
   color:darkred;
+  font-weight: bold;
+}
+
+.editPen{
+  cursor: pointer;
+}
+.editPen:hover{
+  color:$baseColor;
   font-weight: bold;
 }
 
 #pdf{
   border: 0px solid #333 !important;
   @include boxShadow(0px 2px 3px 0px rgba(0, 0, 0, 0.4));
+}
+
+.rz-pointer{
+  background-color: $baseColor !important;
+}
+
+.rz-pointer.rz-active:after{
+  background-color: #333 !important;
+}
+
+.orangeFont{
+  color:$orangeColor;
+  cursor: pointer;
+}
+
+.orangeFont:hover{
+  color:$orangeColor+20;
+}
+.tags{
+  font-family: $fontSecondary;
+}
+.tags .input{
+  width:100% !important;
+}
+
+.businessPartnerSteps{
+
+  height:50px;
+  color:#333;
+  @include boxShadow(0px 2px 3px 0px rgba(0, 0, 0, 0.4));
+}
+
+.businessPartnerSteps .active{
+  background: #333;
+  color:white;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  opacity: 0.8;
+}
+
+.businessPartnerSteps .step {
+  padding-top: 20px;
+  font-size: 12px;
+  height:100%;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
 }
