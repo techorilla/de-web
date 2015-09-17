@@ -13,29 +13,72 @@
 		.controller('AddBusinessPartner', AddBusinessPartner);
 
   /* @ngInject */
-	function AddBusinessPartner($scope,bpTypes,contractTypes, country, tabFilter, $q, modalFactory){
+	function AddBusinessPartner(toastr,$scope,bpTypes,contractTypes, country, tabFilter, $q, modalFactory){
 		var vm = this;
-        vm.accordianOneAtATime=true;
-        vm.generalInfoOpen=true;
-        vm.addressInfoOpen=false;
-        vm.contactPersonInfoOpen=false;
-        vm.evaluationNotesInfoOpen=false;
-        vm.BusinessPartnerProducts=[];
+
         vm.possibleBPTypes= bpTypes;
         vm.buyerContractTypes=contractTypes;
         vm.businessPartner = {};
-        vm.businessPartner.general = {name:'',website:'',isBuyer:false,isSupplier:false,isBroker:false,isShipper:false,doniContact:false,rating:0};
+        vm.businessPartner.products = [];
+        vm.businessPartner.general = {name:'',website:'',isBuyer:false,isSupplier:false,isBroker:false,isShipper:false,doniContact:false,rating:0,doniContract:false};
+        vm.businessPartner.contactDetails = {origin:'',emails:[],faxNumbers:[],phoneNumbers:[]};
         vm.businessPartner.bankDetails = [];
-        vm.addAddress = addAddress;
-        vm.subAddress = subAddress;
+        vm.businessPartner.contactPerson = [];
+        vm.country = country;
+
+        vm.addBankDetails = addBankDetails;
+        vm.removeBankDetails = removeBankDetails;
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
+
         vm.next = next;
         vm.prev = prev;
-        vm.addBankDetails = addBankDetails;
-        vm.country = country;
-        vm.removeBankDetails = removeBankDetails;
         vm.goToProducts = goToProducts;
+        vm.goToContactDetails = goToContactDetails;
+        vm.goToBankDetails = goToBankDetails;
+        vm.goToContactPerson = goToContactPerson;
+        vm.goToPreview = goToPreview;
+        vm.saveBusinessPartner = saveBusinessPartner;
+
+        function saveBusinessPartner(){
+            console.log(vm.businessPartner);
+        }
+
+        function goToPreview(){
+            if(vm.businessPartner.contactPerson.length === 0 ){
+                toastr.warning('No contact person for business partner is provided','Warning');
+                vm.next();
+            }
+            else{
+                if(vm.contactPersonForm.$valid) {
+                    vm.next();
+                }
+                else{
+                    toastr.error('Some contact person information is missing or invalid','Incomplete Form');
+                }
+            }
+        }
+
+        function goToContactPerson(){
+            var empty = _.where(vm.businessPartner.bankDetails, { 'text': ''});
+            angular.forEach(empty, function(val){
+                var i = vm.businessPartner.bankDetails.indexOf(val);
+                vm.businessPartner.bankDetails.splice(i,1);
+            });
+            if(vm.businessPartner.bankDetails.length === 0){
+                toastr.warning('No bank details provided','Warning');
+            }
+            vm.next();
+        }
+
+        function goToBankDetails(){
+            if(vm.businessPartner.contactDetails.origin === ''){
+                toastr.error('Please provide a origin for business partner', 'Missing Origin');
+            }
+            else{
+                vm.next();
+            }
+        }
 
         function goToProducts(){
             if(vm.businessPartnerForm.$valid){
@@ -43,10 +86,23 @@
                 vm.businessPartner.general.isSupplier = vm.possibleBPTypes[1].isChecked;
                 vm.businessPartner.general.isBroker = vm.possibleBPTypes[2].isChecked;
                 vm.businessPartner.general.isShipper = vm.possibleBPTypes[3].isChecked;
-                console.log(vm.businessPartner);
-                vm.next();
+                if(vm.businessPartner.general.isBuyer || vm.businessPartner.general.isSupplier ||
+                    vm.businessPartner.general.isBroker ||vm.businessPartner.general.isShipper
+                  ){ vm.next();}
+                else{
+                    toastr.error('Atleast one type should be added for business partner', 'No Type Provided');
+                    return;
+                }
+
             }
 
+        }
+
+        function goToContactDetails(){
+            if(vm.businessPartner.products.length === 0){
+                toastr.warning('Warning', 'No products have been added for business partner')
+            }
+            vm.next();
         }
 
         function next(){
@@ -104,10 +160,10 @@
         vm.currentStep = 0;
 
         vm.singleConfig = {
-            valueField: 'code',
-            labelField: 'name',
-            options: vm.country,
-            sortField: 'name',
+            valueField: 'text',
+            labelField: 'text',
+            options: country,
+            sortField: 'text',
             maxItems: 1
         };
 
@@ -138,32 +194,23 @@
             }
         });
     }
-    function BpAddress(line1,line2,zipCode,city,state){
-            this.line1=line1 || '';
-            this.line2=line2 || '';
-            this.zipCode = zipCode || '';
-            this.state = state || '';
-            this.city = city || '';
-        }
-    function BpContactPerson(details){
-            this.title = details.title || '';
-            this.firstName= details.firstName || '';
-            this.lastName = details.lastName || '';
-            this.designation = details.designation || '';
-            this.contactNumbers = details.contactNumbers || '';
-            this.emails = details.emails || '';
-        }
-    function addAddress(){
-            vm.businessPartner.address.push(new BpAddress());
-        }
-    function subAddress(){
-            vm.businessPartner.address.pop();
-        }
+
     function addContactPerson(){
-            vm.businessPartner.contactPerson.push(new BpContactPerson());
+            vm.businessPartner.contactPerson.push({
+                fullName:'',
+                isPrimary: false,
+                email:'',
+                phoneNumber1:'',
+                phoneNumber2:'',
+                role:''
+            });
         }
-    function subContactPerson(){
-            vm.businessPartner.contactPerson.pop();
+    function subContactPerson(name,index){
+            modalFactory.alertModal(name,'current business partner', 'Delete').then(function(res){
+                if(res){
+                    vm.businessPartner.contactPerson.splice(index,1);
+                }
+            });
         }
 
 	}

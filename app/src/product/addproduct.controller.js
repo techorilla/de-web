@@ -19,7 +19,7 @@
         vm.addProduct = addProduct;
         vm.deleteProduct = deleteProduct;
         vm.saveProduct = saveProduct;
-        ;
+
 
 
     /////////////////////
