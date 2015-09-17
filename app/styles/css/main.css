@@ -841,7 +841,7 @@ img {
 
 /* line 734, ../partials/_theme.scss */
 .tags .input {
-  width: 100% !important;
+  width: 104% !important;
 }
 
 /* line 738, ../partials/_theme.scss */
@@ -870,6 +870,11 @@ img {
   text-align: center;
   cursor: pointer;
   font-weight: bold;
+}
+
+/* line 762, ../partials/_theme.scss */
+.no-border .blueBorder {
+  border: 0px !important;
 }
 
 /* line 3, ../partials/_login.scss */

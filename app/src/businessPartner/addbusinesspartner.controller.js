@@ -24,23 +24,49 @@
         vm.possibleBPTypes= bpTypes;
         vm.buyerContractTypes=contractTypes;
         vm.businessPartner = {};
-        vm.businessPartner.name='';
-        vm.businessPartner.website='';
-        vm.businessPartner.emails=[];
-        vm.businessPartner.faxNumber='';
-        vm.businessPartner.address=[];
-        vm.businessPartner.contactPerson =[];
-        vm.businessPartner.country = '';
-        vm.businessPartner.creditRating = 0;
+        vm.businessPartner.general = {name:'',website:'',isBuyer:false,isSupplier:false,isBroker:false,isShipper:false,doniContact:false,rating:0};
         vm.businessPartner.bankDetails = [];
         vm.addAddress = addAddress;
         vm.subAddress = subAddress;
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
         vm.next = next;
+        vm.prev = prev;
         vm.addBankDetails = addBankDetails;
         vm.country = country;
         vm.removeBankDetails = removeBankDetails;
+        vm.goToProducts = goToProducts;
+
+        function goToProducts(){
+            if(vm.businessPartnerForm.$valid){
+                vm.businessPartner.general.isBuyer = vm.possibleBPTypes[0].isChecked;
+                vm.businessPartner.general.isSupplier = vm.possibleBPTypes[1].isChecked;
+                vm.businessPartner.general.isBroker = vm.possibleBPTypes[2].isChecked;
+                vm.businessPartner.general.isShipper = vm.possibleBPTypes[3].isChecked;
+                console.log(vm.businessPartner);
+                vm.next();
+            }
+
+        }
+
+        function next(){
+            var i = vm.currentStep;
+            if(i<vm.steps.length){
+                vm.steps[i].isActive = false;
+                vm.steps[i+1].isActive = true;
+                vm.currentStep += 1;
+            }
+
+        }
+
+        function prev(){
+            var i = vm.currentStep;
+            if(i>0){
+                vm.steps[i].isActive = false;
+                vm.steps[i-1].isActive = true;
+                vm.currentStep -= 1;
+            }
+        }
 
         vm.steps = [
             {
@@ -139,15 +165,7 @@
     function subContactPerson(){
             vm.businessPartner.contactPerson.pop();
         }
-    function next(){
-            var i = vm.currentStep;
-            if(i<vm.steps.length){
-                vm.steps[i].isActive = false;
-                vm.steps[i+1].isActive = true;
-                vm.currentStep += 1;
-            }
 
-        }
 	}
 
 }());

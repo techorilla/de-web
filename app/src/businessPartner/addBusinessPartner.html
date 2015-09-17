@@ -150,16 +150,16 @@
                     <div ng-bind="step.caption"></div>
                 </div>
             </div>
-            <form name="vm.businessPartnerForm" novalidate>
-                <page-blue-container  ng-if="vm.currentStep===0" >
 
+                <page-blue-container  ng-if="vm.currentStep===0" class="no-border">
+                    <form name="vm.businessPartnerForm" novalidate>
                         <div class="col-lg-12  marginLeft15">
                             <div class="col-lg-12 tableHeading">
                                 <label>Basic Information</label>
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Business Partner Name</label>
-                                <input name="bpName" class="form-control" type="text" ng-disabled="vm.viewMode" ng-required="true" placeholder='Please enter business partner name' ng-model="vm.businessPartner.name"/>
+                                <input name="bpName" class="form-control" type="text" ng-disabled="vm.viewMode" ng-required="true" placeholder='Please enter business partner name' ng-model="vm.businessPartner.general.name"/>
                                 <div ng-messages='vm.businessPartnerForm.bpName.$error'
                                      ng-if='vm.businessPartnerForm.bpName.$dirty || vm.businessPartnerForm.$submitted'>
                                     <div class="errorValidation" ng-message="required">Business partner name is required.</div>
@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Website</label>
-                                <input name="website" type="url" class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='https://www.google.com (optional)' ng-model="vm.businessPartner.website"/>
+                                <input name="website" type="url" class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='https://www.google.com (optional)' ng-model="vm.businessPartner.general.website"/>
 
                                 <div ng-messages='vm.businessPartnerForm.website.$error'
                                      ng-if='vm.businessPartnerForm.website.$dirty || vm.businessPartnerForm.$submitted'>
@@ -185,17 +185,24 @@
                             <div class="form-group col-xs-12">
                                 <label>Credibility Rating</label>
                                 <rzslider
-                                        rz-slider-model="vm.businessPartner.creditRating"
+                                        rz-slider-model="vm.businessPartner.general.rating"
                                         rz-slider-floor="0"
-                                        rz-slider-ceil="5"></rzslider>
+                                        rz-slider-ceil="5">
+                                </rzslider>
+                            </div>
 
+                            <div class="form-group col-xs-12">
+                                <div>
+                                    <button type="submit" class="btn btn-default pull-right" ng-click="vm.goToProducts()">Next</button>
+                                    <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+                                </div>
                             </div>
 
                         </div>
-
+                    </form>
                 </page-blue-container>
-                <page-blue-container ng-if="vm.currentStep===1"  >
-                    <div class="row">
+                <page-blue-container ng-if="vm.currentStep===1"  class="no-border"  >
+                    <form>
                         <div class="col-lg-12  marginLeft15">
                             <div class="col-lg-12 tableHeading">
                                 <label>Products</label>
@@ -206,7 +213,8 @@
                                             add-from-autocomplete-only="true"
                                             placeholder="Add product tags for business partner "
                                             key-property="value"
-                                            min-length="1" display-property="text">
+                                            min-length="1" display-property="text"
+                                            class="ptags">
                                     <auto-complete source="vm.loadProducts($query)" min-length="0"
                                                    load-on-focus="true"
                                                    template="productTagInput"
@@ -214,61 +222,72 @@
                                     </auto-complete>
                                 </tags-input>
                             </div>
+                            <div class="form-group col-xs-12">
+                                <div>
+                                    <button type="submit" class="btn btn-default pull-right marginLeft15" ng-click="">Next</button>
+                                    <button type="submit" class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+
+                                    <button type="submit" class="btn btn-default pull-left marginLeftPlus15" ng-click="vm.prev()">Prev</button>
+
+                                </div>
+                            </div>
 
                         </div>
-                    </div>
+                    </form>
                 </page-blue-container>
-                <div ng-if="vm.currentStep===2"  class="row">
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Business Partner Contact Details </label>
-                        </div>
 
-                    </div>
-                </div>
-                <div ng-if="vm.currentStep===3"  class="row">
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Bank Details</label>
-                            <label class="pull-right">
-                                <i class="fa fa-plus-circle orangeFont" ng-click="vm.addBankDetails()"></i>
-                            </label>
+                <page-blue-container class="no-border" ng-if="vm.currentStep===2">
+                    <form>
+                        <div class="col-lg-12  marginLeft15">
+                            <div class="col-lg-12 tableHeading">
+                                <label>Business Partner Contact Details </label>
+                            </div>
+
                         </div>
-                        <div class="col-lg-12" ng-repeat="bankDetails in vm.businessPartner.bankDetails">
-                            <div class="col-lg-12 innerHeading">
-                                <label>Bank Detail {{$index+1}}</label>
+                    </form>
+                </page-blue-container>
+                <page-blue-container class="no-border" ng-if="vm.currentStep===3" >
+                    <form>
+                        <div class="col-lg-12  marginLeft15">
+                            <div class="col-lg-12 tableHeading">
+                                <label>Bank Details</label>
                                 <label class="pull-right">
-                                    <i class="fa fa-trash deleteTrash" ng-click="vm.removeBankDetails('Bank Detail '+($index+1), $index)"></i>
-                                    &nbsp;&nbsp;
-                                    <i class="fa fa-pencil editPen"></i>
+                                    <i class="fa fa-plus-circle orangeFont" ng-click="vm.addBankDetails()"></i>
                                 </label>
                             </div>
-                            </br>
-                            <textarea class="form-control" ></textarea>
-                            </br>
+                            <div class="col-lg-12" ng-repeat="bankDetails in vm.businessPartner.bankDetails">
+                                <div class="col-lg-12 innerHeading">
+                                    <label>Bank Detail {{$index+1}}</label>
+                                    <label class="pull-right">
+                                        <i class="fa fa-trash deleteTrash" ng-click="vm.removeBankDetails('Bank Detail '+($index+1), $index)"></i>
+                                        &nbsp;&nbsp;
+                                        <i class="fa fa-pencil editPen"></i>
+                                    </label>
+                                </div>
+                                </br>
+                                <textarea class="form-control" ></textarea>
+                                </br>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div ng-if="vm.currentStep===4"  class="row">
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Contact Person Information</label>
-                            <label class="pull-right">
-                                <i class="fa fa-plus-circle orangeFont"></i>
-                            </label>
+                    </form>
+                </page-blue-container>
+
+                <page-blue-container class="no-border"  ng-if="vm.currentStep===4">
+                    <form>
+                        <div class="col-lg-12  marginLeft15">
+                            <div class="col-lg-12 tableHeading">
+                                <label>Contact Person Information</label>
+                                <label class="pull-right">
+                                    <i class="fa fa-plus-circle orangeFont"></i>
+                                </label>
+                            </div>
+
                         </div>
+                    </form>
+                </page-blue-container>
 
-                    </div>
-                </div>
 
-                </br>
-                <div class="form-group  col-xs-12 marginLeft15">
-                    <button type="submit" class="btn btn-default submitBtn pull-right" ng-click="vm.next()">Next</button>
-                    <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
-                </div>
-                </br>
 
-            </form>
         </div>
 
     </div>

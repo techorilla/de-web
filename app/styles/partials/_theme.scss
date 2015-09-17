@@ -732,7 +732,7 @@ img {
   font-family: $fontSecondary;
 }
 .tags .input{
-  width:100% !important;
+  width:104% !important;
 }
 
 .businessPartnerSteps{
@@ -757,4 +757,12 @@ img {
   text-align: center;
   cursor: pointer;
   font-weight: bold;
+}
+
+.no-border .blueBorder{
+  border: 0px !important;
+}
+
+.ptags{
+
 }
