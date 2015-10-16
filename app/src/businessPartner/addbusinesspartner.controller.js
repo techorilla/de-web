@@ -13,7 +13,7 @@
 		.controller('AddBusinessPartner', AddBusinessPartner);
 
   /* @ngInject */
-	function AddBusinessPartner(toastr,$scope,bpTypes,contractTypes, country, tabFilter, $q, modalFactory){
+	function AddBusinessPartner(toastr,$scope,bpTypes,contractTypes, country, tabFilter, $q, modalFactory, businessPartner){
 		var vm = this;
 
         vm.possibleBPTypes= bpTypes;
@@ -21,7 +21,7 @@
         vm.businessPartner = {};
         vm.businessPartner.products = [];
         vm.businessPartner.general = {name:'',website:'',isBuyer:false,isSupplier:false,isBroker:false,isShipper:false,doniContact:false,rating:0,doniContract:false};
-        vm.businessPartner.contactDetails = {origin:'',emails:[],faxNumbers:[],phoneNumbers:[]};
+        vm.businessPartner.contactDetails = {origin:'',emails:[],faxNumbers:[],phoneNumbers:[], address:''};
         vm.businessPartner.bankDetails = [];
         vm.businessPartner.contactPerson = [];
         vm.country = country;
@@ -41,7 +41,16 @@
         vm.saveBusinessPartner = saveBusinessPartner;
 
         function saveBusinessPartner(){
-            console.log(vm.businessPartner);
+            businessPartner.addBusinessPartner(vm.businessPartner,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    $state.go('shell.businessPartner');
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+
         }
 
         function goToPreview(){
@@ -99,6 +108,7 @@
         }
 
         function goToContactDetails(){
+            console.log(vm.businessPartner.products);
             if(vm.businessPartner.products.length === 0){
                 toastr.warning('Warning', 'No products have been added for business partner')
             }
@@ -162,7 +172,7 @@
         vm.singleConfig = {
             valueField: 'text',
             labelField: 'text',
-            options: country,
+            options: vm.country,
             sortField: 'text',
             maxItems: 1
         };

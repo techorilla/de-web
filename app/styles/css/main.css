@@ -845,6 +845,36 @@ img {
 }
 
 /* line 738, ../partials/_theme.scss */
+.greenCheck {
+  color: #00FF00;
+}
+
+/* line 741, ../partials/_theme.scss */
+.redCross {
+  color: red;
+}
+
+/* line 745, ../partials/_theme.scss */
+.starBlack {
+  color: #333;
+}
+
+/* line 749, ../partials/_theme.scss */
+.starOrange {
+  color: #F47414;
+}
+
+/* line 753, ../partials/_theme.scss */
+.paddingBottom5px {
+  padding-bottom: 5px !important;
+}
+
+/* line 757, ../partials/_theme.scss */
+.borderBottomDashed {
+  border-bottom: 1px #333 dashed;
+}
+
+/* line 761, ../partials/_theme.scss */
 .businessPartnerSteps {
   height: 50px;
   color: #333;
@@ -853,7 +883,7 @@ img {
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
 }
 
-/* line 745, ../partials/_theme.scss */
+/* line 768, ../partials/_theme.scss */
 .businessPartnerSteps .active {
   background: #333;
   color: white;
@@ -862,7 +892,7 @@ img {
   opacity: 0.8;
 }
 
-/* line 753, ../partials/_theme.scss */
+/* line 776, ../partials/_theme.scss */
 .businessPartnerSteps .step {
   padding-top: 20px;
   font-size: 12px;
@@ -872,7 +902,7 @@ img {
   font-weight: bold;
 }
 
-/* line 762, ../partials/_theme.scss */
+/* line 785, ../partials/_theme.scss */
 .no-border .blueBorder {
   border: 0px !important;
 }

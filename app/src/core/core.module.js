@@ -28,7 +28,8 @@
     'pdf',
     'fileSaver',
     'angularSpinner',
-    'rzModule'
+    'rzModule',
+    'ngSanitize'
 
   ]);
 

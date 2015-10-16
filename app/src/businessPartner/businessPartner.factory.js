@@ -13,9 +13,9 @@
 		.factory('businessPartner', businessPartner);
 
   /* @ngInject */
-  function businessPartner(){
+  function businessPartner(appConfig, $http){
 		return {
-
+            addBusinessPartner: addBusinessPartner
 		};
 
 		////////////////////
@@ -32,7 +32,20 @@
      * </pre>
      * @param {int} entity id
      */
-
+      function addBusinessPartner(businessPartner,callback){
+        var req = {
+            method: 'POST',
+            url: appConfig.apiHost+'addBusinessPartner',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            data: {businessPartner: businessPartner}
+        }
+        return $http(req)
+            .success(function (response) {
+                callback(response);
+            });
+      }
 
 	}
 

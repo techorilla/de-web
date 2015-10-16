@@ -257,7 +257,7 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Business Partner Address</label>
-                                <textarea rows="6" name="bpAddress" class="form-control" type="" ng-disabled="vm.viewMode" ng-required="true" placeholder='Enter address for business partner'/></textarea>
+                                <textarea ng-model="vm.businessPartner.contactDetails.address" rows="6" name="bpAddress" class="form-control" type="" ng-disabled="vm.viewMode" ng-required="true" placeholder='Enter address for business partner'/></textarea>
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Contact Number</label>
@@ -359,6 +359,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-xs-12">
+                                    <label>Contact Person Designation</label>
+                                    <input class="form-control" type="text" name="cpRole_{{$index}}"
+                                           ng-disabled="vm.viewMode" ng-required="true"
+                                           placeholder='Please enter contact person deignation'
+                                           ng-model="vm.businessPartner.contactPerson[$index].role"/>
+                                    <div ng-messages='vm.contactPersonForm["cpRole_" + $index].$error'
+                                         ng-if='vm.contactPersonForm["cpRole_" + $index].$dirty || vm.contactPersonForm.$submitted'>
+                                        <div class="errorValidation" ng-message="required">Contact person deignation required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12">
                                     <label>Contact Person Email</label>
                                     <input class="form-control" type="text" name="cpEmail_{{$index}}"
                                            ng-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
@@ -422,14 +433,37 @@
                             </div>
 
                             <div class="row col-xs-offset-1">
-
                                     <div class="col-xs-12 col-lg-3"><b>Business Partner Roles </b></div>
                                     <div class="col-xs-12 col-lg-9" >
-                                        <span ng-if="vm.businessPartner.general.isBuyer">Buyer, </span>
-                                        <span ng-if="vm.businessPartner.general.isSupplier">Seller, </span>
-                                        <span ng-if="vm.businessPartner.general.isBroker">Broker, </span>
-                                        <span ng-if="vm.businessPartner.general.isShipper">Shipper</span>
+                                        <span ng-if="vm.businessPartner.general.isBuyer"><i class="fa fa-star starGolden"></i>Buyer&nbsp;</span>
+                                        <span ng-if="vm.businessPartner.general.isSupplier"><i class="fa fa-star starGolden"></i>Seller&nbsp;</span>
+                                        <span ng-if="vm.businessPartner.general.isBroker"><i class="fa fa-star starGolden"></i>Broker&nbsp;</span>
+                                        <span ng-if="vm.businessPartner.general.isShipper"><i class="fa fa-star starGolden"></i>Shipper</span>
                                     </div>
+                            </div>
+
+                            <div class="row col-xs-offset-1">
+                                <div class="col-xs-12 col-lg-3"><b>Contract Type </b></div>
+                                <div class="col-xs-12 col-lg-9" >
+                                    <span ng-if="vm.businessPartner.general.doniContact"><i class="fa fa-check-circle greenCheck"></i> On Doni  Contract</span>
+                                    <span ng-if="!vm.businessPartner.general.doniContact"><i class="fa fa-times-circle redCross"></i> Not on Doni Contract</span>
+                                </div>
+                            </div>
+
+                            <div class="row col-xs-offset-1">
+                                <div class="col-xs-12 col-lg-3"><b>Website</b></div>
+                                <div class="col-xs-12 col-lg-9" >
+                                    <span ng-if="vm.businessPartner.general.website!==''"><i class="fa fa-check-circle greenCheck"></i><a href="{{vm.businessPartner.general.website}}">{{vm.businessPartner.general.website}}</a></span>
+                                    <span ng-if="vm.businessPartner.general.website===''"><i class="fa fa-times-circle redCross"></i> Not Provided</span>
+                                </div>
+                            </div>
+
+                            <div class="row col-xs-offset-1">
+                                <div class="col-xs-12 col-lg-3"><b>Rating</b></div>
+                                <div class="col-xs-12 col-lg-9" >
+                                    <span ng-repeat="n in [] | range:vm.businessPartner.general.rating"><i class="fa fa-star starOrange"></i></span>
+                                    <span ng-repeat="n in [] | range:(5 - vm.businessPartner.general.rating)"><i class="fa fa-star starBlack"></i></span>
+                                </div>
                             </div>
 
 
@@ -441,25 +475,77 @@
                                 <label>Products</label>
                             </div>
                             <div class="col-xs-offset-1" ng-if="vm.businessPartner.products.length===0">No products added.</div>
+                            <div class="col-xs-offset-1" ng-if="vm.businessPartner.products.length > 0">
+                                <div class="col-lg-12 marginLeft15" ng-repeat="prod in vm.businessPartner.products">
+                                    <span class="col-lg-3"><b>Name</b> {{prod.text}}</span>
+                                    <span class="col-lg-3"><b>Origin</b> {{prod.origin}}</span>
+                                    <span class="col-lg-3"><b>Quality</b> {{prod.quality}}</span>
+                                    </br>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-12  marginLeft15">
                             <div class="col-xs-12 tableHeading">
                                 <label>Contact Information</label>
                             </div>
+                            <div class="row col-xs-offset-1">
+                                <div class="col-xs-12 col-lg-3"><b>Origin</b></div>
+                                <div class="col-xs-12 col-lg-9" ng-bind="vm.businessPartner.contactDetails.origin"></div>
+                            </div>
+                            <div class="row col-xs-offset-1">
+                                <div class="col-xs-12 col-lg-3"><b>Address</b></div>
+                                <div class="col-xs-12 col-lg-9" ng-if="vm.businessPartner.contactDetails.address!==''" ng-bind-html="vm.businessPartner.contactDetails.address"></div>
+                                <div class="col-xs-12 col-lg-9" ng-if="vm.businessPartner.contactDetails.address===''">No Address Provided</div>
+                            </div>
+                            <div class="row col-xs-offset-1" ng-if="vm.businessPartner.contactDetails.emails.length>0">
+                                <div class="col-xs-12 col-lg-3"><b>Emails</b></div>
+                                <div class="col-xs-12 col-lg-9">
+                                    <span ng-repeat="email in vm.businessPartner.contactDetails.emails">{{email.text}}</br></span>
+                                </div>
+                            </div>
+                            <div class="row col-xs-offset-1" ng-if="vm.businessPartner.contactDetails.phoneNumbers.length>0">
+                                <div class="col-xs-12 col-lg-3"><b>Phone Numbers</b></div>
+                                <div class="col-xs-12 col-lg-9">
+                                    <span ng-repeat="phNum in vm.businessPartner.contactDetails.phoneNumbers">{{phNum.text}}</br></span>
+                                </div>
+                            </div>
+                            <div class="row col-xs-offset-1" ng-if="vm.businessPartner.contactDetails.faxNumbers.length>0">
+                                <div class="col-xs-12 col-lg-3"><b>Fax Numbers</b></div>
+                                <div class="col-xs-12 col-lg-9">
+                                    <span ng-repeat="faxNumber in vm.businessPartner.contactDetails.faxNumbers">{{faxNumber.text}}</br></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-12  marginLeft15">
                             <div class="col-xs-12 tableHeading">
                                 <label>Bank Details</label>
-
                             </div>
                             <div  class="col-xs-offset-1" ng-if="vm.businessPartner.bankDetails.length===0">No bank details added.</div>
+                            <div  class="col-xs-offset-1" ng-if="vm.businessPartner.bankDetails.length>0">
+                                <div ng-repeat="bank in vm.businessPartner.bankDetails">
+                                    <div class="col-lg-12 borderBottomDashed paddingBottom5px">
+                                        </br>
+                                            <span ng-bind-html="bank.text"></span>
+                                        </br>
+                                    </div>
+                                    </br>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-12  marginLeft15">
                             <div class="col-xs-12 tableHeading">
                                 <label>Contact Person Information</label>
-
                             </div>
                             <div  class="col-xs-offset-1" ng-if="vm.businessPartner.contactPerson.length===0">No contact person added.</div>
+                            <div  class="col-xs-offset-1" ng-if="vm.businessPartner.contactPerson.length>0">
+                                <div class="col-lg-12 borderBottomDashed paddingBottom5px" ng-repeat="cp in vm.businessPartner.contactPerson">
+                                    <div class="col-lg-6"><b>Full Name</b></div><div class="col-lg-6">{{cp.fullName}}</div>
+                                    <div class="col-lg-6"><b>Designation</b></div><div class="col-lg-6">{{cp.role}}</div>
+                                    <div class="col-lg-6"><b>Primary Contact</b></div><div class="col-lg-6" ng-if="cp.isPrimary">Yes</div><div class="col-lg-6" ng-if="!cp.isPrimary">No</div>
+                                    <div class="col-lg-6"><b>Contact Number</b></div><div class="col-lg-6">{{cp.phoneNumber1}}</div>
+                                    <div class="col-lg-6" ng-if="cp.phoneNumber2!==''"><b>Alternate Contact Number</b></div><div class="col-lg-6">{{cp.phoneNumber2}}</div>
+                                </div>
+                            </div>
                         </div>
                     </page-blue-container>
                     <div class="form-group col-xs-12">

@@ -735,6 +735,29 @@ img {
   width:104% !important;
 }
 
+.greenCheck{
+  color:#00FF00;
+}
+.redCross{
+  color:red;
+}
+
+.starBlack{
+  color:#333;
+}
+
+.starOrange{
+  color:$orangeColor;
+}
+
+.paddingBottom5px{
+  padding-bottom: 5px !important;
+}
+
+.borderBottomDashed{
+  border-bottom: 1px #333 dashed;
+}
+
 .businessPartnerSteps{
 
   height:50px;
