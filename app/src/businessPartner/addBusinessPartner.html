@@ -541,6 +541,7 @@
                                 <div class="col-lg-12 borderBottomDashed paddingBottom5px" ng-repeat="cp in vm.businessPartner.contactPerson">
                                     <div class="col-lg-6"><b>Full Name</b></div><div class="col-lg-6">{{cp.fullName}}</div>
                                     <div class="col-lg-6"><b>Designation</b></div><div class="col-lg-6">{{cp.role}}</div>
+                                    <div class="col-lg-6"><b>Email</b></div><div class="col-lg-6">{{cp.email}}</div>
                                     <div class="col-lg-6"><b>Primary Contact</b></div><div class="col-lg-6" ng-if="cp.isPrimary">Yes</div><div class="col-lg-6" ng-if="!cp.isPrimary">No</div>
                                     <div class="col-lg-6"><b>Contact Number</b></div><div class="col-lg-6">{{cp.phoneNumber1}}</div>
                                     <div class="col-lg-6" ng-if="cp.phoneNumber2!==''"><b>Alternate Contact Number</b></div><div class="col-lg-6">{{cp.phoneNumber2}}</div>
