@@ -15,7 +15,8 @@
   /* @ngInject */
   function businessPartner(appConfig, $http){
 		return {
-            addBusinessPartner: addBusinessPartner
+            addBusinessPartner: addBusinessPartner,
+            getBusinessPartnerList: getBusinessPartnerList
 		};
 
 		////////////////////
@@ -45,6 +46,17 @@
             .success(function (response) {
                 callback(response);
             });
+      }
+
+      function getBusinessPartnerList(){
+          var req = {
+              method: 'GET',
+              url: appConfig.apiHost+'getBusinessPartnerList',
+              headers: {
+                  'Content-Type': "application/json"
+              }
+          }
+          return $http(req);
       }
 
 	}

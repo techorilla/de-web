@@ -13,7 +13,7 @@
 		.controller('BusinessPartner', BusinessPartner);
 
   /* @ngInject */
-	function BusinessPartner(){
+	function BusinessPartner(businessPartner,toastr){
 		var vm = this;
         init();
 
@@ -34,10 +34,21 @@
                     state: 'shell.businessPartner.addBusinessPartner'
                 }
             ];
+            
             vm.allBusinessPartner = {};
+            vm.allBusinessPartner.data = [];
+            vm.searchBusinessPartner = '';
             vm.allBusinessPartner.tableHeadings = [
                 {name: 'Name'},{name:'Contact Person'},{name:'Type'},{name:'Origin'},{name:'Rating'},{name:'Last Transaction On'}
             ];
+            businessPartner.getBusinessPartnerList().then(function(response){
+                if(response.data.success){
+                    vm.allBusinessPartner.data = response.data.data;
+                }
+                else{
+                    toastr.error(response.data.message);
+                }
+            });
 
         }
 	}
