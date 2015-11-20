@@ -3,22 +3,27 @@
         {
             "id": 1,
             "name": "Buyer",
-            "isChecked": false
+            "isChecked": false,
+            "model": "bp_isBuyer"
         },
         {
             "id": 2,
             "name": "Supplier",
-            "isChecked": false
+            "isChecked": false,
+            "model": "bp_isSupplier"
+
         },
         {
             "id": 3,
             "name": "Broker",
-            "isChecked": false
+            "isChecked": false,
+            "model": "bp_isBroker"
         },
         {
             "id": 4,
             "name": "Shipper",
-            "isChecked": false
+            "isChecked": false,
+            "model": "bp_isShipper"
         }
     ]
 }

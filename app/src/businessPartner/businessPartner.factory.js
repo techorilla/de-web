@@ -16,7 +16,8 @@
   function businessPartner(appConfig, $http){
 		return {
             addBusinessPartner: addBusinessPartner,
-            getBusinessPartnerList: getBusinessPartnerList
+            getBusinessPartnerList: getBusinessPartnerList,
+            getBusinessPartnerComplete: getBusinessPartnerComplete
 		};
 
 		////////////////////
@@ -55,6 +56,19 @@
               headers: {
                   'Content-Type': "application/json"
               }
+          }
+          return $http(req);
+      }
+
+      function getBusinessPartnerComplete(id){
+          var req = {
+              method: 'GET',
+              url: appConfig.apiHost+'getBusinessPartnerFull/'+id,
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+              },
+              data: {id: id}
           }
           return $http(req);
       }

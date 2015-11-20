@@ -2,7 +2,7 @@
 <filter-bar bp-types="true" country="true"></filter-bar>
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
-        <div class="dg-tablePanelTitle">Business Partner (Standard)<br><small>Total {{vm.allBusinessPartner.data.length}} Transactions</small></div>
+        <div class="dg-tablePanelTitle">Business Partner (Standard)<br><small>Total {{vm.allBusinessPartner.data.length}} Business Partners</small></div>
         <ul class="dg-pageActionsLinks">
             <li><input ng-model="vm.searchBusinessPartner" type="text" class="form-control" placeholder="Find Business Partner">
         </ul>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="row in vm.allBusinessPartner.data| filter:vm.searchBusinessPartner">
-                <td><a ui-sref="shell.businessPartner.addBusinessPartner">{{row.bp_Name}}</a></td>
+                <td><a ui-sref="shell.businessPartner.view({id:row.bp_ID})">{{row.bp_Name}}</a></td>
                 <td ng-if="row.bp_Cont_fullName"><a ui-sref="shell.businessPartner.viewContactPerson({id:row.bp_cont_ID})">{{row.bp_Cont_fullName}}</a></td><td ng-if="!row.bp_Cont_fullName">No Primary Contact</td>
                 <td ng-bind="row.bp_country"></td>
                 <td><span ng-if="row.bp_isBuyer">Buyer</span>&nbsp;&nbsp;<span ng-if="row.bp_isBroker">Broker</span>&nbsp;&nbsp;<span ng-if="row.bp_isSeller">Seller</span>&nbsp;&nbsp;<span ng-if="row.bp_isShipper">Shipper</span>&nbsp;&nbsp;</td>

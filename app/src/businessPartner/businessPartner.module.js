@@ -48,11 +48,23 @@
       },
       views:{
             'content@shell':{
-              templateUrl:'src/businessPartner/addBusinessPartner.html',
+              templateUrl:'src/businessPartner/addBusinessPartner/addBusinessPartner.html',
               controller: 'AddBusinessPartner as vm'
             } 
       }
-    });
+    })
+    .state('shell.businessPartner.view',{
+        url:'/view/:id',
+        resolve:{
+
+        },
+        views:{
+            'content@shell':{
+                templateUrl: 'src/businessPartner/businessPartnerInfo.html',
+                controller: 'BusinessPartnerInfo as vm'
+            }
+        }
+      });
   }
 
 }());
