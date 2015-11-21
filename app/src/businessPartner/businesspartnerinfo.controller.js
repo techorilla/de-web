@@ -44,6 +44,7 @@
         };
         businessPartner.getBusinessPartnerComplete($state.params.id).then(function(res){
             vm.businessPartner = (res.data);
+            console.log(vm.businessPartner);
             vm.showContactPersonForm = (vm.businessPartner.contPers.length === 0);
             if(vm.businessPartner.contPers.length === 0){
                 addContactPerson();
