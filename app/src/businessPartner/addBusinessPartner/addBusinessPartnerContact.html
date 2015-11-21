@@ -1,85 +1,166 @@
-<form name="vm.contactPersonForm" novalidate>
+
     <div class="col-lg-12  marginLeft15">
         <div class="col-lg-12 tableHeading">
             <label>Contact Person Information</label>
-            <label class="pull-right">
+            <label class="pull-right" ng-if="!vm.showContactPersonForm">
                 <i ng-click="vm.addContactPerson()" class="fa fa-plus-circle orangeFont"></i>
             </label>
         </div>
-        <div class="col-lg-12" ng-repeat="contactPerson in vm.businessPartner.contactPerson">
-            <div class="col-lg-12 innerHeading">
-                <label>Add New Contact Person</label>
-                <label class="pull-right">
-                    <i class="fa fa-trash deleteTrash" ng-click="vm.subContactPerson('Contact Person Detail '+($index+1), $index)"></i>
-                    <!--&nbsp;&nbsp;-->
-                    <!--<i class="fa fa-pencil editPen"></i>-->
-                </label>
-            </div>
-            <div class="form-group col-xs-offset-8 col-xs-4">
-                <input type="checkbox" class="bpChecks"
-                       ng-model="vm.businessPartner.contactPerson[$index].isPrimary">
-                <p class="form-control-static"><b>Is Primary Contact</b></p>
-            </div>
-            <div class="form-group col-xs-12">
-                <label>Contact Person Full Name</label>
-                <input class="form-control" type="text" name="cpName_{{$index}}"
-                       ng-disabled="vm.viewMode" ng-required="true"
-                       placeholder='Please enter contact person full name'
-                       ng-model="vm.businessPartner.contactPerson[$index].fullName"/>
-                <div ng-messages='vm.contactPersonForm["cpName_" + $index].$error'
-                     ng-if='vm.contactPersonForm["cpName_" + $index].$dirty || vm.contactPersonForm.$submitted'>
-                    <div class="errorValidation" ng-message="required">Contact person full name required</div>
+        <div class="col-lg-12" >
+            <form ng-if="vm.showContactPersonForm" name="vm.contactPersonForm" novalidate>
+                <div class="col-lg-12 innerHeading">
+                    <label>Add New Contact Person</label>
+                    <label class="pull-right">
+                        <i class="fa fa-trash deleteTrash" ng-click="vm.subContactPerson()"></i>
+                        <button type="submit"><i class="fa fa-save saveButton" ng-click="vm.saveContactPerson()"></i></button>
+                        <!--&nbsp;&nbsp;-->
+                        <!--<i class="fa fa-pencil editPen"></i>-->
+                    </label>
                 </div>
-            </div>
-            <div class="form-group col-xs-12">
-                <label>Contact Person Designation</label>
-                <input class="form-control" type="text" name="cpRole_{{$index}}"
-                       ng-disabled="vm.viewMode" ng-required="true"
-                       placeholder='Please enter contact person deignation'
-                       ng-model="vm.businessPartner.contactPerson[$index].role"/>
-                <div ng-messages='vm.contactPersonForm["cpRole_" + $index].$error'
-                     ng-if='vm.contactPersonForm["cpRole_" + $index].$dirty || vm.contactPersonForm.$submitted'>
-                    <div class="errorValidation" ng-message="required">Contact person deignation required</div>
+                <div class="form-group col-xs-offset-8 col-xs-4">
+                    <input type="checkbox" class="bpChecks"
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_IsPrimary">
+                    <p class="form-control-static"><b>Is Primary Contact</b></p>
                 </div>
-            </div>
-            <div class="form-group col-xs-12">
-                <label>Contact Person Email</label>
-                <input class="form-control" type="text" name="cpEmail_{{$index}}"
-                       ng-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-                       ng-disabled="vm.viewMode" ng-required="true"
-                       placeholder='Please enter contact person full name'
-                       ng-model="vm.businessPartner.contactPerson[$index].email"/>
-                <div ng-messages='vm.contactPersonForm["cpEmail_" + $index].$error'
-                     ng-if='vm.contactPersonForm["cpEmail_" + $index].$dirty || vm.contactPersonForm.$submitted'>
-                    <div class="errorValidation" ng-message="required">Contact person full name required</div>
-                    <div class="errorValidation" ng-message="pattern">Invalid contact Person Email</div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Full Name</label>
+                    <input class="form-control" type="text" name="cpName"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person full name'
+                           ng-pattern="/^(\D)+$/"
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_fullName"/>
+                    <div ng-messages='vm.contactPersonForm.cpName.$error'
+                         ng-if='vm.contactPersonForm.cpName.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person full name required</div>
+                        <div class="errorValidation" ng-message="pattern">Can only contain alphabets.</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-lg-6 col-sm-12">
-                <label>Primary Contact Number</label>
-                <input class="form-control" type="text" name="cpPc1_{{$index}}"
-                       ng-disabled="vm.viewMode" ng-required="true"
-                       ng-pattern="^\+?[0-9\-]+\*?$"
-                       placeholder='Please enter contact person full name'
-                       ng-model="vm.businessPartner.contactPerson[$index].phoneNumber1"/>
-                <div ng-messages='vm.contactPersonForm["cpPc1_" + $index].$error'
-                     ng-if='vm.contactPersonForm["cpPc1_" + $index].$dirty || vm.contactPersonForm.$submitted'>
-                    <div class="errorValidation" ng-message="required">Contact person primary contact number required</div>
-                    <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Designation</label>
+                    <input class="form-control" type="text" name="cpRole"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person deignation'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_Designation"/>
+                    <div ng-messages='vm.contactPersonForm.cpRole.$error'
+                         ng-if='vm.contactPersonForm.cpRole.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person designation required</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-lg-6 col-sm-12">
-                <label>Secondary Contact Number</label>
-                <input class="form-control" type="text"  name="cpPc2_{{$index}}"
-                       ng-pattern="^\+?[0-9\-]+\*?$"
-                       ng-disabled="vm.viewMode" ng-required="false"
-                       placeholder='Please enter contact person full name'
-                       ng-model="vm.businessPartner.contactPerson[$index].phoneNumber2"/>
-                <div ng-messages='vm.contactPersonForm["cpPc2_" + $index].$error'
-                     ng-if='vm.contactPersonForm["cpPc2_" + $index].$dirty || vm.contactPersonForm.$submitted'>
-                    <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Email</label>
+                    <input class="form-control" type="text" name="cpEmail"
+                           ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_Email"/>
+                    <div ng-messages='vm.contactPersonForm.cpEmail.$error'
+                         ng-if='vm.contactPersonForm.cpEmail.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person full name required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact Person Email</div>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group col-lg-6 col-sm-12">
+                    <label>Primary Contact Number</label>
+                    <input class="form-control" type="text" name="cpPc1"
+                           ng-pattern="/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/"
+                           ng-disabled="vm.viewMode" ng-required="false"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_PrimaryNumber"/>
+                    <div ng-messages='vm.contactPersonForm.cpPc1.$error'
+                         ng-if='vm.contactPersonForm.cpPc1.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person primary contact number required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-12">
+                    <label>Secondary Contact Number</label>
+                    <input class="form-control" type="text"  name="cpPc2"
+                           ng-pattern="/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/"
+                           ng-disabled="vm.viewMode" ng-required="false"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_SecondaryNumber"/>
+                    <div ng-messages='vm.contactPersonForm.$error'
+                         ng-if='vm.contactPersonForm.cpPc2.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                    </div>
+                </div>
+           </form>
+
+        </div>
+        <div class="col-lg-12">
+                <div class="col-lg-12 innerHeading">
+                    <label>Add New Contact Person</label>
+                    <label class="pull-right">
+                        <i class="fa fa-trash deleteTrash" ng-click="vm.subContactPerson()"></i>
+                    </label>
+                </div>
+                <div class="form-group col-xs-offset-8 col-xs-4">
+                    <input type="checkbox" class="bpChecks"
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_IsPrimary">
+                    <p class="form-control-static"><b>Is Primary Contact</b></p>
+                </div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Full Name</label>
+                    <input class="form-control" type="text" name="cpName"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person full name'
+                           ng-pattern="/^(\D)+$/"
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_fullName"/>
+                    <div ng-messages='vm.contactPersonForm.cpName.$error'
+                         ng-if='vm.contactPersonForm.cpName.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person full name required</div>
+                        <div class="errorValidation" ng-message="pattern">Can only contain alphabets.</div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Designation</label>
+                    <input class="form-control" type="text" name="cpRole"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person deignation'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_Designation"/>
+                    <div ng-messages='vm.contactPersonForm.cpRole.$error'
+                         ng-if='vm.contactPersonForm.cpRole.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person designation required</div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12">
+                    <label>Contact Person Email</label>
+                    <input class="form-control" type="text" name="cpEmail"
+                           ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_Email"/>
+                    <div ng-messages='vm.contactPersonForm.cpEmail.$error'
+                         ng-if='vm.contactPersonForm.cpEmail.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person full name required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact Person Email</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-12">
+                    <label>Primary Contact Number</label>
+                    <input class="form-control" type="text" name="cpPc1"
+                           ng-pattern="/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/"
+                           ng-disabled="vm.viewMode" ng-required="false"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_PrimaryNumber"/>
+                    <div ng-messages='vm.contactPersonForm.cpPc1.$error'
+                         ng-if='vm.contactPersonForm.cpPc1.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact person primary contact number required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-12">
+                    <label>Secondary Contact Number</label>
+                    <input class="form-control" type="text"  name="cpPc2"
+                           ng-pattern="/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/"
+                           ng-disabled="vm.viewMode" ng-required="false"
+                           placeholder='Please enter contact person full name'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_SecondaryNumber"/>
+                    <div ng-messages='vm.contactPersonForm.$error'
+                         ng-if='vm.contactPersonForm.cpPc2.$dirty || vm.contactPersonForm.$submitted'>
+                        <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
+                    </div>
+                </div>
+
         </div>
     </div>
-</form>

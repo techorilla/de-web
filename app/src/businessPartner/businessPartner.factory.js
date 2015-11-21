@@ -17,7 +17,8 @@
 		return {
             addBusinessPartner: addBusinessPartner,
             getBusinessPartnerList: getBusinessPartnerList,
-            getBusinessPartnerComplete: getBusinessPartnerComplete
+            getBusinessPartnerComplete: getBusinessPartnerComplete,
+            addNewBusinessPartnerContact: addNewBusinessPartnerContact
 		};
 
 		////////////////////
@@ -34,6 +35,19 @@
      * </pre>
      * @param {int} entity id
      */
+
+      function addNewBusinessPartnerContact(contactPerson){
+        var req = {
+            method: 'POST',
+            url: appConfig.apiHost+'addBusinessPartnerContactPerson',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            data: {contactPerson: contactPerson}
+        };
+        return $http(req);
+
+      }
       function addBusinessPartner(businessPartner,callback){
         var req = {
             method: 'POST',

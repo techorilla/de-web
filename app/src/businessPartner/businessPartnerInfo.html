@@ -1,4 +1,4 @@
-<page-header heading="New Business Partner" sub-heading="Information for" xmlns="http://www.w3.org/1999/html"></page-header>
+<page-header heading="vm.businessPartner.gen[0].bp_Name" sub-heading="Information for" xmlns="http://www.w3.org/1999/html"></page-header>
 <page-blue-container>
     <div class="row">
         <div class="col-xs-12">
@@ -8,108 +8,115 @@
                 </div>
                 <div class="form-group col-xs-12 col-md-6">
                     <label>Business Partner Name</label>
-                    <p>Immad Imtiaz</p>
+                    <p ng-bind="vm.businessPartner.gen[0].bp_Name"></p>
                 </div>
                 <div class="form-group col-xs-12 col-md-3">
                     <label>Origin</label>
-                    <p>Pakistan</p>
+                    <p ng-bind="vm.businessPartner.gen[0].bp_country"></p>
                 </div>
                 <div class="form-group col-xs-12 col-md-3">
                     <label>On Doni Contract</label>
-                    <p>Yes</p>
+                    <p ng-if="vm.businessPartner.gen[0].bp_onDoniContract">Yes</p>
+                    <p ng-if="!vm.businessPartner.gen[0].bp_onDoniContract">Yes</p>
                 </div>
                 <div class="form-group col-xs-12 col-md-6">
                     <label>Role</label>
-                    <p>Buyer, Seller, Shipper, Broker</p>
+                    <p>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isBuyer">#Buyer</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isSeller">#Seller</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isShipper">#Shipper</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_Broker">#Broker</span>
+                    </p>
                 </div>
                 <div class="form-group col-xs-12 col-md-6">
                     <label>Credibility Rating</label>
-                    <p>3 / 5</p>
+                    <p>{{vm.businessPartner.gen[0].bp_credibilityIndex}} / 5</p>
                 </div>
                 <div class="form-group col-xs-12 col-md-6">
                     <label>Address</label>
-                    <p>A-303, Panama Center, Block13/D, Gulshan-e-Iqbal,Karachi</p>
+                    <p ng-bind="vm.businessPartner.gen[0].bp_address"></p>
                 </div>
                 <div class="form-group col-xs-12 col-md-6">
                     <label>Website</label>
-                    <p><a href="#">http://www.google.com</a></p>
+                    <p><a href="#">{{vm.businessPartner.gen[0].bp_website}}</a></p>
                 </div>
 
-                <form>
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Products</label>
-                        </div>
-                        <div class="col-xs-12">
-                            <tags-input ng-model="vm.businessPartner.products" add-on-paste="false"
-                                        replace-spaces-with-dashes="false"
-                                        add-from-autocomplete-only="true"
-                                        placeholder="Add product tags for business partner "
-                                        key-property="value"
-                                        min-length="1" display-property="text"
-                                        class="ptags">
-                                <auto-complete source="vm.loadProducts($query)" min-length="0"
-                                               load-on-focus="true"
-                                               template="productTagInput"
-                                               max-results-to-show="32">
-                                </auto-complete>
-                            </tags-input>
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <div>
-                                <button type="submit" class="btn btn-default pull-right marginLeft15" ng-click="vm.goToContactDetails()">Next</button>
-                                <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
-                                <button class="btn btn-default pull-left marginLeftPlus15" ng-click="vm.prev()">Prev</button>
 
-                            </div>
-                        </div>
 
+            </div>
+            <form>
+                <div class="col-lg-12  marginLeft15">
+                    <div class="col-lg-12 tableHeading">
+                        <label>Products</label>
                     </div>
-                </form>
+                    <div class="col-xs-12">
+                        <tags-input ng-model="vm.businessPartner.products" add-on-paste="false"
+                                    replace-spaces-with-dashes="false"
+                                    add-from-autocomplete-only="true"
+                                    placeholder="Add product tags for business partner "
+                                    key-property="value"
+                                    min-length="1" display-property="text"
+                                    class="ptags">
+                            <auto-complete source="vm.loadProducts($query)" min-length="0"
+                                           load-on-focus="true"
+                                           template="productTagInput"
+                                           max-results-to-show="32">
+                            </auto-complete>
+                        </tags-input>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div>
+                            <button type="submit" class="btn btn-default pull-right marginLeft15" ng-click="vm.goToContactDetails()">Next</button>
+                            <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+                            <button class="btn btn-default pull-left marginLeftPlus15" ng-click="vm.prev()">Prev</button>
 
-                <div ng-include="'src/businessPartner/addBusinessPartner/addBusinessPartnerContact.html'"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div ng-include="'src/businessPartner/addBusinessPartner/addBusinessPartnerContact.html'"></div>
 
 
-                <form>
-                    <div class="col-lg-12  marginLeft15">
-                        <div class="col-lg-12 tableHeading">
-                            <label>Bank Details</label>
+            <form>
+                <div class="col-lg-12  marginLeft15">
+                    <div class="col-lg-12 tableHeading">
+                        <label>Bank Details</label>
+                        <label class="pull-right">
+                            <i class="fa fa-plus-circle orangeFont" ng-click="vm.addBankDetails()"></i>
+                        </label>
+                    </div>
+                    <div class="col-lg-12" ng-repeat="bankDetails in vm.businessPartner.bankDetails">
+                        <div class="col-lg-12 innerHeading">
+                            <label>Bank Detail {{$index+1}}</label>
                             <label class="pull-right">
-                                <i class="fa fa-plus-circle orangeFont" ng-click="vm.addBankDetails()"></i>
+                                <i class="fa fa-trash deleteTrash" ng-click="vm.removeBankDetails('Bank Detail '+($index+1), $index)"></i>
+                                <!--&nbsp;&nbsp;-->
+                                <!--<i class="fa fa-pencil editPen"></i>-->
                             </label>
                         </div>
-                        <div class="col-lg-12" ng-repeat="bankDetails in vm.businessPartner.bankDetails">
-                            <div class="col-lg-12 innerHeading">
-                                <label>Bank Detail {{$index+1}}</label>
-                                <label class="pull-right">
-                                    <i class="fa fa-trash deleteTrash" ng-click="vm.removeBankDetails('Bank Detail '+($index+1), $index)"></i>
-                                    <!--&nbsp;&nbsp;-->
-                                    <!--<i class="fa fa-pencil editPen"></i>-->
-                                </label>
-                            </div>
-                            </br>
-                            <textarea ng-model="vm.businessPartner.bankDetails[$index].text" class="form-control" ></textarea>
-                            </br>
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <div>
-                                <button type="submit" class="btn btn-default pull-right marginLeft15" ng-click="vm.goToContactPerson()">Next</button>
-                                <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
-                                <button class="btn btn-default pull-left marginLeftPlus15" ng-click="vm.prev()">Prev</button>
-                            </div>
-                        </div>
+                        </br>
+                        <textarea ng-model="vm.businessPartner.bankDetails[$index].text" class="form-control" ></textarea>
+                        </br>
                     </div>
-                </form>
-
-
-
-
-                <div class="form-group col-xs-12">
-                    <div>
-                        <button class="btn btn-default pull-left" ui-sref="^">Back</button>
+                    <div class="form-group col-xs-12">
+                        <div>
+                            <button type="submit" class="btn btn-default pull-right marginLeft15" ng-click="vm.goToContactPerson()">Next</button>
+                            <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+                            <button class="btn btn-default pull-left marginLeftPlus15" ng-click="vm.prev()">Prev</button>
+                        </div>
                     </div>
                 </div>
+            </form>
 
+
+
+
+            <div class="form-group col-xs-12">
+                <div>
+                    <button class="btn btn-default pull-left" ui-sref="^">Back</button>
+                </div>
             </div>
         </div>
     </div>

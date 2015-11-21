@@ -42,8 +42,8 @@
                     return;
                 }
                 businessPartner.addBusinessPartner(vm.businessPartner.general,function(response){
+
                     if (response.success) {
-                        console.log(response);
                         toastr.success(response.message, 'Success');
                         $state.go('shell.businessPartner.view',{id:response.data});
                     }
@@ -94,7 +94,7 @@
             vm.businessPartner.contactPerson.push({
                 bp_cont_id:'',
                 bp_ID:'',
-                bp_Cont_IsPrimary:'',
+                bp_Cont_IsPrimary:false,
                 bp_Cont_Designation:'',
                 bp_Cont_Email:'',
                 bp_Cont_PrimaryNumber:'',

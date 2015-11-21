@@ -907,6 +907,16 @@ img {
   border: 0px !important;
 }
 
+/* line 792, ../partials/_theme.scss */
+.saveButton:hover {
+  color: #F47414;
+}
+
+/* line 795, ../partials/_theme.scss */
+.saveButton {
+  cursor: pointer;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;
