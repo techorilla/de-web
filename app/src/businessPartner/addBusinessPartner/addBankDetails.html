@@ -1,0 +1,112 @@
+
+<div class="col-lg-12  marginLeft15">
+    <div class="col-lg-12 tableHeading">
+        <label>Bank Details Information</label>
+        <label class="pull-right" ng-if="!vm.showBankDetailForm">
+            <i ng-click="vm.addBankDetails()" class="fa fa-plus-circle orangeFont"></i>
+        </label>
+    </div>
+    <div class="col-lg-12" >
+        <form ng-if="vm.showBankDetailForm" name="vm.bankDetailsForm" novalidate>
+            <div class="col-lg-12 innerHeading">
+                <label>Add New Bank Details</label>
+                <label class="pull-right">
+                    <i class="fa fa-trash deleteTrash" ng-click="vm.subBankDetails()"></i>
+                    <button type="submit"><i class="fa fa-save saveButton" ng-click="vm.saveBankDetails()"></i></button>
+
+                </label>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label>Account Title</label>
+                    <input class="form-control" type="text" name="accountTitle"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter account title of bank account'
+                           ng-pattern="/^[a-zA-Z. ]+$/"
+                           ng-model="vm.businessPartner.newBankDetails.accountTitle"/>
+                    <div ng-messages='vm.bankDetailsForm.accountTitle.$error'
+                         ng-if='vm.bankDetailsForm.accountTitle.$dirty || vm.bankDetailsForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Account title is required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid account title</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label>Account Number</label>
+                    <input class="form-control" type="text" name="accountNumber"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter account number of bank account'
+                           ng-model="vm.businessPartner.newBankDetails.accountNumber"/>
+                    <div ng-messages='vm.bankDetailsForm.accountNumber.$error'
+                         ng-if='vm.bankDetailsForm.accountNumber.$dirty || vm.bankDetailsForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Account Number is required</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label>Country of Bank Account</label>
+                    <selectize name="accountCountry" ng-required="true" placeholder='Please enter country of bank account' config="vm.singleConfig" ng-model="vm.businessPartner.newBankDetails.accountCountry"></selectize>
+                    <ng-messages for="vm.bankDetailsForm.accountCountry.$error" ng-if='vm.bankDetailsForm.accountCountry.$dirty || vm.businessPartnerForm.$submitted'>
+                        <div ng-message="required" class="errorValidation">Country of Bank Account is required</div>
+                    </ng-messages>
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label>Bank Name</label>
+                    <input class="form-control" type="text" name="bankName"
+                           ng-disabled="vm.viewMode" ng-required="true"
+                           placeholder='Please enter bank name'
+                           ng-model="vm.businessPartner.newBankDetails.bankName"/>
+                    <div ng-messages='vm.bankDetailsForm.bankName.$error'
+                         ng-if='vm.bankDetailsForm.bankName.$dirty || vm.bankDetailsForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Account Number is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    <label>Branch Address and Details</label>
+                    <textarea  rows="3" class="col-xs-12"
+                               name="branchAddress"
+                               placeholder="Add bank branch and other details here.. "
+                               ng-model="vm.businessPartner.newBankDetails.branchAddress">
+                    </textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-12" ng-repeat="bank in vm.businessPartner.bank">
+        <div class="col-lg-12 innerHeading">
+            <label>Bank Details {{$index + 1}}</label>
+            <label class="pull-right">
+                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteBankAccount(bank.bankDetails_ID,bp_ID)"></i>
+            </label>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3">
+            <label>Bank Account Title</label>
+            <p>{{bank.accountTitle}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3">
+            <label>Bank Account Number</label>
+            <p>{{bank.accountNumber}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3">
+            <label>Bank Name</label>
+            <p>{{bank.bankName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-lg-3 ">
+            <label>Bank Country</label>
+            <p>{{bank.accountCountry}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-lg-12 ">
+            <label>Branch Address & Details</label>
+            <p>{{bank.branchAddress}}</p>
+        </div>
+
+    </div>
+</div>

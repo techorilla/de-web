@@ -55,8 +55,13 @@
     })
     .state('shell.businessPartner.view',{
         url:'/view/:id',
-        resolve:{
-
+        resolve: {
+          tabFilter: 'tabFilter',
+              country: function (tabFilter) {
+              return tabFilter.getAllCountries().then(function (res) {
+                  return res.data.country;
+              });
+          }
         },
         views:{
             'content@shell':{

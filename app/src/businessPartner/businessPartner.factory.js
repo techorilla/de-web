@@ -16,9 +16,16 @@
   function businessPartner(appConfig, $http){
 		return {
             addBusinessPartner: addBusinessPartner,
+            addNewBusinessPartnerContact: addNewBusinessPartnerContact,
+            addNewBankAccount: addNewBankAccount,
+
             getBusinessPartnerList: getBusinessPartnerList,
             getBusinessPartnerComplete: getBusinessPartnerComplete,
-            addNewBusinessPartnerContact: addNewBusinessPartnerContact
+
+            deleteBusinessPartner: deleteBusinessPartner,
+            deleteBusinessPartnerContact: deleteBusinessPartnerContact,
+            deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail
+
 		};
 
 		////////////////////
@@ -35,6 +42,30 @@
      * </pre>
      * @param {int} entity id
      */
+
+      function deleteBusinessPartner(){
+
+      }
+
+      function deleteBusinessPartnerContact(){
+
+      }
+
+      function deleteBusinessPartnerBankDetail(){
+
+      }
+
+      function addNewBankAccount(bankDetails){
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'addBusinessPartnerBankDetails',
+              headers: {
+                  'Content-Type': "application/json"
+              },
+              data: {bankDetails: bankDetails}
+          };
+          return $http(req);
+      }
 
       function addNewBusinessPartnerContact(contactPerson){
         var req = {

@@ -13,8 +13,10 @@
 		.controller('BusinessPartnerInfo', BusinessPartnerInfo);
 
   /* @ngInject */
-	function BusinessPartnerInfo(modalFactory, businessPartner, $state,toastr, $scope){
+	function BusinessPartnerInfo(modalFactory, country, businessPartner, $state,toastr, $scope){
 		var vm = this;
+        vm.country = country;
+        console.log(vm.country);
         init();
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
@@ -30,12 +32,32 @@
      * My Description rules
      */
     function init(){
-        vm.businessPartner = {}
+        vm.businessPartner = {};
+        vm.singleConfig = {
+            valueField: 'text',
+            labelField: 'text',
+            options: vm.country,
+            sortField: 'text',
+            maxItems: 1
+        };
 
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
         vm.saveContactPerson = saveContactPerson;
+
+        vm.addBankDetails = addBankDetails;
+        vm.subBankDetails = subBankDetails;
+        vm.saveBankDetails = saveBankDetails;
+
+        vm.addContactNumber = addContactNumber;
+        vm.subContactNumber = subContactNumber;
+        vm.saveContactNumber = saveContactNumber;
+
+
+        vm.showContactForm = false;
         vm.showContactPersonForm = false;
+        vm.showBankDetailForm = false;
+
         vm.loadProducts = function(query) {
             return tabFilter.getProductFilterForTagInput(query).then(function(res){
                 return res.data;
@@ -73,8 +95,9 @@
         }
 
     }
+
     function addContactPerson(){
-        console.log($scope);
+        ;
         vm.businessPartner.newContactPerson = {
             bp_cont_id:'',
             bp_ID:'',
@@ -98,14 +121,51 @@
 
     }
     function addBankDetails(){
-         vm.businessPartner.bankDetails.push({text:'',state:'Add'});
+         vm.businessPartner.newBankDetails = {
+             bankName:'',
+             accountTitle:'',
+             accountNumber:'',
+             accountCountry:'',
+             branchAddress:''
+         };
+         vm.showBankDetailForm = true;
     }
-    function removeBankDetails(name,index){
-         modalFactory.alertModal(name,'current business partner', 'Delete').then(function(res){
-            if(res){
-                vm.businessPartner.bankDetails.splice(index,1);
-            }
-         });
+    function subBankDetails(){
+        vm.businessPartner.newBankDetails = {};
+        vm.showBankDetailForm = false;
+    }
+
+    function saveBankDetails(name,index){
+        if(vm.bankDetailsForm.$valid){
+            vm.businessPartner.newBankDetails.bp_ID = vm.businessPartner.gen[0].bp_ID;
+            businessPartner.addNewBankAccount(vm.businessPartner.newBankDetails).then(function(res){
+
+                if (res.data.success) {
+                    vm.businessPartner.bank.push(vm.businessPartner.newContactPerson);
+                    subContactPerson();
+                    toastr.success(res.data.message, 'Success');
+                }
+                else{
+                    toastr.error(res.data.message, 'Error');
+                }
+            });
+        }
+        else{
+            toastr.error('Incomplete or invalid bank account form', "Error");
+        }
+    }
+
+    function addContactNumber(){
+        vm.businessPartner.newContactNumber = {
+            contactNumber:'',
+            contactType:''
+        };
+        vm.showContactForm = true;
+    }
+
+    function subContactNumber(){
+        vm.businessPartner.newContactNumber = {};
+        vm.showContactForm = false;
     }
 
 

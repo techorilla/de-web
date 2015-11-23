@@ -77,39 +77,29 @@
             startingDay: 1
         };
         vm.newTransaction = {
-             buyer: '',
-             seller: '',
-             date: navigation.getTime(),
-             contractType: '',
-             product:'',
-             quantity: {
-                mt: true,
-                fcl: false,
-                oneFcl: 25,
-                value:0
-             },
-             rate: '',
-             fileNo: '',
-             contractNo: '',
-             doniContract: '',
-             ownContract: '',
-             contractualBuyer: '',
-             commissionDetails: {
-                 broker: '',
-                 brokerInvolved: false,
-                 comm:0,
-                 commType: '',
-                 brokerComm: 0,
-                 discount: 0,
-                 diff: 0,
-                 netComm: 0
-             },
-             shipmentStatus: '',
-             transactionStatus: '',
-             notes: [
-
-
-             ]
+             tr_bpBuyerID:'',
+             tr_bpSellerID:'',
+             tr_productID:'',
+             tr_fileID:'',
+             tr_contractID:'',
+             tr_date:'',
+             tr_price:0,
+             tr_FCL:false,
+             tr_MT:false,
+             tr_conversion_FCMT: '',
+             tr_quantity: 0,
+             tr_doniContract: false,
+             tr_ownContract: false,
+             tr_contractualBuyer:'',
+             tr_broker:'',
+             tr_commissionType: '',
+             tr_difference: '',
+             tr_discount: '',
+             tr_netCommision: '',
+             tr_shipmentDate: '',
+             tr_shipmentStatus: '',
+             tr_transactionStatus:'',
+             tr_shipperID: ''
         };
 
         vm.calculateCommission = function(){
