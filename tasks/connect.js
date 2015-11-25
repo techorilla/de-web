@@ -1,9 +1,15 @@
 // Proxy all requests to target the local application.
+//
+//var SERVER_CONFIG = {
+//  host: '192.168.1.99',
+//  port: 7030,
+//  context: '/api'
+//}
 
 var SERVER_CONFIG = {
-  host: 'localhost',
-  port: 3030,
-  context: '/api'
+    host: 'localhost',
+    port: 44300,
+    context: '/api'
 }
 
 var proxyOptions = require('url').parse(serverAddr(SERVER_CONFIG));
@@ -11,7 +17,9 @@ proxyOptions.route = SERVER_CONFIG.context;
 var proxyMiddleware = require('proxy-middleware');
 
 function serverAddr(serverConfig){
-  return 'http://'+serverConfig.host+':'+serverConfig.port+serverConfig.context;
+  //return 'https://'+serverConfig.host+':'+serverConfig.port+serverConfig.context;
+    return 'https://'+serverConfig.host+':'+serverConfig.port+serverConfig.context;
+
 }
 
 module.exports = {

@@ -2,17 +2,17 @@
 <div class="col-lg-12  marginLeft15">
     <div class="col-lg-12 tableHeading">
         <label>Contact Information</label>
-        <label class="pull-right" ng-if="!vm.showBankDetailForm">
-            <i ng-click="vm.addBankDetails()" class="fa fa-plus-circle orangeFont"></i>
+        <label class="pull-right" ng-if="!vm.showContactForm">
+            <i ng-click="vm.addContactNumber()" class="fa fa-plus-circle orangeFont"></i>
         </label>
     </div>
     <div class="col-lg-12" >
-        <form ng-if="vm.showBankDetailForm" name="vm.contactForm" novalidate>
+        <form ng-if="vm.showContactForm" name="vm.addContactNumberForm" novalidate>
             <div class="col-lg-12 innerHeading">
                 <label>Add New Contact Number</label>
                 <label class="pull-right">
-                    <i class="fa fa-trash deleteTrash" ng-click="vm.subBankDetails()"></i>
-                    <button type="submit"><i class="fa fa-save saveButton" ng-click="vm.saveBankDetails()"></i></button>
+                    <i class="fa fa-trash deleteTrash" ng-click="vm.subContactNumber()"></i>
+                    <button type="submit"><i class="fa fa-save saveButton" ng-click="vm.saveContactNumber()"></i></button>
 
                 </label>
             </div>
@@ -23,37 +23,38 @@
                     <input class="form-control" type="text" name="contactNumber"
                            ng-disabled="vm.viewMode" ng-required="true"
                            placeholder='021-123-1456'
+                           ng-pattern="/^([0-9\(\)\/\+ \-]*)$/"
                            ng-model="vm.businessPartner.newContactNumber.contactNumber"/>
-                    <div ng-messages='vm.contactForm.accountTitle.$error'
-                         ng-if='vm.contactForm.accountTitle.$dirty || vm.contactForm.$submitted'>
-                        <div class="errorValidation" ng-message="required">Account title is required</div>
-                        <div class="errorValidation" ng-message="pattern">Invalid account title</div>
+                    <div ng-messages='vm.addContactNumberForm.contactNumber.$error'
+                         ng-if='vm.addContactNumberForm.contactNumber.$dirty || vm.addContactNumberForm.$submitted'>
+                        <div class="errorValidation" ng-message="required">Contact Number is required</div>
+                        <div class="errorValidation" ng-message="pattern">Invalid Contact Number</div>
                     </div>
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Contact Type</label>
-                    <selectize name="accountCountry" ng-required="true" placeholder='Please enter country of bank account' config="vm.singleConfig" ng-model="vm.businessPartner.newBankDetails.accountCountry"></selectize>
-                    <ng-messages for="vm.contactForm.accountCountry.$error" ng-if='vm.contactForm.accountCountry.$dirty || vm.contactForm.$submitted'>
-                        <div ng-message="required" class="errorValidation">Country of Bank Account is required</div>
+                    <selectize name="contactType" ng-required="true" placeholder='Please enter contact Type' config="vm.contactTypeConfig" ng-model="vm.businessPartner.newContactNumber.contactType"></selectize>
+                    <ng-messages for="vm.addContactNumberForm.contactType.$error" ng-if='vm.addContactNumberForm.contactType.$dirty || vm.addContactNumberForm.$submitted'>
+                        <div ng-message="required" class="errorValidation">Contact Type is required</div>
                     </ng-messages>
                 </div>
             </div>
         </form>
     </div>
-    <div class="col-lg-12" ng-repeat="bank in vm.businessPartner.bank">
+    <div class="col-lg-12" ng-repeat="cont in vm.businessPartner.contNum">
         <div class="col-lg-12 innerHeading">
             <label>Contact Number {{$index + 1}}</label>
             <label class="pull-right">
-                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteBankAccount(bank.bankDetails_ID,bp_ID)"></i>
+                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteContactNumber(bank.bankDetails_ID,bp_ID)"></i>
             </label>
         </div>
         <div class="form-group col-xs-12 col-lg-4">
             <label>Contact Number</label>
-            <p>{{bank.accountTitle}}</p>
+            <p>{{cont.contactNumber}}</p>
         </div>
         <div class="form-group col-xs-12 col-lg-4">
             <label>Contact Type</label>
-            <p>{{bank.accountTitle}}</p>
+            <p>{{cont.contactType}}</p>
         </div>
 
     </div>

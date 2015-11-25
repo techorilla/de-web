@@ -18,6 +18,7 @@
             addBusinessPartner: addBusinessPartner,
             addNewBusinessPartnerContact: addNewBusinessPartnerContact,
             addNewBankAccount: addNewBankAccount,
+            addBusinessPartnerContact: addBusinessPartnerContact,
 
             getBusinessPartnerList: getBusinessPartnerList,
             getBusinessPartnerComplete: getBusinessPartnerComplete,
@@ -63,6 +64,18 @@
                   'Content-Type': "application/json"
               },
               data: {bankDetails: bankDetails}
+          };
+          return $http(req);
+      }
+
+      function addBusinessPartnerContact(contact){
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'addBusinessPartnerContact',
+              headers: {
+                  'Content-Type': "application/json"
+              },
+              data: {contact: contact}
           };
           return $http(req);
       }
