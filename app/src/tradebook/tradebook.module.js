@@ -38,6 +38,11 @@
               return tabFilter.filterFromDb().then(function(res){
                   return res.data;
               });
+          },
+          country: function (tabFilter) {
+              return tabFilter.getAllCountries().then(function (res) {
+                  return res.data.country;
+              });
           }
       },
       views:{

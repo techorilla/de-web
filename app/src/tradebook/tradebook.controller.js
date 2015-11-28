@@ -13,7 +13,7 @@
 		.controller('Tradebook', Tradebook);
 
   /* @ngInject */
-	function Tradebook(tradebook){
+	function Tradebook(tradebook,toastr){
 		var vm = this;
         init();
     /////////////////////
@@ -35,8 +35,20 @@
                 }
             ];
             vm.allTransactions = {};
+            vm.gridOptions = {
+                enableSorting: true,
+                data : []
+            };
             tradebook.getTransactionList().then(function(res){
-                vm.allTransactions.data = res.data.transationList;
+                if(!res.data.success){
+                    toastr.error(res.data.message, 'Error');
+                }
+                else{
+                    console.log(res.data.transactions);
+                    vm.gridOptions.data = res.data.transactions;
+
+                }
+
             });
             vm.saveTransaction = saveTransaction;
             vm.allTransactions.tableHeadings =  [

@@ -795,3 +795,13 @@ img {
 .saveButton{
   cursor:pointer;
 }
+.dropdownLabel{
+  font-weight: bold;
+  font-size:10px;
+  color:$baseColor;
+}
+.dropdownCaption{
+  font-weight: bold;
+  font-size:9px;
+  color:#000;
+}

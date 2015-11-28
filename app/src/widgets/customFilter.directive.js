@@ -33,6 +33,11 @@
     /////////////////////
 
     function link(scope, elem, attrs){
+      scope.dropDownCallBack = function(res){
+          if(res.success === false ){
+              toastr.error(res.message,'Error '+bpType);
+          }
+      };
       scope.showOptions = false;
       scope.dropDownValues={};
       scope.textFilter = '';
@@ -41,20 +46,35 @@
       };
       if(scope.filterType==='product'){
           scope.title= 'Product';
-          tabFilter.getProductFilter().then(function(res){
+          tabFilter.getProductFilterForTagInput().then(function(res){
+
             scope.dropDownValues = res.data.products;
         });
       }
       if(scope.filterType==='buyer'){
           scope.title= 'Buyer';
-          tabFilter.getBuyerFilter().then(function(res){
-            scope.dropDownValues = res.data.buyer;
+          tabFilter.getDropDownBP(scope.title).then(function(res){
+            scope.dropDownValues = res.data.data;
+            console.log(scope.dropDownValues);
         });
       }
       if(scope.filterType==='seller'){
           scope.title='Seller';
-          tabFilter.getSellerFilter().then(function(res){
-            scope.dropDownValues = res.data.seller;
+          tabFilter.getDropDownBP(scope.title).then(function(res){
+            scope.dropDownValues = res.data.data;
+            console.log(scope.dropDownValues);
+          });
+      }
+      if(scope.filterType==='broker'){
+        scope.title='broker';
+        tabFilter.getDropDownBP(scope.title).then(function(res){
+            scope.dropDownValues = res.data.data;
+        });
+      }
+      if(scope.filterType==='shipper'){
+        scope.title='shipper';
+        tabFilter.getDropDownBP(scope.title).then(function(res){
+            scope.dropDownValues = res.data;
         });
       }
       if(scope.filterType==='bpTypes'){

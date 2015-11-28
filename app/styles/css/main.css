@@ -917,6 +917,20 @@ img {
   cursor: pointer;
 }
 
+/* line 798, ../partials/_theme.scss */
+.dropdownLabel {
+  font-weight: bold;
+  font-size: 10px;
+  color: #1691ac;
+}
+
+/* line 803, ../partials/_theme.scss */
+.dropdownCaption {
+  font-weight: bold;
+  font-size: 9px;
+  color: #000;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

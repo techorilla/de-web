@@ -13,7 +13,7 @@
 		.factory('businessPartner', businessPartner);
 
   /* @ngInject */
-  function businessPartner(appConfig, $http){
+  function businessPartner(appConfig, $http, modalFactory){
 		return {
             addBusinessPartner: addBusinessPartner,
             addNewBusinessPartnerContact: addNewBusinessPartnerContact,
@@ -44,8 +44,24 @@
      * @param {int} entity id
      */
 
-      function deleteBusinessPartner(){
-
+      function deleteBusinessPartner(name, id ,callback){
+        modalFactory.alertModal(name,'Business Partner', 'Delete').then(function(res){
+            if(res){
+                var req = {
+                    method: 'GET',
+                    url: appConfig.apiHost+'deleteBusinessPartner/'+id,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    data: {id: id}
+                }
+                return $http(req)
+                    .success(function (response) {
+                        callback(response);
+                    });
+            }
+        });
       }
 
       function deleteBusinessPartnerContact(){
@@ -79,6 +95,8 @@
           };
           return $http(req);
       }
+
+
 
       function addNewBusinessPartnerContact(contactPerson){
         var req = {

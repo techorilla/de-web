@@ -13,10 +13,9 @@
 		.factory('tabFilter', filter);
 
   /* @ngInject */
-  function filter($http, appConfig){
+  function filter($http, appConfig, toastr){
 		return {
-            getBuyerFilter: getBuyerFilter,
-            getSellerFilter:getSellerFilter,
+            getDropDownBP:getDropDownBP,
             getProductFilterForTagInput:getProductFilterForTagInput,
             getBusinessPartnerTypes: getBusinessPartnerTypes,
             getTransactionStatus: getTransactionStatus,
@@ -42,14 +41,24 @@
         function filterFromDb(){
             return $http.get('datastore/filterFromDb.json');
         }
-        function getBuyerFilter(){
-            return $http.get('datastore/filterBuyer.json');
+
+        function getDropDownBP(bpType){
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'getBPDropDown',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*'
+              },
+              data: {type:bpType}
+          };
+
+          return $http(req);
         }
+
+
         function getAllCountries(){
             return $http.get('datastore/country.json');
-        }
-        function getSellerFilter(){
-            return $http.get('datastore/filterSeller.json');
         }
         function getProductFilterForTagInput(input){
             var req = {

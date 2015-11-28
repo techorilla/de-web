@@ -20,6 +20,18 @@
         init();
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
+        vm.deleteBusinessPartner = function(name, id){
+            businessPartner.deleteBusinessPartner(name, id,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    $state.go('shell.businessPartner');
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+        };
+
 
     /////////////////////
 
@@ -115,6 +127,7 @@
                 }
                 else{
                     toastr.error(res.data.message, 'Error');
+                    subContactPerson();
                 }
             });
         }

@@ -13,11 +13,14 @@
 		.factory('tradebook', tradebook);
 
   /* @ngInject */
-  function tradebook($http){
+  function tradebook($http,appConfig){
 		return {
 			testFunction: testFunction,
             getTransactionList: getTransactionList,
-            getStaticDropDown: getStaticDropDown
+            getStaticDropDown: getStaticDropDown,
+            addNewTransaction: addNewTransaction,
+            deleteTransaction: deleteTransaction
+
 		};
 
 		////////////////////
@@ -39,8 +42,34 @@
 
 		}
 
+        function addNewTransaction(transaction,callback){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'addNewTransaction',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {transaction: transaction}
+            }
+            return $http(req)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+
+        function deleteTransaction(){
+
+        }
+
         function getTransactionList(){
-            return $http.get('datastore/transactionList.json');
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionTable',
+                headers: {
+                    'Content-Type': "application/json"
+                }
+            }
+            return $http(req);
         }
         function getStaticDropDown(){
             return $http.get('datastore/addTransactionBasicFilters.json');

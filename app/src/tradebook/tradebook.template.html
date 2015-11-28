@@ -5,29 +5,31 @@
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
         <div class="dg-tablePanelTitle">Transactions (Standard)<br><small>Total {{vm.allTransactions.data.length}} Transactions</small></div>
-        <ul class="dg-pageActionsLinks">
-            <li><input ng-model="vm.searchTransaction" type="text" class="form-control" placeholder="Find Transaction">
-        </ul>
+        <!--<ul class="dg-pageActionsLinks">-->
+            <!--<li><input ng-model="vm.searchTransaction" type="text" class="form-control" placeholder="Find Transaction">-->
+        <!--</ul>-->
     </div>
     <div class="dg-tablePanelBody">
-        <table class="table table-bordered dg-table">
-            <thead>
-            <tr>
-                <th ng-repeat="heading in vm.allTransactions.tableHeadings" ng-bind="heading.name"></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in vm.allTransactions.data | filter:vm.searchTransaction">
-                    <td><a ui-sref="shell.tradebook.viewTransaction({id:row.transactionId})">{{row.fileId}}</a></td>
-                    <td ng-bind="row.date| date:'dd/MM/yyyy'"></td>
-                    <td><a ui-sref="shell.businessPartner.addBusinessPartner">{{row.buyer.name}}</a></td>
-                    <td><a ui-sref="shell.businessPartner.addBusinessPartner">{{row.seller.name}}</a></td>
-                    <td><a ui-sref="shell.products.viewProduct({id:row.product.id})">{{row.product.name}}</a></td>
-                    <td ng-bind="row.quantity"></td>
-                    <td ng-bind="row.rate | currency:'USD$'"></td>
-                    <td ng-bind="row.commission | currency:'USD$'"></td>
-                </tr>
-            </tbody>
-        </table>
+        <!--<table class="table table-bordered dg-table">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th ng-repeat="heading in vm.allTransactions.tableHeadings" ng-bind="heading.name"></th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+                <!--<tr ng-repeat="row in vm.allTransactions.data | filter:vm.searchTransaction">-->
+                    <!--<td><a ui-sref="shell.tradebook.viewTransaction({id:row.transactionId})">{{row.fileId}}</a></td>-->
+                    <!--<td ng-bind="row.date| date:'dd/MM/yyyy'"></td>-->
+                    <!--<td><a ui-sref="shell.businessPartner.addBusinessPartner">{{row.buyer.name}}</a></td>-->
+                    <!--<td><a ui-sref="shell.businessPartner.addBusinessPartner">{{row.seller.name}}</a></td>-->
+                    <!--<td><a ui-sref="shell.products.viewProduct({id:row.product.id})">{{row.product.name}}</a></td>-->
+                    <!--<td ng-bind="row.quantity"></td>-->
+                    <!--<td ng-bind="row.rate | currency:'USD$'"></td>-->
+                    <!--<td ng-bind="row.commission | currency:'USD$'"></td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+        <div id="grid1" ng-if="(vm.gridOptions.data.length!==0)" ui-grid="vm.gridOptions" ui-grid-edit class="grid"></div>
     </div>
 </page-blue-container>

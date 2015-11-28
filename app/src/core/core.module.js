@@ -29,7 +29,9 @@
     'fileSaver',
     'angularSpinner',
     'rzModule',
-    'ngSanitize'
+    'ngSanitize',
+    'ui.grid',
+    'ui.grid.edit'
 
   ]);
 

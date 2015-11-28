@@ -1,5 +1,5 @@
 <div class="col-sm-3 pull-right">
-  <div class="dg-filterDropdown" ng-if="(filterType==='buyer')||(filterType==='seller')">
+  <div class="dg-filterDropdown" ng-if="(filterType==='shipper')||(filterType==='broker')||(filterType==='buyer')||(filterType==='seller')">
     <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
     <div class="dg-filterDropdownMenu" ng-show="showOptions">
       <ul class="dg-head">
@@ -11,8 +11,8 @@
       <ul ng-scrollbars>
         <li ng-repeat="value in dropDownValues">
           <input type="checkbox">
-          <span class="dg-value filterHeading">{{value.Name}}</span>
-          <span class="dg-value">{{value.Location}}</span>
+          <span class="dg-value filterHeading">{{value.bp_Name}}</span>
+          <span class="dg-value">{{value.bp_country}} | {{value.bp_Cont_fullName}}</span>
         </li>
       </ul>
     </div>
