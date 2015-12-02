@@ -32,6 +32,53 @@
             });
         };
 
+        vm.deleteBusinessPartnerContact = function(bpName,contactName,id,index){
+            businessPartner.deleteBusinessPartnerContact(bpName,contactName, id,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    vm.businessPartner.contPers.splice(index,1);
+                    if(vm.businessPartner.contPers.length === 0){
+                        vm.addContactPerson();
+                    }
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+        };
+
+        vm.deleteBusinessPartnerContactNumber = function(bpName, contactNumber, contactType, id, index){
+            businessPartner.deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    vm.businessPartner.contNum.splice(index,1);
+                    if(vm.businessPartner.contNum.length === 0){
+                        vm.addContactNumber();
+                    }
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+        };
+
+        vm.deleteBusinessPartnerBankDetails = function(bpName, accountTitle, accountNumber, id, index){
+            businessPartner.deleteBusinessPartnerBankDetail(bpName, accountTitle, accountNumber, id,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    vm.businessPartner.bank.splice(index,1);
+                    if(vm.businessPartner.bank.length === 0){
+                        vm.addBankDetails();
+                    }
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+        };
+
+
+
 
     /////////////////////
 
@@ -111,6 +158,9 @@
             if(vm.businessPartner.bank.length === 0){
                 addBankDetails();
             }
+            if(vm.businessPartner.contNum.length === 0){
+                addContactNumber();
+            }
         });
 
     }
@@ -181,7 +231,7 @@
             businessPartner.addNewBankAccount(vm.businessPartner.newBankDetails).then(function(res){
 
                 if (res.data.success) {
-                    vm.businessPartner.bank.push(vm.businessPartner.newContactPerson);
+                    vm.businessPartner.bank.push(vm.businessPartner.newBankDetails);
                     subContactPerson();
                     toastr.success(res.data.message, 'Success');
                 }
@@ -216,7 +266,7 @@
 
                 if (res.data.success) {
                     vm.businessPartner.contNum = (vm.businessPartner.contNum) ? vm.businessPartner.contNum : [];
-                    vm.businessPartner.contNum.push(vm.businessPartner.newContactPerson);
+                    vm.businessPartner.contNum.push(vm.businessPartner.newContactNumber);
                     subContactPerson();
                     toastr.success(res.data.message, 'Success');
                 }

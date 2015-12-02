@@ -20,15 +20,36 @@
        url:'/tradebook',       
        subNav: true,
        subNavTitle: 'Trade Book',
-       views:{
+       views:
+       {
             'content@shell':{
                 templateUrl: 'src/tradebook/tradebook.template.html',
                 controller: 'Tradebook as vm'
             }
-        } 
-     }).state('shell.tradebook.newTransaction',{
-      url:'/new',
-      resolve:{
+       }
+     })
+     .state('shell.tradebook.viewTransaction',{
+       url:'/view',
+       subNavTitle: 'Trade Book - View Transaction',
+       views:
+       {
+            'content@shell':{
+                templateUrl: 'src/tradebook/viewTransaction/viewtransaction.template.html',
+                controller: 'ViewTransaction as vm'
+            },
+            'notes@shell.tradebook.viewTransaction':{
+                templateUrl: 'src/tradebook/viewTransaction/transactionnotes.template.html',
+                controller: 'TransactionNotes as vm'
+            },
+            'documents@shell.tradebook.viewTransaction':{
+                templateUrl: 'src/tradebook/viewTransaction/transactiondocuments.template.html',
+                controller: 'TransactionDocuments as vm'
+            }
+       }
+     })
+     .state('shell.tradebook.newTransaction',{
+       url:'/new',
+       resolve:{
           staticDropDown: function (tradebook) {
               return tradebook.getStaticDropDown().then(function (res) {
                   return res.data;
@@ -44,34 +65,14 @@
                   return res.data.country;
               });
           }
-      },
-      views:{
-        'content@shell':{
-          templateUrl:'src/tradebook/addTransaction.html',
-          controller:'AddTransaction as vm'
-        }
-      }
-    }).state('shell.tradebook.viewTransaction',{
-            url:'/view/:id',
-            resolve:{
-                staticDropDown: function (tradebook) {
-                    return tradebook.getStaticDropDown().then(function (res) {
-                        return res.data;
-                    });
-                },
-                filterFromDb: function(tabFilter){
-                    return tabFilter.filterFromDb().then(function(res){
-                        return res.data;
-                    });
-                }
-            },
-            views:{
-                'content@shell':{
-                    templateUrl:'src/tradebook/addTransaction.html',
-                    controller:'AddTransaction as vm'
-                }
-            }
-        });
+       },
+       views:{
+          'content@shell':{
+              templateUrl:'src/tradebook/addTransaction.html',
+              controller:'AddTransaction as vm'
+          }
+       }
+    });
   }
 
 }());

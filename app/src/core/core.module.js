@@ -31,7 +31,9 @@
     'rzModule',
     'ngSanitize',
     'ui.grid',
-    'ui.grid.edit'
+    'ui.grid.edit',
+    'ui.grid.selection',
+    'ui.grid.exporter'
 
   ]);
 

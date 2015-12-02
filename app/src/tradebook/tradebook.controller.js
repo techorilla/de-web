@@ -37,8 +37,29 @@
             vm.allTransactions = {};
             vm.gridOptions = {
                 enableSorting: true,
-                data : []
+                data : [],
+                enableGridMenu: true,
+                enableSelectAll: true,
+                exporterCsvFilename: 'allTransactions.csv',
+                exporterPdfDefaultStyle: {fontSize: 9},
+                exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+                exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+                exporterPdfHeader: { text: "All Transactions", style: 'headerStyle' },
+                exporterPdfFooter: function ( currentPage, pageCount ) {
+                    return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+                },
+                exporterPdfCustomFormatter: function ( docDefinition ) {
+                    docDefinition.styles.headerStyle = { fontSize: 22, bold: true };
+                    docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+                    return docDefinition;
+                },
+                exporterPdfOrientation: 'portrait',
+                exporterPdfPageSize: 'LETTER',
+                exporterPdfMaxGridWidth: 500,
+                exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location"))
+
             };
+
             tradebook.getTransactionList().then(function(res){
                 if(!res.data.success){
                     toastr.error(res.data.message, 'Error');

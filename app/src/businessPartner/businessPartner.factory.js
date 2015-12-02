@@ -25,7 +25,8 @@
 
             deleteBusinessPartner: deleteBusinessPartner,
             deleteBusinessPartnerContact: deleteBusinessPartnerContact,
-            deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail
+            deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail,
+            deleteBusinessPartnerContactNumber: deleteBusinessPartnerContactNumber
 
 		};
 
@@ -64,12 +65,64 @@
         });
       }
 
-      function deleteBusinessPartnerContact(){
-
+      function deleteBusinessPartnerContact(bpName, contactName, id, callback){
+          modalFactory.alertModal(bpName,'Contact Person ' + contactName + 'Contact Person of Business Partner', 'Delete').then(function(res){
+              if(res){
+                  var req = {
+                      method: 'GET',
+                      url: appConfig.apiHost+'deleteBusinessPartnerContact/'+id,
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*'
+                      },
+                      data: {id: id}
+                  }
+                  return $http(req)
+                      .success(function (response) {
+                          callback(response);
+                      });
+              }
+          });
       }
 
-      function deleteBusinessPartnerBankDetail(){
+      function deleteBusinessPartnerBankDetail(bpName, accountTitle, accountNumber, id, callback){
+          modalFactory.alertModal(bpName,'Bank Account ' + accountNumber + ' of title ' +accountTitle + ' of Business Partner ' , 'Delete').then(function(res){
+              if(res){
+                  var req = {
+                      method: 'GET',
+                      url: appConfig.apiHost+'deleteBusinessPartnerBank/'+id,
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*'
+                      },
+                      data: {id: id}
+                  }
+                  return $http(req)
+                      .success(function (response) {
+                          callback(response);
+                      });
+              }
+          });
+      }
 
+      function deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id, callback){
+          modalFactory.alertModal(bpName, contactType + ' Number ' + contactNumber + ' of Business Partner' , 'Delete').then(function(res){
+              if(res){
+                  var req = {
+                      method: 'GET',
+                      url: appConfig.apiHost+'deleteBusinessPartnerContactNumber/'+id,
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Access-Control-Allow-Origin': '*'
+                      },
+                      data: {id: id}
+                  }
+                  return $http(req)
+                      .success(function (response) {
+                          callback(response);
+                      });
+              }
+          });
       }
 
       function addNewBankAccount(bankDetails){

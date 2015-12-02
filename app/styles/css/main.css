@@ -931,6 +931,16 @@ img {
   color: #000;
 }
 
+/* line 809, ../partials/_theme.scss */
+.transparentButton {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

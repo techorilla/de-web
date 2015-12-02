@@ -32,6 +32,7 @@
     "ng-scrollbar": "~0.0.8",
     "ng-scrollbars": "~0.0.5",
     "ng-tags-input": "~2.3.0",
+    "pdfmake": "~0.1.20",
     "restangular": "~1.4.0",
     "selectize": "~0.12.1"
   },

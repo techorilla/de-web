@@ -12,7 +12,7 @@
                 <label>Add New Contact Number</label>
                 <label class="pull-right">
                     <i class="fa fa-trash deleteTrash" ng-click="vm.subContactNumber()"></i>
-                    <button type="submit"><i class="fa fa-save saveButton" ng-click="vm.saveContactNumber()"></i></button>
+                    <button type="submit"><i class="fa fa-save saveButton transparentButton" ng-click="vm.saveContactNumber()"></i></button>
 
                 </label>
             </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-12 innerHeading">
             <label>Contact Number {{$index + 1}}</label>
             <label class="pull-right">
-                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteContactNumber(bank.bankDetails_ID,bp_ID)"></i>
+                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteBusinessPartnerContactNumber(vm.businessPartner.gen[0].bp_Name, cont.contactNumber, cont.contactType, cont.ph_ID, $index)"></i>
             </label>
         </div>
         <div class="form-group col-xs-12 col-lg-4">
