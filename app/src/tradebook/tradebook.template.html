@@ -30,6 +30,14 @@
             <!--</tbody>-->
         <!--</table>-->
 
-        <div id="grid1" ng-if="(vm.gridOptions.data.length!==0)" ui-grid="vm.gridOptions" ui-grid-selection ui-grid-exporter ui-grid-edit class="grid"></div>
+        <div id="grid1" ng-if="(vm.gridOptions.data.length!==0)" ui-grid="vm.gridOptions"
+             ui-grid-selection
+             ui-grid-exporter
+             ui-grid-resize-columns
+             ui-grid-move-columns
+             ui-grid-edit
+             ui-grid-pinning
+             ui-grid-pagination
+             class="grid"></div>
     </div>
 </page-blue-container>

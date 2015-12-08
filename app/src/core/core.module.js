@@ -33,7 +33,10 @@
     'ui.grid',
     'ui.grid.edit',
     'ui.grid.selection',
-    'ui.grid.exporter'
+    'ui.grid.exporter',
+    'ui.grid.resizeColumns',
+    'ui.grid.moveColumns',
+    'ui.grid.pinning'
 
   ]);
 
