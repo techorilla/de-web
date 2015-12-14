@@ -25,7 +25,7 @@ function serverAddr(serverConfig){
 module.exports = {
   server:{
     options: {
-      port: 7030,
+      port: 7033,
       base: 'app',
       hostname: '0.0.0.0',
       keepalive: true,

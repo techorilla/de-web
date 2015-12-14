@@ -36,32 +36,52 @@
                       <div class="col-lg-12 tableHeading width96">
                           <label>Specification</label>
                       </div>
-                      <div class="col-md-4">
-                          <div class="form-group">
-                              <label for="pPurity">Purity</label>
-                              <input name="pPurity" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Enter Product Purity">
-                          </div>
-                          <div class="form-group">
+                      <div class="col-lg-12">
+                          <div class="form-group col-lg-4 col-xs-12">
                               <label for="pMoisture">Moisture</label>
-                              <input name="pMoisture" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Enter Product Moisture">
+                              <input name="pMoisture" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.moisture" class="form-control" id="pMoisture" placeholder="Moisture">
                           </div>
-                          <div class="form-group">
-                              <label for="pSplits">Splits</label>
-                              <input name="pSplits" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Enter Product Splits">
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pPurity">Purity</label>
+                              <input name="pPurity" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.purity" class="form-control" id="pPurity" placeholder="Purity">
                           </div>
-                          <div class="form-group">
-                              <label for="pBroken">Broken</label>
-                              <input name="pBroken" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.broken" class="form-control" id="pBroken" placeholder="Enter Product Broken">
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pSplits">Foreign Matter</label>
+                              <input name="pSplits" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.foreignMatter" class="form-control" id="pSplits" placeholder="Splits">
                           </div>
-                          <div class="form-group">
+
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pSplits">Broken/Splits</label>
+                              <input name="pSplits" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.splits" class="form-control" id="pSplits" placeholder="Splits">
+                          </div>
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pBroken">Damaged</label>
+                              <input name="pBroken" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.damaged" class="form-control" id="pBroken" placeholder="Damaged">
+                          </div>
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pBroken">Green Damaged</label>
+                              <input name="pBroken" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.greenDamaged" class="form-control" id="pBroken" placeholder="Green Damaged">
+                          </div>
+                          <div class="form-group col-lg-4 col-xs-12">
                               <label for="pWeeviled">Weeviled</label>
-                              <input name="pWeeviled" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Enter Product Weeviled">
+                              <input name="pWeeviled" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.weeviled" class="form-control" id="pWeeviled" placeholder="Weeviled">
+                          </div>
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pWeeviled">Other Color</label>
+                              <input name="pWeeviled" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.otherColor" class="form-control" id="pWeeviled" placeholder="Other Color">
+                          </div>
+                          <div class="form-group col-lg-4 col-xs-12">
+                              <label for="pWeeviled">Wrinkled</label>
+                              <input name="pWeeviled" type="number" ng-disabled="vm.viewMode" ng-model="vm.newProduct.specs.wrinkled" class="form-control" id="pWeeviled" placeholder="Wrinkled">
                           </div>
                       </div>
                   </div>
-				  <button type="submit" ng-show="vm.addMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Add New Product</button>
-                  <button type="submit" ng-show="vm.editMode" class="btn btn-default submitBtn" ng-click="vm.saveProduct()">Save Changes</button>
-                  <button type="submit" ng-show="vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.deleteProduct()">Delete Product</button>
-				  <button type="submit"  class="btn btn-default" ui-sref="shell.products.all">Cancel</button>
+                <div class="border-top-black marginTop5">
+                    <button type="submit" ng-show="vm.addMode" class="btn btn-default submitBtn" ng-click="vm.addProduct()">Add New Product</button>
+                    <button type="submit" ng-show="vm.editMode" class="btn btn-default submitBtn" ng-click="vm.saveProduct()">Save Changes</button>
+                    <button type="submit" ng-show="vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.deleteProduct()">Delete Product</button>
+                    <button type="submit"  class="btn btn-default" ui-sref="shell.products.all">Cancel</button>
+                </div>
+
 			</form>
 	</page-blue-container>

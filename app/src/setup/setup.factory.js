@@ -38,8 +38,16 @@
 		function getAllUsers(){
             return $http.get('datastore/allUsers.json');
 		}
-        function addNewUser(user){
-            return $http.post(appConfig.apiHost+ 'addNewUser?title='+user.initials+'&fname='+user.firstName+'&lname='+user.lastName+'&des='+user.designation+'&email='+user.email+'&pass='+user.password+'&isAdmin='+user.isAdmin);
+        function addNewUser(newUser){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'addNewUser',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {newUser: newUser}
+            };
+            return $http(req);
         }
         function getUserRights(){
             return $http.get('datastore/userRights.json');

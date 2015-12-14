@@ -88,7 +88,9 @@ a {
     text-decoration: none;
   }
 }
-
+.cursor-pointer{
+  cursor:pointer;
+}
 input::-moz-focus-inner {
   border: 0;
 }
@@ -813,5 +815,33 @@ img {
     cursor:pointer;
     overflow: hidden;
     outline:none;
+}
 
+.height40px{
+  height: 40px;
+}
+.height100px{
+  height: 70px;
+}
+
+.forms{
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+.border-top-black{
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.border-bottom-black{
+  border-bottom: 1px solid #333;
+  padding-bottom: -2px;
+}
+
+.resizeNone{
+  resize:none;
+}
+
+.font30days{
+  font-size: 10px;
 }

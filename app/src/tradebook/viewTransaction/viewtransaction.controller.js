@@ -13,8 +13,26 @@
 		.controller('ViewTransaction', ViewTransaction);
 
   /* @ngInject */
-	function ViewTransaction(tradebook){
+	function ViewTransaction(tradebook,$stateParams){
 		var vm = this;
+        init();
+        function init(){
+            console.log($stateParams.id);
+            vm.showBroker = false;
+            vm.datePickerOpened = false;
+            vm.datePickerOpened2 = false;
+            vm.showTransactionInfo=false;
+            vm.showContractInfo=false;
+            vm.showCommission = false;
+            vm.showStatus = false;
+            vm.showShipment = false;
+            vm.showDocument = false;
+            vm.showNotes = false;
+            tradebook.getSingleTransactionDetails($stateParams.id).then(function(res){
+               vm.transaction = res.data.transaction[0];
+               console.log(res);
+            });
+        }
 
 		vm.testFunction = testFunction;
 

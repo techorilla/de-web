@@ -29,7 +29,7 @@
        }
      })
      .state('shell.tradebook.viewTransaction',{
-       url:'/view',
+       url:'/view/:id',
        subNavTitle: 'Trade Book - View Transaction',
        views:
        {

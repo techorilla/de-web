@@ -36,7 +36,8 @@
     'ui.grid.exporter',
     'ui.grid.resizeColumns',
     'ui.grid.moveColumns',
-    'ui.grid.pinning'
+    'ui.grid.pinning',
+    'angular-click-outside'
 
   ]);
 

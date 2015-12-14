@@ -19,7 +19,8 @@
             getTransactionList: getTransactionList,
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
-            deleteTransaction: deleteTransaction
+            deleteTransaction: deleteTransaction,
+            getSingleTransactionDetails: getSingleTransactionDetails
 
 		};
 
@@ -41,6 +42,14 @@
 		function testFunction(id){
 
 		}
+
+        function getSingleTransactionDetails(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getSingleTransaction?id='+id
+            }
+            return $http(req);
+        }
 
         function addNewTransaction(transaction,callback){
             var req = {

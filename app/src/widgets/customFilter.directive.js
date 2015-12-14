@@ -44,6 +44,12 @@
       scope.invertShowOptions = function(){
         scope.showOptions = !scope.showOptions;
       };
+      scope.closeFilter = function(){
+          if(scope.showOptions){
+              scope.showOptions = false;
+          }
+
+      };
       if(scope.filterType==='product'){
           scope.title= 'Product';
           tabFilter.getProductFilterForTagInput().then(function(res){

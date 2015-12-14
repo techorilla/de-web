@@ -13,32 +13,42 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction(tradebook, staticDropDown, $scope,tabFilter, product, country,toastr){
+	function AddTransaction(tradebook, staticDropDown, $scope,tabFilter, product, country,toastr, $filter){
 		var vm = this;
         init();
         vm.showBroker = false;
         vm.datePickerOpened = false;
         vm.datePickerOpened2 = false;
+        vm.showTransactionInfo=false;
+        vm.showContractInfo=false;
+        vm.showCommission = false;
+        vm.showStatus = false;
+        vm.showShipment = false;
+        vm.showDocument = false;
+        vm.showNotes = false;
 
         vm.saveTransaction = saveTransaction;
-        vm.shipmentStatusConfig = {
-            options: staticDropDown.shipmentStatus,
-            create: true,
-            sortField: 'text',
-            valueField: 'text',
-            labelField: 'text',
-            maxItems: 1
-        };
+
         vm.transactionStatusConfig = {
             options: staticDropDown.transactionStatus,
             create: true,
-            sortField: 'text',
+            sortField: 'value',
             valueField: 'text',
             labelField: 'text',
             maxItems:1
         };
         vm.commissionTypeConfig = {
             options: staticDropDown.commissionType,
+            create: true,
+            sortField: 'text',
+            valueField: 'text',
+            labelField: 'text',
+            maxItems:1
+        };
+        vm.packingConfig = {
+            options: [
+                {text: 'Bulk'}, {text:'Bagged'}
+            ],
             create: true,
             sortField: 'text',
             valueField: 'text',
@@ -107,20 +117,8 @@
             }
         };
         vm.quantityValue = 0;
-        vm.openDatePicker = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            vm.datePickerOpened = true;
-        };
-        vm.openDatePicker2 = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            vm.datePickerOpened2 = true;
-        };
-        vm.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
+
+
 
         vm.newTransaction = {
              tr_bpBuyerID:'',
@@ -128,7 +126,7 @@
              tr_productID:'',
              tr_fileID:'',
              tr_contractID:'',
-             tr_date:'',
+             tr_date:null,
              tr_price:0,
              tr_FCL:false,
              tr_MT:false,
@@ -145,13 +143,31 @@
              tr_difference: 0,
              tr_discount: 0,
              tr_netCommision: 0,
-             tr_shipmentDate: '',
+             tr_shipmentDateFrom: null,
+             tr_shipmentDateTo: null,
+             tr_shipment30days:false,
              tr_shipmentStatus: '',
              tr_transactionStatus:'',
              tr_washOutValue:null,
-             tr_shippmentAddress:'',
-             tr_shippmentCountry:'',
-             tr_shipperID: ''
+             tr_shipperID: '',
+             tr_transactionOtherInfo: '',
+             tr_notShipped:false,
+             tr_notShippedReason: '',
+             tr_appropriationRecieved:false,
+             tr_expectedShipment: '',
+             tr_shipped: false,
+             tr_dateShipped: '',
+             tr_expectedArrival:null,
+             tr_arrivedAtPort:false,
+             tr_dateArrived: '',
+             tr_portOfLoading:'',
+             tr_portOfDestination:'',
+             tr_origin:'',
+             tr_shippingLineContactDetails:'',
+             tr_voyageNumber:'',
+             tr_vesselNumber:'',
+             tr_packing: ''
+
         };
 
         vm.calculateCommission = function(){
@@ -234,6 +250,16 @@
             sortField: 'text',
             maxItems: 1
         };
+
+        $scope.$watch('vm.newTransaction.tr_shipment30days',function(newVal){
+            if(newVal){
+                vm.newTransaction.tr_shipmentDateTo = (new Date(vm.newTransaction.tr_shipmentDateFrom));
+                vm.newTransaction.tr_shipmentDateTo.setDate(vm.newTransaction.tr_shipmentDateTo.getDate() + 30);
+            }
+            else{
+                vm.newTransaction.tr_shipmentDateTo = '';
+            }
+        });
 
         tabFilter.getDropDownBP("Buyer").then(function(res){
             vm.buyersList = res.data.data;

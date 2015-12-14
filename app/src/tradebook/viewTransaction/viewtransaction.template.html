@@ -1,3 +1,283 @@
-<h1>view Transaction</h1>
+<page-header heading="File No. {{vm.transaction.tr_fileID}}" sub-heading="Transaction" button-list="vm.headerAnchor"></page-header>
+<page-blue-container>
+<div class="forms">
+<div class="row">
+    <div class="col-lg-12  marginLeft15">
+        <div class="col-lg-12 tableHeading">
+            <label>Transaction Information</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showTransactionInfo = !vm.showTransactionInfo">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showTransactionInfo,'fa-chevron-circle-right':!vm.showTransactionInfo}"></i>
+            </label>
+        </div>
+        <div ng-if="vm.showTransactionInfo" class="clearfix">
+            <div class="form-group col-lg-4 col-xs-12 height40px">
+                <label>Date of Transaction</label>
+                <p ng-bind="vm.transaction.tr_date | date: 'dd-MMM-yyyy'"></p>
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Buyer</label>
+                <p>Abay Yar Daal</p><p>Origin: Pakistan</p><p>Primary Contact: Ahmad Edhi  </p>
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Seller</label>
+                <p>Abay Yar Daal</p><p>Origin: Pakistan</p><p>Primary Contact: Ahmad Edhi  </p>
+            </div>
+        </div>
+
+        <div ng-if="vm.showTransactionInfo" class="clearfix">
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Product</label>
+                <p>Daal</p>
+            </div>
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Origin</label>
+                <p>Pakistan</p>
+
+            </div>
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Quantity (Mt)</label>
+                <p>800</p>
+            </div>
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Price</label>
+                <p>$5000</p>
+            </div>
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Packing</label>
+                <p>full</p>
+            </div>
+
+        </div>
+
+        <div ng-if="vm.showTransactionInfo"  class="clearfix">
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Shipment Begin</label>
+                <p ng-bind="vm.transaction.tr_date | date: 'dd-MMM-yyyy'"></p>
+            </div>
+            <div class="form-group col-lg-2 col-xs-12">
+                <label>Shipment End</label>
+                <p ng-bind="vm.transaction.tr_date | date: 'dd-MMM-yyyy'"></p>
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>File No.</label>
+                <p ng-bind="vm.transaction.tr_fileID"></p>
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Contract Id</label>
+                <p ng-bind="vm.transaction.tr_contractID"></p>
+            </div>
+        </div>
+
+        <div ng-if="vm.showTransactionInfo" class="clearfix">
+            <div class="form-group col-lg-12 col-xs-12">
+                <label>Other Info</label>
+                <p><span>This Transaction is very important</span></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12  marginLeft15">
+        <div class="col-lg-12 tableHeading">
+            <label>Contract Information</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showContractInfo = !vm.showContractInfo">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showContractInfo,'fa-chevron-circle-right':!vm.showContractInfo}"></i>
+            </label>
+        </div>
+        <div ng-if="vm.showContractInfo" class="form-group col-md-4 col-xs-12 row">
+            <div class="col-md-6">
+                <label>Doni Contact</label>
+                <input name="contractType"  type="checkbox" ng-model="vm.newTransaction.tr_doniContract"/>
+            </div>
+            <div class="col-md-6">
+                <label>Own Contract</label>
+                <input name="contractType"   type="checkbox" ng-model="vm.newTransaction.tr_ownContract"/>
+            </div>
+        </div>
+        <div ng-if="vm.showContractInfo" class="form-group col-md-8 col-xs-12 pull-right">
+            <label>Contractual Buyer</label>
+            <selectize ng-disabled="!vm.newTransaction.tr_doniContract && !vm.newTransaction.tr_ownContract" placeholder='Please enter contractual Buyer involved' config="vm.bpConfig" options='vm.buyersList' ng-model="vm.newTransaction.tr_contractualBuyer"></selectize>
+        </div>
+    </div>
+
+</div>
+</br></br></br>
+<div class="row">
+    <div class="col-md-12  marginLeft15  marginTop50">
+        <div class="col-md-12 tableHeading">
+            <label>Commission Details</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showCommission = !vm.showCommission">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showCommission,'fa-chevron-circle-right':!vm.showCommission}"></i>
+            </label>
+        </div>
+        <div ng-if="vm.showCommission" class="form-group col-md-4 formCheckBox">
+            <label>Broker Involved</label>
+            <input class="pull-right" name="contractType" type="checkbox" ng-model="vm.newTransaction.tr_brokerInvolved"/>
+        </div>
+        <div ng-if="vm.showCommission" class="form-group col-md-8 marginTop5">
+            <label>Broker</label>
+            <selectize ng-disabled="!vm.newTransaction.tr_brokerInvolved" placeholder='Please enter broker involved' config="vm.bpConfig" options='vm.brokersList' ng-model="vm.newTransaction.tr_broker"></selectize>
+        </div>
+        <div ng-if="vm.showCommission" class="col-md-8 col-md-offset-4">
+
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Commission Type</label>
+                <selectize  ng-disabled="vm.viewMode" placeholder="Enter commission Type" config="vm.commissionTypeConfig" ng-model="vm.newTransaction.tr_commissionType"></selectize>
+            </div>
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Commission</label>
+                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_commission" class="form-control"  placeholder="Enter commission">
+            </div>
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Broker Comission</label>
+                <input type="number"  ng-disabled="vm.viewMode || !vm.newTransaction.tr_broker" ng-model="vm.newTransaction.tr_brokerCommission" class="form-control"placeholder="Enter broker commision">
+            </div>
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Difference</label>
+                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_difference" class="form-control"placeholder="Enter difference">
+            </div>
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Discount</label>
+                <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_discount" class="form-control"  placeholder="Enter discount">
+            </div>
+            <div class="form-group col-lg-12 marginLeft15 width106">
+                <label>Net Commission</label>
+                <input type="text" ng-bind="vm.newTransaction.tr_commission * vm.quantityValue" ng-disabled="true" ng-model="vm.newTransaction.tr_netCommision" class="form-control" placeholder="Enter Product Name">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12  marginLeft15">
+        <div class="col-lg-12 tableHeading">
+            <label>Shipment Details</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showShipment = !vm.showShipment">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showShipment,'fa-chevron-circle-right':!vm.showShipment}"></i>
+            </label>
+        </div>
+        <div ng-if="vm.showShipment">
+            <div class="form-group col-lg-12 col-xs-12">
+
+                <div class="row marginTop5  height100px">
+                    <div class="col-lg-4 col-xs-12">
+                        <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.tr_notShipped"/><label>Not Shipped</label>
+                    </div>
+                    <div class="col-lg-8 col-xs-12">
+                        <label>Reason</label>
+                        <input class="form-control" placeholder="Reason" ng-disabled="!vm.newTransaction.tr_notShipped" type="input" ng-model="vm.newTransaction.tr_notShippedReason">
+                    </div>
+                </div>
+                <div class="row marginTop5 height100px">
+                    <div class="col-lg-4 col-xs-12">
+                        <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.tr_appropriationRecieved"/><label>Appropration Recieved</label>
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <label>Expected Shipment</label>
+                        <date-picker date="vm.newTransaction.tr_expectedShipment" max-date="" min-date=""></date-picker>
+                    </div>
+                </div>
+
+                <div class="row marginTop5 height100px">
+                    <div class="col-lg-4 col-xs-12">
+                        <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.tr_shipped"/><label>Shipped</label>
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <label>Date Shipped</label>
+                        <date-picker ng-disabled="!vm.newTransaction.tr_shipped" date="vm.newTransaction.tr_dateShipped" max-date="" min-date=""></date-picker>
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <label>Expected Arrival</label>
+                        <date-picker ng-disabled="!vm.newTransaction.tr_shipped" date="vm.newTransaction.tr_expectedArrival" max-date="" min-date=""></date-picker>
+
+                    </div>
+                </div>
+
+                <div class="row marginTop5 height100px">
+                    <div class="col-lg-4 col-xs-12">
+                        <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.newTransaction.tr_arrivedAtPort"/><label>Arrived at Port</label>
+                    </div>
+                    <div class="col-lg-4 col-xs-12">
+                        <label>Date Arrived</label>
+                        <date-picker date="vm.newTransaction.tr_dateArrived" max-date="" min-date=""></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="col-lg-4 col-xs-12">
+                    <label>Port of Loading</label>
+                    <textarea  rows="2" ng-model="vm.newTransaction.tr_portOfLoading"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Loading"></textarea>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Port of Destination</label>
+                    <textarea  rows="2" ng-model="vm.newTransaction.tr_portOfDestination"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Destination"></textarea>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Shipping Line Contact Details</label>
+                    <textarea rows="2" ng-model="vm.newTransaction.tr_shippingLineContactDetails" class="form-control resizeNone" placeholder="Shipping Line Contact Details" ></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Vessel Number</label>
+                <input type="text"  ng-model="vm.newTransaction.tr_vesselNumber" class="form-control" placeholder="Enter vessel number">
+
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Voyage Number</label>
+                <input type="text"  ng-model="vm.newTransaction.tr_voyageNumber" class="form-control" placeholder="Enter voyage number">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Primary Shipper</label>
+                <selectize ng-disabled="vm.viewMode" placeholder='Please select shipper' config="vm.bpConfig" options='vm.shippersList' ng-model="vm.newTransaction.tr_shipperID"></selectize>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12  marginLeft15">
+        <div class="col-lg-12 tableHeading">
+            <label>Transaction Status</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showStatus = !vm.showStatus">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showStatus,'fa-chevron-circle-right':!vm.showStatus}"></i>
+            </label>
+        </div>
+
+        <div ng-if="vm.showStatus" class="form-group col-lg-4">
+            <label>Status</label>
+            <selectize placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.newTransaction.tr_transactionStatus"></selectize>
+        </div>
+        <div ng-if="vm.showStatus" class="form-group col-lg-4">
+            <label>Washout at X Value</label>
+            <input placeholder="Enter washout value" type="number" class="form-control" ng-model="vm.newTransaction.tr_washOutValue"/>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12  marginLeft15">
+        <div class="col-lg-12 tableHeading">
+            <label>Notes</label>
+            <label class="pull-right cursor-pointer" ng-click="vm.showNotes = !vm.showNotes">
+                <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showNotes,'fa-chevron-circle-right':!vm.showNotes}"></i>
+            </label>
+        </div>
+        <div class="form-group col-lg-12" ng-if="vm.showNotes">
+            <textarea ng-model="vm.newTransaction.notes"  ng-disabled="vm.viewMode" rows="5" class="col-xs-12" placeholder="Add notes here..."></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12  marginLeft15 marginTop5"ui-view="documents"></div>
+</div>
+</div>
+
+</page-blue-container>
+
+
 <div ui-view="notes"></div>
-<div ui-view="documents"></div>
+

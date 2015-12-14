@@ -34,84 +34,19 @@
                     state: 'shell.tradebook.newTransaction'
                 }
             ];
-            vm.allTransactions = {};
-            vm.gridOptions = {
-                paginationPageSizes: [25, 50, 75],
-                paginationPageSize: 25,
-                enableSorting: true,
-                data : [],
-                enableGridMenu: true,
-                enableSelectAll: true,
-                exporterCsvFilename: 'allTransactions.csv',
-                exporterPdfDefaultStyle: {fontSize: 9},
-                exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
-                exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
-                exporterPdfHeader: { text: "All Transactions", style: 'headerStyle' },
-                exporterPdfFooter: function ( currentPage, pageCount ) {
-                    return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
-                },
-                exporterPdfCustomFormatter: function ( docDefinition ) {
-                    docDefinition.styles.headerStyle = { fontSize: 22, bold: true };
-                    docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
-                    return docDefinition;
-                },
-                exporterPdfOrientation: 'portrait',
-                exporterPdfPageSize: 'LETTER',
-                exporterPdfMaxGridWidth: 500,
-                exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location"))
-
-            };
-
+            vm.allTransactions = [];
             tradebook.getTransactionList().then(function(res){
                 if(!res.data.success){
-                    toastr.error(res.data.message, 'Error');
+                    toastr.error(res.data.message, 'Can Not Get Transaction From Server');
                 }
                 else{
-                    console.log(res.data.transactions);
-                    vm.gridOptions.data = res.data.transactions;
-
+                    vm.allTransactions = res.data.transactions;
                 }
-
             });
-            vm.saveTransaction = saveTransaction;
-            vm.allTransactions.tableHeadings =  [
-                                    {
-                                      name:'File No',
-                                      filter: true
-                                    },
-                                    {
-                                      name:'Date',
-                                      filter:true
-                                    },
-                                    {
-                                      name:'Buyer',
-                                      filter:true
-                                    },
-                                    {
-                                      name:'Seller',
-                                      filter:true
-                                    },
-                                    {
-                                      name:'Product',
-                                      filter:false
-                                    },
-                                    {
-                                      name:'Quantity',
-                                      fitler:false
-                                    },
-                                    {
-                                      name:'Rate',
-                                      fitler:false
-                                    },
-                                    {
-                                        name:'Commission',
-                                        filter:false
-                                    }
-                                ];
-        }
-    function saveTransaction(){
+            vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Port', 'Shipment', 'Commission'];
 
         }
+
 	}
 
 }());

@@ -10,39 +10,40 @@
                     </label>
 
                 </div>
-                <div class="form-group col-xs-12 col-md-6">
-                    <label>Business Partner Name</label>
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Business Partner</label>
                     <p ng-bind="vm.businessPartner.gen[0].bp_Name"></p>
                 </div>
                 <div class="form-group col-xs-12 col-md-3">
-                    <label>Origin</label>
-                    <p ng-bind="vm.businessPartner.gen[0].bp_country"></p>
+                    <label>Credibility Rating</label>
+                    <p>{{vm.businessPartner.gen[0].bp_credibilityIndex}} / 5</p>
                 </div>
                 <div class="form-group col-xs-12 col-md-3">
                     <label>On Doni Contract</label>
                     <p ng-if="vm.businessPartner.gen[0].bp_onDoniContract">Yes</p>
                     <p ng-if="!vm.businessPartner.gen[0].bp_onDoniContract">Yes</p>
                 </div>
-                <div class="form-group col-xs-12 col-md-6">
+                <div class="form-group col-xs-12 col-md-3">
                     <label>Role</label>
                     <p>
-                        <span ng-if="vm.businessPartner.gen[0].bp_isBuyer">#Buyer</span>
-                        <span ng-if="vm.businessPartner.gen[0].bp_isSeller">#Seller</span>
-                        <span ng-if="vm.businessPartner.gen[0].bp_isShipper">#Shipper</span>
-                        <span ng-if="vm.businessPartner.gen[0].bp_Broker">#Broker</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isBuyer">&nbsp;<i class="fa fa-tag"></i>&nbsp;Buyer</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isSeller">&nbsp;<i class="fa fa-tag"></i>&nbsp;Seller</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_isShipper">&nbsp;<i class="fa fa-tag"></i>&nbsp;Shipper</span>
+                        <span ng-if="vm.businessPartner.gen[0].bp_Broker">&nbsp;<i class="fa fa-tag"></i>&nbsp;Broker</span>
                     </p>
                 </div>
-                <div class="form-group col-xs-12 col-md-6">
-                    <label>Credibility Rating</label>
-                    <p>{{vm.businessPartner.gen[0].bp_credibilityIndex}} / 5</p>
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Origin</label>
+                    <p ng-bind="vm.businessPartner.gen[0].bp_country"></p>
                 </div>
-                <div class="form-group col-xs-12 col-md-6">
-                    <label>Address</label>
-                    <p ng-bind="vm.businessPartner.gen[0].bp_address"></p>
-                </div>
-                <div class="form-group col-xs-12 col-md-6">
+
+                <div class="form-group col-xs-12 col-md-3">
                     <label>Website</label>
                     <p><a href="#">{{vm.businessPartner.gen[0].bp_website}}</a></p>
+                </div>
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Address</label>
+                    <p ng-bind="vm.businessPartner.gen[0].bp_address"></p>
                 </div>
 
 
