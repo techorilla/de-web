@@ -1,0 +1,120 @@
+<div class="col-lg-12  marginLeft15">
+    <div class="col-lg-12 tableHeading">
+        <label>Shipment Details</label>
+        <label class="pull-right cursor-pointer" ng-click="vm.showShipment = !vm.showShipment">
+            <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showShipment,'fa-chevron-circle-right':!vm.showShipment}"></i>
+        </label>
+    </div>
+    <div ng-if="vm.showShipment">
+        <div class="form-group col-lg-12 col-xs-12">
+
+            <div class="row marginTop5  height100px">
+                <div class="col-lg-4 col-xs-12">
+                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_notShipped"/><label>Not Shipped</label>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Reason</label>
+
+                    <textarea  rows="2" ng-model="vm.shipment.tr_notShippedReason"
+                               ng-disabled="vm.viewMode" class="col-xs-12 resizeNone"
+                               placeholder="Reason..."></textarea>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Shipment Extension</label>
+                    <input class="form-control" name="contractType"
+                           placeholder="Shipment Extension"
+                           type="text" ng-model="vm.shipment.shipmentExtension"/>
+
+                </div>
+            </div>
+            <div class="row marginTop5 height100px">
+                <div class="col-lg-4 col-xs-12">
+                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_appropriationRecieved"/><label>Appropration Recieved</label>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Expected Shipment</label>
+                    <date-picker date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>In Transit</label>
+                    <date-picker date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
+                </div>
+            </div>
+
+            <div class="row marginTop5 height100px">
+                <div class="col-lg-4 col-xs-12">
+                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_shipped"/><label>Shipped</label>
+                </div>
+                <div class="col-lg-2 col-xs-12">
+                    <label>Date Shipped</label>
+                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_dateShipped" max-date="" min-date=""></date-picker>
+                </div>
+                <div class="col-lg-2 col-xs-12">
+                    <label>Expected Arrival</label>
+                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_expectedArrival" max-date="" min-date=""></date-picker>
+
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Transit Port</label>
+                    <input type="text"
+                           ng-model="vm.shipment.tr_transitPort"
+                           class="form-control"
+                           placeholder="Enter Invoice No.">
+
+                </div>
+            </div>
+
+            <div class="row marginTop5 height100px">
+                <div class="col-lg-4 col-xs-12">
+                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_arrivedAtPort"/><label>Arrived at Port</label>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Date Arrived</label>
+                    <date-picker date="vm.shipment.tr_dateArrived" max-date="" min-date=""></date-picker>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>B/L No.</label>
+                <input type="text"  ng-model="vm.shipment.tr_ship_BlNo" class="form-control" placeholder="Enter B/L No.">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Invoice No.</label>
+                <input type="text"  ng-model="vm.shipment.tr_ship_invoiceNo" class="form-control" placeholder="Enter Invoice No.">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Invoice Amount</label>
+                <input type="text"  ng-model="vm.shipment.tr_ship_invoiceAmt" class="form-control" placeholder="Enter Invoice Amount">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Quantity Shipped (Mt)</label>
+                <input type="text"  ng-model="vm.shipment.tr_ship_quantity" class="form-control" placeholder="Enter quantity shipped">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Vessel/Voyage Number</label>
+                <input type="text"  ng-model="vm.shipment.tr_ship_vesselNo" class="form-control" placeholder="Enter voyage number">
+            </div>
+            <div class="form-group col-lg-4 col-xs-12">
+                <label>Primary Shipper</label>
+                <selectize ng-disabled="vm.viewMode" placeholder='Please select shipper' config="vm.bpConfig" options='vm.shippersList' ng-model="vm.shipment.tr_ship_primaryShipper"></selectize>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="col-lg-4 col-xs-12">
+                <label>Port of Loading</label>
+                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portLoad"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Loading"></textarea>
+            </div>
+            <div class="col-lg-4 col-xs-12">
+                <label>Port of Destination</label>
+                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portDest"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Destination"></textarea>
+            </div>
+            <div class="col-lg-4 col-xs-12">
+                <label>Shipping Line Contact Details</label>
+                <textarea rows="2" ng-model="vm.shipment.tr_shippingLineContactDetails" class="form-control resizeNone" placeholder="Shipping Line Contact Details" ></textarea>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

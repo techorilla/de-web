@@ -47,14 +47,22 @@
 //	    .setStorageType('sessionStorage');
 //	});
 
-	angular.module('app.core').config(function (ScrollBarsProvider) {
+	angular.module('app.core')
+        .config(function (ScrollBarsProvider) {
 	    ScrollBarsProvider.defaults = {
 	        theme: 'dark',
 	        autoHideScrollbar: true,
             scrollbarPosition: 'inside',
             axis:'y'
 	    };
-	});
+	}).config(function(toastrConfig) {
+        angular.extend(toastrConfig, {
+            autoDismiss: true,
+            maxOpened: 1,
+            toastClass: 'toastOpacity',
+            closeButton: false
+        });
+    });
 
     angular.module('app.core').config(function($httpProvider) {
         $httpProvider.interceptors.push(function($q, $injector) {

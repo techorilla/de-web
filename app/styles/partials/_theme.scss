@@ -3,6 +3,14 @@ $fontPrimary: "Open Sans", Arial;
 $fontSecondary: "Questrial", Arial;
 $transitionValue: all 0.3s ease-in-out;
 $orangeColor: #F47414;
+$redColor: #E30C2C;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
 @mixin transition($transitionValue) {
   -webkit-transition: $transitionValue;
@@ -727,8 +735,22 @@ img {
   cursor: pointer;
 }
 
+.redFont{
+  color:$redColor;
+  cursor:pointer;
+}
+
+.blueFont{
+  color:$baseColor;
+  cursor:pointer;
+}
+.border-right-gray{
+  border-right: 1px solid #ccc;
+}
+
+
 .orangeFont:hover{
-  color:$orangeColor+20;
+  color:($orangeColor - 10);
 }
 .tags{
   font-family: $fontSecondary;
@@ -838,10 +860,18 @@ img {
   padding-bottom: -2px;
 }
 
+.border-bottom-gray{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: -2px;
+}
+
 .resizeNone{
   resize:none;
 }
 
 .font30days{
   font-size: 10px;
+}
+.toastOpacity{
+  opacity:0.9;
 }

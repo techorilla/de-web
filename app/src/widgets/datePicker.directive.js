@@ -45,9 +45,11 @@
         scope.minDate = (scope.minDate === '') ? '1970-01-01' : scope.minDate;
 
         scope.openDatePicker = function($event){
-            $event.preventDefault();
-            $event.stopPropagation();
-            scope.datePickerOpened = true;
+            if(!scope.disabled){
+                $event.preventDefault();
+                $event.stopPropagation();
+                scope.datePickerOpened = true;
+            }
         };
     }
   }

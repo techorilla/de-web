@@ -64,12 +64,46 @@
               return tabFilter.getAllCountries().then(function (res) {
                   return res.data.country;
               });
+          },
+          sellersList: function(tabFilter){
+              return tabFilter.getDropDownBP("Seller").then(function(res){
+                  return res.data.data;
+              });
+          },
+           shippersList: function(tabFilter) {
+               return tabFilter.getDropDownBP("Shipper").then(function (res) {
+                   return res.data.data;
+               });
+           },
+          buyersList: function(tabFilter) {
+              return tabFilter.getDropDownBP("Buyer").then(function (res) {
+                  return res.data.data;
+              });
+          },
+          bpConfig: function(tradebook){
+              return tradebook.getBpConfig();
           }
        },
        views:{
           'content@shell':{
-              templateUrl:'src/tradebook/addTransaction.html',
+              templateUrl:'src/tradebook/addTransaction/addTransaction.html',
               controller:'AddTransaction as vm'
+          },
+          'documents@shell.tradebook.newTransaction':{
+              templateUrl:'src/tradebook/transactionNotes/transactionNotes.html',
+              controller:'TransactionNotes as vm'
+          },
+          'notes@shell.tradebook.newTransaction':{
+              templateUrl:'src/tradebook/transactionDocuments/transactionDocuments.html',
+              controller:'TransactionDocuments as vm'
+          },
+          'shipmentDetails@shell.tradebook.newTransaction':{
+              templateUrl: 'src/tradebook/shipmentDetails/shipmentDetails.html',
+              controller: 'ShipmentDetails as vm'
+          },
+          'secondaryTransaction@shell.tradebook.newTransaction':{
+              templateUrl:'src/tradebook/secondaryTrade/secondaryTrade.html',
+              controller:'SecondaryTrade as vm'
           }
        }
     });

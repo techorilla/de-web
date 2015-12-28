@@ -1,0 +1,112 @@
+<div class="col-lg-12  marginLeft15">
+    <div class="col-lg-12 tableHeading">
+        <label>Secondary Trade</label>
+        <label class="pull-right cursor-pointer" >
+            <span ng-bind="vm.secondaryTransactions.length + ' Secondary Trades'"></span>
+            <i ng-click="vm.showSecondaryTrade = !vm.showSecondaryTrade" class="fa" ng-class="{'fa-chevron-circle-down':vm.showSecondaryTrade,'fa-chevron-circle-right':!vm.showSecondaryTrade}"></i>
+        </label>
+    </div>
+    <div class="col-lg-12" ng-if="vm.showSecondaryTrade">
+        <div class="row">
+            <div class="col-lg-12 border-bottom-gray">
+                <label ng-if="vm.currentlyAdding">New Secondary Transaction</label>
+                <label ng-click="vm.currentlyAdding=true;" class="cursor-pointer pull-right" ng-if="!vm.currentlyAdding">
+                    <i class="fa fa-plus-circle orangeFont"></i>
+                    &nbsp;&nbsp;Add New Secondary Trade
+                </label>
+                <label ng-click="vm.cancel()" class="cursor-pointer pull-right" ng-if="vm.currentlyAdding">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-times-circle redFont"></i>
+                    &nbsp;&nbsp;Cancel
+                </label>
+                <label ng-click="vm.addSecondary()" class="cursor-pointer pull-right border-right-gray" ng-if="vm.currentlyAdding">
+                    <i class="fa fa-database blueFont"></i>
+                    &nbsp;&nbsp;Save&nbsp;&nbsp;
+                </label>
+
+            </div>
+        </div>
+        <div class="row" ng-if="vm.currentlyAdding">
+            </br>
+            <div class="col-lg-12">
+                <div class="form-group col-lg-4 col-xs-12 col-lg-offset-8">
+                    <label>Date of Transaction</label>
+                    <date-picker date="vm.newSecondaryTransaction.tr_sec_date" max-date="" min-date=""></date-picker>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+
+                <div class="form-group col-lg-4  col-xs-12 col-lg-offset-4">
+                    <label>Buyer</label>
+                    <selectize ng-disabled="vm.viewMode" placeholder='Please enter buyer' config="vm.bpConfig" options='vm.buyersList' ng-model="vm.newSecondaryTransaction.tr_sec_bpBuyerID"></selectize>
+                </div>
+                <div class="form-group col-lg-4 col-xs-12">
+                    <label>Price</label>
+                    <number-only-input input-value="vm.newSecondaryTransaction.tr_sec_buyerPrice" input-name="vm.newSecondaryTransaction.tr_sec_buyerPrice" input-place="USD$"></number-only-input>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group col-lg-4  col-xs-12 col-lg-offset-4">
+                    <label>Seller</label>
+                    <selectize ng-disabled="vm.viewMode" placeholder='Please enter seller'  config="vm.bpConfig" options='vm.sellersList' ng-model="vm.newSecondaryTransaction.tr_sec_bpSellerID"></selectize>
+                </div>
+                <div class="form-group col-lg-4 col-xs-12">
+                    <label>Price</label>
+                    <number-only-input input-value="vm.newSecondaryTransaction.tr_sec_sellerPrice" input-name="vm.newSecondaryTransaction.tr_sec_sellerPrice" input-place="USD$"></number-only-input>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label>Other Information</label>
+                <textarea rows="2" ng-model="vm.newSecondaryTransaction.tr_sec_otherInfo" class="form-control resizeNone" placeholder="Enter other information here" ></textarea>
+
+            </div>
+        </div>
+        <div ng-repeat="tran in vm.secondaryTransactions | orderBy: 'tr_sec_date'" class="row" ng-if="vm.secondaryTransactions.length >0">
+            </br>
+            <div class="col-lg-12 border-bottom-gray">
+                <label>Secondary Transaction {{$index+1}}</label>
+                <label  ng-click="vm.deleteSecondaryTransaction()" class="pull-right cursor-pointer">Delete&nbsp;&nbsp;
+                    <i class=" fa fa-trash-o"></i>
+                </label>
+            </div>
+            </br>
+            <div class="col-lg-12">
+                </br>
+                <div class="form-group col-lg-12 col-xs-12">
+                    <label>Date:</label>
+                    <label class="dropdownLabel" ng-bind="tran.tr_sec_date | date: 'dd-MMM-yyyy'"></label>
+                </div>
+                <div class="form-group col-lg-4  col-xs-12">
+                    <label>Buyer:</label>
+                    <label>
+                        <span ng-bind="tran.tr_sec_bpBuyerName" class="dropdownLabel"></span>
+                        <span ng-bind="tran.tr_sec_bpBuyerOrigin" class="dropdownCaption"></span>
+                        <span ng-bind="tran.tr_sec_bpBuyerPContact ? tran.tr_sec_bpBuyerPContact : 'No Primary Contact'" class="dropdownCaption"></span>
+                    </label>
+                </div>
+                <div class="form-group col-lg-2 col-xs-12">
+                    <label>Price:</label>
+                    <label class="dropdownLabel" ng-bind="tran.tr_sec_buyerPrice | currency:'USD$ ':0" ></label>
+                </div>
+                <div class="form-group col-lg-4  col-xs-12">
+                    <label>Seller:</label>
+                    <span ng-bind="tran.tr_sec_bpSellerName" class="dropdownLabel">label</span>
+                    <span ng-bind="tran.tr_sec_bpSellerrOrigin" class="dropdownCaption">label</span>
+                    <span ng-bind="tran.tr_sec_bpSellerPContact ? tran.tr_sec_bpSellerPContact : 'No Primary Contact'" class="dropdownCaption">label</span>
+                </div>
+                <div class="form-group col-lg-2 col-xs-12">
+                    <label>Price:</label>
+                    <label class="dropdownLabel" ng-bind="tran.tr_sec_sellerPrice | currency:'USD$ ':0" ></label>
+                </div>
+                <div class="form-group col-lg-12 col-xs-12">
+                    <label>Other Information:</label>
+                    <label class="dropdownCaption" ng-bind="tran.tr_sec_otherInfo ? tran.tr_sec_otherInfo: 'No Information Added'"></label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

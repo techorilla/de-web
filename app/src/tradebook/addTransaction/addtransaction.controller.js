@@ -13,7 +13,7 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction(tradebook, staticDropDown, $scope,tabFilter, product, country,toastr, $filter){
+	function AddTransaction(tradebook, staticDropDown, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter){
 		var vm = this;
         init();
         vm.showBroker = false;
@@ -23,8 +23,6 @@
         vm.showContractInfo=false;
         vm.showCommission = false;
         vm.showStatus = false;
-        vm.showShipment = false;
-        vm.showDocument = false;
         vm.showNotes = false;
 
         vm.saveTransaction = saveTransaction;
@@ -55,36 +53,7 @@
             labelField: 'text',
             maxItems:1
         };
-        vm.bpConfig = {
-            valueField: 'bp_ID',
-            sortField: 'bp_Name',
-            searchField: ['bp_Name','bp_Cont_fullName', 'bp_country'],
-            maxItems:1,
-            create: false,
-            persist: false,
-            render: {
-                item: function(item, escape) {
-                    var label = item.bp_Name;
-                    var caption = item.bp_country;
-                    var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
-                    return '<div>' +
-                        '<span class="dropdownLabel">' + label + '</span>' +
-                        '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
-                        '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
-                        '</div>';
-                },
-                option: function(item, escape) {
-                    var label = item.bp_Name;
-                    var caption = item.bp_country;
-                    var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
-                    return '<div>' +
-                        '<span class="dropdownLabel">' + label + '</span>' +
-                        '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
-                        '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
-                        '</div>';
-                }
-            }
-        };
+        vm.bpConfig = bpConfig;
         vm.productConfig = {
             valueField: 'id',
             sortField: 'name',
@@ -117,58 +86,6 @@
             }
         };
         vm.quantityValue = 0;
-
-
-
-        vm.newTransaction = {
-             tr_bpBuyerID:'',
-             tr_bpSellerID:'',
-             tr_productID:'',
-             tr_fileID:'',
-             tr_contractID:'',
-             tr_date:null,
-             tr_price:0,
-             tr_FCL:false,
-             tr_MT:false,
-             tr_conversion_FCMT: 0,
-             tr_quantity: 0,
-             tr_doniContract: false,
-             tr_ownContract: false,
-             tr_contractualBuyer:'',
-             tr_broker:'',
-             tr_brokerInvolved: false,
-             tr_commission:0,
-             tr_brokerCommission:0,
-             tr_commissionType: '',
-             tr_difference: 0,
-             tr_discount: 0,
-             tr_netCommision: 0,
-             tr_shipmentDateFrom: null,
-             tr_shipmentDateTo: null,
-             tr_shipment30days:false,
-             tr_shipmentStatus: '',
-             tr_transactionStatus:'',
-             tr_washOutValue:null,
-             tr_shipperID: '',
-             tr_transactionOtherInfo: '',
-             tr_notShipped:false,
-             tr_notShippedReason: '',
-             tr_appropriationRecieved:false,
-             tr_expectedShipment: '',
-             tr_shipped: false,
-             tr_dateShipped: '',
-             tr_expectedArrival:null,
-             tr_arrivedAtPort:false,
-             tr_dateArrived: '',
-             tr_portOfLoading:'',
-             tr_portOfDestination:'',
-             tr_origin:'',
-             tr_shippingLineContactDetails:'',
-             tr_voyageNumber:'',
-             tr_vesselNumber:'',
-             tr_packing: ''
-
-        };
 
         vm.calculateCommission = function(){
             return (vm.newTransaction.tr_commission - vm.newTransaction.tr_brokerCommission + vm.newTransaction.tr_difference - vm.newTransaction.tr_discount ) * vm.quantityValue;
@@ -243,6 +160,8 @@
 
     function init(){
 
+        vm.newTransaction = tradebook.getNewTransaction();
+
         vm.singleConfig = {
             valueField: 'text',
             labelField: 'text',
@@ -253,25 +172,19 @@
 
         $scope.$watch('vm.newTransaction.tr_shipment30days',function(newVal){
             if(newVal){
-                vm.newTransaction.tr_shipmentDateTo = (new Date(vm.newTransaction.tr_shipmentDateFrom));
-                vm.newTransaction.tr_shipmentDateTo.setDate(vm.newTransaction.tr_shipmentDateTo.getDate() + 30);
+                vm.newTransaction.tr_shipment_end = (new Date(vm.newTransaction.tr_shipment_start));
+                vm.newTransaction.tr_shipment_end.setDate(vm.newTransaction.tr_shipment_end.getDate() + 30);
             }
             else{
                 vm.newTransaction.tr_shipmentDateTo = '';
             }
         });
+        vm.sellersList = sellersList;
+        vm.buyersList = buyersList;
 
-        tabFilter.getDropDownBP("Buyer").then(function(res){
-            vm.buyersList = res.data.data;
-        });
-        tabFilter.getDropDownBP("Seller").then(function(res){
-            vm.sellersList = res.data.data;
-        });
+
         tabFilter.getDropDownBP("Broker").then(function(res){
             vm.brokersList = res.data.data;
-        });
-        tabFilter.getDropDownBP("Shipper").then(function(res){
-            vm.shippersList = res.data.data;
         });
         product.getAllProducts().then(function(res){
             vm.productList = res.data;
