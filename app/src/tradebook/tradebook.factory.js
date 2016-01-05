@@ -54,7 +54,10 @@
             getBpConfig: getBpConfig,
             getNewSecondaryTransaction: getNewSecondaryTransaction,
             getNewShipmentDetails: getNewShipmentDetails,
-            getNewTransaction: getNewTransaction
+            getNewTransaction: getNewTransaction,
+            getNewTransactionCommission:getNewTransactionCommission,
+            saveBasicTransaction: saveBasicTransaction,
+            getNewTransactionStatus: getNewTransactionStatus
 
 		};
 
@@ -117,24 +120,59 @@
             };
         }
 
+        function getNewTransactionCommission(){
+            return {
+                tr_transactionID:'',
+                tr_brokerInvolved: false,
+                tr_sellerBroker: false,
+                tr_sellerBrokerID:'',
+                tr_sellerBroker_comm_type:'',
+                tr_sellerBroker_comm:0,
+                tr_buyerBroker:false,
+                tr_buyerBrokerID:'',
+                tr_buyerBroker_comm_type:'',
+                tr_buyerBroker_comm:0,
+                tr_own_Commission:'',
+                tr_ownCommissionType:'',
+                tr_difference:0,
+                tr_discount:0,
+                tr_netCommission:0
+            }
+        }
+
+        function getNewTransactionStatus(){
+            return {
+                tr_transactionID:'',
+                tr_transactionStatus:'',
+                tr_washoutValueAtPar: -1
+            }
+        }
+
         function getNewShipmentDetails(){
             return {
                 tr_transactionID: '',
-                tr_ship_notShipped:'',
-                tr_ship_arrivedAtPort:'',
-                tr_ship_appReceived:'',
-                tr_ship_portLoad:'',
-                tr_ship_portDest:'',
-                tr_ship_shipLineCont:'',
+                tr_ship_notShipped:false,
+                tr_ship_notShipped_reason:'',
+                tr_ship_extension:'',
+                tr_ship_appReceived:false,
+                tr_expectedShipment:'',
+                tr_inTransit:'',
+                tr_shipped:false,
+                tr_dateShipped:'',
+                tr_expectedArrival:'',
+                tr_transitPort:'',
+                tr_ship_arrivedAtPort:false,
+                tr_dateArrived:'',
+                tr_actualArrived:'',
                 tr_ship_BlNo:'',
                 tr_ship_invoiceNo:'',
                 tr_ship_invoiceAmt:'',
                 tr_ship_quantity:'',
                 tr_ship_vesselNo:'',
-                tr_ship_primaryShipper:'',
-                tr_ship_notShipped_reason:'',
-                tr_ship_extension:'',
-
+                tr_ship_primaryShipperId:'',
+                tr_ship_portLoad:'',
+                tr_ship_portDest:'',
+                tr_ship_shipLineCont:''
 
             };
         }
@@ -155,6 +193,21 @@
                     'Content-Type': "application/json"
                 },
                 data: {transaction: transaction}
+            }
+            return $http(req)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+
+        function saveBasicTransaction(newTransaction, callback){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'addNewTransaction/basic',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {newTransaction: newTransaction}
             }
             return $http(req)
                 .success(function (response) {

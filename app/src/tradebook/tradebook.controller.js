@@ -31,7 +31,7 @@
             vm.headerAnchor = [
                 {
                     text: 'Add new Transaction',
-                    state: 'shell.tradebook.newTransaction'
+                    state: 'shell.tradebook.Transaction({tran:"new"})'
                 }
             ];
             vm.allTransactions = [];

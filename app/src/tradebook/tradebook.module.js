@@ -28,27 +28,8 @@
             }
        }
      })
-     .state('shell.tradebook.viewTransaction',{
-       url:'/view/:id',
-       subNavTitle: 'Trade Book - View Transaction',
-       views:
-       {
-            'content@shell':{
-                templateUrl: 'src/tradebook/viewTransaction/viewtransaction.template.html',
-                controller: 'ViewTransaction as vm'
-            },
-            'notes@shell.tradebook.viewTransaction':{
-                templateUrl: 'src/tradebook/viewTransaction/transactionnotes.template.html',
-                controller: 'TransactionNotes as vm'
-            },
-            'documents@shell.tradebook.viewTransaction':{
-                templateUrl: 'src/tradebook/viewTransaction/transactiondocuments.template.html',
-                controller: 'TransactionDocuments as vm'
-            }
-       }
-     })
-     .state('shell.tradebook.newTransaction',{
-       url:'/new',
+     .state('shell.tradebook.Transaction',{
+       url:'/:tran',
        resolve:{
           staticDropDown: function (tradebook) {
               return tradebook.getStaticDropDown().then(function (res) {
@@ -89,19 +70,22 @@
               templateUrl:'src/tradebook/addTransaction/addTransaction.html',
               controller:'AddTransaction as vm'
           },
-          'documents@shell.tradebook.newTransaction':{
+          'commission@shell.tradebook.Transaction':{
+              templateUrl:'src/tradebook/transactionCommission/transactionCommission.html'
+          },
+          'documents@shell.tradebook.Transaction':{
               templateUrl:'src/tradebook/transactionNotes/transactionNotes.html',
               controller:'TransactionNotes as vm'
           },
-          'notes@shell.tradebook.newTransaction':{
+          'notes@shell.tradebook.Transaction':{
               templateUrl:'src/tradebook/transactionDocuments/transactionDocuments.html',
               controller:'TransactionDocuments as vm'
           },
-          'shipmentDetails@shell.tradebook.newTransaction':{
+          'shipmentDetails@shell.tradebook.Transaction':{
               templateUrl: 'src/tradebook/shipmentDetails/shipmentDetails.html',
               controller: 'ShipmentDetails as vm'
           },
-          'secondaryTransaction@shell.tradebook.newTransaction':{
+          'secondaryTransaction@shell.tradebook.Transaction':{
               templateUrl:'src/tradebook/secondaryTrade/secondaryTrade.html',
               controller:'SecondaryTrade as vm'
           }
