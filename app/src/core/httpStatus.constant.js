@@ -21,7 +21,14 @@
 (function(){
 
   'use strict';
-
+  var crud = {
+    CREATE: 'CREATE',
+    DELETE: 'DELETE',
+    UPDATE: 'UPDATE',
+    READ: 'READ',
+    READ_ALL: 'READ_ALL',
+    DELETE_ALL: 'DELETE_ALL'
+  };
   var httpStatus = {
     /**
      * @ngdoc property
@@ -122,6 +129,7 @@
 
   angular
     .module('app.core')
-    .constant('httpStatus', httpStatus);
+    .constant('httpStatus', httpStatus)
+    .constant('crud',crud);
 
 }());
