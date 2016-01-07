@@ -148,13 +148,16 @@
 
     function saveBasicTransaction(){
         tradebook.transactionBasicCrud(vm.newTransaction,crud.CREATE).then(function(response){
-            if(response.success){
-                toastr.success(response.message, 'Success');
-                $state.transitionTo('shell.tradebook.Transaction', {tran: response.transactionId}, { notify: false });
+            if(response.data.success){
+                toastr.success(response.data.message, 'Success');
+                $state.transitionTo('shell.tradebook.Transaction', {tran: response.data.transactionId}, { notify: false });
             }
             else{
-                toastr.error(response.message, 'Error');
+
+                toastr.error(response.data.message, 'Error');
             }
+        },function(err){
+            console.log(err);
         });
     }
 
