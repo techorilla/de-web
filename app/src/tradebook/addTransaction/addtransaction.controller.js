@@ -13,7 +13,7 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction(tradebook, staticDropDown, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter){
+	function AddTransaction(tradebook, staticDropDown, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter){
 		var vm = this;
         init();
         vm.showBroker = false;
@@ -147,14 +147,14 @@
 
 
     function saveBasicTransaction(){
-        tradebook.saveBasicTransaction(vm.newTransaction,function(response){
-           if(response.success){
-               toastr.success(response.message, 'Success');
-               $state.transitionTo('shell.tradebook.Transaction', {tran: response.transactionId}, { notify: false });
-           }
-           else{
-               toastr.error(response.message, 'Error');
-           }
+        tradebook.transactionBasicCrud(vm.newTransaction,crud.CREATE).then(function(response){
+            if(response.success){
+                toastr.success(response.message, 'Success');
+                $state.transitionTo('shell.tradebook.Transaction', {tran: response.transactionId}, { notify: false });
+            }
+            else{
+                toastr.error(response.message, 'Error');
+            }
         });
     }
 

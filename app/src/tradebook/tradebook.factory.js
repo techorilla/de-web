@@ -46,18 +46,30 @@
           };
 		return {
 			testFunction: testFunction,
+            saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
-            deleteTransaction: deleteTransaction,
             getSingleTransactionDetails: getSingleTransactionDetails,
             getBpConfig: getBpConfig,
+
             getNewSecondaryTransaction: getNewSecondaryTransaction,
             getNewShipmentDetails: getNewShipmentDetails,
             getNewTransaction: getNewTransaction,
             getNewTransactionCommission:getNewTransactionCommission,
-            saveBasicTransaction: saveBasicTransaction,
-            getNewTransactionStatus: getNewTransactionStatus
+            getNewTransactionStatus: getNewTransactionStatus,
+            getNewTransactionContract: getNewTransactionContract,
+            getNewTransactionNotes: getNewTransactionNotes,
+            getNewTransactionDocuments: getNewTransactionDocuments,
+
+            transactionBasicCrud: transactionBasicCrud,
+            transactionNotesCrud: transactionNotesCrud,
+            transactionCommissionCrud: transactionCommissionCrud,
+            transactionShipmentCrud: transactionShipmentCrud,
+            transactionSecondaryCrud: transactionSecondaryCrud,
+            transactionStatusCrud: transactionStatusCrud,
+            transactionContractCrud: transactionContractCrud,
+            transactionDocumentCrud: transactionDocumentCrud
 
 		};
 
@@ -77,7 +89,7 @@
      */
         function getNewTransaction(){
             return {
-                tr_transactionID:'',
+                tr_transactionID:-1,
                 tr_date:null,
                 tr_bpBuyerID:null,
                 tr_bpSellerID:null,
@@ -137,7 +149,7 @@
                 tr_difference:0,
                 tr_discount:0,
                 tr_netCommission:0
-            }
+            };
         }
 
         function getNewTransactionStatus(){
@@ -145,8 +157,35 @@
                 tr_transactionID:'',
                 tr_transactionStatus:'',
                 tr_washoutValueAtPar: -1
+            };
+        }
+
+        function getNewTransactionContract(){
+            return {
+                tr_transactionID:'',
+                tr_doniContract:false,
+                tr_ownContract:false,
+                tr_ContractualBuyer:''
+
+        }
+        }
+        function getNewTransactionNotes(){
+            return{
+                tr_transactionID: '',
+                tr_tranNoteID: '',
+                tr_transactionNotes: ''
             }
         }
+        function getNewTransactionDocuments(){
+            return{
+                tf_transactionID: '',
+                tf_fileID:'',
+                tf_file:'',
+                tf_fileType:'',
+                tf_fileName:''
+            };
+        }
+
 
         function getNewShipmentDetails(){
             return {
@@ -215,10 +254,6 @@
                 });
         }
 
-        function deleteTransaction(){
-
-        }
-
         function getTransactionList(){
             var req = {
                 method: 'GET',
@@ -232,6 +267,54 @@
         function getStaticDropDown(){
             return $http.get('datastore/addTransactionBasicFilters.json');
         }
+
+        function getCrudRequest(url,data, operation){
+            data.operation = operation
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+url,
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {data: data}
+            }
+            return req
+        }
+
+        function executeApiCall(requestObj, callBack){
+            return $http(requestObj)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+
+
+        function transactionBasicCrud(transactionBasic, operation, callBack){
+            return $http(getCrudRequest('TransactionBasicCrud',transactionBasic, operation));
+        }
+        function transactionCommissionCrud(transactionCommission, operation, callBack){
+            return $http(getCrudRequest('TransactionCommissionCrud',transactionCommission, operation));
+        }
+        function transactionShipmentCrud(transactionShipment, operation, callBack){
+            return $http(getCrudRequest('TransactionShipmentCrud',transactionShipment, operation));
+        }
+        function transactionSecondaryCrud(transactionSecondary, operation, callBack){
+            return $http(getCrudRequest('TransactionSecondaryCrud',transactionSecondary, operation));
+        }
+        function transactionStatusCrud(transactionStatus, operation, callBack){
+            return $http(getCrudRequest('TransactionStatusCrud',transactionStatus, operation));
+        }
+        function transactionContractCrud(transactionContract, operation, callBack){
+            return $http(getCrudRequest('TransactionContractCrud',transactionContract, operation));
+        }
+        function transactionDocumentCrud(transactionDocument, operation, callBack){
+            return $http(getCrudRequest('TransactionDocumentCrud',transactionDocument, operation));
+        }
+        function transactionNotesCrud(transactionNotes, operation, callBack){
+            return $http(getCrudRequest('TransactionNotesCrud',transactionNotes, operation));
+        }
+
+
 	}
 
 }());
