@@ -63,6 +63,20 @@
           },
           bpConfig: function(tradebook){
               return tradebook.getBpConfig();
+          },
+          completeTransaction: function(tradebook,crud,$stateParams){
+              if($stateParams.tran === 'new'){
+                  return null
+              }
+              else{
+                  return tradebook.transactionBasicCrud(tradebook.getNewTransaction($stateParams.tran),crud.READ).then(
+                      function(response){
+                          if(response.success){
+                              return response;
+                          }
+                      }
+                  );
+              }
           }
        },
        views:{

@@ -87,9 +87,9 @@
      * </pre>
      * @param {int} entity id
      */
-        function getNewTransaction(){
+        function getNewTransaction(tranID){
             return {
-                tr_transactionID:-1,
+                tr_transactionID: (tranID) ? tranID : null,
                 tr_date:null,
                 tr_bpBuyerID:null,
                 tr_bpSellerID:null,

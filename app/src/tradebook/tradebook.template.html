@@ -4,7 +4,7 @@
 </filter-bar>
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
-        <div class="dg-tablePanelTitle">Transactions (Standard)<br><small>Total {{vm.allTransactions.data.length}} Transactions</small></div>
+        <div class="dg-tablePanelTitle">Transactions (Standard)<br><small>Total {{vm.allTransactions.length}} Transactions</small></div>
 
     </div>
     <div class="dg-tablePanelBody">
@@ -17,16 +17,16 @@
             <tbody>
                 <tr ng-repeat="row in vm.allTransactions | filter:vm.searchTransaction">
                     <td ng-bind="row.transactionDate| date:'dd/MM/yyyy'"></td>
-                    <td ng-bind="row.fileNo"></td>
-                    <td ng-bind="row.buyer"></td>
-                    <td><a>{{row.product}}</a></td>
+                    <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
+                    <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>
+                    <td><a ui-sref="shell.products.viewProduct({id:row.tr_productID})">{{row.product}}</a></td>
                     <td ng-bind="row.quantity"></td>
                     <td ng-bind="row.rate  | currency:'$':0"></td>
-                    <td ng-bind="row.seller"></td>
+                    <td><a ui-sref="shell.businessPartner.view({id:row.tr_productID})">{{row.seller}}</a></td>
                     <td ng-bind="row.origin"></td>
-                    <td ng-bind=""></td>
                     <td ng-bind="row.port"></td>
-                    <td ng-bind=""></td>
+                    <td ng-bind="row.shipment"></td>
+                    <td ng-bind="row.commission"></td>
                 </tr>
             </tbody>
         </table>

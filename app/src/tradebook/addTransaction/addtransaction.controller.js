@@ -150,6 +150,7 @@
         tradebook.transactionBasicCrud(vm.newTransaction,crud.CREATE).then(function(response){
             if(response.data.success){
                 toastr.success(response.data.message, 'Success');
+                vm.newTransaction.tr_transactionID = response.data.transactionId;
                 $state.transitionTo('shell.tradebook.Transaction', {tran: response.data.transactionId}, { notify: false });
             }
             else{
@@ -162,6 +163,7 @@
     }
 
     function init(){
+        vm.tran = $stateParams.tran;
 
         vm.newTransaction = tradebook.getNewTransaction();
 

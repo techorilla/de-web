@@ -12,7 +12,7 @@
                     </div>
                     <div class="clearfix">
                         <div ng-if="vm.showTransactionInfo" class="col-lg-12">
-                            <label ng-click="vm.saveBasicTransaction()" class="cursor-pointer pull-right ">
+                            <label ng-if="vm.tran === 'new'" ng-click="vm.saveBasicTransaction()" class="cursor-pointer pull-right ">
                                 <i class="fa fa-database blueFont"></i>
                                 &nbsp;&nbsp;Save&nbsp;&nbsp;
                             </label>
