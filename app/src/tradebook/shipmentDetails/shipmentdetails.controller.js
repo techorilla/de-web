@@ -31,7 +31,12 @@
             vm.bpConfig = bpConfig;
             vm.showShipment = false;
             vm.shippersList = shippersList;
+            vm.addShipmentDetails = addShipmentDetails;
+
 		}
+        function addShipmentDetails(){
+            tradebook.transactionSecondaryCrud()
+        }
 	}
 
 }());

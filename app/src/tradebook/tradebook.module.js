@@ -69,11 +69,10 @@
                   return null
               }
               else{
-                  return tradebook.transactionBasicCrud(tradebook.getNewTransaction($stateParams.tran),crud.READ).then(
+                  return tradebook.getSingleTransactionDetails($stateParams.tran).then(
                       function(response){
-                          if(response.success){
-                              return response;
-                          }
+                          console.log(response);
+                          return response.data;
                       }
                   );
               }

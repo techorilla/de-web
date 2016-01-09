@@ -875,3 +875,18 @@ img {
 .toastOpacity{
   opacity:0.9;
 }
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: transparent;
+  opacity: 1;
+  border: none;
+}
+
+.selectize-control .selectize-input.disabled {
+  //opacity: 0.5;
+  background-color: transparent;
+  color:#333;
+  border: none;
+  /* background-color: #fafafa; */
+}

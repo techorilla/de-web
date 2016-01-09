@@ -68,9 +68,14 @@
                 <div class="col-lg-4 col-xs-12">
                     <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_arrivedAtPort"/><label>Arrived at Port</label>
                 </div>
+
                 <div class="col-lg-4 col-xs-12">
                     <label>Date Arrived</label>
                     <date-picker date="vm.shipment.tr_dateArrived" max-date="" min-date=""></date-picker>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <label>Actual Arrived</label>
+                    <date-picker date="vm.shipment.tr_actualArrived" max-date="" min-date=""></date-picker>
                 </div>
             </div>
         </div>

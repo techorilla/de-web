@@ -13,7 +13,7 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction(tradebook, staticDropDown, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter){
+	function AddTransaction(tradebook, staticDropDown, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter, completeTransaction){
 		var vm = this;
         init();
         vm.showBroker = false;
@@ -164,8 +164,21 @@
 
     function init(){
         vm.tran = $stateParams.tran;
+        if(vm.tran === 'new'){
+            vm.newTransaction = tradebook.getNewTransaction();
+            vm.heading = 'Transaction';
+            vm.subheading = 'New'
+            vm.editMode = true;
+        }
+        else{
+            vm.newTransaction = completeTransaction.basic[0];
+            vm.subheading = 'File No.'
+            vm.heading = vm.newTransaction.tr_fileID;
+            vm.editMode = false;
+        }
 
-        vm.newTransaction = tradebook.getNewTransaction();
+
+
 
         vm.singleConfig = {
             valueField: 'text',

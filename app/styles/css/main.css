@@ -1021,6 +1021,22 @@ img {
   opacity: 0.9;
 }
 
+/* line 879, ../partials/_theme.scss */
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: transparent;
+  opacity: 1;
+  border: none;
+}
+
+/* line 886, ../partials/_theme.scss */
+.selectize-control .selectize-input.disabled {
+  background-color: transparent;
+  color: #333;
+  border: none;
+  /* background-color: #fafafa; */
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

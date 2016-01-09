@@ -13,7 +13,7 @@
 		.factory('tradebook', tradebook);
 
   /* @ngInject */
-  function tradebook($http,appConfig){
+  function tradebook($http,appConfig,crud){
            var bpConfig = {
               valueField: 'bp_ID',
               sortField: 'bp_Name',
@@ -271,14 +271,16 @@
         function getCrudRequest(url,data, operation){
             data.operation = operation
             var req = {
-                method: 'POST',
+                method:  'POST',//(operation === crud.READ) ? 'GET' : 'POST',
                 url: appConfig.apiHost+url,
                 headers: {
                     'Content-Type': "application/json"
                 },
                 data: {data: data}
-            }
-            return req
+            };
+            console.log(req);
+
+            return req;
         }
 
         function executeApiCall(requestObj, callBack){

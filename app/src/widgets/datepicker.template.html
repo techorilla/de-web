@@ -5,9 +5,10 @@
            ng-model="date"
            ng-disabled="disabled"
            placeholder="Select"
+
            is-open="datePickerOpened"
-           min-date="{{minDate}}"
-           max-date="'{{maxDate}}'"
+           min-date="{{minDate |  date : 'dd/MM/yyyy'}}"
+           max-date="'{{maxDate |  date : 'dd/MM/yyyy'}}'"
            close-text="Close" />
 <span class="input-group-btn datePickerAddTran">
     <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
