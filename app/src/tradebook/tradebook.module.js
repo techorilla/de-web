@@ -71,7 +71,6 @@
               else{
                   return tradebook.getSingleTransactionDetails($stateParams.tran).then(
                       function(response){
-                          console.log(response);
                           return response.data;
                       }
                   );
@@ -84,7 +83,8 @@
               controller:'AddTransaction as vm'
           },
           'commission@shell.tradebook.Transaction':{
-              templateUrl:'src/tradebook/transactionCommission/transactionCommission.html'
+              templateUrl:'src/tradebook/transactionCommission/transactionCommission.html',
+              controller: 'TransactionCommission as vm'
           },
           'documents@shell.tradebook.Transaction':{
               templateUrl:'src/tradebook/transactionNotes/transactionNotes.html',

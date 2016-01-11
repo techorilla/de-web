@@ -13,7 +13,7 @@
 		.controller('SecondaryTrade', SecondaryTrade);
 
   /* @ngInject */
-	function SecondaryTrade(toastr, sellersList,buyersList, bpConfig, tradebook, $stateParams){
+	function SecondaryTrade(toastr, sellersList,buyersList, bpConfig, tradebook, $stateParams, crud){
 		var vm = this;
         init();
 
@@ -31,6 +31,19 @@
      */
         function init(){
             vm.secondaryTransactions = [];
+            if($stateParams.tran !== 'new'){
+                tradebook.getSingleTransactionSec($stateParams.tran).then(function(res){
+                    if(res.data.success){
+                        vm.secondaryTransactions = res.data.sec;
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                    }
+                }, function(){
+                    toastr.error('Can not get secondary transactions','Error');
+                });
+            };
+            console.log(vm.secondaryTransactions);
             vm.bpConfig = bpConfig;
             vm.sellersList = sellersList;
             vm.buyersList = buyersList;
@@ -49,7 +62,7 @@
         }
         function addSecondary(){
             if($stateParams.tran === 'new'){
-                toast.error('Add Basic Transaction Info First','Error');
+                toast.error('Add/Save Basic Transaction Info First','Error');
                 return;
             }
             if(     vm.newSecondaryTransaction.tr_sec_bpBuyerID===''
@@ -62,9 +75,21 @@
                 return;
             }
             vm.newSecondaryTransaction.tr_transactionID = $stateParams.tran;
-            vm.currentlyAdding = false;
-            vm.secondaryTransactions.push(vm.newSecondaryTransaction);
-            vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
+            tradebook.transactionSecondaryCrud(vm.newSecondaryTransaction,crud.CREATE).then(function (res){
+                if(res.data.success){
+                    vm.currentlyAdding = false;
+                    vm.newSecondaryTransaction.tr_sec_tranID = res.data.sec_id;
+                    vm.secondaryTransactions.push(vm.newSecondaryTransaction);
+                    toastr.success('','Secondary Transaction Added.')
+
+                }
+                else{
+                    toastr.error(res.data.message, 'Error');
+                }
+            },function(){
+                toastr.error('Secondary Transaction was not added due to some problem', 'Error');
+            });
+
         }
         function deleteSecondaryTransaction(tr_sec_tranID,index){
             vm.secondaryTransactions.splice(index, 1);

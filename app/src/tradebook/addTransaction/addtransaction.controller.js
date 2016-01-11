@@ -13,18 +13,20 @@
 		.controller('AddTransaction', AddTransaction);
 
   /* @ngInject */
-	function AddTransaction(tradebook, staticDropDown, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter, completeTransaction){
+	function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter, completeTransaction){
 		var vm = this;
         init();
         vm.showBroker = false;
         vm.datePickerOpened = false;
         vm.datePickerOpened2 = false;
-        vm.showTransactionInfo=false;
+        //vm.showTransactionInfo=false;
         vm.showContractInfo=false;
         vm.showCommission = false;
         vm.showStatus = false;
         vm.showNotes = false;
         vm.saveBasicTransaction = saveBasicTransaction;
+        vm.editBasicTransaction= editBasicTransaction;
+        vm.deleteCompleteTransaction = deleteCompleteTransaction;
 
         vm.transactionStatusConfig = {
             options: staticDropDown.transactionStatus,
@@ -147,27 +149,47 @@
 
 
     function saveBasicTransaction(){
-        tradebook.transactionBasicCrud(vm.newTransaction,crud.CREATE).then(function(response){
-            if(response.data.success){
-                toastr.success(response.data.message, 'Success');
-                vm.newTransaction.tr_transactionID = response.data.transactionId;
-                $state.transitionTo('shell.tradebook.Transaction', {tran: response.data.transactionId}, { notify: false });
-            }
-            else{
+        if(vm.tran === 'new'){
+            tradebook.transactionBasicCrud(vm.newTransaction,crud.CREATE).then(function(response){
+                if(response.data.success){
+                    vm.newTransaction.tr_transactionID = response.data.transactionId;
+                    $state.transitionTo('shell.tradebook.Transaction', {tran: response.data.transactionId}, { notify: false });
+                    toastr.success('New Transaction with File No.' + vm.newTrasaction.tr_fileID + ' has been created', 'Added');
+                }
+                else{
 
-                toastr.error(response.data.message, 'Error');
-            }
-        },function(err){
-            console.log(err);
-        });
+                    toastr.error(response.data.message, 'Error');
+                }
+            },function(err){
+                console.log(err);
+            });
+        }
+        else{
+            tradebook.transactionBasicCrud(vm.newTransaction,crud.UPDATE).then(function(response){
+                if(response.data.success){
+                    vm.newTransaction.tr_transactionID = response.data.transactionId;
+                    toastr.success('Transaction updated', 'Success');
+                    vm.editMode=false;
+                }
+                else{
+                    toastr.error(response.data.message, 'Error');
+                }
+            },function(err){
+                toastr.error('Error');
+                vm.editMode=false;
+            });
+        }
+
+
     }
 
     function init(){
         vm.tran = $stateParams.tran;
+        vm.editMode = (completeTransaction === null);
         if(vm.tran === 'new'){
             vm.newTransaction = tradebook.getNewTransaction();
             vm.heading = 'Transaction';
-            vm.subheading = 'New'
+            vm.subheading = 'New',
             vm.editMode = true;
         }
         else{
@@ -219,7 +241,29 @@
      * @description
      * My Description rules
      */
+        function deleteCompleteTransaction(){
+        modalFactory.alertModal(vm.newTransaction.tr_fileID,'Transaction', 'Delete').then(function(res){
+            if(res){
+                tradebook.transactionBasicCrud(vm.newTransaction,crud.DELETE).then(function(response){
+                    if(response.data.success){
+                        toastr.success('Transaction with File No.' + vm.newTransaction.tr_fileID + 'Deleted', 'Success');
+                        $state.go('shell.tradebook');
+                    }
+                    else{
+                        toastr.error(response.data.message, 'Error');
+                    }
+                },function(err){
+                    toastr.error('Unable to delete transaction','Error');
 
+                });
+            }
+        });
+        }
+
+        function editBasicTransaction(){
+            vm.editMode = true;
+            vm.temp= angular.copy(vm.newTransaction);
+        }
 
 	}
 

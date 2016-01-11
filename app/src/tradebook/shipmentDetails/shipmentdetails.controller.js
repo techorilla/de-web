@@ -13,7 +13,7 @@
 		.controller('ShipmentDetails', ShipmentDetails);
 
   /* @ngInject */
-	function ShipmentDetails(bpConfig,shippersList){
+	function ShipmentDetails(bpConfig,shippersList, toastr, crud){
 		var vm = this;
         init();
 

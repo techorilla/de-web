@@ -5,39 +5,108 @@
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showCommission,'fa-chevron-circle-right':!vm.showCommission}"></i>
         </label>
     </div>
+    <div class="clearfix">
+        <div ng-if="vm.showCommission" class="col-lg-12">
+            <label ng-click="vm.editMode=false;vm.commissionDetails = vm.commTemp" class="cursor-pointer pull-right" ng-if="vm.tran !== 'new' && vm.editMode">
+                &nbsp;&nbsp;
+                <i class="fa fa-times-circle redFont"></i>
+                &nbsp;&nbsp;Cancel
+            </label>
+            <label ng-if="!vm.editMode" ng-click="vm.editCommission()" class="cursor-pointer pull-right ">
+                <i class="fa fa-edit orangeFont"></i>
+                &nbsp;&nbsp;Edit&nbsp;&nbsp;
+            </label>
+            <label ng-if=vm.editMode ng-click="vm.saveCommission()" class="cursor-pointer pull-right ">
+                <i class="fa fa-database blueFont"></i>
+                &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
     <div ng-if="vm.showCommission" class="form-group col-md-4 formCheckBox">
         <label>Broker Involved</label>
-        <input class="pull-right" name="contractType" type="checkbox" ng-model="vm.newTransaction.tr_brokerInvolved"/>
+        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_brokerInvolved"/>
     </div>
-    <div ng-if="vm.showCommission" class="form-group col-md-8 marginTop5">
-        <label>Broker</label>
-        <selectize ng-disabled="!vm.newTransaction.tr_brokerInvolved" placeholder='Please enter broker involved' config="vm.bpConfig" options='vm.brokersList' ng-model="vm.newTransaction.tr_broker"></selectize>
+    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4 formCheckBox">
+        <label>Seller Broker</label>
+        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_sellerBroker"/>
+        <selectize ng-if="vm.commissionDetails.tr_sellerBroker" ng-disabled="!vm.commissionDetails.tr_sellerBroker"
+                   placeholder='Please enter broker involved' config="vm.bpConfig"
+                   options='vm.brokersList' ng-model="vm.commissionDetails.tr_sellerBrokerID"></selectize>
+    </div>
+    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4 formCheckBox">
+        <label>Buyer Broker</label>
+        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_buyerBroker"/>
+        <selectize ng-if="vm.commissionDetails.tr_buyerBroker" ng-disabled="!vm.commissionDetails.tr_buyerBroker &&!vm.editMode "
+                   placeholder='Please enter broker involved' config="vm.bpConfig"
+                   options='vm.brokersList' ng-model="vm.commissionDetails.tr_buyerBrokerID"></selectize>
     </div>
     <div ng-if="vm.showCommission" class="col-md-8 col-md-offset-4">
+        <div class="col-lg-6 pull-right clearfix">
+            <div  ng-show="vm.commissionDetails.tr_buyerBroker" class="form-group col-lg-12 clearfix">
+                <label>Broker Commission Type</label>
+                <selectize  ng-disabled="!vm.editMode"
+                            placeholder="Enter commission Type"
+                            config="vm.commissionTypeConfig"
+                            ng-model="vm.commissionDetails.tr_buyerBroker_comm_type">
+                </selectize>
+            </div>
+            </br>
+            <div  ng-show="vm.commissionDetails.tr_buyerBroker" class="form-group col-lg-12 clearfix">
+                <label>Broker Commission</label>
+                <number-only-input
+                        input-value="vm.commissionDetails.tr_buyerBroker_comm"
+                        input-name="vm.commissionDetails.tr_buyerBroker_comm"
+                        currency="true"
+                        disabled="!vm.editMode"
+                        input-place="USD$">
+                </number-only-input>
+            </div>
+        </div>
+
 
         <div class="form-group col-lg-12 marginLeft15 width106">
             <label>Commission Type</label>
-            <selectize  ng-disabled="vm.viewMode" placeholder="Enter commission Type" config="vm.commissionTypeConfig" ng-model="vm.newTransaction.tr_commissionType"></selectize>
+            <selectize  ng-disabled="!vm.editMode"
+                        placeholder="Enter commission Type"
+                        config="vm.commissionTypeConfig"
+                        ng-model="vm.commissionDetails.tr_ownCommissionType">
+            </selectize>
         </div>
         <div class="form-group col-lg-12 marginLeft15 width106">
             <label>Commission</label>
-            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_commission" class="form-control"  placeholder="Enter commission">
-        </div>
-        <div class="form-group col-lg-12 marginLeft15 width106">
-            <label>Broker Comission</label>
-            <input type="number"  ng-disabled="vm.viewMode || !vm.newTransaction.tr_broker" ng-model="vm.newTransaction.tr_brokerCommission" class="form-control"placeholder="Enter broker commision">
+            <number-only-input
+                    input-value="vm.commissionDetails.tr_own_Commission"
+                    input-name="vm.commissionDetails.tr_own_Commission"
+                    currency="true"
+                    disabled="!vm.editMode"
+                    input-place="USD$">
+            </number-only-input>
         </div>
         <div class="form-group col-lg-12 marginLeft15 width106">
             <label>Difference</label>
-            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_difference" class="form-control"placeholder="Enter difference">
+            <number-only-input
+                    input-value="vm.commissionDetails.tr_difference"
+                    input-name="vm.commissionDetails.tr_difference"
+                    currency="true"
+                    disabled="!vm.editMode"
+                    input-place="USD$">
+            </number-only-input>
         </div>
         <div class="form-group col-lg-12 marginLeft15 width106">
             <label>Discount</label>
-            <input type="number"  ng-disabled="vm.viewMode" ng-model="vm.newTransaction.tr_discount" class="form-control"  placeholder="Enter discount">
+            <number-only-input
+                    input-value="vm.commissionDetails.tr_discount"
+                    input-name="vm.commissionDetails.tr_discount"
+                    currency="true"
+                    disabled="!vm.editMode"
+                    input-place="USD$">
+            </number-only-input>
         </div>
-        <div class="form-group col-lg-12 marginLeft15 width106">
+        <div class="form-group col-lg-12 marginLeft15 width106 font20px">
             <label>Net Commission</label>
-            <input type="text" ng-bind="vm.newTransaction.tr_commission * vm.quantityValue" ng-disabled="true" ng-model="vm.newTransaction.tr_netCommision" class="form-control" placeholder="Enter Product Name">
+            <label ng-class="{'redFont':(vm.commissionDetails.tr_netCommission < 0)}"
+                   ng-bind="vm.commissionDetails.tr_netCommission | currency:'USD$ ':0"
+                   class=" dropdownLabel font20px">
         </div>
     </div>
 </div>

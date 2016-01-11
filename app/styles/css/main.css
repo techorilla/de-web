@@ -845,7 +845,7 @@ img {
 
 /* line 738, ../partials/_theme.scss */
 .redFont {
-  color: #E30C2C;
+  color: #E30C2C !important;
   cursor: pointer;
 }
 
@@ -1021,7 +1021,12 @@ img {
   opacity: 0.9;
 }
 
-/* line 879, ../partials/_theme.scss */
+/* line 878, ../partials/_theme.scss */
+.form-control[disabled] {
+  margin-left: -10px;
+}
+
+/* line 882, ../partials/_theme.scss */
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   cursor: not-allowed;
   background-color: transparent;
@@ -1029,12 +1034,29 @@ img {
   border: none;
 }
 
-/* line 886, ../partials/_theme.scss */
+/* line 888, ../partials/_theme.scss */
+.selectize-control.single .selectize-input.disabled:after {
+  border: none;
+}
+
+/* line 891, ../partials/_theme.scss */
 .selectize-control .selectize-input.disabled {
   background-color: transparent;
+  opacity: 1;
   color: #333;
   border: none;
+  margin-left: -7px;
   /* background-color: #fafafa; */
+}
+
+/* line 903, ../partials/_theme.scss */
+.selectize-control .selectize-input.disabled ::-webkit-input-placeholder {
+  color: #ffffff;
+}
+
+/* line 908, ../partials/_theme.scss */
+.font20px {
+  font-size: 20px;
 }
 
 /* line 3, ../partials/_login.scss */

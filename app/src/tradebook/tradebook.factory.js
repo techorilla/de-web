@@ -51,6 +51,8 @@
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
             getSingleTransactionDetails: getSingleTransactionDetails,
+            getSingleTransactionSec: getSingleTransactionSec,
+            getSingleTransactionCommission: getSingleTransactionCommission,
             getBpConfig: getBpConfig,
 
             getNewSecondaryTransaction: getNewSecondaryTransaction,
@@ -115,37 +117,35 @@
         }
         function getNewSecondaryTransaction(){
             return {
-                tr_transactionID: '',
-                tr_sec_tranID:'',
-                tr_sec_bpBuyerID:'',
+                tr_transactionID: null,
+                tr_sec_tranID:null,
+                tr_sec_bpBuyerID:null,
                 tr_sec_bpBuyerName:'',
                 tr_sec_bpBuyerOrigin:'',
                 tr_sec_bpBuyerPContact:'',
                 tr_sec_bpSellerName:'',
                 tr_sec_bpSellerOrigin:'',
                 tr_sec_bpSellerPContact:'',
-                tr_sec_bpSellerID:'',
-                tr_sec_date:'',
-                tr_sec_buyerPrice:'',
-                tr_sec_sellerPrice:'',
+                tr_sec_bpSellerID:null,
+                tr_sec_date:null,
+                tr_sec_buyerPrice:null,
+                tr_sec_sellerPrice:null,
                 tr_sec_otherInfo:''
             };
         }
 
         function getNewTransactionCommission(){
             return {
-                tr_transactionID:'',
+                tr_transactionID:null,
                 tr_brokerInvolved: false,
                 tr_sellerBroker: false,
-                tr_sellerBrokerID:'',
-                tr_sellerBroker_comm_type:'',
-                tr_sellerBroker_comm:0,
+                tr_sellerBrokerID:null,
                 tr_buyerBroker:false,
-                tr_buyerBrokerID:'',
-                tr_buyerBroker_comm_type:'',
-                tr_buyerBroker_comm:0,
-                tr_own_Commission:'',
-                tr_ownCommissionType:'',
+                tr_buyerBrokerID:null,
+                tr_buyerBroker_comm_type: 'Fixed',
+                tr_buyerBroker_comm: 0,
+                tr_own_Commission:0,
+                tr_ownCommissionType:'Fixed',
                 tr_difference:0,
                 tr_discount:0,
                 tr_netCommission:0
@@ -187,6 +187,8 @@
         }
 
 
+
+
         function getNewShipmentDetails(){
             return {
                 tr_transactionID: '',
@@ -220,7 +222,23 @@
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getSingleTransaction?id='+id
-            }
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionSec(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getSecondaryTransaction?id='+id
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionCommission(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getCommissionTransaction?id='+id
+            };
             return $http(req);
         }
 

@@ -54,7 +54,11 @@
                 </div>
                 <div class="form-group col-lg-4 col-xs-12">
                     <label>Price</label>
-                    <number-only-input input-value="vm.newSecondaryTransaction.tr_sec_sellerPrice" input-name="vm.newSecondaryTransaction.tr_sec_sellerPrice" input-place="USD$"></number-only-input>
+                    <number-only-input
+                    input-value="vm.newSecondaryTransaction.tr_sec_sellerPrice"
+                    input-name="vm.newSecondaryTransaction.tr_sec_sellerPrice"
+                    input-place="USD$">
+                    </number-only-input>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -79,22 +83,25 @@
                     <label class="dropdownLabel" ng-bind="tran.tr_sec_date | date: 'dd-MMM-yyyy'"></label>
                 </div>
                 <div class="form-group col-lg-4  col-xs-12">
-                    <label>Buyer:</label>
-                    <label>
-                        <span ng-bind="tran.tr_sec_bpBuyerName" class="dropdownLabel"></span>
-                        <span ng-bind="tran.tr_sec_bpBuyerOrigin" class="dropdownCaption"></span>
-                        <span ng-bind="tran.tr_sec_bpBuyerPContact ? tran.tr_sec_bpBuyerPContact : 'No Primary Contact'" class="dropdownCaption"></span>
-                    </label>
+                    <label>Buyer</label>
+
+                        <selectize ng-disabled="true" placeholder='Please enter buyer' config="vm.bpConfig" options='vm.buyersList' ng-model="tran.tr_sec_bpBuyerID"></selectize>
+
+                        <!--<span ng-bind="tran.tr_sec_bpBuyerName" class="dropdownLabel"></span>-->
+                        <!--<span ng-bind="tran.tr_sec_bpBuyerOrigin" class="dropdownCaption"></span>-->
+                        <!--<span ng-bind="tran.tr_sec_bpBuyerPContact ? tran.tr_sec_bpBuyerPContact : 'No Primary Contact'" class="dropdownCaption"></span>-->
+
                 </div>
                 <div class="form-group col-lg-2 col-xs-12">
                     <label>Price:</label>
                     <label class="dropdownLabel" ng-bind="tran.tr_sec_buyerPrice | currency:'USD$ ':0" ></label>
                 </div>
                 <div class="form-group col-lg-4  col-xs-12">
-                    <label>Seller:</label>
-                    <span ng-bind="tran.tr_sec_bpSellerName" class="dropdownLabel">label</span>
-                    <span ng-bind="tran.tr_sec_bpSellerrOrigin" class="dropdownCaption">label</span>
-                    <span ng-bind="tran.tr_sec_bpSellerPContact ? tran.tr_sec_bpSellerPContact : 'No Primary Contact'" class="dropdownCaption">label</span>
+                    <label>Seller</label>
+                    <selectize ng-disabled="true" placeholder='Please enter seller'  config="vm.bpConfig" options='vm.sellersList' ng-model="tran.tr_sec_bpSellerID"></selectize>
+                    <!--<span ng-bind="tran.tr_sec_bpSellerName" class="dropdownLabel">label</span>-->
+                    <!--<span ng-bind="tran.tr_sec_bpSellerrOrigin" class="dropdownCaption">label</span>-->
+                    <!--<span ng-bind="tran.tr_sec_bpSellerPContact ? tran.tr_sec_bpSellerPContact : 'No Primary Contact'" class="dropdownCaption">label</span>-->
                 </div>
                 <div class="form-group col-lg-2 col-xs-12">
                     <label>Price:</label>

@@ -21,16 +21,18 @@
     function numberOnlyInput () {
         return {
             restrict: 'EA',
-            template: '<input ng-click="reset()" class="form-control" placeholder="{{inputPlace}}" name="{{inputName}}" ng-model="inputValue" />',
+            template: '<input ng-class="{\'currency\': currency}" style="cursor:default" ng-disabled="disabled" ng-click="reset()" class="form-control " placeholder="{{inputPlace}}" name="{{inputName}}" ng-model="inputValue" />',
             scope: {
                 inputValue: '=',
                 inputName: '=',
-                inputPlace: '@'
+                inputPlace: '@',
+                disabled: '=',
+                currency: '='
             },
             link: function (scope) {
                 scope.reset = function(){
                   var temp =  scope.inputValue;
-                  scope.inputValue='';
+                  scope.inputValue=0;
                 };
                 scope.$watch('inputValue', function(newValue,oldValue) {
                     var arr = String(newValue).split("");

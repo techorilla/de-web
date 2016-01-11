@@ -736,7 +736,7 @@ img {
 }
 
 .redFont{
-  color:$redColor;
+  color:$redColor !important;
   cursor:pointer;
 }
 
@@ -875,6 +875,9 @@ img {
 .toastOpacity{
   opacity:0.9;
 }
+.form-control[disabled]{
+  margin-left:-10px;
+}
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   cursor: not-allowed;
@@ -882,11 +885,26 @@ img {
   opacity: 1;
   border: none;
 }
-
+.selectize-control.single .selectize-input.disabled:after{
+  border: none;
+}
 .selectize-control .selectize-input.disabled {
   //opacity: 0.5;
   background-color: transparent;
+  opacity: 1;
   color:#333;
   border: none;
+  margin-left:-7px;
+
+
   /* background-color: #fafafa; */
+}
+
+.selectize-control .selectize-input.disabled ::-webkit-input-placeholder{
+  color:#ffffff
+
+}
+
+.font20px{
+  font-size: 20px;
 }
