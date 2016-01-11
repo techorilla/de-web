@@ -6,7 +6,51 @@
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showDocument,'fa-chevron-circle-right':!vm.showDocument}"></i>
         </label>
     </div>
-    <div class="form-group col-lg-12">
+    <div ng-if="vm.showDocument" class="form-group col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 border-bottom-gray">
+                <label ng-if="vm.documentAdding">New Transaction Document</label>
+                <label ng-click="vm.documentAdding=true;" class="cursor-pointer pull-right" ng-if="!vm.documentAdding">
+                    <i class="fa fa-plus-circle orangeFont"></i>
+                    &nbsp;&nbsp;Add New Document
+                </label>
+                <label ng-click="vm.cancelDocumentUpload()" class="cursor-pointer pull-right" ng-if="vm.documentAdding">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-times-circle redFont"></i>
+                    &nbsp;&nbsp;Cancel
+                </label>
+                <label ng-click="vm.saveTransactionDocument()" class="cursor-pointer pull-right border-right-gray" ng-if="vm.documentAdding">
+                    <i class="fa fa-database blueFont"></i>
+                    &nbsp;&nbsp;Save&nbsp;&nbsp;
+                </label>
+            </div>
+        </div>
+        <div class="clearfix" ng-if="vm.documentAdding && vm.showDocument">
+            <div class="col-lg-12 clearfix">
+                </br>
+                <div class="form-group col-lg-4  col-xs-12">
+                    <label>Document Name</label>
+                    <input class="form-control" ng-model="vm.documentName" type="text"/>
 
+                </div>
+                <div ng-if="vm.documentName !== ''" class="form-group col-lg-4 col-xs-12">
+                    <label>Document</label>
+                    <button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                        <i class="fa fa-upload"></i></button>
+                    File:
+                <div style="font:smaller">{{f.name}} {{vm.errFile.name}} {{vm.errFile.$error}} {{vm.errFile.$errorParam}}
+                    <span class="progress" ng-show="vm.file.progress >= 0">
+                        <div style="width:{{vm.file.progress}}%"
+                        ng-bind="vm.file.progress + '%'"></div>
+                    </span>
+                </div>
+                {{vm.errorMsg}}
+
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -37,7 +37,10 @@
     'ui.grid.resizeColumns',
     'ui.grid.moveColumns',
     'ui.grid.pinning',
-    'angular-click-outside'
+    'angular-click-outside',
+    'ngSanitize',
+    'ngCsv',
+    'ngFileUpload'
 
   ]);
 

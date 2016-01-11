@@ -740,6 +740,16 @@ img {
   cursor:pointer;
 }
 
+.greenFont{
+  color: #1da075 !important;
+  cursor:ponter;
+}
+
+.excelExport{
+  margin-right: 5px;
+  margin-top: 15px;
+}
+
 .blueFont{
   color:$baseColor;
   cursor:pointer;
@@ -907,4 +917,22 @@ img {
 
 .font20px{
   font-size: 20px;
+}
+
+
+form .progress {
+  line-height: 15px;
+}
+
+.progress {
+  display: inline-block;
+  width: 100%;
+  border: 3px groove #CCC;
+  margin-top: 10px;
+}
+
+.progress div {
+  font-size: smaller;
+  background: $baseColor;
+  width: 0;
 }

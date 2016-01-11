@@ -5,8 +5,13 @@
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
         <div class="dg-tablePanelTitle">Transactions (Standard)<br><small>Total {{vm.allTransactions.length}} Transactions</small></div>
-
+        <div class="pull-right cursor-pointer" ng-click="vm.getTradeBookExcel(vm.transactionTableHeadings,vm.allTransactions)">
+            <label class="cursor-pointer excelExport">
+                <i class="fa fa-file-excel-o greenFont"></i>&nbsp;&nbsp;Export to Excel
+            </label>
+        </div>
     </div>
+
     <div class="dg-tablePanelBody">
         <table ng-if="(vm.allTransactions.length >  0)" class="table table-bordered dg-table">
             <thead>

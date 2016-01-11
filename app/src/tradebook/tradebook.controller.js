@@ -13,7 +13,7 @@
 		.controller('Tradebook', Tradebook);
 
   /* @ngInject */
-	function Tradebook(tradebook,toastr){
+	function Tradebook(tradebook,toastr, documentExporter){
 		var vm = this;
         init();
     /////////////////////
@@ -44,9 +44,14 @@
                 }
             });
             vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Port', 'Shipment', 'Commission'];
+            vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'port', 'shipment', 'commission'];
+            vm.getTradeBookExcel = getTradeBookExcel;
+     }
 
-        }
+     function getTradeBookExcel(headings, dataObject){
+         documentExporter.getTableInExcelSheet(headings, dataObject, vm.headingAssociation, 'Tradebook');
+     }
 
-	}
+  }
 
 }());

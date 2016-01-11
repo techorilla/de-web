@@ -53,6 +53,7 @@
             getSingleTransactionDetails: getSingleTransactionDetails,
             getSingleTransactionSec: getSingleTransactionSec,
             getSingleTransactionCommission: getSingleTransactionCommission,
+            getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
 
             getNewSecondaryTransaction: getNewSecondaryTransaction,
@@ -63,6 +64,7 @@
             getNewTransactionContract: getNewTransactionContract,
             getNewTransactionNotes: getNewTransactionNotes,
             getNewTransactionDocuments: getNewTransactionDocuments,
+            getNewTransactionDocument: getNewTransactionDocument,
 
             transactionBasicCrud: transactionBasicCrud,
             transactionNotesCrud: transactionNotesCrud,
@@ -132,6 +134,16 @@
                 tr_sec_sellerPrice:null,
                 tr_sec_otherInfo:''
             };
+        }
+
+        function getNewTransactionDocument(){
+                return {
+                    tf_transactionID: null,
+                    tf_fileID: null,
+                    tf_file: null,
+                    tf_fileType: null,
+                    tf_fileName: null
+                };
         }
 
         function getNewTransactionCommission(){
@@ -230,6 +242,14 @@
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getSecondaryTransaction?id='+id
+            };
+            return $http(req);
+        }
+
+        function getAllTransactionFiles(transactionId){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionFiles?transactionId='+transactionId
             };
             return $http(req);
         }
