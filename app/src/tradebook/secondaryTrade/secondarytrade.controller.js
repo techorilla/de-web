@@ -43,7 +43,7 @@
                     toastr.error('Can not get secondary transactions','Error');
                 });
             };
-            console.log(vm.secondaryTransactions);
+
             vm.bpConfig = bpConfig;
             vm.sellersList = sellersList;
             vm.buyersList = buyersList;
@@ -54,12 +54,20 @@
             vm.cancel = cancel;
             vm.addSecondary = addSecondary;
             vm.deleteSecondaryTransaction = deleteSecondaryTransaction;
+            vm.editSecondaryTransaction = editSecondaryTransaction;
+            vm.editMode = false;
         }
 
         function cancel(){
-            vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
+            if(vm.newSecondaryTransaction.tr_sec_tranID === null){
+                vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
+            }
+            else{
+                vm.secondaryTransactions.push(vm.newSecondaryTransaction);
+            }
             vm.currentlyAdding = false;
         }
+
         function addSecondary(){
             if($stateParams.tran === 'new'){
                 toast.error('Add/Save Basic Transaction Info First','Error');
@@ -74,26 +82,69 @@
                 toastr.error("Some required fields are missing for secondary transaction", "Error")
                 return;
             }
-            vm.newSecondaryTransaction.tr_transactionID = $stateParams.tran;
-            tradebook.transactionSecondaryCrud(vm.newSecondaryTransaction,crud.CREATE).then(function (res){
-                if(res.data.success){
-                    vm.currentlyAdding = false;
-                    vm.newSecondaryTransaction.tr_sec_tranID = res.data.sec_id;
-                    vm.secondaryTransactions.push(vm.newSecondaryTransaction);
-                    toastr.success('','Secondary Transaction Added.')
+            if(!vm.editMode){
+                vm.newSecondaryTransaction.tr_transactionID = $stateParams.tran;
+                tradebook.transactionSecondaryCrud(vm.newSecondaryTransaction,crud.CREATE).then(function (res){
+                    if(res.data.success){
+                        vm.currentlyAdding = false;
+                        vm.newSecondaryTransaction.tr_sec_tranID = res.data.sec_id;
+                        vm.secondaryTransactions.push(vm.newSecondaryTransaction);
+                        toastr.success('','Secondary Transaction Added.');
+                        vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
 
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                    }
+                },function(){
+                    toastr.error('Secondary Transaction was not added due to some problem', 'Error');
+                });
+            }
+            else{
+                tradebook.transactionSecondaryCrud(vm.newSecondaryTransaction,crud.UPDATE).then(function (res){
+                    if(res.data.success){
+                        vm.currentlyAdding = false;
+                        vm.editMode = false
+                        vm.newSecondaryTransaction.tr_sec_tranID = res.data.sec_id;
+                        vm.secondaryTransactions.push(vm.newSecondaryTransaction);
+                        toastr.success('','Secondary Transaction Updated.');
+                        vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
+
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                    }
+                },function(){
+                    toastr.error('Secondary Transaction was not updated due to some problem', 'Error');
+                });
+            }
+
+        }
+
+        function deleteSecondaryTransaction(index){
+            tradebook.transactionSecondaryCrud(vm.secondaryTransactions[index], crud.DELETE).then(function(res){
+                if(res.data.success){
+                    toastr.success(res.data.message,'Deleted');
+                    vm.secondaryTransactions.splice(index, 1);
                 }
                 else{
                     toastr.error(res.data.message, 'Error');
                 }
-            },function(){
-                toastr.error('Secondary Transaction was not added due to some problem', 'Error');
+            },function(err){
+                toastr.error('Secondary Transaction was not deleted due to some error.', 'Error');
             });
+        }
+
+        function editSecondaryTransaction(index){
+
+            vm.newSecondaryTransaction = vm.secondaryTransactions[index];
+            vm.secondaryTransactions.splice(index, 1);
+            vm.currentlyAdding = true;
+            vm.editMode = true;
 
         }
-        function deleteSecondaryTransaction(tr_sec_tranID,index){
-            vm.secondaryTransactions.splice(index, 1);
-        }
+
+
 	}
 
 }());

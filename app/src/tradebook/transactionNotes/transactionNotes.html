@@ -2,10 +2,37 @@
     <div class="col-lg-12 tableHeading">
         <label>Notes</label>
         <label class="pull-right cursor-pointer" ng-click="vm.showNotes = !vm.showNotes">
+            <span ng-bind="vm.transactionNotes.length + ' Transaction Notes'"></span>
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showNotes,'fa-chevron-circle-right':!vm.showNotes}"></i>
         </label>
     </div>
-    <div class="form-group col-lg-12" ng-if="vm.showNotes">
-        <textarea ng-model="vm.newTransaction.notes"  ng-disabled="vm.viewMode" rows="5" class="col-xs-12" placeholder="Add notes here..."></textarea>
+    <div class="col-lg-12 notesContainer" ng-if="vm.showNotes" ng-scrollbars>
+        <div ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_createdOn'">
+            <div class="col-lg-12 marginTop5">
+                <label class="cursor-pointer marginLeft15">
+                    By&nbsp;<span ng-bind="note.fullName">
+                    </span>&nbsp;on&nbsp;<span ng-bind="note.tr_createdOn | date: 'dd-MMM-yyyy'"></span>
+                </label>
+                <label  ng-click="vm.deleteSecondaryTransaction($index)" class=" pull-right cursor-pointer">&nbsp;&nbsp;Delete&nbsp;&nbsp;
+                    <i class="redFont fa fa-trash-o"></i>
+                </label>
+                <label  ng-click="vm.editSecondaryTransaction($index)" class="pull-right cursor-pointer border-right-gray">&nbsp;&nbsp;Edit&nbsp;&nbsp;
+                    <i class="fa fa-edit orangeFont"></i>&nbsp;&nbsp;
+                </label>
+            </div>
+            <div class="note col-lg-12" ng-bind-html="note.tr_transactionNotes"></div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-12 marginTop10px" ng-if="vm.showNotes">
+        <div class="form-group clearfix">
+            <text-angular ng-model="vm.newTransactionNote.tr_transactionNotes"></text-angular>
+            <!--<textarea ng-model="vm.newTransactionNote.tr_transactionNotes"  rows="5" class="col-xs-12" placeholder="Add notes here..."></textarea>-->
+        </div>
+    </div>
+
+    <div ng-if="vm.showNotes" class="clearfix">
+        <button type="submit" class="btn btn-default submitBtn addNote pull-right" ng-click="vm.addTransactionNote()">Add Note</button>
     </div>
 </div>

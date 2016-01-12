@@ -71,9 +71,14 @@
             </br>
             <div class="col-lg-12 border-bottom-gray">
                 <label>Secondary Transaction {{$index+1}}</label>
-                <label  ng-click="vm.deleteSecondaryTransaction()" class="pull-right cursor-pointer">Delete&nbsp;&nbsp;
-                    <i class=" fa fa-trash-o"></i>
+
+                <label  ng-click="vm.deleteSecondaryTransaction($index)" class=" pull-right cursor-pointer">&nbsp;&nbsp;Delete&nbsp;&nbsp;
+                    <i class="redFont fa fa-trash-o"></i>
                 </label>
+                <label  ng-click="vm.editSecondaryTransaction($index)" class="pull-right cursor-pointer border-right-gray">&nbsp;&nbsp;Edit&nbsp;&nbsp;
+                    <i class="fa fa-edit orangeFont"></i>&nbsp;&nbsp;
+                </label>
+
             </div>
             </br>
             <div class="col-lg-12">

@@ -1092,14 +1092,50 @@ form .progress {
 }
 
 /* line 940, ../partials/_theme.scss */
+.notesContainer {
+  max-height: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 946, ../partials/_theme.scss */
+.note {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px #333 solid;
+  background: #cccccc;
+}
+
+/* line 954, ../partials/_theme.scss */
+.textAlignRight {
+  text-align: right;
+}
+
+/* line 958, ../partials/_theme.scss */
+.marginTop10px {
+  margin-top: 10px;
+}
+
+/* line 962, ../partials/_theme.scss */
 .doc-Container {
   font-size: 15px;
   padding-top: 15px;
 }
 
-/* line 943, ../partials/_theme.scss */
+/* line 965, ../partials/_theme.scss */
 .marginTopmin18px {
   margin-top: -18px;
+}
+
+/* line 969, ../partials/_theme.scss */
+.addNote {
+  margin-right: 15px;
+  border-radius: 0;
+}
+
+/* line 974, ../partials/_theme.scss */
+textarea {
+  resize: vertical;
 }
 
 /* line 3, ../partials/_login.scss */

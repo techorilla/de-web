@@ -25,7 +25,6 @@
 
         vm.login = function(){
             authentication.userLogin(vm.email, vm.pass,function (response) {
-                console.log(response);
                 if (response.success) {
                     authentication.SetCredentials(vm.email, vm.pass, response.userId);
                     $state.go('shell.dashboard');

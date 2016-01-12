@@ -16,18 +16,31 @@
 
     angular
         .module('app.authentication').factory('authentication',
-            function (Base64, $http,  $rootScope, appConfig, $state,  $cookies,$cookieStore) {
+            function (Base64, $http,  $rootScope, appConfig, $state,  $cookies,$cookieStore, localStorageService) {
                 var service = {};
 
                 service.userLogin = function (username, password, callback) {
                     return $http.post(appConfig.apiHost+'login', { username: username, password: password })
                         .success(function (response) {
                             callback(response);
+                            console.log($rootScope.globals);
+                            service.getAppUserData();
                         });
                 };
 
+                service.getAppUserData = function(){
+                    var req = {
+                        method: 'GET',
+                        url: appConfig.apiHost+'getUserDetails?email='+$rootScope.globals.currentUser.username
+                    };
+                    $http(req).then(function(response){
+                        console.log(response);
+                        localStorageService.set('user', response.data.user);
+                    });
+                }
+
                 service.SetCredentials = function (username, password, user) {
-                    console.log('UserId:'+user);
+
                     var authdata = Base64.encode(username + ':' + password);
                     var userId = Base64.encode(user + ':' + username);
 

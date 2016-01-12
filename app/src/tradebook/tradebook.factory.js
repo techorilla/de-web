@@ -53,6 +53,7 @@
             getSingleTransactionDetails: getSingleTransactionDetails,
             getSingleTransactionSec: getSingleTransactionSec,
             getSingleTransactionCommission: getSingleTransactionCommission,
+            getSingleTransactionNotes: getSingleTransactionNotes,
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
 
@@ -186,9 +187,12 @@
         }
         function getNewTransactionNotes(){
             return{
-                tr_transactionID: '',
-                tr_tranNoteID: '',
-                tr_transactionNotes: ''
+                tr_transactionID: null,
+                tr_tranNoteID: null,
+                tr_transactionNotes: '',
+                tr_createdBy: null,
+                tr_createdOn: '',
+                tr_editedOn:''
             }
         }
         function getNewTransactionDocuments(){
@@ -269,6 +273,14 @@
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getCommissionTransaction?id='+id
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionNotes(transactionId){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'TransactionNotesList?transactionId='+transactionId
             };
             return $http(req);
         }

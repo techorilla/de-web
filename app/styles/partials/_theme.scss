@@ -937,9 +937,38 @@ form .progress {
   width: 0;
 }
 
+.notesContainer{
+  max-height:300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.note{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px #333 solid;
+  background: #cccccc;
+  //background: rgba(253, 240, 1, 1);
+}
+
+.textAlignRight{
+  text-align: right;
+}
+
+.marginTop10px{
+ margin-top: 10px;
+}
+
 .doc-Container{
   font-size:15px; padding-top:15px
 }
  .marginTopmin18px{
    margin-top: -18px;
  }
+
+ .addNote{
+   margin-right: 15px;
+   border-radius: 0;
+ }
+
+textarea { resize:vertical ; }

@@ -40,7 +40,9 @@
     'angular-click-outside',
     'ngSanitize',
     'ngCsv',
-    'ngFileUpload'
+    'ngFileUpload',
+    'textAngular',
+    'LocalStorageModule'
 
   ]);
 
@@ -82,6 +84,10 @@
             };
         });
 
+    });
+    angular.module('app.core').config(function (localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('DoniEnterprises');
     });
     angular.module('app.core').run(
         function ($rootScope, $location, $cookies,$cookieStore, $http) {
