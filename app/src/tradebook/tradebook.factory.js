@@ -56,6 +56,9 @@
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
 
+            deleteTransactionFile: deleteTransactionFile,
+            downloadTransactionFile: downloadTransactionFile,
+
             getNewSecondaryTransaction: getNewSecondaryTransaction,
             getNewShipmentDetails: getNewShipmentDetails,
             getNewTransaction: getNewTransaction,
@@ -238,6 +241,14 @@
             return $http(req);
         }
 
+        function deleteTransactionFile(fileId){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'deleteTransactionFile?fileId='+fileId
+            };
+            return $http(req);
+        }
+
         function getSingleTransactionSec(id){
             var req = {
                 method: 'GET',
@@ -275,6 +286,10 @@
                 .success(function (response) {
                     callback(response);
                 });
+        }
+
+        function downloadTransactionFile(fileID){
+            return appConfig.apiHost+'downloadTransactionFile?fileID=' + fileID;
         }
 
         function saveBasicTransaction(newTransaction, callback){

@@ -1091,6 +1091,17 @@ form .progress {
   width: 0;
 }
 
+/* line 940, ../partials/_theme.scss */
+.doc-Container {
+  font-size: 15px;
+  padding-top: 15px;
+}
+
+/* line 943, ../partials/_theme.scss */
+.marginTopmin18px {
+  margin-top: -18px;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

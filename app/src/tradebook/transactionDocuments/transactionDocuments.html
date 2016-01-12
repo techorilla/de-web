@@ -2,7 +2,7 @@
     <div class="col-lg-12 tableHeading">
         <label>Documents Attachments</label>
         <label class="pull-right cursor-pointer" ng-click="vm.showDocument = !vm.showDocument">
-            Total 0 Documents Attached
+            Total <span ng-bind="vm.allFiles.length"></span> Documents Attached
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showDocument,'fa-chevron-circle-right':!vm.showDocument}"></i>
         </label>
     </div>
@@ -36,10 +36,10 @@
                 <div ng-if="vm.documentName !== ''" class="form-group col-lg-4 col-xs-12">
                     <label>Document</label>
                     <button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
-                            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                            accept="*">
                         <i class="fa fa-upload"></i></button>
                     File:
-                <div style="font:smaller">{{f.name}} {{vm.errFile.name}} {{vm.errFile.$error}} {{vm.errFile.$errorParam}}
+                <div style="font:smaller">{{vm.file.name}} {{vm.errFile.name}} {{vm.errFile.$error}} {{vm.errFile.$errorParam}}
                     <span class="progress" ng-show="vm.file.progress >= 0">
                         <div style="width:{{vm.file.progress}}%"
                         ng-bind="vm.file.progress + '%'"></div>
@@ -52,5 +52,28 @@
             </div>
 
         </div>
+        <div class="clearfix" ng-if="vm.showDocument">
+            <div class="col-lg-4 doc-Container" ng-click="vm.downloadFile(file.tf_fileID)"
+                 ng-repeat="file in vm.allFiles | orderBy: 'tf_createdOn'">
+                <div class="clearfix">
+                    <a href="{{vm.transactionFileDownloadUrl(file.tf_fileID)}}">
+                        <div ng-click="">
+                            <i class="fa fa-file-pdf-o redFont" ng-if="file.tf_fileType === 'application/pdf'"></i>
+                            <i class="fa fa-file-word-o blueFont" ng-if="file.tf_fileType === 'application/msword' || file.tf_fileType === 'application/vnd.openxmlformats-officedocument.word'"></i>
+                            <i class="fa fa-file-text orangeFont" ng-if="file.tf_fileType !== 'application/msword' && file.tf_fileType !== 'application/pdf' && file.tf_fileType !== 'application/vnd.openxmlformats-officedocument.word'"></i>
+                            &nbsp; &nbsp;<span ng-bind="file.tf_fileName"></span>
+                            &nbsp; &nbsp;
+                        </div>
+                    </a>
+
+                    <label  ng-click="vm.deleteTransactionDocuments(file.tf_fileID)" class="pull-right cursor-pointer marginTopmin18px">Delete&nbsp;&nbsp;
+                        <i class=" fa fa-trash-o"></i>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
 </div>
