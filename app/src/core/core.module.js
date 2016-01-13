@@ -53,14 +53,15 @@
 //	});
 
 	angular.module('app.core')
-        .config(function (ScrollBarsProvider) {
-	    ScrollBarsProvider.defaults = {
-	        theme: 'dark',
-	        autoHideScrollbar: true,
+    .config(function (ScrollBarsProvider) {
+        ScrollBarsProvider.defaults = {
+            theme: 'dark',
+            autoHideScrollbar: true,
             scrollbarPosition: 'inside',
             axis:'y'
-	    };
-	}).config(function(toastrConfig) {
+        };
+    })
+    .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             autoDismiss: true,
             maxOpened: 1,

@@ -18,12 +18,21 @@
         .module('app.authentication').factory('authentication',
             function (Base64, $http,  $rootScope, appConfig, $state,  $cookies,$cookieStore, localStorageService) {
                 var service = {};
+                var user = {};
+
+                function getUserFromLocalStorage(){
+                    if(!user.initials){
+                        user = localStorageService.get('user');
+                    }
+                }
+
+
 
                 service.userLogin = function (username, password, callback) {
                     return $http.post(appConfig.apiHost+'login', { username: username, password: password })
                         .success(function (response) {
                             callback(response);
-                            console.log($rootScope.globals);
+
                             service.getAppUserData();
                         });
                 };
@@ -34,10 +43,12 @@
                         url: appConfig.apiHost+'getUserDetails?email='+$rootScope.globals.currentUser.username
                     };
                     $http(req).then(function(response){
-                        console.log(response);
-                        localStorageService.set('user', response.data.user);
+                        if(response.data.success){
+                           localStorageService.set('user', response.data.user[0]);
+                           user = localStorageService.get('user');
+                        }
                     });
-                }
+                };
 
                 service.SetCredentials = function (username, password, user) {
 
@@ -65,9 +76,20 @@
                 };
 
                 service.userLogOut = function(){
+                    this.user = {};
+                    localStorageService.clearAll();
                     service.ClearCredentials();
                     $state.go('login');
-                }
+                };
+
+                service.getFullUserName = function(){
+                    getUserFromLocalStorage();
+                    return user.initials + '.' + user.firstName + ' ' + user.lastName;
+                };
+
+                service.isPostedByCurrentUser = function(userId){
+                    return ((userId == ((Base64.decode($rootScope.globals.currentUser.userId).split(':')[0]))));
+                };
 
                 return service;
             })

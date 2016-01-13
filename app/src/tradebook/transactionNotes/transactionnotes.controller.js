@@ -13,7 +13,7 @@
         .controller('TransactionNotes', TransactionNotes);
 
     /* @ngInject */
-    function TransactionNotes($stateParams, tradebook,toastr,crud){
+    function TransactionNotes($stateParams, tradebook,toastr,crud, authentication, $rootScope){
         var vm = this;
         init();
 
@@ -31,6 +31,7 @@
             vm.showNotes = false;
             vm.transactionId = $stateParams.tran;
             vm.transactionNotes = [];
+            vm.userService = authentication;
             vm.newTransactionNote = tradebook.getNewTransactionNotes();
             if (vm.transactionId !== 'new') {
                 vm.newTransactionNote.tr_transactionID = vm.transactionId;
@@ -49,12 +50,14 @@
             tradebook.transactionNotesCrud(vm.newTransactionNote,crud.CREATE).then(
                 function(res){
                     if(res.data.success){
-                        var date = (new Date()).getDate();
                         vm.newTransactionNote.tr_tranNoteID = res.data.noteId;
+                        vm.newTransactionNote.tr_createdBy = $rootScope.globals.currentUser.userId;
+                        vm.newTransactionNote.fullName = vm.userService.getFullUserName();
+                        vm.newTransactionNote.tr_createdOn = new Date().toJSON().slice(0,10);
                         vm.transactionNotes.push(vm.newTransactionNote);
                         vm.newTransactionNote = tradebook.getNewTransactionNotes();
                         vm.newTransactionNote.tr_transactionID = vm.transactionId;
-                        vm.newTransactionNote.tr_createdOn = date;
+                        $scope.$broadcast('rebuild:me');
                         toastr.success(res.data.message,'Success')
                     }
                     else{
