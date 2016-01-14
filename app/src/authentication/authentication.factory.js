@@ -87,6 +87,10 @@
                     return user.initials + '.' + user.firstName + ' ' + user.lastName;
                 };
 
+                service.getUserId = function(){
+                    return ((Base64.decode($rootScope.globals.currentUser.userId).split(':')[0]));
+                }
+
                 service.isPostedByCurrentUser = function(userId){
                     return ((userId == ((Base64.decode($rootScope.globals.currentUser.userId).split(':')[0]))));
                 };

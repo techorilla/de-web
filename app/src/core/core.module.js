@@ -58,7 +58,10 @@
             theme: 'dark',
             autoHideScrollbar: true,
             scrollbarPosition: 'inside',
-            axis:'y'
+            axis:'y',
+            advanced:{
+                updateOnContentResize: true
+            }
         };
     })
     .config(function(toastrConfig) {

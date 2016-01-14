@@ -13,7 +13,7 @@
         .controller('TransactionNotes', TransactionNotes);
 
     /* @ngInject */
-    function TransactionNotes($stateParams, tradebook,toastr,crud, authentication, $rootScope){
+    function TransactionNotes($stateParams, tradebook,toastr,crud, authentication, $anchorScroll, $location){
         var vm = this;
         init();
 
@@ -38,9 +38,14 @@
                 tradebook.getSingleTransactionNotes(vm.transactionId).then(function(res){
                     if(res.data.success){
                         vm.transactionNotes = res.data.notes;
+
                     }
                 },function (error){
                     toastr.error('Unable to get transaction notes.','Error')
+                });
+
+                $('#noteList').mCustomScrollbar("scrollTo","last",{
+                    scrollEasing:"easeOut"
                 });
             }
             vm.addTransactionNote = addTransactionNote;
@@ -51,13 +56,15 @@
                 function(res){
                     if(res.data.success){
                         vm.newTransactionNote.tr_tranNoteID = res.data.noteId;
-                        vm.newTransactionNote.tr_createdBy = $rootScope.globals.currentUser.userId;
-                        vm.newTransactionNote.fullName = vm.userService.getFullUserName();
-                        vm.newTransactionNote.tr_createdOn = new Date().toJSON().slice(0,10);
+                        vm.newTransactionNote.tr_createdBy = authentication.getUserId();
+                        vm.newTransactionNote.fullName = authentication.getFullUserName();
+                        vm.newTransactionNote.userID = new Date().toJSON().slice(0,10);
                         vm.transactionNotes.push(vm.newTransactionNote);
                         vm.newTransactionNote = tradebook.getNewTransactionNotes();
                         vm.newTransactionNote.tr_transactionID = vm.transactionId;
-                        $scope.$broadcast('rebuild:me');
+                        $('#noteList').mCustomScrollbar("scrollTo","last",{
+                            scrollEasing:"easeOut"
+                        });
                         toastr.success(res.data.message,'Success')
                     }
                     else{

@@ -7,11 +7,11 @@
         </label>
     </div>
     <div class="col-lg-12 notesContainer" ng-if="vm.showNotes" ng-scrollbars>
-        <div ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_tranNoteId'">
+        <div id="noteList" ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_tranNoteId'">
             <div class="col-lg-12 marginTop5">
                 <label class="cursor-pointer marginLeft15">
                     By&nbsp;<span ng-bind="note.fullName">
-                    </span>&nbsp;on&nbsp;<span ng-bind="note.tr_createdOn | date: 'dd-MMM-yyyy'"></span>
+                    </span>&nbsp;on&nbsp;<span ng-bind="note.tr_createdOn | date: 'dd-MMM-yyyy @ h:mm:ss a'"></span>
                 </label>
                 <label ng-if="vm.userService.isPostedByCurrentUser(note.userID)"  ng-click="vm.deleteSecondaryTransaction($index)" class=" pull-right cursor-pointer">&nbsp;&nbsp;Delete&nbsp;&nbsp;
                     <i class="redFont fa fa-trash-o"></i>
