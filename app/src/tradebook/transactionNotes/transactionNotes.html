@@ -7,22 +7,22 @@
         </label>
     </div>
     <div class="col-lg-12 notesContainer" ng-if="vm.showNotes" ng-scrollbars>
-        <div id="noteList" ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_tranNoteId'">
+        <div ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_tranNoteId'">
             <div class="col-lg-12 marginTop5">
                 <label class="cursor-pointer marginLeft15">
                     By&nbsp;<span ng-bind="note.fullName">
                     </span>&nbsp;on&nbsp;<span ng-bind="note.tr_createdOn | date: 'dd-MMM-yyyy @ h:mm:ss a'"></span>
                 </label>
-                <label ng-if="vm.userService.isPostedByCurrentUser(note.userID)"  ng-click="vm.deleteSecondaryTransaction($index)" class=" pull-right cursor-pointer">&nbsp;&nbsp;Delete&nbsp;&nbsp;
+                <label ng-if="vm.userService.isPostedByCurrentUser(note.userID)"  ng-click="vm.deleteTransactionNote($index)" class=" pull-right cursor-pointer">&nbsp;&nbsp;Delete&nbsp;&nbsp;
                     <i class="redFont fa fa-trash-o"></i>
                 </label>
-                <label ng-if="vm.userService.isPostedByCurrentUser(note.userID)" ng-click="vm.editSecondaryTransaction($index)" class="pull-right cursor-pointer border-right-gray">&nbsp;&nbsp;Edit&nbsp;&nbsp;
+                <label ng-if="vm.userService.isPostedByCurrentUser(note.userID)" ng-click="vm.editTransactionNote($index)" class="pull-right cursor-pointer border-right-gray">&nbsp;&nbsp;Edit&nbsp;&nbsp;
                     <i class="fa fa-edit orangeFont"></i>&nbsp;&nbsp;
                 </label>
             </div>
             <div class="note col-lg-12" ng-bind-html="note.tr_transactionNotes"></div>
-
         </div>
+        <div id="noteList"></div>
     </div>
 
     <div class="col-lg-12 marginTop10px" ng-if="vm.showNotes">

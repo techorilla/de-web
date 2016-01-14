@@ -32,12 +32,16 @@
             vm.transactionId = $stateParams.tran;
             vm.transactionNotes = [];
             vm.userService = authentication;
+            vm.deleteTransactionNote = deleteTransactionNote;
+            vm.editTransactionNote = editTransactionNote;
             vm.newTransactionNote = tradebook.getNewTransactionNotes();
             if (vm.transactionId !== 'new') {
                 vm.newTransactionNote.tr_transactionID = vm.transactionId;
                 tradebook.getSingleTransactionNotes(vm.transactionId).then(function(res){
                     if(res.data.success){
                         vm.transactionNotes = res.data.notes;
+                        vm.newTransactionNote = tradebook.getNewTransactionNotes();
+                        vm.newTransactionNote.tr_transactionID = vm.transactionId;
 
                     }
                 },function (error){
@@ -50,18 +54,11 @@
             }
             vm.addTransactionNote = addTransactionNote;
         }
-
-        function addTransactionNote(){
-            tradebook.transactionNotesCrud(vm.newTransactionNote,crud.CREATE).then(
+        function deleteTransactionNote(index){
+            tradebook.transactionNotesCrud(vm.transactionNotes[index],crud.DELETE).then(
                 function(res){
                     if(res.data.success){
-                        vm.newTransactionNote.tr_tranNoteID = res.data.noteId;
-                        vm.newTransactionNote.tr_createdBy = authentication.getUserId();
-                        vm.newTransactionNote.fullName = authentication.getFullUserName();
-                        vm.newTransactionNote.userID = new Date().toJSON().slice(0,10);
-                        vm.transactionNotes.push(vm.newTransactionNote);
-                        vm.newTransactionNote = tradebook.getNewTransactionNotes();
-                        vm.newTransactionNote.tr_transactionID = vm.transactionId;
+                        vm.transactionNotes.splice(index,1);
                         $('#noteList').mCustomScrollbar("scrollTo","last",{
                             scrollEasing:"easeOut"
                         });
@@ -71,9 +68,57 @@
                         toastr.error(res.data.message,'Error');
                     }
                 }, function(err){
-                    toastr.error('Unable to get add transaction notes','Error');
+                    toastr.error('Unable to delete transaction notes','Error');
                 }
             );
+        }
+
+        function editTransactionNote(index){
+            vm.newTransactionNote = vm.transactionNotes[index];
+            vm.transactionNotes.splice(index,1);
+            vm.editMode = true;
+        }
+
+
+
+        function addTransactionNote(){
+            var op = (vm.editMode) ? crud.UPDATE : crud.CREATE;
+            if(vm.newTransactionNote.tr_transactionNotes !== ''){
+                tradebook.transactionNotesCrud(vm.newTransactionNote,op).then(
+                    function(res){
+                        if(res.data.success){
+                            if(op === crud.CREATE){
+                                vm.newTransactionNote = res.data.noteId;
+                                vm.newTransactionNote.tr_createdBy = authentication.getUserId();
+                                vm.newTransactionNote.fullName = authentication.getFullUserName();
+                                vm.newTransactionNote.userID = authentication.getUserId();
+                                vm.transactionNotes.push(vm.newTransactionNote);
+                                vm.newTransactionNote = tradebook.getNewTransactionNotes();
+                                vm.newTransactionNote.tr_transactionID = vm.transactionId;
+                                $('#noteList').mCustomScrollbar("scrollTo","last",{
+                                    scrollEasing:"easeOut"
+                                });
+                            }
+                            else{
+                                vm.transactionNotes.push(vm.newTransactionNote);
+                                vm.newTransactionNote = tradebook.getNewTransactionNotes();
+                            }
+
+                            toastr.success(res.data.message,'Success')
+                        }
+                        else{
+                            toastr.error(res.data.message,'Error');
+                        }
+                    }, function(err){
+                        toastr.error('Unable to get add transaction notes','Error');
+                    }
+                );
+
+            }
+            else{
+                toastr.error('Note is empty!', 'Error');
+            }
+            vm.editMode = false;
         }
     }
 
