@@ -101,6 +101,14 @@
           'secondaryTransaction@shell.tradebook.Transaction':{
               templateUrl:'src/tradebook/secondaryTrade/secondaryTrade.html',
               controller:'SecondaryTrade as vm'
+          },
+          'contractInfo@shell.tradebook.Transaction':{
+              templateUrl: 'src/tradebook/transactionContract/transactionContract.html',
+              controller: 'TransactionContract as vm'
+          },
+          'status@shell.tradebook.Transaction':{
+              templateUrl:'src/tradebook/transactionStatus/transactionStatus.html',
+              controller:'TransactionStatus as vm'
           }
        }
     });

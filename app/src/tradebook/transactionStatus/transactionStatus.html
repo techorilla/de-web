@@ -1,0 +1,17 @@
+<div class="col-lg-12  marginLeft15">
+    <div class="col-lg-12 tableHeading">
+        <label>Transaction Status</label>
+        <label class="pull-right cursor-pointer" ng-click="vm.showStatus = !vm.showStatus">
+            <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showStatus,'fa-chevron-circle-right':!vm.showStatus}"></i>
+        </label>
+    </div>
+
+    <div ng-if="vm.showStatus" class="form-group col-lg-4">
+        <label>Status</label>
+        <selectize placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.newTransaction.tr_transactionStatus"></selectize>
+    </div>
+    <div ng-if="vm.showStatus" class="form-group col-lg-4">
+        <label>Washout at X Value</label>
+        <input placeholder="Enter washout value" type="number" class="form-control" ng-model="vm.newTransaction.tr_washOutValue"/>
+    </div>
+</div>

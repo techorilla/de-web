@@ -118,6 +118,39 @@
 		function testFunction(id){
 
 		}
+        function getProductConfig(){
+            return {
+                valueField: 'id',
+                sortField: 'name',
+                searchField: ['name','origin', 'quality'],
+                maxItems:1,
+                create: false,
+                persist: false,
+                render: {
+                    item: function(item, escape) {
+                        console.log(item);
+                        var label = item.name;
+                        var caption = item.origin;
+                        var pContact = (item.quality === null)? 'No Quality Tags' : item.quality;
+                        return '<div>' +
+                            '<span class="dropdownLabel">' + label + '</span>' +
+                            '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
+                            '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
+                            '</div>';
+                    },
+                    option: function(item, escape) {
+                        var label = item.name;
+                        var caption = item.origin;
+                        var pContact = (item.quality === null)? 'No Quality Tags' : item.quality;
+                        return '<div>' +
+                            '<span class="dropdownLabel">' + label + '</span>' +
+                            '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
+                            '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
+                            '</div>';
+                    }
+                }
+            };
+        }
         function getBpConfig(){
             return bpConfig;
         }
@@ -182,8 +215,7 @@
                 tr_doniContract:false,
                 tr_ownContract:false,
                 tr_ContractualBuyer:''
-
-        }
+            };
         }
         function getNewTransactionNotes(){
             return{
