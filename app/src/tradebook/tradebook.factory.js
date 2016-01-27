@@ -54,6 +54,7 @@
             getSingleTransactionSec: getSingleTransactionSec,
             getSingleTransactionCommission: getSingleTransactionCommission,
             getSingleTransactionNotes: getSingleTransactionNotes,
+            getProductConfig: getProductConfig,
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
 

@@ -69,7 +69,7 @@
                                    ng-model="vm.newTransaction.tr_quantity" >
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
-                            <label>Price</label>
+                            <label>Price (USD)</label>
                             <number-only-input
                                     input-value="vm.newTransaction.tr_price"
                                     input-name="vm.newTransaction.tr_price"
@@ -125,20 +125,20 @@
                     </div>
                 </div>
             </div>
-            <div class="row" ui-view="contractInfo"></div>
-            <div class="row" ui-view="commission"></div>
-            <div class="row" ui-view="shipmentDetails"></div>
-            <div class="row" ui-view="status"></div>
-            <div class="row" ui-view="secondaryTransaction"></div>
-            <div class="row" ui-view="documents"></div>
-            <div class="row" ui-view="notes"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="contractInfo"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="commission"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="shipmentDetails"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="status"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="secondaryTransaction"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="documents"></div>
+            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="notes"></div>
 
         </div>
 
 
         <div class="form-group  col-xs-12 border-top-black marginTop5">
-            <button type="submit" class="btn btn-default submitBtn marginLeft15" ng-click="vm.saveTransaction()">Save Transaction</button>
-            <button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>
+            <!--<button type="submit" class="btn btn-default submitBtn marginLeft15" ng-click="vm.saveTransaction()">Save Transaction</button>-->
+            <!--<button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>-->
         </div>
         </br>
 

@@ -24,9 +24,7 @@
         vm.showCommission = false;
         vm.showStatus = false;
         vm.showNotes = false;
-        vm.saveBasicTransaction = saveBasicTransaction;
-        vm.editBasicTransaction= editBasicTransaction;
-        vm.deleteCompleteTransaction = deleteCompleteTransaction;
+
 
 
         vm.commissionTypeConfig = {
@@ -92,6 +90,10 @@
 
         function init(){
             vm.tran = $stateParams.tran;
+            vm.saveBasicTransaction = saveBasicTransaction;
+            vm.editBasicTransaction= editBasicTransaction;
+            vm.deleteCompleteTransaction = deleteCompleteTransaction;
+            vm.stateParams = $stateParams;
             vm.editMode = (completeTransaction === null);
             if(vm.tran === 'new'){
                 vm.newTransaction = tradebook.getNewTransaction();

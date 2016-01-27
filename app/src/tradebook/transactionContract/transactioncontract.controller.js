@@ -31,6 +31,14 @@
             vm.saveTransactionContract = saveTransactionContract;
             vm.editTransactionContract = editTransactionContract;
         }
+
+        function saveTransactionContract(){
+
+        }
+
+        function editTransactionContract(){
+
+        }
     }
 
 }());

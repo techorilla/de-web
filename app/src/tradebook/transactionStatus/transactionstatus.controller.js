@@ -13,7 +13,7 @@
         .controller('TransactionStatus', TransactionStatus);
 
     /* @ngInject */
-    function TransactionStatus(tradebook, staticDropDown){
+    function TransactionStatus(tradebook, staticDropDown, $stateParams){
         var vm = this;
         init();
 
@@ -28,7 +28,9 @@
          * My Description rules
          */
         function init(){
-            vm.transactionStatus = tradebook.getNewTransactionStatus;
+            vm.tran = $stateParams;
+
+            vm.transactionStatus = tradebook.getNewTransactionStatus();
             vm.saveTransactionStatus = saveTransactionStatus;
             vm.editTransactionStatus = editTransactionStatus;
             vm.transactionStatusConfig = {
@@ -39,6 +41,23 @@
                 labelField: 'text',
                 maxItems:1
             };
+
+            vm.showStatus = false;
+            vm.editMode = true;
+            vm.cancel = cancel;
+
+        }
+
+        function cancel(){
+
+        }
+
+        function saveTransactionStatus(){
+            console.log(vm.transactionStatus);
+        }
+
+        function editTransactionStatus(){
+
         }
     }
 
