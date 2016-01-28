@@ -84,6 +84,16 @@
                  templateUrl:'src/setup/brokerBookSetup.template.html'
              }
          }
+      })
+      .state('shell.setup.origin',{
+          url:'/origin',
+          inSetup: 'true',
+          inSetupTitle: 'Add/Remove Origin',
+          views:{
+              'subContent@shell.setup':{
+                  templateUrl:'src/setup/origin/origin.html'
+              }
+          }
       });
   }
 

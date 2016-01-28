@@ -1,92 +1,147 @@
-<div class="col-lg-12  marginLeft15">
+<div class="col-lg-12  marginLeft15 ">
     <div class="col-lg-12 tableHeading">
         <label>Shipment Details</label>
         <label class="pull-right cursor-pointer" ng-click="vm.showShipment = !vm.showShipment">
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showShipment,'fa-chevron-circle-right':!vm.showShipment}"></i>
         </label>
     </div>
+    <div class="clearfix" ng-if="vm.showShipment" ng-init="vm.getStateParams()">
+        <div  class="col-lg-12">
+            <label ng-click="vm.cancelShipmentDetails()" class="cursor-pointer pull-right"
+                   ng-if="vm.tran !== 'new' && vm.editMode">
+                &nbsp;&nbsp;
+                <i class="fa fa-times-circle redFont"></i>
+                &nbsp;&nbsp;Cancel
+            </label>
+            <label ng-if="vm.tran === 'new' || vm.editMode"
+                   ng-click="vm.saveShipmentDetails()" class="cursor-pointer pull-right ">
+                <i class="fa fa-database blueFont"></i>
+                &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </label>
+            <label ng-if="!vm.editMode" ng-click="vm.editShipmentDetails()" class="cursor-pointer pull-right ">
+                &nbsp;&nbsp;Edit&nbsp;&nbsp;<i class="fa fa-edit orangeFont"></i>
+            </label>
+        </div>
+    </div>
     <div ng-if="vm.showShipment">
         <div class="form-group col-lg-12 col-xs-12">
 
             <div class="row marginTop5  height100px">
                 <div class="col-lg-4 col-xs-12">
+
+                    <input name="tr_notShipped" ng-disabled="!vm.editMode" type="checkbox" ng-model="vm.shipment.tr_notShipped"/>
                     <label>Not Shipped</label>
-                    <input name="contractType"   type="checkbox" ng-model="vm.shipment.tr_notShipped"/>
                 </div>
-                <div ng-show="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12">
-                    <label>Reason</label>
+                <div ng-if="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12" ng-init="vm.shipment.tr_ship_chk_reason = false;">
+
                     <input name="tr_ship_chk_reason"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_reason"/>
+                    <label>Reason</label>
                     <textarea  rows="2" ng-model="vm.shipment.tr_notShippedReason"
-                               ng-if="vm.shipment.tr_ship_chk_reason"
-                               ng-disabled="vm.viewMode" class="col-xs-12 resizeNone"
+                               ng-if="vm.shipment.tr_ship_chk_reason" ng-init="vm.shipment.tr_notShippedReason = null"
+                               ng-disabled="!vm.editMode" class="col-xs-12 resizeNone"
                                placeholder="Reason..."></textarea>
                 </div>
-                <div ng-show="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12">
-                    <label>Shipment Extension</label>
+                <div ng-if="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12" ng-init="vm.shipment.tr_ship_chk_shpExt = false;">
+
                     <input name="tr_ship_chk_shpExt"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_shpExt"/>
-                    <input class="form-control" name="contractType"
+                    <label>Shipment Extension</label>
+                    <input class="form-control" name="shipmentExtension"
                            placeholder="Shipment Extension"
-                           ng-if="vm.shipment.tr_ship_chk_shpExt"
+                           ng-disabled="!vm.editMode"
+                           ng-if="vm.shipment.tr_ship_chk_shpExt" ng-init="vm.shipment.shipmentExtension = null"
                            type="text" ng-model="vm.shipment.shipmentExtension"/>
 
                 </div>
             </div>
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
+
+                    <input name="tr_appropriationRecieved" ng-disabled="!vm.editMode"
+                           type="checkbox" ng-model="vm.shipment.tr_appropriationRecieved"/>
                     <label>Appropration Recieved</label>
-                    <input name="contractType"   type="checkbox" ng-model="vm.shipment.tr_appropriationRecieved"/>
                 </div>
-                <div ng-show="vm.shipment.tr_appropriationRecieved" class="col-lg-4 col-xs-12">
+                <div ng-if="vm.shipment.tr_appropriationRecieved"
+                     ng-init="vm.shipment.tr_ship_chk_expShp = false"
+                     class="col-lg-4 col-xs-12">
+
+                    <input name="tr_ship_chk_expShp" ng-disabled="!vm.editMode"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_expShp"/>
                     <label>Expected Shipment</label>
-                    <input name="tr_ship_chk_expShp"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_expShp"/>
-                    <date-picker ng-if="vm.shipment.tr_ship_chk_expShp" date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_expShp" ng-init="vm.shipment.tr_expectedShipment=null;" ng-disabled="!vm.editMode"
+                                 date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
                 </div>
-                <div ng-show="vm.shipment.tr_appropriationRecieved" class="col-lg-4 col-xs-12">
+                <div ng-if="vm.shipment.tr_appropriationRecieved" ng-init="vm.shipment.tr_ship_chk_inTransit = false"  class="col-lg-4 col-xs-12">
+
+                    <input name="tr_ship_chk_inTransit"  ng-disabled="!vm.editMode"
+                           type="checkbox" ng-model="vm.shipment.tr_ship_chk_inTransit"/>
                     <label>In Transit</label>
-                    <input name="tr_ship_chk_inTransit"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_inTransit"/>
-                    <date-picker ng-if="vm.shipment.tr_ship_chk_inTransit" date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_inTransit"
+                                 ng-init="vm.shipment.tr_inTransit = null"
+                                 ng-disabled="!vm.editMode"
+                                 date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
                 </div>
             </div>
 
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
+                    <input name="shipped" type="checkbox" ng-model="vm.shipment.tr_shipped" ng-disabled="!vm.editMode"/>
                     <label>Shipped</label>
-                    <input name="shipped" type="checkbox" ng-model="vm.shipment.tr_shipped"/>
                 </div>
-                <div class="col-lg-2 col-xs-12">
-                    <label>Date Shipped</label>
-                    <input name="tr_ship_chk_inTransit"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_dateShipped"/>
-                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_dateShipped" max-date="" min-date=""></date-picker>
-                </div>
-                <div class="col-lg-2 col-xs-12">
-                    <label>Expected Arrival</label>
-                    <input name="tr_ship_chk_expArrival"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_expArrival"/>
-                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_ship_chk_expArrival" max-date="" min-date=""></date-picker>
+                <div ng-if="vm.shipment.tr_shipped" class="col-lg-2 col-xs-12" ng-init="vm.shipment.tr_ship_chk_dateShipped = false">
 
+                    <input name="tr_ship_chk_dateShipped"  ng-disabled="!vm.editMode" type="checkbox" ng-model="vm.shipment.tr_ship_chk_dateShipped"/>
+                    <label>Date Shipped</label>
+                    <date-picker ng-disabled="!vm.editMode"
+                                 ng-init="vm.shipment.tr_dateShipped = null;"
+                                 ng-if="vm.shipment.tr_ship_chk_dateShipped"
+                                 date="vm.shipment.tr_dateShipped" max-date="" min-date=""></date-picker>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div ng-if="vm.shipment.tr_shipped" class="col-lg-2 col-xs-12" ng-init="vm.shipment.tr_ship_chk_expArrival = false">
+
+                    <input name="tr_ship_chk_expArrival" ng-disabled="!vm.editMode"  type="checkbox" ng-model="vm.shipment.tr_ship_chk_expArrival"/>
+                    <label>Expected Arrival</label>
+                    <date-picker ng-disabled="!vm.editMode"
+                                 ng-if="vm.shipment.tr_ship_chk_expArrival"
+                                 date="vm.shipment.tr_expectedArrival"
+                                 ng-init="vm.shipment.tr_expectedArrival = null" max-date="" min-date=""></date-picker>
+                </div>
+                <div class="col-lg-4 col-xs-12" ng-if="vm.shipment.tr_shipped" ng-init="vm.shipment.tr_ship_chk_transitPort = false">
+
+                    <input name="tr_ship_chk_transitPort" ng-disabled="!vm.editMode"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_transitPort"/>
                     <label>Transit Port</label>
-                    <input type="text"
+                    <input type="text" ng-if="vm.shipment.tr_ship_chk_transitPort"
+                           ng-init="vm.shipment.tr_transitPort=null"
                            ng-model="vm.shipment.tr_transitPort"
                            class="form-control"
-                           placeholder="Enter Invoice No.">
+                           ng-disabled="!vm.editMode"
+                           placeholder="Enter Transit Port">
 
                 </div>
             </div>
 
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
+
+                    <input name="atPort" type="checkbox" ng-disabled="!vm.editMode" ng-model="vm.shipment.tr_arrivedAtPort"/>
                     <label>Arrived at Port</label>
-                    <input name="atPort" type="checkbox" ng-model="vm.shipment.tr_arrivedAtPort"/>
                 </div>
 
-                <div class="col-lg-4 col-xs-12">
+                <div class="col-lg-4 col-xs-12" ng-if="vm.shipment.tr_arrivedAtPort" ng-init="vm.shipment.tr_ship_chk_dateArrived = false">
+
+                    <input name="tr_ship_chk_dateArrived"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_dateArrived"/>
                     <label>Date Arrived</label>
-                    <date-picker date="vm.shipment.tr_dateArrived" max-date="" min-date=""></date-picker>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_dateArrived"
+                                 ng-init="vm.shipment.tr_dateArrived = null;"
+                                 ng-disabled="!vm.editMode"
+                                 date="vm.shipment.tr_dateArrived" max-date="" min-date=""></date-picker>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div class="col-lg-4 col-xs-12" ng-if="vm.shipment.tr_arrivedAtPort" ng-init="vm.shipment.tr_ship_chk_actualArrived = false">
+
+                    <input name="tr_ship_chk_expArrival" type="checkbox" ng-model="vm.shipment.tr_ship_chk_actualArrived"/>
                     <label>Actual Arrived</label>
-                    <date-picker date="vm.shipment.tr_actualArrived" max-date="" min-date=""></date-picker>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_actualArrived"
+                                 ng-init="vm.shipment.tr_actualArrived=null;"
+                                 ng-disabled="!vm.editMode"
+                                 date="vm.shipment.tr_actualArrived" max-date="" min-date=""></date-picker>
                 </div>
             </div>
         </div>
@@ -94,37 +149,37 @@
         <div class="clearfix">
             <div class="form-group col-lg-4 col-xs-12">
                 <label>B/L No.</label>
-                <input type="text"  ng-model="vm.shipment.tr_ship_BlNo" class="form-control" placeholder="Enter B/L No.">
+                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_BlNo" class="form-control" placeholder="Enter B/L No.">
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Invoice No.</label>
-                <input type="text"  ng-model="vm.shipment.tr_ship_invoiceNo" class="form-control" placeholder="Enter Invoice No.">
+                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_invoiceNo" class="form-control" placeholder="Enter Invoice No.">
             </div>
             <div class="form-group col-lg-4 col-xs-12">
-                <label>Invoice Amount</label>
-                <input type="text"  ng-model="vm.shipment.tr_ship_invoiceAmt" class="form-control" placeholder="Enter Invoice Amount">
+                <label>Invoice Amount (USD)</label>
+                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_invoiceAmt" class="form-control" placeholder="Enter Invoice Amount">
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Quantity Shipped (Mt)</label>
-                <input type="text"  ng-model="vm.shipment.tr_ship_quantity" class="form-control" placeholder="Enter quantity shipped">
+                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_quantity" class="form-control" placeholder="Enter quantity shipped">
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Vessel/Voyage Number</label>
-                <input type="text"  ng-model="vm.shipment.tr_ship_vesselNo" class="form-control" placeholder="Enter voyage number">
+                <input type="text" ng-disabled="!vm.editMode" ng-model="vm.shipment.tr_ship_vesselNo" class="form-control" placeholder="Enter voyage number">
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Primary Shipper</label>
-                <selectize ng-disabled="vm.viewMode" placeholder='Please select shipper' config="vm.bpConfig" options='vm.shippersList' ng-model="vm.shipment.tr_ship_primaryShipper"></selectize>
+                <selectize ng-disabled="!vm.editMode" placeholder='Please select shipper' config="vm.bpConfig" options='vm.shippersList' ng-model="vm.shipment.tr_ship_primaryShipper"></selectize>
             </div>
         </div>
         <div class="clearfix">
             <div class="col-lg-4 col-xs-12">
                 <label>Port of Loading</label>
-                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portLoad"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Loading"></textarea>
+                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portLoad"  ng-disabled="!vm.editMode" class="col-xs-12 resizeNone" placeholder="Port of Loading"></textarea>
             </div>
             <div class="col-lg-4 col-xs-12">
                 <label>Port of Destination</label>
-                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portDest"  ng-disabled="vm.viewMode" class="col-xs-12 resizeNone" placeholder="Port of Destination"></textarea>
+                <textarea  rows="2" ng-model="vm.shipment.tr_ship_portDest"  ng-disabled="!vm.editMode" class="col-xs-12 resizeNone" placeholder="Port of Destination"></textarea>
             </div>
             <div class="col-lg-4 col-xs-12">
                 <label>Shipping Line Contact Details</label>

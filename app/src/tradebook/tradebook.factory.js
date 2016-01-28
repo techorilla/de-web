@@ -57,6 +57,7 @@
             getProductConfig: getProductConfig,
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
+            getCommissionTypeConfig: getCommissionTypeConfig,
 
             deleteTransactionFile: deleteTransactionFile,
             downloadTransactionFile: downloadTransactionFile,
@@ -215,7 +216,18 @@
                 tr_transactionID:'',
                 tr_doniContract:false,
                 tr_ownContract:false,
-                tr_ContractualBuyer:''
+                tr_ContractualBuyer:null
+            };
+        }
+
+        function getCommissionTypeConfig(commissionTypes){
+            return {
+                options: commissionTypes,
+                create: true,
+                sortField: 'text',
+                valueField: 'text',
+                labelField: 'text',
+                maxItems:1
             };
         }
         function getNewTransactionNotes(){
@@ -243,29 +255,29 @@
 
         function getNewShipmentDetails(){
             return {
-                tr_transactionID: '',
+                tr_transactionID: null,
                 tr_ship_notShipped:false,
-                tr_ship_notShipped_reason:'',
-                tr_ship_extension:'',
+                tr_ship_notShipped_reason:null,
+                tr_ship_extension:null,
                 tr_ship_appReceived:false,
-                tr_expectedShipment:'',
-                tr_inTransit:'',
+                tr_expectedShipment:null,
+                tr_inTransit:null,
                 tr_shipped:false,
-                tr_dateShipped:'',
-                tr_expectedArrival:'',
-                tr_transitPort:'',
+                tr_dateShipped:null,
+                tr_expectedArrival:null,
+                tr_transitPort:null,
                 tr_ship_arrivedAtPort:false,
-                tr_dateArrived:'',
-                tr_actualArrived:'',
-                tr_ship_BlNo:'',
-                tr_ship_invoiceNo:'',
-                tr_ship_invoiceAmt:'',
-                tr_ship_quantity:'',
-                tr_ship_vesselNo:'',
-                tr_ship_primaryShipperId:'',
-                tr_ship_portLoad:'',
-                tr_ship_portDest:'',
-                tr_ship_shipLineCont:'',
+                tr_dateArrived:null,
+                tr_actualArrived:null,
+                tr_ship_BlNo:null,
+                tr_ship_invoiceNo:null,
+                tr_ship_invoiceAmt:null,
+                tr_ship_quantity:null,
+                tr_ship_vesselNo:null,
+                tr_ship_primaryShipperId:null,
+                tr_ship_portLoad:null,
+                tr_ship_portDest:null,
+                tr_ship_shipLineCont:null,
                 tr_ship_chk_reason:false,
                 tr_ship_chk_shpExt:false,
                 tr_ship_chk_expShp:false,

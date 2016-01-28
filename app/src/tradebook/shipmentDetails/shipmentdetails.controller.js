@@ -13,7 +13,7 @@
 		.controller('ShipmentDetails', ShipmentDetails);
 
   /* @ngInject */
-	function ShipmentDetails(bpConfig,shippersList, toastr, crud){
+	function ShipmentDetails(bpConfig,shippersList, toastr, crud, $stateParams, tradebook){
 		var vm = this;
         init();
 
@@ -28,14 +28,34 @@
      * My Description rules
      */
         function init(){
+            vm.tran = $stateParams.tran;
             vm.bpConfig = bpConfig;
             vm.showShipment = false;
             vm.shippersList = shippersList;
-            vm.addShipmentDetails = addShipmentDetails;
+            vm.saveShipmentDetails = saveShipmentDetails;
+            vm.editShipmentDetails = editShipmentDetails;
+            vm.cancelShipmentDetails = cancelShipmentDetails;
+            vm.editMode = true;
+            vm.getStateParams = getStateParams;
 
 		}
-        function addShipmentDetails(){
-            tradebook.transactionSecondaryCrud()
+        function saveShipmentDetails(){
+            tradebook.transactionSecondaryCrud();
+        }
+
+        function getStateParams(){
+            vm.tran = $stateParams.tran;
+            if(vm.tran==='new'){
+                vm.shipment = tradebook.getNewShipmentDetails();
+            }
+        }
+
+        function editShipmentDetails(){
+
+        }
+
+        function cancelShipmentDetails(){
+
         }
 	}
 

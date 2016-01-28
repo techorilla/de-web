@@ -30,48 +30,17 @@
 
         function init(){
             vm.bpConfig = bpConfig;
+            vm.initializeCommission = initializeCommission();
             tabFilter.getDropDownBP("Broker").then(function(res){
                 vm.brokersList = res.data.data;
             });
-            vm.commissionTypeConfig = {
-                options: staticDropDown.commissionType,
-                create: true,
-                sortField: 'text',
-                valueField: 'text',
-                labelField: 'text',
-                maxItems:1
-            };
+            vm.commissionTypeConfig = tradebook.getCommissionTypeConfig(staticDropDown.commissionType);
             vm.showCommission = false;
             vm.saveCommission = saveCommission;
             vm.editCommission = editCommission;
-            vm.commissionDetails = tradebook.getNewTransactionCommission();
+
             vm.commissionDetails.tr_transactionID = $stateParams.tran;
             vm.editMode = true;
-            if($stateParams.tran !== 'new'){
-                tradebook.getSingleTransactionCommission($stateParams.tran).then(
-                    function(res){
-                        console.log(res);
-                        if(res.data.success){
-                            if(res.data.commission.length !== 0){
-                                vm.editMode = false;
-                                vm.commissionDetails = res.data.commission[0];
-                            }
-                            else{
-                                vm.commissionDetails.tr_transactionID = $stateParams.tran;
-                            }
-                        }
-                        else{
-                            toastr.error(res.data.message, 'Error');
-                        }
-                    },
-                    function(){
-                        toastr.error('Could not get commission details.','Error');
-                    }
-                );
-            }
-
-            vm.commissionDetails.price = ($scope.vm.newTransaction.tr_price);
-            vm.commissionDetails.quantity = $scope.vm.newTransaction.tr_quantity;
 
 
             $scope.$watch('vm.commissionDetails', function(newVal, oldVal){
@@ -108,6 +77,35 @@
 
             }, true);
 
+        }
+
+        function initializeCommission(){
+            vm.tran = $stateParams.tran;
+            vm.commissionDetails = tradebook.getNewTransactionCommission();
+            if(vm.tran !== 'new'){
+                tradebook.getSingleTransactionCommission($stateParams.tran).then(
+                    function(res){
+                        if(res.data.success){
+                            if(res.data.commission.length !== 0){
+                                vm.editMode = false;
+                                vm.commissionDetails = res.data.commission[0];
+                            }
+                            else{
+                                vm.commissionDetails.tr_transactionID = $stateParams.tran;
+                            }
+                        }
+                        else{
+                            toastr.error(res.data.message, 'Error');
+                        }
+                    },
+                    function(){
+                        toastr.error('Could not get commission details.','Error');
+                    }
+                );
+                vm.commissionDetails.price = ($scope.vm.newTransaction.tr_price);
+                vm.commissionDetails.quantity = $scope.vm.newTransaction.tr_quantity;
+
+            }
         }
 
         function saveCommission(){
@@ -150,8 +148,6 @@
                 return;
             }
         }
-
-
 
         function editCommission(){
             vm.editMode = true;

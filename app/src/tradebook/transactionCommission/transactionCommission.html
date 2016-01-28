@@ -6,7 +6,7 @@
         </label>
     </div>
     <div class="clearfix">
-        <div ng-if="vm.showCommission" class="col-lg-12">
+        <div ng-if="vm.showCommission" class="col-lg-12" ng-init="vm.initializeCommission()">
             <label ng-click="vm.editMode=false;vm.commissionDetails = vm.commTemp" class="cursor-pointer pull-right" ng-if="vm.tran !== 'new' && vm.editMode">
                 &nbsp;&nbsp;
                 <i class="fa fa-times-circle redFont"></i>
@@ -22,21 +22,23 @@
             </label>
         </div>
     </div>
-    <div ng-if="vm.showCommission" class="form-group col-md-4 formCheckBox">
+    <div ng-if="vm.showCommission" class="form-group col-md-4">
+        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_brokerInvolved"/>
         <label>Broker Involved</label>
-        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_brokerInvolved"/>
     </div>
-    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4 formCheckBox">
+    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4">
+
+        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_sellerBroker"/>
         <label>Seller Broker</label>
-        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_sellerBroker"/>
-        <selectize ng-if="vm.commissionDetails.tr_sellerBroker" ng-disabled="!vm.commissionDetails.tr_sellerBroker"
+        <selectize ng-if="vm.commissionDetails.tr_sellerBroker" ng-disabled="!vm.editMode"
                    placeholder='Please enter broker involved' config="vm.bpConfig"
                    options='vm.brokersList' ng-model="vm.commissionDetails.tr_sellerBrokerID"></selectize>
     </div>
-    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4 formCheckBox">
+    <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4">
+
+        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_buyerBroker"/>
         <label>Buyer Broker</label>
-        <input class="pull-right" ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_buyerBroker"/>
-        <selectize ng-if="vm.commissionDetails.tr_buyerBroker" ng-disabled="!vm.commissionDetails.tr_buyerBroker &&!vm.editMode "
+        <selectize ng-if="vm.commissionDetails.tr_buyerBroker" ng-disabled="!vm.editMode "
                    placeholder='Please enter broker involved' config="vm.bpConfig"
                    options='vm.brokersList' ng-model="vm.commissionDetails.tr_buyerBrokerID"></selectize>
     </div>
@@ -45,7 +47,7 @@
             <div  ng-show="vm.commissionDetails.tr_buyerBroker" class="form-group col-lg-12 clearfix">
                 <label>Broker Commission Type</label>
                 <selectize  ng-disabled="!vm.editMode"
-                            placeholder="Enter commission Type"
+                            placeholder="{{}}"
                             config="vm.commissionTypeConfig"
                             ng-model="vm.commissionDetails.tr_buyerBroker_comm_type">
                 </selectize>

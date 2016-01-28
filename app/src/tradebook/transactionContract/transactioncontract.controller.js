@@ -13,7 +13,7 @@
         .controller('TransactionContract', TransactionContract);
 
     /* @ngInject */
-    function TransactionContract(tradebook){
+    function TransactionContract(tradebook, bpConfig, buyersList, $stateParams){
         var vm = this;
         init();
 
@@ -30,6 +30,22 @@
         function init(){
             vm.saveTransactionContract = saveTransactionContract;
             vm.editTransactionContract = editTransactionContract;
+            vm.getStateParams = getStateParams;
+            vm.transactionContract = {};
+            vm.cancelTransactionContract = cancelTransactionContract;
+            vm.editMode=true;
+            vm.transactionContract = tradebook.getNewTransactionContract();
+            vm.bpConfig = bpConfig ;
+            vm.buyersList = buyersList;
+
+        }
+
+        function getStateParams(){
+            vm.tran = $stateParams.tran;
+            if(vm.tran==='new'){
+
+            }
+
         }
 
         function saveTransactionContract(){
@@ -37,6 +53,10 @@
         }
 
         function editTransactionContract(){
+
+        }
+
+        function cancelTransactionContract(){
 
         }
     }
