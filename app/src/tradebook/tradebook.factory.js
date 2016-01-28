@@ -265,7 +265,17 @@
                 tr_ship_primaryShipperId:'',
                 tr_ship_portLoad:'',
                 tr_ship_portDest:'',
-                tr_ship_shipLineCont:''
+                tr_ship_shipLineCont:'',
+                tr_ship_chk_reason:false,
+                tr_ship_chk_shpExt:false,
+                tr_ship_chk_expShp:false,
+                tr_ship_chk_inTransit:false,
+                tr_ship_chk_dateShipped:false,
+                tr_ship_chk_expArrival:false,
+                tr_ship_chk_transitPort:false,
+                tr_ship_chk_dateArrived:false,
+                tr_ship_chk_actualArrived:false
+
 
             };
         }

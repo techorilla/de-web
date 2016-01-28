@@ -10,48 +10,58 @@
 
             <div class="row marginTop5  height100px">
                 <div class="col-lg-4 col-xs-12">
-                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_notShipped"/><label>Not Shipped</label>
+                    <label>Not Shipped</label>
+                    <input name="contractType"   type="checkbox" ng-model="vm.shipment.tr_notShipped"/>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div ng-show="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12">
                     <label>Reason</label>
-
+                    <input name="tr_ship_chk_reason"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_reason"/>
                     <textarea  rows="2" ng-model="vm.shipment.tr_notShippedReason"
+                               ng-if="vm.shipment.tr_ship_chk_reason"
                                ng-disabled="vm.viewMode" class="col-xs-12 resizeNone"
                                placeholder="Reason..."></textarea>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div ng-show="vm.shipment.tr_notShipped" class="col-lg-4 col-xs-12">
                     <label>Shipment Extension</label>
+                    <input name="tr_ship_chk_shpExt"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_shpExt"/>
                     <input class="form-control" name="contractType"
                            placeholder="Shipment Extension"
+                           ng-if="vm.shipment.tr_ship_chk_shpExt"
                            type="text" ng-model="vm.shipment.shipmentExtension"/>
 
                 </div>
             </div>
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
-                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_appropriationRecieved"/><label>Appropration Recieved</label>
+                    <label>Appropration Recieved</label>
+                    <input name="contractType"   type="checkbox" ng-model="vm.shipment.tr_appropriationRecieved"/>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div ng-show="vm.shipment.tr_appropriationRecieved" class="col-lg-4 col-xs-12">
                     <label>Expected Shipment</label>
-                    <date-picker date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
+                    <input name="tr_ship_chk_expShp"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_expShp"/>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_expShp" date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div ng-show="vm.shipment.tr_appropriationRecieved" class="col-lg-4 col-xs-12">
                     <label>In Transit</label>
-                    <date-picker date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
+                    <input name="tr_ship_chk_inTransit"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_inTransit"/>
+                    <date-picker ng-if="vm.shipment.tr_ship_chk_inTransit" date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
                 </div>
             </div>
 
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
-                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_shipped"/><label>Shipped</label>
+                    <label>Shipped</label>
+                    <input name="shipped" type="checkbox" ng-model="vm.shipment.tr_shipped"/>
                 </div>
                 <div class="col-lg-2 col-xs-12">
                     <label>Date Shipped</label>
+                    <input name="tr_ship_chk_inTransit"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_dateShipped"/>
                     <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_dateShipped" max-date="" min-date=""></date-picker>
                 </div>
                 <div class="col-lg-2 col-xs-12">
                     <label>Expected Arrival</label>
-                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_expectedArrival" max-date="" min-date=""></date-picker>
+                    <input name="tr_ship_chk_expArrival"   type="checkbox" ng-model="vm.shipment.tr_ship_chk_expArrival"/>
+                    <date-picker ng-disabled="!vm.shipment.tr_shipped" date="vm.shipment.tr_ship_chk_expArrival" max-date="" min-date=""></date-picker>
 
                 </div>
                 <div class="col-lg-4 col-xs-12">
@@ -66,7 +76,8 @@
 
             <div class="row marginTop5 height100px">
                 <div class="col-lg-4 col-xs-12">
-                    <input class=" pull-right" name="contractType"   type="checkbox" ng-model="vm.shipment.tr_arrivedAtPort"/><label>Arrived at Port</label>
+                    <label>Arrived at Port</label>
+                    <input name="atPort" type="checkbox" ng-model="vm.shipment.tr_arrivedAtPort"/>
                 </div>
 
                 <div class="col-lg-4 col-xs-12">

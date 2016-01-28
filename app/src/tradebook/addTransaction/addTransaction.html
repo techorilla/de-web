@@ -6,7 +6,7 @@
                 <div class="col-lg-12  marginLeft15">
                     <div class="col-lg-12 tableHeading">
                         <label>Transaction Information</label>
-                        <label  ng-click="vm.deleteCompleteTransaction()" class="pull-right cursor-pointer">Delete Complete Transaction&nbsp;&nbsp;
+                        <label ng-if="vm.tran !== 'new'"  ng-click="vm.deleteCompleteTransaction()" class="pull-right cursor-pointer">Delete Complete Transaction&nbsp;&nbsp;
                             <i class="redFont fa fa-trash-o"></i>
                         </label>
                         <!--<label class="pull-right cursor-pointer" ng-click="vm.showTransactionInfo = !vm.showTransactionInfo">-->
@@ -125,13 +125,13 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="contractInfo"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="commission"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="shipmentDetails"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="status"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="secondaryTransaction"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="documents"></div>
-            <div ng-if="vm.stateParam.tran !== 'new'" class="row" ui-view="notes"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="contractInfo"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="commission"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="shipmentDetails"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="status"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="secondaryTransaction"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="documents"></div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="notes"></div>
 
         </div>
 

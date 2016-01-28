@@ -16,14 +16,7 @@
     function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter, completeTransaction){
         var vm = this;
         init();
-        vm.showBroker = false;
-        vm.datePickerOpened = false;
-        vm.datePickerOpened2 = false;
-        //vm.showTransactionInfo=false;
-        vm.showContractInfo=false;
-        vm.showCommission = false;
-        vm.showStatus = false;
-        vm.showNotes = false;
+
 
 
 
@@ -49,9 +42,7 @@
         vm.productConfig = tradebook.getProductConfig();
         vm.quantityValue = 0;
 
-        vm.calculateCommission = function(){
-            return (vm.newTransaction.tr_commission - vm.newTransaction.tr_brokerCommission + vm.newTransaction.tr_difference - vm.newTransaction.tr_discount ) * vm.quantityValue;
-        };
+
 
         function saveBasicTransaction(){
             if(vm.tran === 'new'){
@@ -59,10 +50,12 @@
                     if(response.data.success){
                         vm.newTransaction.tr_transactionID = response.data.transactionId;
                         $state.transitionTo('shell.tradebook.Transaction', {tran: response.data.transactionId}, { notify: false });
-                        toastr.success('New Transaction with File No.' + vm.newTrasaction.tr_fileID + ' has been created', 'Added');
+                        vm.editMode=false;
+                        toastr.success('New Transaction with File No.' + vm.newTransaction.tr_fileID + ' has been created', 'Added');
+                        $stateParams.tran = response.data.transactionId;
+                        vm.tran =  response.data.transactionId;
                     }
                     else{
-
                         toastr.error(response.data.message, 'Error');
                     }
                 },function(err){
@@ -99,11 +92,11 @@
                 vm.newTransaction = tradebook.getNewTransaction();
                 vm.heading = 'Transaction';
                 vm.subheading = 'New',
-                    vm.editMode = true;
+                vm.editMode = true;
             }
             else{
                 vm.newTransaction = completeTransaction.basic[0];
-                vm.subheading = 'File No.'
+                vm.subheading = 'File No.';
                 vm.heading = vm.newTransaction.tr_fileID;
                 vm.editMode = false;
             }
@@ -155,7 +148,7 @@
                 if(res){
                     tradebook.transactionBasicCrud(vm.newTransaction,crud.DELETE).then(function(response){
                         if(response.data.success){
-                            toastr.success('Transaction with File No.' + vm.newTransaction.tr_fileID + 'Deleted', 'Success');
+                            toastr.success('Transaction with File No.' + vm.newTransaction.tr_fileID + ' deleted.', 'Success');
                             $state.go('shell.tradebook');
                         }
                         else{
