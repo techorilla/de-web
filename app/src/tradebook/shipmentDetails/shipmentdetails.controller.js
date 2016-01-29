@@ -40,22 +40,47 @@
 
 		}
         function saveShipmentDetails(){
-            tradebook.transactionSecondaryCrud();
+            if(vm.newShip){
+                tradebook.transactionShipmentCrud(vm.shipment, crud.CREATE).then();
+            }
+            else{
+                tradebook.transactionShipmentCrud(vm.shipment, crud.UPDATE).then();
+            }
+
         }
 
         function getStateParams(){
             vm.tran = $stateParams.tran;
-            if(vm.tran==='new'){
-                vm.shipment = tradebook.getNewShipmentDetails();
+            if(vm.tran!=='new'){
+                tradebook.getSingleTransactionShipment(vm.tran).then(function(res){
+                    if(res.data.success){
+                        vm.shipment=res.data.shipment;
+                        if(vm.shipment.length>0){
+                           vm.shipment = vm.shipment[0];
+                           vm.editMode = false;
+                           vm.newShip = false;
+                        }
+                        else{
+                            vm.shipment = tradebook.getNewShipmentDetails(vm.tran);
+                            vm.editMode = true;
+                            vm.newShip = true;
+                        }
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                        vm.editMode = false;
+                    }
+                });
             }
         }
 
         function editShipmentDetails(){
-
+            vm.editMode=true;
+            vm.tempShipment = angular.copy(vm.shipment);
         }
 
         function cancelShipmentDetails(){
-
+            vm.editMode=false;
         }
 	}
 

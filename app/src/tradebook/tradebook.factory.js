@@ -54,6 +54,7 @@
             getSingleTransactionSec: getSingleTransactionSec,
             getSingleTransactionCommission: getSingleTransactionCommission,
             getSingleTransactionNotes: getSingleTransactionNotes,
+            getSingleTransactionShipment:getSingleTransactionShipment,
             getProductConfig: getProductConfig,
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
@@ -253,9 +254,9 @@
 
 
 
-        function getNewShipmentDetails(){
+        function getNewShipmentDetails(id){
             return {
-                tr_transactionID: null,
+                tr_transactionID: id,
                 tr_ship_notShipped:false,
                 tr_ship_notShipped_reason:null,
                 tr_ship_extension:null,
@@ -312,6 +313,14 @@
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getSecondaryTransaction?id='+id
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionShipment(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionShipment?transactionId='+id
             };
             return $http(req);
         }
@@ -398,8 +407,6 @@
                 },
                 data: {data: data}
             };
-            console.log(req);
-
             return req;
         }
 
@@ -418,7 +425,7 @@
             return $http(getCrudRequest('TransactionCommissionCrud',transactionCommission, operation));
         }
         function transactionShipmentCrud(transactionShipment, operation, callBack){
-            return $http(getCrudRequest('TransactionShipmentCrud',transactionShipment, operation));
+            return $http(getCrudRequest('TransactionShipmentCRUD',transactionShipment, operation));
         }
         function transactionSecondaryCrud(transactionSecondary, operation, callBack){
             return $http(getCrudRequest('TransactionSecondaryCrud',transactionSecondary, operation));
