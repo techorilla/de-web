@@ -37,14 +37,61 @@
             vm.cancelShipmentDetails = cancelShipmentDetails;
             vm.editMode = true;
             vm.getStateParams = getStateParams;
-
+            vm.getStateParams();
+            vm.resetBoolean = resetBoolean;
+            vm.resetFields = resetFields;
 		}
+
+        function resetBoolean(value,booleans,fields){
+            if(!value){
+                angular.forEach(booleans,function(val,key){
+                   vm.shipment[val] = false;
+                });
+                angular.forEach(fields,function(val,key){
+                    vm.shipment[val] = null;
+                });
+            }
+        }
+
+        function resetFields(value,fields){
+            if(!value){
+                angular.forEach(fields,function(val,key){
+                    vm.shipment[val] = null;
+                });
+            }
+        }
+
         function saveShipmentDetails(){
             if(vm.newShip){
-                tradebook.transactionShipmentCrud(vm.shipment, crud.CREATE).then();
+                if(vm.shipment == tradebook.getNewShipmentDetails(vm.tran)){
+                    toastr.error('Empty form can not be saved', "Error");
+                    return;
+                }
+                tradebook.transactionShipmentCrud(vm.shipment, crud.CREATE).then(
+                    function(res){
+                        if(res.data.success){
+                            vm.editMode = false;
+                            toastr.success(res.data.message,'Success');
+                        }
+                        else{
+                            toastr.error(res.data.message,'Success');
+                        }
+                    }
+                );
             }
             else{
-                tradebook.transactionShipmentCrud(vm.shipment, crud.UPDATE).then();
+                tradebook.transactionShipmentCrud(vm.shipment, crud.UPDATE).then(
+                    function(res){
+                        if(res.data.success){
+                            vm.editMode = false;
+                            vm.newShip = false;
+                            toastr.success(res.data.message,'Success');
+                        }
+                        else{
+                            toast.error(res.data.message,'Success');
+                        }
+                    }
+                );
             }
 
         }
@@ -80,6 +127,7 @@
         }
 
         function cancelShipmentDetails(){
+            vm.shipment = vm.tempShipment;
             vm.editMode=false;
         }
 	}

@@ -14,7 +14,7 @@
 
   /* @ngInject */
   function navigation(){
-        var isSideBarOpen = true;
+        var isSideBarOpen = false;
         var currentUser = {
             'name': 'Immad Imtiaz',
             'id': 1245

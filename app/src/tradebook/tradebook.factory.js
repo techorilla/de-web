@@ -50,15 +50,20 @@
             getTransactionList: getTransactionList,
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
+
             getSingleTransactionDetails: getSingleTransactionDetails,
             getSingleTransactionSec: getSingleTransactionSec,
             getSingleTransactionCommission: getSingleTransactionCommission,
             getSingleTransactionNotes: getSingleTransactionNotes,
-            getSingleTransactionShipment:getSingleTransactionShipment,
+            getSingleTransactionShipment: getSingleTransactionShipment,
+            getSingleTransactionStatus: getSingleTransactionStatus,
+            getSingleTransactionContract: getSingleTransactionContract,
+
             getProductConfig: getProductConfig,
             getAllTransactionFiles: getAllTransactionFiles,
             getBpConfig: getBpConfig,
             getCommissionTypeConfig: getCommissionTypeConfig,
+            getTransactionStatusConfig: getTransactionStatusConfig,
 
             deleteTransactionFile: deleteTransactionFile,
             downloadTransactionFile: downloadTransactionFile,
@@ -204,11 +209,11 @@
             };
         }
 
-        function getNewTransactionStatus(){
+        function getNewTransactionStatus(id){
             return {
-                tr_transactionID:'',
+                tr_transactionID:id,
                 tr_transactionStatus:'',
-                tr_washoutValueAtPar: -1
+                tr_washoutValueAtPar: null
             };
         }
 
@@ -226,6 +231,17 @@
                 options: commissionTypes,
                 create: true,
                 sortField: 'text',
+                valueField: 'text',
+                labelField: 'text',
+                maxItems:1
+            };
+        }
+
+        function getTransactionStatusConfig(transactionStatus){
+            return {
+                options: transactionStatus,
+                create: true,
+                sortField: 'value',
                 valueField: 'text',
                 labelField: 'text',
                 maxItems:1
@@ -288,8 +304,6 @@
                 tr_ship_chk_transitPort:false,
                 tr_ship_chk_dateArrived:false,
                 tr_ship_chk_actualArrived:false
-
-
             };
         }
 
@@ -321,6 +335,22 @@
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getTransactionShipment?transactionId='+id
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionStatus(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionStatus?transactionId='+id
+            };
+            return $http(req);
+        }
+
+        function getSingleTransactionContract(id){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionContract?transactionId='+id
             };
             return $http(req);
         }

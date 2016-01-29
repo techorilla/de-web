@@ -29,35 +29,64 @@
          */
         function init(){
             vm.tran = $stateParams;
-
-            vm.transactionStatus = tradebook.getNewTransactionStatus();
             vm.saveTransactionStatus = saveTransactionStatus;
             vm.editTransactionStatus = editTransactionStatus;
-            vm.transactionStatusConfig = {
-                options: staticDropDown.transactionStatus,
-                create: true,
-                sortField: 'value',
-                valueField: 'text',
-                labelField: 'text',
-                maxItems:1
-            };
-
+            vm.transactionStatusConfig = tradebook.getTransactionStatusConfig(staticDropDown.transactionStatus);
+            vm.resetWashOutValue = resetWashOutValue;
             vm.showStatus = false;
             vm.editMode = true;
             vm.cancel = cancel;
+            getStateDetails();
+
 
         }
 
         function cancel(){
+            vm.transactionStatus = vm.tempStatus;
+            vm.editMode=false;
+        }
 
+        function resetWashOutValue(){
+            if(vm.transactionStatus.tr_transactionStatus !== 'Washout at X'){
+                vm.transactionStatus.tr_washoutValueAtPar = null;
+            }
+            else{
+                vm.transactionStatus.tr_washoutValueAtPar = 0;
+            }
+
+        }
+
+        function getStateDetails(){
+            vm.tran = $stateParams.tran;
+            if(vm.tran!=='new'){
+                tradebook.getSingleTransactionStatus(vm.tran).then(function(res){
+                    if(res.data.success){
+                        vm.transactionStatus=res.data.status;
+                        if(vm.transactionStatus.length>0){
+                            vm.transactionStatus = vm.transactionStatus[0];
+                            vm.editMode = false;
+                            vm.newStatus = false;
+                        }
+                        else{
+                            vm.transactionStatus = tradebook.getNewTransactionStatus(vm.tran);
+                            vm.editMode = true;
+                            vm.newStatus = true;
+                        }
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                        vm.editMode = false;
+                    }
+                });
+            }
         }
 
         function saveTransactionStatus(){
-            console.log(vm.transactionStatus);
         }
 
         function editTransactionStatus(){
-
+            vm.editMode=true;
+            vm.tempStatus = angular.copy(vm.transactionStatus);
         }
     }
 

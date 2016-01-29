@@ -26,10 +26,15 @@
 
     <div ng-if="vm.showStatus" class="form-group col-lg-4">
         <label>Status</label>
-        <selectize placeholder='Please enter transaction status' config="vm.transactionStatusConfig" ng-model="vm.transactionStatus.tr_transactionStatus"></selectize>
+        <selectize
+                placeholder='Please enter transaction status'
+                config="vm.transactionStatusConfig"
+                ng-change="vm.resetWashOutValue()"
+                ng-model="vm.transactionStatus.tr_transactionStatus">
+        </selectize>
     </div>
     <div ng-if="vm.showStatus && vm.transactionStatus.tr_transactionStatus === 'Washout at X'" class="form-group col-lg-4">
-        <label>Washout at X Value</label>
-        <input placeholder="Enter washout value" type="number" class="form-control" ng-model="vm.transactionStatus.tr_washOutValue"/>
+        <label>Washout at X Value (USD)</label>
+        <input placeholder="Enter washout value" type="number" class="form-control" ng-model="vm.transactionStatus.tr_washoutValueAtPar"/>
     </div>
 </div>
