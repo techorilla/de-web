@@ -88,7 +88,7 @@
                             toastr.success(res.data.message,'Success');
                         }
                         else{
-                            toast.error(res.data.message,'Success');
+                            toastr.error(res.data.message,'Success');
                         }
                     }
                 );

@@ -13,7 +13,7 @@
         .controller('TransactionContract', TransactionContract);
 
     /* @ngInject */
-    function TransactionContract(tradebook, bpConfig, buyersList, $stateParams){
+    function TransactionContract(tradebook, bpConfig, buyersList, $stateParams,crud,toastr){
         var vm = this;
         init();
 
@@ -30,34 +30,93 @@
         function init(){
             vm.saveTransactionContract = saveTransactionContract;
             vm.editTransactionContract = editTransactionContract;
-            vm.getStateParams = getStateParams;
             vm.transactionContract = {};
             vm.cancelTransactionContract = cancelTransactionContract;
             vm.editMode=true;
-            vm.transactionContract = tradebook.getNewTransactionContract();
             vm.bpConfig = bpConfig ;
             vm.buyersList = buyersList;
+            vm.contractChanged  = contractChanged;
+            getContractDetails();
+
 
         }
 
-        function getStateParams(){
+        function getContractDetails(){
             vm.tran = $stateParams.tran;
-            if(vm.tran==='new'){
-
+            if(vm.tran!=='new'){
+                tradebook.getSingleTransactionContract(vm.tran).then(function(res){
+                    if(res.data.success){
+                        vm.transactionContract=res.data.contract;
+                        if(vm.transactionContract.length>0){
+                            vm.transactionContract = vm.transactionContract[0];
+                            vm.editMode = false;
+                            vm.newContract = false;
+                        }
+                        else{
+                            vm.transactionContract = tradebook.getNewTransactionContract(vm.tran);
+                            vm.editMode = true;
+                            vm.newContract = true;
+                        }
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                        vm.editMode = false;
+                    }
+                });
             }
+        }
 
+        function contractChanged(value,contract){
+            if(value){
+                vm.transactionContract[contract] = false;
+            }
+            vm.transactionContract.tr_contractualBuyer = null;
         }
 
         function saveTransactionContract(){
-
+            if(vm.newContract){
+                if(vm.transactionContract == tradebook.getNewTransactionContract(vm.tran)){
+                    toastr.error('Empty form can not be saved', "Error");
+                    return;
+                }
+                tradebook.transactionContractCrud(vm.transactionContract, crud.CREATE).then(
+                    function(res){
+                        if(res.data.success){
+                            vm.editMode = false;
+                            toastr.success(res.data.message,'Success');
+                        }
+                        else{
+                            toastr.error(res.data.message,'Success');
+                        }
+                    }
+                );
+            }
+            else {
+                tradebook.transactionContractCrud(vm.transactionContract, crud.UPDATE).then(
+                    function (res) {
+                        if (res.data.success) {
+                            vm.editMode = false;
+                            vm.newContract = false;
+                            toastr.success(res.data.message, 'Success');
+                        }
+                        else {
+                            toastr.error(res.data.message, 'Success');
+                        }
+                    }
+                );
+            }
         }
 
-        function editTransactionContract(){
 
+
+        function editTransactionContract(){
+            vm.editMode=true;
+            vm.tempContract = angular.copy(vm.transactionContract);
         }
 
         function cancelTransactionContract(){
-
+            vm.editMode=false;
+            vm.transactionContract = vm.tempContract;
         }
     }
 

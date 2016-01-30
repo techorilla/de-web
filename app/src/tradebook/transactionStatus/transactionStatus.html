@@ -2,13 +2,14 @@
     <div class="col-lg-12 tableHeading">
         <label>Transaction Status</label>
         <label class="pull-right cursor-pointer" ng-click="vm.showStatus = !vm.showStatus">
+            <span class="orangeFont" ng-bind="vm.transactionStatus.tr_transactionStatus ? vm.transactionStatus.tr_transactionStatus : 'Not Entered'"></span>
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showStatus,'fa-chevron-circle-right':!vm.showStatus}"></i>
         </label>
     </div>
 
     <div class="clearfix">
         <div ng-if="vm.showStatus" class="col-lg-12">
-            <label ng-click="vm.cancel()" class="cursor-pointer pull-right" ng-if="vm.tran !== 'new' && vm.editMode">
+            <label ng-click="vm.cancel()" class="cursor-pointer pull-right" ng-show="!vm.newStatus && vm.editMode">
                 &nbsp;&nbsp;
                 <i class="fa fa-times-circle redFont"></i>
                 &nbsp;&nbsp;Cancel
@@ -30,11 +31,12 @@
                 placeholder='Please enter transaction status'
                 config="vm.transactionStatusConfig"
                 ng-change="vm.resetWashOutValue()"
+                ng-disabled="!vm.editMode"
                 ng-model="vm.transactionStatus.tr_transactionStatus">
         </selectize>
     </div>
     <div ng-if="vm.showStatus && vm.transactionStatus.tr_transactionStatus === 'Washout at X'" class="form-group col-lg-4">
         <label>Washout at X Value (USD)</label>
-        <input placeholder="Enter washout value" type="number" class="form-control" ng-model="vm.transactionStatus.tr_washoutValueAtPar"/>
+        <input placeholder="Enter washout value" ng-disabled="!vm.editMode" type="number" class="form-control" ng-model="vm.transactionStatus.tr_washoutValueAtPar"/>
     </div>
 </div>

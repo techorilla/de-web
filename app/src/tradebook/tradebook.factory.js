@@ -217,9 +217,9 @@
             };
         }
 
-        function getNewTransactionContract(){
+        function getNewTransactionContract(id){
             return {
-                tr_transactionID:'',
+                tr_transactionID:id,
                 tr_doniContract:false,
                 tr_ownContract:false,
                 tr_ContractualBuyer:null

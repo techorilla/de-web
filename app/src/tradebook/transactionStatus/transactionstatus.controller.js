@@ -13,7 +13,7 @@
         .controller('TransactionStatus', TransactionStatus);
 
     /* @ngInject */
-    function TransactionStatus(tradebook, staticDropDown, $stateParams){
+    function TransactionStatus(tradebook, staticDropDown, crud, $stateParams, toastr){
         var vm = this;
         init();
 
@@ -82,6 +82,37 @@
         }
 
         function saveTransactionStatus(){
+            if(vm.newStatus){
+                if(vm.transactionStatus == tradebook.getNewTransactionStatus(vm.tran)){
+                    toastr.error('Empty form can not be saved', "Error");
+                    return;
+                }
+                tradebook.transactionStatusCrud(vm.transactionStatus, crud.CREATE).then(
+                    function(res){
+                        if(res.data.success){
+                            vm.editMode = false;
+                            toastr.success(res.data.message,'Success');
+                        }
+                        else{
+                            toastr.error(res.data.message,'Success');
+                        }
+                    }
+                );
+            }
+            else {
+                tradebook.transactionStatusCrud(vm.transactionStatus, crud.UPDATE).then(
+                    function (res) {
+                        if (res.data.success) {
+                            vm.editMode = false;
+                            vm.newStatus = false;
+                            toastr.success(res.data.message, 'Success');
+                        }
+                        else {
+                            toastr.error(res.data.message, 'Success');
+                        }
+                    }
+                );
+            }
         }
 
         function editTransactionStatus(){

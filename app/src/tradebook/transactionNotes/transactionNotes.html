@@ -6,7 +6,7 @@
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showNotes,'fa-chevron-circle-right':!vm.showNotes}"></i>
         </label>
     </div>
-    <div class="col-lg-12 notesContainer" ng-if="vm.showNotes" ng-scrollbars>
+    <div class="col-lg-12 notesContainer" ng-show="vm.showNotes" ng-scrollbars>
         <div ng-repeat = "note in vm.transactionNotes | orderBy:'-tr_tranNoteId'">
             <div class="col-lg-12 marginTop5">
                 <label class="cursor-pointer marginLeft15">
