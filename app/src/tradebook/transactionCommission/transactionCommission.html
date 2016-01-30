@@ -47,7 +47,6 @@
             <div  ng-show="vm.commissionDetails.tr_buyerBroker" class="form-group col-lg-12 clearfix">
                 <label>Broker Commission Type</label>
                 <selectize  ng-disabled="!vm.editMode"
-                            placeholder="{{}}"
                             config="vm.commissionTypeConfig"
                             ng-model="vm.commissionDetails.tr_buyerBroker_comm_type">
                 </selectize>
@@ -79,6 +78,7 @@
             <number-only-input
                     input-value="vm.commissionDetails.tr_own_Commission"
                     input-name="vm.commissionDetails.tr_own_Commission"
+
                     currency="true"
                     disabled="!vm.editMode"
                     input-place="USD$">

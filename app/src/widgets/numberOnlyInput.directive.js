@@ -21,7 +21,7 @@
     function numberOnlyInput () {
         return {
             restrict: 'EA',
-            template: '<input ng-class="{\'currency\': currency}" style="cursor:default" ng-disabled="disabled" ng-click="reset()" class="form-control " placeholder="{{inputPlace}}" name="{{inputName}}" ng-model="inputValue" />',
+            template: '<input ng-class="{\'currency\': currency}" style="cursor:default" ng-disabled="disabled" ng-change="reset()" class="form-control " placeholder="{{inputPlace}}" name="{{inputName}}" ng-model="inputValue" />',
             scope: {
                 inputValue: '=',
                 inputName: '=',
@@ -31,8 +31,11 @@
             },
             link: function (scope) {
                 scope.reset = function(){
-                  var temp =  scope.inputValue;
-                  scope.inputValue=0;
+                  if(scope.inputValue === ""){
+                      scope.inputValue=0;
+                  }
+                  scope.inputValue = parseInt(scope.inputValue);
+
                 };
                 scope.$watch('inputValue', function(newValue,oldValue) {
                     var arr = String(newValue).split("");

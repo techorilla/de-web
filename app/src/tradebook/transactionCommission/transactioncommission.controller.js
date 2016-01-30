@@ -42,9 +42,9 @@
             vm.commissionDetails.tr_transactionID = $stateParams.tran;
             vm.editMode = true;
 
-
             $scope.$watch('vm.commissionDetails', function(newVal, oldVal){
-                if(newVal !== oldVal){
+
+                if((newVal !== oldVal) && vm.editMode){
                     var type = newVal.tr_ownCommissionType;
                     var price = newVal.price;
                     var quantity = newVal.quantity;
@@ -71,8 +71,14 @@
                     }
 
                     var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + newVal.tr_difference )- newVal.tr_discount);
+
+                    console.log("Raw commision" + commIntoPrice);
+                    console.log("Raw Broker Commision" + brokerIntoPrice);
+                    console.log("newVal" + newVal.tr_difference);
+
+
+                   console.log("stepwise" + tr_netCommission);
                     vm.commissionDetails.tr_netCommission = tr_netCommission * quantity;
-                    console.log(vm.commissionDetails);
                 }
 
             }, true);
@@ -85,6 +91,7 @@
             if(vm.tran !== 'new'){
                 tradebook.getSingleTransactionCommission($stateParams.tran).then(
                     function(res){
+                        console.log(res);
                         if(res.data.success){
                             if(res.data.commission.length !== 0){
                                 vm.editMode = false;
