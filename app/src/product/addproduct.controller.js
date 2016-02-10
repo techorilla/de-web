@@ -78,7 +78,7 @@
                 maxItems: 1
             };
 		}
-    function NewProduct(name, origin, quality, purity, moisture, splits, broken, weeviled, damaged, greenDamaged, foreignMatter, otherColor, wrinkled){
+    function NewProduct(name, origin, quality, purity, moisture, splits, weeviled,greenDamaged,damaged,foreignMatter,otherColor,wrinkled){
         this.name = name;
         this.origin = origin;
         this.quality = '';
@@ -86,7 +86,6 @@
         this.specs.purity = purity;
         this.specs.moisture = moisture;
         this.specs.splits = splits;
-        this.specs.broken = broken;
         this.specs.weeviled = weeviled;
         this.specs.greenDamaged = greenDamaged;
         this.specs.damaged = damaged;

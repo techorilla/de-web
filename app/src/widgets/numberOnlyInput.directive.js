@@ -30,13 +30,14 @@
                 currency: '='
             },
             link: function (scope) {
+
                 scope.reset = function(){
-                  if(scope.inputValue === ""){
+                  if(scope.inputValue === "" || scope.inputValue === null){
                       scope.inputValue=0;
                   }
                   scope.inputValue = parseInt(scope.inputValue);
-
                 };
+                scope.reset();
                 scope.$watch('inputValue', function(newValue,oldValue) {
                     var arr = String(newValue).split("");
                     if (arr.length === 0) return;

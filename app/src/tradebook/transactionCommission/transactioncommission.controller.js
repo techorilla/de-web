@@ -71,13 +71,7 @@
                     }
 
                     var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + newVal.tr_difference )- newVal.tr_discount);
-
-                    console.log("Raw commision" + commIntoPrice);
-                    console.log("Raw Broker Commision" + brokerIntoPrice);
-                    console.log("newVal" + newVal.tr_difference);
-
-
-                   console.log("stepwise" + tr_netCommission);
+                    console.log(vm.commissionDetails);
                     vm.commissionDetails.tr_netCommission = tr_netCommission * quantity;
                 }
 
