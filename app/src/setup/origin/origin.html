@@ -5,7 +5,7 @@
                 <div class="dg-tablePanelHead clearfix">
                     <div class="dg-tablePanelTitle">Origin<br><small>Total {{vm.allProducts.products.length}} Origins</small></div>
                     <ul class="dg-pageActionsLinks">
-                        <li><input ng-model="vm.searchOrigin" type="text" class="form-control" id="exampleInputAmount" placeholder="Find Origin">
+                        <li><input ng-model="vm.searchOrigin" type="text" class="form-control search-control" id="exampleInputAmount" placeholder="Find Origin">
                     </ul>
                 </div>
                 <div class="dg-tablePanelBody">
@@ -18,10 +18,10 @@
                         </thead>
                         <tbody>
                         <!--<tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">-->
-                        <tr>
-                            <td>Afghanistan</td>
+                        <tr ng-repeat="origin in vm.allOrigins | filter: vm.searchOrigin">
+                            <td ng-bind="origin.origin_name"></td>
                             <td>
-                                <label ng-click="" class="cursor-pointer">
+                                <label ng-click="vm.deleteOrigin(origin.origin_id, $index)" class="cursor-pointer">
                                     <i class="fa fa-trash blueFont"></i>
                                     Delete
                                 </label>
@@ -34,24 +34,23 @@
         </div>
     </div>
     <div class="col-lg-6 col-xs-12">
-        <form name="addNewOrigin" novalidate>
+        <form name="vm.addNewOrigin"  novalidate>
             <div class="form-group col-md-12">
                 <label>Origin</label>
                 <input name="Origin"
                        type="text"
                        ng-model-options="{ updateOn: 'default blur' }"
-                       ng-model="vm.newUser.firstName"
+                       ng-model="vm.newOrigin"
                        class="form-control"
                        placeholder="Enter Origin"
                        ng-required="true"/>
-                <ng-messages for='addNewUser.firstName.$error' ng-if='addNewOrigin.Origin.$dirty || addNewOrigin.$submitted'>
+                <ng-messages for='vm.addNewOrigin.Origin.$error' ng-if='vm.addNewOrigin.Origin.$dirty || vm.addNewOrigin.$submitted'>
                     <div ng-message="required" class="errorValidation">Origin is requred is required.</div>
                 </ng-messages>
             </div>
-            <div  class="form-group col-md-12">
-                <button type="submit" ng-show="!vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.addNewUser()">Add Origin</button>
+            <div class="form-group col-md-12">
+                <button type="submit" ng-click="vm.addOrigin(vm.newOrigin)" ng-disabled="vm.addNewOrigin.$invalid" class="btn btn-default submitBtn">Add Origin</button>
             </div>
-
         </form>
     </div>
 </page-blue-container>

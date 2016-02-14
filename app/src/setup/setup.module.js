@@ -88,9 +88,17 @@
           url:'/origin',
           inSetup: 'true',
           inSetupTitle: 'Origin',
+          resolve:{
+              allOrigins: function (setup) {
+                  return setup.getAllOrigin().then(function (res) {
+                      return res.data.origins;
+                  });
+              }
+          },
           views:{
               'subContent@shell.setup':{
-                  templateUrl:'src/setup/origin/origin.html'
+                  templateUrl:'src/setup/origin/origin.html',
+                  controller: 'Origin as vm'
               }
           }
       });

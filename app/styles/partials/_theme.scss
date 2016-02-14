@@ -429,17 +429,19 @@ img {
   font-size:12px;
 }
 
+.search-control {
+  font-size: 12px;
+  height: 27px;
+  padding: 4px 20px 4px 12px;
+  border-radius: 2px;
+  display: inline-block;
+  background:url(/images/icons/search-mini-icon.png) no-repeat right center;
+}
+
 .dg-table{
   background:#fff;
   font-size:12px;
-  .form-control {
-    font-size: 12px;
-    height: 27px;
-    padding: 4px 20px 4px 12px;
-    border-radius: 2px;
-    display: inline-block;
-    background:url(/images/icons/search-mini-icon.png) no-repeat right center;
-  }
+
   .dg-tableActionBtn, .dg-tableActionBtn:focus, .dg-tableActionBtn:hover{
     display: inline-block;
     margin:0;
@@ -905,6 +907,7 @@ img {
   color:#333;
   border: none;
   margin-left:-7px;
+  box-shadow: none;
 
 
   /* background-color: #fafafa; */

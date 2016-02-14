@@ -39,7 +39,7 @@
             vm.allBusinessPartner.data = [];
             vm.searchBusinessPartner = '';
             vm.allBusinessPartner.tableHeadings = [
-                {name: 'Name'},{name:'Contact Person'},{name:'Type'},{name:'Origin'},{name:'Rating'},{name:'Last Transaction On'}
+                {name: 'Name'},{name:'Contact Person'},{name:'Origin'},{name:'Type'},{name:'Rating'},{name:'Last Transaction On'}
             ];
             businessPartner.getBusinessPartnerList().then(function(response){
                 if(response.data.success){

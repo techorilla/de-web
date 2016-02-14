@@ -46,20 +46,6 @@
             });
         };
 
-        vm.deleteBusinessPartnerContactNumber = function(bpName, contactNumber, contactType, id, index){
-            businessPartner.deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id,function(response){
-                if (response.success) {
-                    toastr.success(response.message, 'Success');
-                    vm.businessPartner.contNum.splice(index,1);
-                    if(vm.businessPartner.contNum.length === 0){
-                        vm.addContactNumber();
-                    }
-                }
-                else{
-                    toastr.error(response.message, 'Error');
-                }
-            });
-        };
 
         vm.deleteBusinessPartnerBankDetails = function(bpName, accountTitle, accountNumber, id, index){
             businessPartner.deleteBusinessPartnerBankDetail(bpName, accountTitle, accountNumber, id,function(response){

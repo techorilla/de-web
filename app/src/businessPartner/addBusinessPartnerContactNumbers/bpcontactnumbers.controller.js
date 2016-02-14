@@ -37,7 +37,10 @@
             vm.addContactNumber = addContactNumber;
             vm.subContactNumber = subContactNumber;
             vm.saveContactNumber = saveContactNumber;
+            vm.deleteBusinessPartnerContactNumber = deleteBusinessPartnerContactNumber;
             vm.showContactForm = false;
+            vm.showbpContactNumbers = false;
+            vm.addingContactNumber = false;
         }
 
         function addContactNumber(){
@@ -45,15 +48,16 @@
                 contactNumber:'',
                 contactType:''
             };
-            vm.showContactForm = true;
+            vm.addingContactNumber = true;
         }
 
         function subContactNumber(){
             vm.businessPartner.newContactNumber = {};
-            vm.showContactForm = false;
+            vm.addingContactNumber = false;
         }
 
         function saveContactNumber(){
+
             if(vm.addContactNumberForm.$valid){
                 vm.businessPartner.newContactNumber.bp_ID = $stateParams.id;
                 businessPartner.addBusinessPartnerContact(vm.businessPartner.newContactNumber).then(function(res){
@@ -61,7 +65,7 @@
                     if (res.data.success) {
                         vm.businessPartner.contNum = (vm.businessPartner.contNum) ? vm.businessPartner.contNum : [];
                         vm.businessPartner.contNum.push(vm.businessPartner.newContactNumber);
-                        subContactPerson();
+                        subContactNumber();
                         toastr.success(res.data.message, 'Success');
                     }
                     else{
@@ -74,6 +78,22 @@
             }
         }
 
-	}
+        function deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id, index){
+            businessPartner.deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id,function(response){
+                if (response.success) {
+                    toastr.success(response.message, 'Success');
+                    vm.businessPartner.contNum.splice(index,1);
+                    if(vm.businessPartner.contNum.length === 0){
+                        vm.addContactNumber();
+                    }
+                }
+                else{
+                    toastr.error(response.message, 'Error');
+                }
+            });
+        };
+
+
+    }
 
 }());

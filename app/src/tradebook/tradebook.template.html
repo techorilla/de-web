@@ -29,8 +29,10 @@
                     <td ng-bind="row.rate  | currency:'$':0"></td>
                     <td><a ui-sref="shell.businessPartner.view({id:row.tr_productID})">{{row.seller}}</a></td>
                     <td ng-bind="row.origin"></td>
-                    <td ng-bind="row.port"></td>
-                    <td ng-bind="row.shipment"></td>
+                    <td ng-if="row.shipment_start === null">Not Entered</td>
+                    <td ng-if="row.shipment_start !== null" ng-bind="row.shipment_start | date:'dd/MM/yyyy'"></td>
+                    <td ng-if="row.shipment_end === null">Not Entered</td>
+                    <td ng-if="row.shipment_end !== null" ng-bind="row.shipment_end | date:'dd/MM/yyyy'"></td>
                     <td ng-bind="row.commission"></td>
                 </tr>
             </tbody>

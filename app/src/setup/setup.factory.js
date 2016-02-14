@@ -17,7 +17,9 @@
 		return {
 			getAllUsers: getAllUsers,
             getUserRights: getUserRights,
-            addNewUser: addNewUser
+            addNewUser: addNewUser,
+            originCrud: originCrud,
+            getAllOrigin: getAllOrigin
 		};
 
 		////////////////////
@@ -34,6 +36,25 @@
      * </pre>
      * @param {int} entity id
      */
+        function getAllOrigin(){
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getAllOrigin'
+            };
+            return $http(req);
+        }
+
+        function originCrud(originName,originId,operation){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'originCRUD',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {origin_id: originId, origin_name:originName, operation: operation}
+            };
+            return $http(req);
+        }
 
 		function getAllUsers(){
             var req = {
