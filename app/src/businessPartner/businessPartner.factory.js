@@ -19,14 +19,17 @@
             addNewBusinessPartnerContact: addNewBusinessPartnerContact,
             addNewBankAccount: addNewBankAccount,
             addBusinessPartnerContact: addBusinessPartnerContact,
+            addBusinessPartnerProduct:addBusinessPartnerProduct,
 
             getBusinessPartnerList: getBusinessPartnerList,
             getBusinessPartnerComplete: getBusinessPartnerComplete,
+            getBusinessPartnerContactType: getBusinessPartnerContactType,
 
             deleteBusinessPartner: deleteBusinessPartner,
             deleteBusinessPartnerContact: deleteBusinessPartnerContact,
             deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail,
-            deleteBusinessPartnerContactNumber: deleteBusinessPartnerContactNumber
+            deleteBusinessPartnerContactNumber: deleteBusinessPartnerContactNumber,
+            deleteBusinessPartnerProduct: deleteBusinessPartnerProduct
 
 		};
 
@@ -56,7 +59,7 @@
                         'Access-Control-Allow-Origin': '*'
                     },
                     data: {id: id}
-                }
+                };
                 return $http(req)
                     .success(function (response) {
                         callback(response);
@@ -163,6 +166,33 @@
         return $http(req);
 
       }
+
+      function addBusinessPartnerProduct(bpProduct)
+      {
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'addBusinessPartnerProduct',
+              headers: {
+                  'Content-Type': "application/json"
+              },
+              data: {bpProduct: bpProduct}
+          };
+          return $http(req);
+      }
+
+      function deleteBusinessPartnerProduct(bpProduct)
+      {
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'deleteBusinessPartnerProduct',
+              headers: {
+                  'Content-Type': "application/json"
+              },
+              data: {bpProduct: bpProduct}
+          };
+          return $http(req);
+      }
+
       function addBusinessPartner(businessPartner,callback){
         var req = {
             method: 'POST',
@@ -171,7 +201,7 @@
                 'Content-Type': "application/json"
             },
             data: {businessPartner: businessPartner}
-        }
+        };
         return $http(req)
             .success(function (response) {
                 callback(response);
@@ -185,8 +215,35 @@
               headers: {
                   'Content-Type': "application/json"
               }
-          }
+          };
           return $http(req);
+      }
+
+      function getBusinessPartnerContactType(){
+          return {
+              valueField: 'text',
+              labelField: 'text',
+              options: [
+                  {
+                      "id":1,
+                      "text":"Fax Numbers"
+                  },
+                  {
+                      "id":2,
+                      "text": "Mobile"
+                  },
+                  {
+                      "id":3,
+                      "text": "Office"
+                  },
+                  {
+                      "id":4,
+                      "text": "Residential"
+                  }
+              ],
+              sortField: 'text',
+              maxItems: 1
+          };
       }
 
       function getBusinessPartnerComplete(id){
@@ -198,7 +255,7 @@
                   'Access-Control-Allow-Origin': '*'
               },
               data: {id: id}
-          }
+          };
           return $http(req);
       }
 

@@ -1,6 +1,6 @@
 /**
  * @ngdoc controller
- * @name app.setup.controller:AllUsers
+ * @name app.setup.controller:Origin
  * @description < description placeholder >
  */
 
@@ -10,19 +10,13 @@
 
 	angular
 		.module('app.setup')
-		.controller('AllUsers', AllUsers);
+		.controller('Origin', Origin);
 
   /* @ngInject */
-	function AllUsers(allUsers){
+	function Origin(){
 		var vm = this;
-        vm.allUsers = {};
-        vm.allUsers.users = allUsers;
-        vm.allUsers.heading = [
-            "User Name", "Designation", "E-mail", "Last Active", "Created By"
-        ]
+
 		vm.testFunction = testFunction;
-        vm.searchUser = '';
-        vm.viewMode = false;
 
     /////////////////////
 
@@ -30,7 +24,7 @@
      * @ngdoc method
      * @name testFunction
      * @param {number} num number is the number of the number
-     * @methodOf app.setup.controller:AllUsers
+     * @methodOf app.setup.controller:Origin
      * @description
      * My Description rules
      */

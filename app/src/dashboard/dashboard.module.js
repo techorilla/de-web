@@ -9,7 +9,7 @@
   'use strict';
 
   angular
-    .module('app.dashboard', [])
+    .module('app.dashboard', ['chart.js'])
     .config(configuration);
 
   /* @ngInject */

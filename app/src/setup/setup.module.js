@@ -45,7 +45,6 @@
             }
         }
       }).
-
       state('shell.setup.allUsers',{
           url:'/allUsers',
           inSetup: 'true',
@@ -54,7 +53,7 @@
               setup: 'setup',
               allUsers: function (setup) {
                   return setup.getAllUsers().then(function (res) {
-                      return res.data.allUsers;
+                      return res.data.user;
                   });
               }
           },
@@ -64,31 +63,31 @@
                     controller: 'AllUsers as vm'
               }
           }
-      }).
-      state('shell.setup.userRights',{
-        url:'/userRights',
-        inSetup: 'true',
-        inSetupTitle: 'User Rights',
-         views:{
-             'subContent@shell.setup':{
-                 templateUrl: 'src/setup/userRights.template.html'
-             }
-         }
-      }).
-      state('shell.setup.brokerBookSetup',{
-        url:'/brokerBookSetup',
-        inSetup: 'true',
-        inSetupTitle: 'Broker Book Setup',
-         views:{
-             'subContent@shell.setup':{
-                 templateUrl:'src/setup/brokerBookSetup.template.html'
-             }
-         }
       })
+//      .state('shell.setup.userRights',{
+//        url:'/userRights',
+//        inSetup: 'true',
+//        inSetupTitle: 'User Rights',
+//         views:{
+//             'subContent@shell.setup':{
+//                 templateUrl: 'src/setup/userRights.template.html'
+//             }
+//         }
+//      }).
+//      state('shell.setup.brokerBookSetup',{
+//        url:'/brokerBookSetup',
+//        inSetup: 'true',
+//        inSetupTitle: 'Broker Book Setup',
+//         views:{
+//             'subContent@shell.setup':{
+//                 templateUrl:'src/setup/brokerBookSetup.template.html'
+//             }
+//         }
+//      })
       .state('shell.setup.origin',{
           url:'/origin',
           inSetup: 'true',
-          inSetupTitle: 'Add/Remove Origin',
+          inSetupTitle: 'Origin',
           views:{
               'subContent@shell.setup':{
                   templateUrl:'src/setup/origin/origin.html'

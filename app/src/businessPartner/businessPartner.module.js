@@ -57,9 +57,14 @@
         url:'/view/:id',
         resolve: {
           tabFilter: 'tabFilter',
-              country: function (tabFilter) {
+          country: function (tabFilter) {
               return tabFilter.getAllCountries().then(function (res) {
                   return res.data.country;
+              });
+          },
+          bp: function(businessPartner,$stateParams){
+              return businessPartner.getBusinessPartnerComplete($stateParams.id).then(function(res){
+                  return res.data;
               });
           }
         },
@@ -67,6 +72,14 @@
             'content@shell':{
                 templateUrl: 'src/businessPartner/businessPartnerInfo.html',
                 controller: 'BusinessPartnerInfo as vm'
+            },
+            'bpProducts@shell.businessPartner.view':{
+                templateUrl:'src/businessPartner/addBusinessPartnerProduct/addBusinessPartnerProduct.html',
+                controller: 'BpProduct as vm'
+            },
+            'bpContactNumbers@shell.businessPartner.view':{
+                templateUrl:'src/businessPartner/addBusinessPartnerContactNumbers/addBusinessPartnerContactNumbers.html',
+                controller: 'BpContactNumbers as vm'
             }
         }
       });

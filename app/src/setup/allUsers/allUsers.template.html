@@ -15,11 +15,11 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in vm.allUsers.users| filter:vm.searchUser">
-                    <td><a ui-sref="" class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a></td>
-                    <td ng-bind="user.designation"></td>
-                    <td ng-bind="user.email"></td>
+                    <td><a class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a></td>
+                    <td ng-bind="user.userDesignation"></td>
+                    <td ng-bind="user.userEmail"></td>
                     <td am-time-ago="user.lastActive" am-preprocess="unix"></td>
-                    <td ng-bind="user.createdBy"></td>
+                    <td ng-bind="user.createdOn| date:'dd/MM/yyyy'"></td>
                 </tr>
                 </tbody>
             </table>

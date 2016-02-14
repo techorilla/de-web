@@ -1,0 +1,79 @@
+/**
+ * @ngdoc controller
+ * @name app.businessPartner.controller:BpContactNumbers
+ * @description < description placeholder >
+ */
+
+(function(){
+
+  'use strict';
+
+	angular
+		.module('app.businessPartner')
+		.controller('BpContactNumbers', BpContactNumbers);
+
+  /* @ngInject */
+	function BpContactNumbers(toastr,bp,$stateParams,businessPartner){
+		var vm = this;
+        init();
+
+    /////////////////////
+
+    /**
+     * @ngdoc method
+     * @name testFunction
+     * @param {number} num number is the number of the number
+     * @methodOf app.businessPartner.controller:BpContactNumbers
+     * @description
+     * My Description rules
+     */
+
+        function init(){
+            vm.businessPartner = bp;
+            if(vm.businessPartner.contNum.length === 0){
+                addContactNumber();
+            }
+            vm.contactTypeConfig = businessPartner.getBusinessPartnerContactType();
+            vm.addContactNumber = addContactNumber;
+            vm.subContactNumber = subContactNumber;
+            vm.saveContactNumber = saveContactNumber;
+            vm.showContactForm = false;
+        }
+
+        function addContactNumber(){
+            vm.businessPartner.newContactNumber = {
+                contactNumber:'',
+                contactType:''
+            };
+            vm.showContactForm = true;
+        }
+
+        function subContactNumber(){
+            vm.businessPartner.newContactNumber = {};
+            vm.showContactForm = false;
+        }
+
+        function saveContactNumber(){
+            if(vm.addContactNumberForm.$valid){
+                vm.businessPartner.newContactNumber.bp_ID = $stateParams.id;
+                businessPartner.addBusinessPartnerContact(vm.businessPartner.newContactNumber).then(function(res){
+
+                    if (res.data.success) {
+                        vm.businessPartner.contNum = (vm.businessPartner.contNum) ? vm.businessPartner.contNum : [];
+                        vm.businessPartner.contNum.push(vm.businessPartner.newContactNumber);
+                        subContactPerson();
+                        toastr.success(res.data.message, 'Success');
+                    }
+                    else{
+                        toastr.error(res.data.message, 'Error');
+                    }
+                });
+            }
+            else{
+                toastr.error('Incomplete or invalid bank account form', "Error");
+            }
+        }
+
+	}
+
+}());

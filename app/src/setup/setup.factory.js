@@ -36,7 +36,11 @@
      */
 
 		function getAllUsers(){
-            return $http.get('datastore/allUsers.json');
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getAppUsers'
+            };
+            return $http(req);
 		}
         function addNewUser(newUser){
             var req = {

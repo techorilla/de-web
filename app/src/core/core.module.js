@@ -43,7 +43,6 @@
     'ngFileUpload',
     'textAngular',
     'LocalStorageModule'
-
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {

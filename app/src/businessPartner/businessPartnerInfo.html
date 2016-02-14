@@ -48,31 +48,10 @@
 
 
             </div>
-            <form>
-                <div class="col-lg-12  marginLeft15">
-                    <div class="col-lg-12 tableHeading">
-                        <label>Products</label>
-                    </div>
-                    <div class="col-xs-12">
-                        <tags-input ng-model="vm.businessPartner.products" add-on-paste="false"
-                                    replace-spaces-with-dashes="false"
-                                    add-from-autocomplete-only="true"
-                                    placeholder="Add product tags for business partner "
-                                    key-property="value"
-                                    min-length="1" display-property="text"
-                                    class="ptags">
-                            <auto-complete source="vm.loadProducts($query)" min-length="0"
-                                           load-on-focus="true"
-                                           template="productTagInput"
-                                           max-results-to-show="32">
-                            </auto-complete>
-                        </tags-input>
-                    </div>
 
-                </div>
-            </form>
+            <div ui-view="bpProducts"></div>
 
-            <div ng-include="'src/businessPartner/addBusinessPartner/addBusinessPartnerContactNumbers.html'"></div>
+            <div ui-view="bpContactNumbers"></div>
 
             <div ng-include="'src/businessPartner/addBusinessPartner/addBusinessPartnerContact.html'"></div>
 
