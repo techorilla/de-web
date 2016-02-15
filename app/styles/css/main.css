@@ -980,63 +980,64 @@ img {
   border: none !important;
   background: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
-/* line 851, ../partials/_theme.scss */
+/* line 852, ../partials/_theme.scss */
 .height40px {
   height: 40px;
 }
 
-/* line 854, ../partials/_theme.scss */
+/* line 855, ../partials/_theme.scss */
 .height100px {
   height: 70px;
 }
 
-/* line 858, ../partials/_theme.scss */
+/* line 859, ../partials/_theme.scss */
 .forms {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* line 862, ../partials/_theme.scss */
+/* line 863, ../partials/_theme.scss */
 .border-top-black {
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
 
-/* line 867, ../partials/_theme.scss */
+/* line 868, ../partials/_theme.scss */
 .border-bottom-black {
   border-bottom: 1px solid #333;
   padding-bottom: -2px;
 }
 
-/* line 872, ../partials/_theme.scss */
+/* line 873, ../partials/_theme.scss */
 .border-bottom-gray {
   border-bottom: 1px solid #ccc;
   padding-bottom: -2px;
 }
 
-/* line 877, ../partials/_theme.scss */
+/* line 878, ../partials/_theme.scss */
 .resizeNone {
   resize: none;
 }
 
-/* line 881, ../partials/_theme.scss */
+/* line 882, ../partials/_theme.scss */
 .font30days {
   font-size: 10px;
 }
 
-/* line 884, ../partials/_theme.scss */
+/* line 885, ../partials/_theme.scss */
 .toastOpacity {
   opacity: 0.9;
 }
 
-/* line 887, ../partials/_theme.scss */
+/* line 888, ../partials/_theme.scss */
 .form-control[disabled] {
   margin-left: -10px;
 }
 
-/* line 891, ../partials/_theme.scss */
+/* line 892, ../partials/_theme.scss */
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   cursor: not-allowed;
   background-color: transparent;
@@ -1044,12 +1045,12 @@ img {
   border: none;
 }
 
-/* line 897, ../partials/_theme.scss */
+/* line 898, ../partials/_theme.scss */
 .selectize-control.single .selectize-input.disabled:after {
   border: none;
 }
 
-/* line 900, ../partials/_theme.scss */
+/* line 901, ../partials/_theme.scss */
 .selectize-control .selectize-input.disabled {
   background-color: transparent;
   opacity: 1;
@@ -1060,22 +1061,22 @@ img {
   /* background-color: #fafafa; */
 }
 
-/* line 913, ../partials/_theme.scss */
+/* line 914, ../partials/_theme.scss */
 .selectize-control .selectize-input.disabled ::-webkit-input-placeholder {
   color: #ffffff;
 }
 
-/* line 918, ../partials/_theme.scss */
+/* line 919, ../partials/_theme.scss */
 .font20px {
   font-size: 20px;
 }
 
-/* line 923, ../partials/_theme.scss */
+/* line 924, ../partials/_theme.scss */
 form .progress {
   line-height: 15px;
 }
 
-/* line 927, ../partials/_theme.scss */
+/* line 928, ../partials/_theme.scss */
 .progress {
   display: inline-block;
   width: 100%;
@@ -1083,21 +1084,21 @@ form .progress {
   margin-top: 10px;
 }
 
-/* line 934, ../partials/_theme.scss */
+/* line 935, ../partials/_theme.scss */
 .progress div {
   font-size: smaller;
   background: #1691ac;
   width: 0;
 }
 
-/* line 940, ../partials/_theme.scss */
+/* line 941, ../partials/_theme.scss */
 .notesContainer {
   max-height: 300px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 946, ../partials/_theme.scss */
+/* line 947, ../partials/_theme.scss */
 .note {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1105,34 +1106,34 @@ form .progress {
   background: #cccccc;
 }
 
-/* line 954, ../partials/_theme.scss */
+/* line 955, ../partials/_theme.scss */
 .textAlignRight {
   text-align: right;
 }
 
-/* line 958, ../partials/_theme.scss */
+/* line 959, ../partials/_theme.scss */
 .marginTop10px {
   margin-top: 10px;
 }
 
-/* line 962, ../partials/_theme.scss */
+/* line 963, ../partials/_theme.scss */
 .doc-Container {
   font-size: 15px;
   padding-top: 15px;
 }
 
-/* line 965, ../partials/_theme.scss */
+/* line 966, ../partials/_theme.scss */
 .marginTopmin18px {
   margin-top: -18px;
 }
 
-/* line 969, ../partials/_theme.scss */
+/* line 970, ../partials/_theme.scss */
 .addNote {
   margin-right: 15px;
   border-radius: 0;
 }
 
-/* line 974, ../partials/_theme.scss */
+/* line 975, ../partials/_theme.scss */
 textarea {
   resize: vertical;
 }
@@ -1447,24 +1448,30 @@ tbody tr td a {
 
 /* line 246, ../partials/_login.scss */
 .innerHeading {
-  border-bottom: 1px dashed #333;
+  border-bottom: 1px solid #cccccc;
   margin-bottom: 10px;
   font-size: 12px;
-  color: #333333;
   font-weight: bolder;
-  padding-bottom: 2px;
 }
-/* line 253, ../partials/_login.scss */
+/* line 251, ../partials/_login.scss */
+.innerHeading:first-child {
+  color: #1691ac;
+}
+/* line 254, ../partials/_login.scss */
 .innerHeading label {
   margin-left: -15px;
 }
+/* line 257, ../partials/_login.scss */
+.innerHeading button {
+  color: #333333;
+}
 
-/* line 258, ../partials/_login.scss */
+/* line 262, ../partials/_login.scss */
 .width96 {
   width: 96%;
 }
 
-/* line 262, ../partials/_login.scss */
+/* line 266, ../partials/_login.scss */
 textarea {
   border-radius: 2px;
   border: 1px solid #D0D0D0;
@@ -1472,81 +1479,81 @@ textarea {
   font-size: 12px;
 }
 
-/* line 270, ../partials/_login.scss */
+/* line 274, ../partials/_login.scss */
 .formCheckBox input {
   height: 20px;
   margin-left: 20px;
 }
-/* line 274, ../partials/_login.scss */
+/* line 278, ../partials/_login.scss */
 .formCheckBox label {
   height: 20px;
 }
 
-/* line 279, ../partials/_login.scss */
+/* line 283, ../partials/_login.scss */
 .marginTop5 {
   margin-top: 5px;
 }
 
-/* line 283, ../partials/_login.scss */
+/* line 287, ../partials/_login.scss */
 .subTableHeading {
   margin-left: 1px;
   margin-top: 0px;
 }
 
-/* line 288, ../partials/_login.scss */
+/* line 292, ../partials/_login.scss */
 .width106 {
   width: 104% !important;
 }
 
-/* line 292, ../partials/_login.scss */
+/* line 296, ../partials/_login.scss */
 .datePickerAddTran {
   top: -34px;
   right: 0;
 }
-/* line 295, ../partials/_login.scss */
+/* line 299, ../partials/_login.scss */
 .datePickerAddTran button {
   margin-left: calc(100% - 39px) !important;
 }
 
-/* line 300, ../partials/_login.scss */
+/* line 304, ../partials/_login.scss */
 .marginTop50 {
   margin-top: -50px !important;
 }
 
-/* line 304, ../partials/_login.scss */
+/* line 308, ../partials/_login.scss */
 .btn-info {
   color: #fff !important;
   background-color: #1691AC !important;
   border-color: #333333 !important;
 }
 
-/* line 310, ../partials/_login.scss */
+/* line 314, ../partials/_login.scss */
 .btn-danger {
   color: #fff;
   background-color: #44A6BC !important;
   border-color: #333333 !important;
 }
 
-/* line 316, ../partials/_login.scss */
+/* line 320, ../partials/_login.scss */
 .btn-success {
   color: #fff;
   background-color: #333333 !important;
   border-color: #AFAFAF !important;
 }
 
-/* line 322, ../partials/_login.scss */
+/* line 326, ../partials/_login.scss */
 .btn-success:hover {
   background-color: #333356 !important;
 }
 
-/* line 326, ../partials/_login.scss */
+/* line 330, ../partials/_login.scss */
 .width33 {
   width: 24%;
   float: left;
   margin-left: 16px;
 }
 
-/* line 332, ../partials/_login.scss */
+/* line 336, ../partials/_login.scss */
 *:before, *:after {
   -webkit-box-sizing: none !important;
   -moz-box-sizing: none !important;

@@ -5,17 +5,39 @@
         <label class="pull-right" ng-if="!vm.showBankDetailForm">
             <i ng-click="vm.addBankDetails()" class="fa fa-plus-circle orangeFont"></i>
         </label>
+        <label class="pull-right cursor-pointer" ng-click="vm.showBpBankDet = !vm.showBpBankDet">
+            <span ng-bind="vm.businessPartner.bank.length + ' Bank Detail(s)'"></span>
+            <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showBpBankDet,'fa-chevron-circle-right':!vm.showBpBankDet}"></i>
+        </label>
     </div>
-    <div class="col-lg-12" >
-        <form ng-if="vm.showBankDetailForm" name="vm.bankDetailsForm" novalidate>
-            <div class="col-lg-12 innerHeading">
-                <label>Add New Bank Details</label>
-                <label class="pull-right">
-                    <i class="fa fa-trash deleteTrash" ng-click="vm.subBankDetails()"></i>
-                    <button class="transparentButton" type="submit"><i class="fa fa-save saveButton " ng-click="vm.saveBankDetails()"></i></button>
 
+    <div ng-show="vm.showBpBankDet && !vm.showBankDetailForm" class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <label ng-click="vm.addBankDetails()" class="cursor-pointer pull-right">
+                    <i class="fa fa-plus-circle orangeFont"></i>
+                    &nbsp;&nbsp;Add New Bank Details
                 </label>
             </div>
+        </div>
+    </div>
+
+    <page-blue-container ng-show="vm.showBankDetailForm && vm.showBpBankDet" class="col-lg-12" >
+        <form ng-if="vm.showBankDetailForm" name="vm.bankDetailsForm" novalidate>
+            <div class="col-lg-12 innerHeading">
+                <label>New Bank Details</label>
+                <button type="button" ng-click="vm.subBankDetails()" class="cursor-pointer pull-right transparentButton" ng-if="vm.showBankDetailForm">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-times-circle redFont"></i>
+                    &nbsp;&nbsp;Cancel
+                </button>
+                <button  type="submit" ng-click="vm.saveBankDetails()" class="cursor-pointer pull-right border-right-gray transparentButton" ng-if="vm.showBankDetailForm">
+                    <i class="fa fa-database blueFont"></i>
+                    &nbsp;&nbsp;Save&nbsp;&nbsp;
+                </button>
+            </div>
+
+
 
             <div class="row">
                 <div class="form-group col-xs-6">
@@ -79,34 +101,38 @@
                 </div>
             </div>
         </form>
-    </div>
-    <div class="col-lg-12" ng-repeat="bank in vm.businessPartner.bank">
-        <div class="col-lg-12 innerHeading">
-            <label>Bank Details {{$index + 1}}</label>
-            <label class="pull-right">
-                <i class="fa fa-trash deleteTrash" ng-click="vm.deleteBusinessPartnerBankDetails(vm.businessPartner.gen[0].bp_Name, bank.accountTitle, bank.accountNumber, bank.bankDetails_ID,$index)"></i>
-            </label>
-        </div>
-        <div class="form-group col-xs-12 col-lg-3">
-            <label>Bank Account Title</label>
-            <p>{{bank.accountTitle}}</p>
-        </div>
-        <div class="form-group col-xs-12 col-lg-3">
-            <label>Bank Account Number</label>
-            <p>{{bank.accountNumber}}</p>
-        </div>
-        <div class="form-group col-xs-12 col-lg-3">
-            <label>Bank Name</label>
-            <p>{{bank.bankName}}</p>
-        </div>
-        <div class="form-group col-xs-12 col-lg-3 ">
-            <label>Bank Country</label>
-            <p>{{bank.accountCountry}}</p>
-        </div>
-        <div class="form-group col-xs-12 col-lg-12 ">
-            <label>Branch Address & Details</label>
-            <p>{{bank.branchAddress}}</p>
-        </div>
+    </page-blue-container>
 
+    <div class="col-lg-12" ng-show="vm.showBpBankDet && (vm.businessPartner.bank.length > 0)" >
+        <div class="dg-tablePanelBody">
+            <table class="table table-bordered dg-table">
+                <thead>
+                <tr>
+                    <th>Account Title</th>
+                    <th>Account Number</th>
+                    <th>Origin</th>
+                    <th>Bank Name</th>
+                    <th>Branch Address & Details</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="bank in vm.businessPartner.bank">
+                    <td ng-bind="bank.accountTitle"></td>
+                    <td ng-bind="bank.accountNumber"></td>
+                    <td ng-bind="bank.bankName"></td>
+                    <td ng-bind="bank.accountCountry"></td>
+                    <td ng-bind="bank.branchAddress"></td>
+                    <td>
+                        <label ng-click="vm.deleteBusinessPartnerBankDetails(vm.businessPartner.gen[0].bp_Name, bank.accountTitle, bank.accountNumber, bank.bankDetails_ID,$index)" class="cursor-pointer">
+                            <i class="fa fa-trash-o redFont"></i>
+                            Delete
+                        </label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </div>
