@@ -18,10 +18,10 @@
                         </thead>
                         <tbody>
                         <!--<tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">-->
-                        <tr ng-repeat="origin in vm.allOrigins | filter: vm.searchOrigin">
+                        <tr ng-repeat="origin in vm.allOrigins | selectFilter: vm.searchOrigin:'origin_name' | orderBy: 'origin_name' ">
                             <td ng-bind="origin.origin_name"></td>
                             <td>
-                                <label ng-click="vm.deleteOrigin(origin.origin_id, $index)" class="cursor-pointer">
+                                <label ng-click="vm.deleteOrigin(origin.origin_id,origin.origin_name,$index)" class="cursor-pointer">
                                     <i class="fa fa-trash blueFont"></i>
                                     Delete
                                 </label>

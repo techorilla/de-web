@@ -843,12 +843,9 @@ img {
 }
 
 .transparentButton{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
+  border: none !important;
+  background: none;
     cursor:pointer;
-    overflow: hidden;
-    outline:none;
 }
 
 .height40px{

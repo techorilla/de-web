@@ -13,7 +13,7 @@
 		.factory('tabFilter', filter);
 
   /* @ngInject */
-  function filter($http, appConfig, toastr){
+  function filter($http, appConfig, toastr,setup){
 		return {
             getDropDownBP:getDropDownBP,
             getProductFilterForTagInput:getProductFilterForTagInput,
@@ -21,7 +21,8 @@
             getTransactionStatus: getTransactionStatus,
             getBuyerContractTypes: getBuyerContractTypes,
             getAllCountries: getAllCountries,
-            filterFromDb: filterFromDb
+            filterFromDb: filterFromDb,
+            getOriginConfig: getOriginConfig
 		};
 
 		////////////////////
@@ -42,6 +43,16 @@
             return $http.get('datastore/filterFromDb.json');
         }
 
+        function getOriginConfig(origins){
+            return {
+                valueField: 'origin_name',
+                labelField: 'origin_name',
+                options: origins,
+                sortField: 'origin_name',
+                maxItems: 1
+            };
+        }
+
         function getDropDownBP(bpType){
           var req = {
               method: 'POST',
@@ -58,7 +69,7 @@
 
 
         function getAllCountries(){
-            return $http.get('datastore/country.json');
+            return setup.getAllOrigin();
         }
         function getProductFilterForTagInput(input){
             var req = {

@@ -13,7 +13,7 @@
         .controller('AddTransaction', AddTransaction);
 
     /* @ngInject */
-    function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, country,toastr, $filter, completeTransaction){
+    function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, originConfig,toastr, $filter, completeTransaction){
         var vm = this;
         init();
 
@@ -104,13 +104,7 @@
 
 
 
-            vm.singleConfig = {
-                valueField: 'text',
-                labelField: 'text',
-                options: country,
-                sortField: 'text',
-                maxItems: 1
-            };
+            vm.singleConfig = originConfig;
 
             $scope.$watch('vm.newTransaction.tr_shipment30days',function(newVal){
                 if(newVal){

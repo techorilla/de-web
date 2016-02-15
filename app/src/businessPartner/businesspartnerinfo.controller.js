@@ -13,9 +13,8 @@
 		.controller('BusinessPartnerInfo', BusinessPartnerInfo);
 
   /* @ngInject */
-	function BusinessPartnerInfo(modalFactory, country, businessPartner, $state,toastr, bp){
+	function BusinessPartnerInfo(modalFactory, originConfig, businessPartner, $state,toastr, bp, crud){
 		var vm = this;
-        vm.country = country;
         init();
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
@@ -77,15 +76,9 @@
      */
     function init(){
         vm.businessPartner = {};
-        vm.singleConfig = {
-            valueField: 'text',
-            labelField: 'text',
-            options: vm.country,
-            sortField: 'text',
-            maxItems: 1
-        };
+        vm.singleConfig = originConfig;
 
-
+        vm.editBusinessPartnerBasic = editBusinessPartnerBasic;
 
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
@@ -137,6 +130,11 @@
             toastr.error('Incomplete or invalid contact person form', "Error");
         }
 
+    }
+
+    function editBusinessPartnerBasic(){
+        businessPartner.setBusinessPartner(vm.businessPartner);
+        $state.go('shell.businessPartner.addBusinessPartner',{operation: crud.UPDATE, id:vm.businessPartner.gen[0].bp_ID});
     }
 
     function addContactPerson(){

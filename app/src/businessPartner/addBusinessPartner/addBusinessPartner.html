@@ -18,7 +18,7 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Website</label>
-                                <input name="website" type="url" class="form-control" type="text" ng-disabled="vm.viewMode" placeholder='https://www.google.com (optional)' ng-model="vm.businessPartner.general.bp_website"/>
+                                <input name="website" type="text" class="form-control"  ng-disabled="vm.viewMode" placeholder='www.donigroup.com (optional)' ng-model="vm.businessPartner.general.bp_website"/>
 
                                 <div ng-messages='vm.businessPartnerForm.website.$error'
                                      ng-if='vm.businessPartnerForm.website.$dirty || vm.businessPartnerForm.$submitted'>
@@ -62,8 +62,10 @@
 
                             <div class="form-group col-xs-12">
                                 <div>
-                                    <button type="submit" class="btn btn-default submitBtn pull-right" ng-click="vm.saveBusinessPartner()">Add New Business Partner</button>
-                                    <button class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+                                    <button ng-if="!vm.editMode" type="submit" class="btn btn-default submitBtn pull-right" ng-click="vm.saveBusinessPartner()">Add New Business Partner</button>
+                                    <button ng-if="vm.editMode" type="submit" class="btn btn-default submitBtn pull-right" ng-click="vm.updateBusinessPartner()">Update Business Partner</button>
+                                    <button ng-if="!vm.editMode" class="btn btn-default pull-left" ui-sref="^">Cancel</button>
+                                    <button ng-if="vm.editMode" class="btn btn-default pull-left" ui-sref="shell.businessPartner.view({id:vm.businessPartner.general.bp_ID})">Cancel</button>
                                 </div>
                             </div>
 

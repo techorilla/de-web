@@ -51,9 +51,10 @@
       },
       resolve: {
         tabFilter: 'tabFilter',
-        country: function (tabFilter) {
+          originConfig: function (tabFilter) {
           return tabFilter.getAllCountries().then(function (res) {
-              return res.data.country;
+              return tabFilter.getOriginConfig(res.data.origins);
+
           });
         },
         productInfo: function () {
@@ -71,9 +72,10 @@
         resolve: {
             tabFilter: 'tabFilter',
             product: 'product',
-            country: function (tabFilter) {
+            originConfig: function (tabFilter) {
                 return tabFilter.getAllCountries().then(function (res) {
-                    return res.data.country;
+                    return tabFilter.getOriginConfig(res.data.origins);
+
                 });
             },
             productInfo: function (product, $stateParams) {

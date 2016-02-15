@@ -977,69 +977,66 @@ img {
 
 /* line 845, ../partials/_theme.scss */
 .transparentButton {
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
+  border: none !important;
+  background: none;
   cursor: pointer;
-  overflow: hidden;
-  outline: none;
 }
 
-/* line 854, ../partials/_theme.scss */
+/* line 851, ../partials/_theme.scss */
 .height40px {
   height: 40px;
 }
 
-/* line 857, ../partials/_theme.scss */
+/* line 854, ../partials/_theme.scss */
 .height100px {
   height: 70px;
 }
 
-/* line 861, ../partials/_theme.scss */
+/* line 858, ../partials/_theme.scss */
 .forms {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* line 865, ../partials/_theme.scss */
+/* line 862, ../partials/_theme.scss */
 .border-top-black {
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
 
-/* line 870, ../partials/_theme.scss */
+/* line 867, ../partials/_theme.scss */
 .border-bottom-black {
   border-bottom: 1px solid #333;
   padding-bottom: -2px;
 }
 
-/* line 875, ../partials/_theme.scss */
+/* line 872, ../partials/_theme.scss */
 .border-bottom-gray {
   border-bottom: 1px solid #ccc;
   padding-bottom: -2px;
 }
 
-/* line 880, ../partials/_theme.scss */
+/* line 877, ../partials/_theme.scss */
 .resizeNone {
   resize: none;
 }
 
-/* line 884, ../partials/_theme.scss */
+/* line 881, ../partials/_theme.scss */
 .font30days {
   font-size: 10px;
 }
 
-/* line 887, ../partials/_theme.scss */
+/* line 884, ../partials/_theme.scss */
 .toastOpacity {
   opacity: 0.9;
 }
 
-/* line 890, ../partials/_theme.scss */
+/* line 887, ../partials/_theme.scss */
 .form-control[disabled] {
   margin-left: -10px;
 }
 
-/* line 894, ../partials/_theme.scss */
+/* line 891, ../partials/_theme.scss */
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   cursor: not-allowed;
   background-color: transparent;
@@ -1047,12 +1044,12 @@ img {
   border: none;
 }
 
-/* line 900, ../partials/_theme.scss */
+/* line 897, ../partials/_theme.scss */
 .selectize-control.single .selectize-input.disabled:after {
   border: none;
 }
 
-/* line 903, ../partials/_theme.scss */
+/* line 900, ../partials/_theme.scss */
 .selectize-control .selectize-input.disabled {
   background-color: transparent;
   opacity: 1;
@@ -1063,22 +1060,22 @@ img {
   /* background-color: #fafafa; */
 }
 
-/* line 916, ../partials/_theme.scss */
+/* line 913, ../partials/_theme.scss */
 .selectize-control .selectize-input.disabled ::-webkit-input-placeholder {
   color: #ffffff;
 }
 
-/* line 921, ../partials/_theme.scss */
+/* line 918, ../partials/_theme.scss */
 .font20px {
   font-size: 20px;
 }
 
-/* line 926, ../partials/_theme.scss */
+/* line 923, ../partials/_theme.scss */
 form .progress {
   line-height: 15px;
 }
 
-/* line 930, ../partials/_theme.scss */
+/* line 927, ../partials/_theme.scss */
 .progress {
   display: inline-block;
   width: 100%;
@@ -1086,21 +1083,21 @@ form .progress {
   margin-top: 10px;
 }
 
-/* line 937, ../partials/_theme.scss */
+/* line 934, ../partials/_theme.scss */
 .progress div {
   font-size: smaller;
   background: #1691ac;
   width: 0;
 }
 
-/* line 943, ../partials/_theme.scss */
+/* line 940, ../partials/_theme.scss */
 .notesContainer {
   max-height: 300px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 949, ../partials/_theme.scss */
+/* line 946, ../partials/_theme.scss */
 .note {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1108,34 +1105,34 @@ form .progress {
   background: #cccccc;
 }
 
-/* line 957, ../partials/_theme.scss */
+/* line 954, ../partials/_theme.scss */
 .textAlignRight {
   text-align: right;
 }
 
-/* line 961, ../partials/_theme.scss */
+/* line 958, ../partials/_theme.scss */
 .marginTop10px {
   margin-top: 10px;
 }
 
-/* line 965, ../partials/_theme.scss */
+/* line 962, ../partials/_theme.scss */
 .doc-Container {
   font-size: 15px;
   padding-top: 15px;
 }
 
-/* line 968, ../partials/_theme.scss */
+/* line 965, ../partials/_theme.scss */
 .marginTopmin18px {
   margin-top: -18px;
 }
 
-/* line 972, ../partials/_theme.scss */
+/* line 969, ../partials/_theme.scss */
 .addNote {
   margin-right: 15px;
   border-radius: 0;
 }
 
-/* line 977, ../partials/_theme.scss */
+/* line 974, ../partials/_theme.scss */
 textarea {
   resize: vertical;
 }

@@ -13,7 +13,7 @@
 		.controller('AddProduct', AddProduct);
 
   /* @ngInject */
-	function AddProduct($scope, country, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
+	function AddProduct($scope, originConfig, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
 		var vm = this;
         init();
         vm.addProduct = addProduct;
@@ -40,6 +40,7 @@
         vm.viewMode = ($state.current.name === 'shell.products.viewProduct');
         vm.editMode = ($state.current.name === 'shell.products.viewProduct.edit');
         vm.addMode = ($state.current.name === 'shell.products.addProduct');
+        vm.singleConfig = originConfig;
 
 
 
@@ -70,13 +71,7 @@
         else if(vm.addMode){
             vm.newProduct = new NewProduct();
         }
-            vm.singleConfig = {
-                valueField: 'text',
-                labelField: 'text',
-                options: country,
-                sortField: 'text',
-                maxItems: 1
-            };
+
 		}
     function NewProduct(name, origin, quality, purity, moisture, splits, weeviled,greenDamaged,damaged,foreignMatter,otherColor,wrinkled){
         this.name = name;

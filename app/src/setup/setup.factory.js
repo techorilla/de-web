@@ -49,7 +49,8 @@
                 method: 'POST',
                 url: appConfig.apiHost+'originCRUD',
                 headers: {
-                    'Content-Type': "application/json"
+                    'Content-Type': "application/json",
+                    'Access-Control-Allow-Origin': '*'
                 },
                 data: {origin_id: originId, origin_name:originName, operation: operation}
             };

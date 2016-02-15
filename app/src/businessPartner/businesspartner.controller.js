@@ -13,7 +13,7 @@
 		.controller('BusinessPartner', BusinessPartner);
 
   /* @ngInject */
-	function BusinessPartner(businessPartner,toastr){
+	function BusinessPartner(businessPartner,toastr,crud){
 		var vm = this;
         init();
 
@@ -31,7 +31,7 @@
             vm.headerAnchor = [
                 {
                     text: 'Add new Business Partner',
-                    state: 'shell.businessPartner.addBusinessPartner'
+                    state: 'shell.businessPartner.addBusinessPartner({operation:'+ crud.CREATE +' })'
                 }
             ];
             

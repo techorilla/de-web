@@ -41,9 +41,9 @@
                   return res.data;
               });
           },
-          country: function (tabFilter) {
+          originConfig: function (tabFilter) {
               return tabFilter.getAllCountries().then(function (res) {
-                  return res.data.country;
+                  return tabFilter.getOriginConfig(res.data.origins);
               });
           },
           sellersList: function(tabFilter){

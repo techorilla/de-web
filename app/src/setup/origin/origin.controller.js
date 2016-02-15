@@ -35,7 +35,7 @@
                 if(res.data.success){
                     toastr.success(res.data.message,'Origin Added');
                     vm.allOrigins.push({
-                        origin_id: res.data.origin_id, origin_name:vm.newOrigin, operation: operation
+                        origin_id: res.data.origin_id, origin_name:vm.newOrigin
                     });
                 }
                 else{
@@ -47,11 +47,16 @@
             });
         }
 
-        function deleteOrigin(originId,index){
-            setup.originCrud(null,originId,crud.DELETE).then(function(res){
+        function deleteOrigin(originId,originName,index){
+
+            setup.originCrud(originName,originId,crud.DELETE).then(function(res){
                 if(res.data.success){
+                    console.log(index);
                     toastr.success(res.data.message,'Origin Delete');
-                    vm.allOrigins.splice(1,index);
+                    index = vm.allOrigins.indexOf({
+                        origin_id: originId, origin_name:originName
+                    });
+                    vm.allOrigins.splice(index,1);
                 }
                 else{
                     toastr.error(res.data.message,'Error');

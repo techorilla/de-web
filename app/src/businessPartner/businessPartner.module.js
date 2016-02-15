@@ -27,12 +27,13 @@
         } 
      }
     ).state('shell.businessPartner.addBusinessPartner',{
-      url:'/add',
+      url:'/:operation/:id',
       resolve:{
           tabFilter: 'tabFilter',
-          country: function(tabFilter){
-              return tabFilter.getAllCountries().then(function(res){
-                  return res.data.country;
+          originConfig: function (tabFilter) {
+              return tabFilter.getAllCountries().then(function (res) {
+                  return tabFilter.getOriginConfig(res.data.origins);
+
               });
           },
           bpTypes: function(tabFilter){
@@ -57,16 +58,17 @@
         url:'/view/:id',
         resolve: {
           tabFilter: 'tabFilter',
-          country: function (tabFilter) {
-              return tabFilter.getAllCountries().then(function (res) {
-                  return res.data.country;
-              });
-          },
-          bp: function(businessPartner,$stateParams){
+            originConfig: function (tabFilter) {
+                return tabFilter.getAllCountries().then(function (res) {
+                    return tabFilter.getOriginConfig(res.data.origins);
+
+                });
+            },
+            bp: function(businessPartner,$stateParams){
               return businessPartner.getBusinessPartnerComplete($stateParams.id).then(function(res){
                   return res.data;
               });
-          }
+            }
         },
         views:{
             'content@shell':{

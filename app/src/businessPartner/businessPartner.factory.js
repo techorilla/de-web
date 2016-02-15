@@ -14,24 +14,33 @@
 
   /* @ngInject */
   function businessPartner(appConfig, $http, modalFactory){
-		return {
-            addBusinessPartner: addBusinessPartner,
-            addNewBusinessPartnerContact: addNewBusinessPartnerContact,
-            addNewBankAccount: addNewBankAccount,
-            addBusinessPartnerContact: addBusinessPartnerContact,
-            addBusinessPartnerProduct:addBusinessPartnerProduct,
 
-            getBusinessPartnerList: getBusinessPartnerList,
-            getBusinessPartnerComplete: getBusinessPartnerComplete,
-            getBusinessPartnerContactType: getBusinessPartnerContactType,
+      var businessPartner = {};
 
-            deleteBusinessPartner: deleteBusinessPartner,
-            deleteBusinessPartnerContact: deleteBusinessPartnerContact,
-            deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail,
-            deleteBusinessPartnerContactNumber: deleteBusinessPartnerContactNumber,
-            deleteBusinessPartnerProduct: deleteBusinessPartnerProduct
+      return {
 
-		};
+          setBusinessPartner: setBusinessPartner,
+          getBusinessPartner: getBusinessPartner,
+
+          addBusinessPartner: addBusinessPartner,
+          addNewBusinessPartnerContact: addNewBusinessPartnerContact,
+          addNewBankAccount: addNewBankAccount,
+          addBusinessPartnerContact: addBusinessPartnerContact,
+          addBusinessPartnerProduct: addBusinessPartnerProduct,
+
+          updateBusinessPartner:updateBusinessPartner,
+
+          getBusinessPartnerList: getBusinessPartnerList,
+          getBusinessPartnerComplete: getBusinessPartnerComplete,
+          getBusinessPartnerContactType: getBusinessPartnerContactType,
+
+          deleteBusinessPartner: deleteBusinessPartner,
+          deleteBusinessPartnerContact: deleteBusinessPartnerContact,
+          deleteBusinessPartnerBankDetail: deleteBusinessPartnerBankDetail,
+          deleteBusinessPartnerContactNumber: deleteBusinessPartnerContactNumber,
+          deleteBusinessPartnerProduct: deleteBusinessPartnerProduct
+
+      };
 
 		////////////////////
 
@@ -47,7 +56,13 @@
      * </pre>
      * @param {int} entity id
      */
+      function setBusinessPartner(bp){
+         this.businessPartner = bp;
+      }
 
+      function getBusinessPartner(){
+          return this.businessPartner;
+      }
       function deleteBusinessPartner(name, id ,callback){
         modalFactory.alertModal(name,'Business Partner', 'Delete').then(function(res){
             if(res){
@@ -206,6 +221,21 @@
             .success(function (response) {
                 callback(response);
             });
+      }
+
+      function updateBusinessPartner(businessPartner,callback){
+          var req = {
+              method: 'POST',
+              url: appConfig.apiHost+'updateBusinessPartner',
+              headers: {
+                  'Content-Type': "application/json"
+              },
+              data: {businessPartner: businessPartner}
+          };
+          return $http(req)
+              .success(function (response) {
+                  callback(response);
+              });
       }
 
       function getBusinessPartnerList(){

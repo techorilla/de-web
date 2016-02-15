@@ -97,8 +97,8 @@
       }
       if(scope.filterType==='country'){
         scope.title='Country';
-        tabFilter.getAllCountries().then(function(res){
-            scope.dropDownValues = res.data.country;
+        return tabFilter.getAllCountries().then(function (res) {
+          return res.data.origins;
         });
       }
     }
