@@ -9,7 +9,7 @@
   'use strict';
 
   angular
-    .module('app.dashboard', ['chart.js'])
+    .module('app.dashboard', [])
     .config(configuration);
 
   /* @ngInject */
@@ -25,7 +25,8 @@
        subNavIndex: 0, 
        views:{
             'content@shell':{
-                templateUrl: 'src/dashboard/dashboard.template.html', 
+                templateUrl: 'src/dashboard/dashboard.template.html',
+                controller: 'Dashboard as vm'
             }
         }      
      }

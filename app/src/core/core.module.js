@@ -30,19 +30,13 @@
     'angularSpinner',
     'rzModule',
     'ngSanitize',
-    'ui.grid',
-    'ui.grid.edit',
-    'ui.grid.selection',
-    'ui.grid.exporter',
-    'ui.grid.resizeColumns',
-    'ui.grid.moveColumns',
-    'ui.grid.pinning',
     'angular-click-outside',
     'ngSanitize',
     'ngCsv',
     'ngFileUpload',
     'textAngular',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'highcharts-ng'
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {
@@ -107,6 +101,6 @@
                     $location.path('/login');
                 }
             });
-        });
+    });
 
 }());

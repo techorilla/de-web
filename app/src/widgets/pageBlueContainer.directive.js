@@ -26,7 +26,8 @@
       transclude: true,
       templateUrl: 'src/widgets/pageBlueContainer.template.html',
       scope: {
-        test: '='
+        test: '=',
+        graphContainer:'@'
       }
     };
 
