@@ -13,109 +13,153 @@
 		.factory('dashboard', dashboard);
 
   /* @ngInject */
-  function dashboard(){
-		return {
-            getBarChartsConfig: getBarChartsConfig
+  function dashboard($timeout,$compile){
+
+        var chartType={
+          pie: 'pie',
+          areaSpline: 'areaspline'
+
+        };
+        return {
+            getBarChartsConfig: getBarChartsConfig,
+            getPieChartConfig: getPieChartConfig,
+            getBasicChartConfig: getBasicChartConfig
 		};
 
+        function getBasicChartConfig(type, title, series,scope){
+            return {
+              options:{
+                  title: title,
+                  chart:{
+                      type: type,
+                      options3d: {
+                          enabled: true,
+                          alpha: 45
+                      },
+                      tooltip:  {
+                          style: {
+                              padding: 10,
+                              fontWeight: 'bold'
+                          }
+                      },
+                      zoomType:'x'
+                  }
+              },
+              series: series,
+              loading: false,
+              func: function (chart) {
 
-        function getPieChartConfig(){
-
+                    //setup some logic for the chart
+              }
+            };
         }
 
-        function getBarChartsConfig(){
-            return {
+        function getPieChartConfig(title,scope){
+            var series = [
+                {
+                    name: 'Delivered amount',
+                    data: [
+                        ['Bananas', 8],
+                        ['Kiwi', 3],
+                        ['Mixed nuts', 1],
+                        ['Oranges', 6],
+                        ['Apples', 8],
+                        ['Pears', 4],
+                        ['Clementines', 4],
+                        ['Reddish (bag)', 1],
+                        ['Grapes (bunch)', 1]
+                    ]
+                }
+            ];
 
-                options: {
-                    //This is the Main Highcharts chart config. Any Highchart options are valid here.
-                    //will be overriden by values specified below.
-                    chart: {
-                        type: 'areaspline'
+            var config = getBasicChartConfig(
+                chartType.pie,
+                title,
+                series,
+                scope
+            );
 
+            config.options.plotOptions = {
+                pie: {
+                    innerSize: 100,
+                        depth: 45,
+                        dataLabels: {
+                        enabled: true
                     },
-                    tooltip: {
-                        style: {
-                            padding: 10,
-                                fontWeight: 'bold'
-                        }
-                    }
-                },
-                //The below properties are watched separately for changes.
-
-                //Series object (optional) - a list of series using normal Highcharts series options.
-                series:  [
-                    {
-                        "name": "Some data",
-                        "data": [
-                            1,
-                            2,
-                            4,
-                            7,
-                            3
-                        ],
-                        "id": "series-0"
-                    },
-                    {
-                        "name": "Some data 3",
-                        "data": [
-                            3,
-                            1,
-                            null,
-                            5,
-                            2
-                        ],
-                        "connectNulls": true,
-                        "id": "series-1"
-                    },
-                    {
-                        "name": "Some data 2",
-                        "data": [
-                            5,
-                            2,
-                            2,
-                            3,
-                            5
-                        ],
-                        "type": "column",
-                        "id": "series-2"
-                    },
-                    {
-                        "name": "My Super Column",
-                        "data": [
-                            1,
-                            1,
-                            2,
-                            3,
-                            2
-                        ],
-                        "type": "column",
-                        "id": "series-3"
-                    }
-                ],
-                    //Title configuration (optional)
-                    title: {
-                text: 'Hello'
-            },
-                //Boolean to control showing loading status on chart (optional)
-                //Could be a string if you want to show specific loading text.
-                loading: false,
-                    //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-                    //properties currentMin and currentMax provided 2-way binding to the chart's maximum and minimum
-                    xAxis: {
-                    currentMin: 0,
-                    currentMax: 4,
-                    title: {text: 'values'}
-            },
-                //Whether to use Highstocks instead of Highcharts (optional). Defaults to false.
-                useHighStocks: false,
-                    //size (optional) if left out the chart will default to size of the div or something sensible.
-
-
-                //function (optional)
-                func: function (chart) {
-                    //setup some logic for the chart
+                    enableMouseTracking: false
                 }
             };
+            return config;
+        }
+
+        function getBarChartsConfig(title, scope){
+
+            var xaxis = {
+                currentMin: 0,
+                currentMax: 4,
+                title: {text: 'values'}
+            };
+
+            var series = [
+                {
+                    "name": "Some data",
+                    "data": [
+                        1,
+                        2,
+                        4,
+                        7,
+                        3
+                    ],
+                    "id": "series-0"
+                },
+                {
+                    "name": "Some data 3",
+                    "data": [
+                        3,
+                        1,
+                        null,
+                        5,
+                        2
+                    ],
+                    "connectNulls": true,
+                    "id": "series-1"
+                },
+                {
+                    "name": "Some data 2",
+                    "data": [
+                        5,
+                        2,
+                        2,
+                        3,
+                        5
+                    ],
+                    "type": "column",
+                    "id": "series-2"
+                },
+                {
+                    "name": "My Super Column",
+                    "data": [
+                        1,
+                        1,
+                        2,
+                        3,
+                        2
+                    ],
+                    "type": "column",
+                    "id": "series-3"
+                }
+            ];
+
+            var config = getBasicChartConfig(
+                chartType.areaSpline,
+                title,
+                series,
+                scope
+            );
+
+            return config;
+
+
         }
 
 		////////////////////

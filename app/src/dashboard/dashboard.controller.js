@@ -13,8 +13,17 @@
 		.controller('Dashboard', Dashboard);
 
   /* @ngInject */
-	function Dashboard($scope,dashboard){
+	function Dashboard($timeout,dashboard){
 		var vm = this;
+        vm.tabs = [{
+            title:'Bar Charts',
+            chartConfig: dashboard.getBarChartsConfig('Bar Charts')
+        },{
+            title:'Pie Charts',
+            chartConfig: dashboard.getPieChartConfig('Pie Charts')
+        },{
+            title:'Spline Charts'
+        }];
         init();
 
     /////////////////////
@@ -28,23 +37,9 @@
      * My Description rules
      */
         function init(){
-            vm.chartConfig = dashboard.getBarChartsConfig();
-            $scope.$on('window.resize', function() {
-            $timeout( function() {
-                var element = document.getElementById("chart1");
-                $compile(element)($scope)
-            });
-            vm.tabs = [{
-                title:'Bar Charts'
-            },{
-                title:'Pie Charts'
-            },{
-                title:'Spline Charts'
-            }];
-        });
-
-
-
+            $timeout(function(){
+                vm.chartShow  = true;
+            },0);
 		}
 	}
 
