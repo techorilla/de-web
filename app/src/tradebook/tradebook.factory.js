@@ -48,6 +48,7 @@
 			testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
+            getTransactionByParameter:getTransactionByParameter,
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
 
@@ -379,6 +380,14 @@
             return $http(req);
         }
 
+        function getTransactionByParameter(parameter, textInput, dateInput){
+            var req = {
+                method:'GET',
+                url: appConfig.apiHost+'TransactionGetByParameter?parameter='+parameter+'&textInput='+textInput+'&dateInput='+dateInput
+            };
+            return $http(req);
+        }
+
         function addNewTransaction(transaction,callback){
             var req = {
                 method: 'POST',
@@ -387,7 +396,7 @@
                     'Content-Type': "application/json"
                 },
                 data: {transaction: transaction}
-            }
+            };
             return $http(req)
                 .success(function (response) {
                     callback(response);
@@ -406,7 +415,7 @@
                     'Content-Type': "application/json"
                 },
                 data: {newTransaction: newTransaction}
-            }
+            };
             return $http(req)
                 .success(function (response) {
                     callback(response);
@@ -420,7 +429,7 @@
                 headers: {
                     'Content-Type': "application/json"
                 }
-            }
+            };
             return $http(req);
         }
         function getStaticDropDown(){

@@ -42,7 +42,8 @@
                               fontWeight: 'bold'
                           }
                       },
-                      zoomType:'x'
+                      zoomType:'x',
+                      width:1180
                   }
               },
               series: series,

@@ -1,32 +1,41 @@
 <div class="dg-sideBarWrapper" ng-class="{'close': !isOpen}">
     <div class="dg-sBWidget">
         <div class="dg-sBWidgetHeader">
-            <div class="dg-sBWidgetTitle">Search</div>
-            <a class="dg-sBWidgetHeaderLink" href="#">Advanced Search&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></a>
+            <!--<a class="dg-sBWidgetHeaderLink" href="#">Advanced Search&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></a>-->
+            <div class="dg-sBWidgetTitle">Search Transaction</div>
         </div>
         <div class="dg-sbWidgetBody">
             <div class="dg-form dg-miniForm">
                 <div class="form-group">
-                    <select class="form-control"><option>Select All</option></select>
+                    <select class="form-control" ng-model="parameter">
+                        <option value="" disabled selected>Select your option</option>
+                        <option ng-repeat="opt in searchTransactionOptions" value="{{opt.val}}">{{opt.text}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Type here...">
-                        <a class="input-group-addon dg-btn"><span class="glyphicon glyphicon-search"></span></a>
+                        <input type="text" ng-model="inputText" class="form-control" id="exampleInputAmount" placeholder="{{searchPlaceholder[parameter]}}">
+                        <a class="input-group-addon dg-btn" ng-click="onSearchTransaction()"><span class="glyphicon glyphicon-search"></span></a>
                     </div>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Limit to items I own
-                    </label>
-                </div>
+                <!--<div class="checkbox">-->
+                    <!--<label>-->
+                        <!--<input type="checkbox"> Limit to items I own-->
+                    <!--</label>-->
+                <!--</div>-->
             </div>
+        </div>
+        <div class="dg-sbWidgetBody">
+            <ul class="dg-sideBarListNav">
+                <li ng-repeat="tran in transactionSearched"><a ui-sref="shell.tradebook.Transaction({tran:tran.tr_transactionID})"><b>File ID:</b> {{tran.tr_fileID}}</a></li>
+                <li ng-show="notFound"><a class="textdeconone">No Transaction Found</a></li>
+            </ul>
         </div>
     </div>
 
     <div class="dg-sBWidget">
         <div class="dg-sBWidgetHeader">
-            <div class="dg-sBWidgetTitle">Recent Items</div>
+            <div class="dg-sBWidgetTitle">Recent Transaction</div>
         </div>
         <div class="dg-sbWidgetBody">
             <ul class="dg-sideBarListNav">

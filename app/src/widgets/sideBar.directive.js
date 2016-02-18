@@ -18,7 +18,7 @@
     .directive('sideBar', sideBar);
 
   /* @ngInject */
-  function sideBar(){
+  function sideBar(tradebook){
     var directive = {
           scope: {
               isOpen: '='
@@ -31,6 +31,28 @@
     return directive;
     /////////////////////
     function link(scope, elem, attrs){
+        scope.searchTransactionOptions = [
+            {val: 'tr_fileID', text:'File ID'},
+            {val: 'tr_contractID', text:'Contract ID'},
+            {val: 'tr_date', text:'Transaction Date'}
+        ];
+        scope.parameter='';
+        scope.inputText='';
+        scope.inputDate=null;
+        scope.transactionSearched = [];
+        scope.notFound = false;
+        scope.searchPlaceholder = {
+            tr_fileID: 'Enter File Id',
+            tr_contractID: 'Enter Contract Id',
+            tr_date: 'Enter Date (dd/mm/yyyy)'
+        };
+
+        scope.onSearchTransaction = function(){
+            tradebook.getTransactionByParameter(scope.parameter,scope.inputText, scope.inputDate).then(function(res){
+                scope.transactionSearched=res.data.transactions;
+                scope.notFound = (scope.transactionSearched.length === 0);
+            });
+        };
     }
   }
 

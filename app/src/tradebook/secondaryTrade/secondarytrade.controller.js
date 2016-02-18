@@ -35,6 +35,9 @@
                 tradebook.getSingleTransactionSec($stateParams.tran).then(function(res){
                     if(res.data.success){
                         vm.secondaryTransactions = res.data.sec;
+                        if(vm.secondaryTransactions.length === 0){
+                            vm.currentlyAdding = true;
+                        }
                     }
                     else{
                         toastr.error(res.data.message, 'Error');
@@ -126,6 +129,9 @@
                 if(res.data.success){
                     toastr.success(res.data.message,'Deleted');
                     vm.secondaryTransactions.splice(index, 1);
+                    if(vm.secondaryTransactions.length === 0){
+                        vm.currentlyAdding = true;
+                    }
                 }
                 else{
                     toastr.error(res.data.message, 'Error');
