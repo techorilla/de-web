@@ -48,6 +48,11 @@
         };
 
         scope.onSearchTransaction = function(){
+            if(scope.parameter === 'tr_date'){
+                scope.inputDate = scope.inputText;
+                scope.inputText = '';
+
+            }
             tradebook.getTransactionByParameter(scope.parameter,scope.inputText, scope.inputDate).then(function(res){
                 scope.transactionSearched=res.data.transactions;
                 scope.notFound = (scope.transactionSearched.length === 0);

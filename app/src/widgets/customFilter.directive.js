@@ -18,7 +18,7 @@
     .directive('customFilter', customFilter);
 
   /* @ngInject */
-  function customFilter(tabFilter){
+  function customFilter(tabFilter, product){
 
     return {
       link: link,
@@ -41,6 +41,7 @@
       scope.showOptions = false;
       scope.dropDownValues={};
       scope.textFilter = '';
+      scope.selectValue = [];
       scope.invertShowOptions = function(){
         scope.showOptions = !scope.showOptions;
       };
@@ -52,23 +53,22 @@
       };
       if(scope.filterType==='product'){
           scope.title= 'Product';
-          tabFilter.getProductFilterForTagInput().then(function(res){
+          product.getAllProducts().then(function(res){
+              console.log(res);
+              scope.dropDownValues = res.data;
+          });
 
-            scope.dropDownValues = res.data.products;
-        });
       }
       if(scope.filterType==='buyer'){
           scope.title= 'Buyer';
           tabFilter.getDropDownBP(scope.title).then(function(res){
             scope.dropDownValues = res.data.data;
-            console.log(scope.dropDownValues);
         });
       }
       if(scope.filterType==='seller'){
           scope.title='Seller';
           tabFilter.getDropDownBP(scope.title).then(function(res){
             scope.dropDownValues = res.data.data;
-            console.log(scope.dropDownValues);
           });
       }
       if(scope.filterType==='broker'){
@@ -97,8 +97,9 @@
       }
       if(scope.filterType==='country'){
         scope.title='Country';
-        return tabFilter.getAllCountries().then(function (res) {
-          return res.data.origins;
+        tabFilter.getAllCountries().then(function (res) {
+
+            scope.dropDownValues =  res.data.origins;
         });
       }
     }
