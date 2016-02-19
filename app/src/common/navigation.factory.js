@@ -13,7 +13,7 @@
 		.factory('navigation', navigation);
 
   /* @ngInject */
-  function navigation(){
+  function navigation(toastr){
         var isSideBarOpen = false;
         var currentUser = {
             'name': 'Immad Imtiaz',
@@ -23,7 +23,8 @@
             invertSideBarState: invertSideBarState,
             sideBarStatus: sideBarStatus,
             getCurrentUser: getCurrentUser,
-            getTime: getTime
+            getTime: getTime,
+            internalServerError: internalServerError
 		};
 
 		////////////////////
@@ -51,6 +52,10 @@
         }
         function sideBarStatus(){
             return isSideBarOpen;
+        }
+
+        function internalServerError(data,text){
+            toastr.error(data,text);
         }
 	}
 

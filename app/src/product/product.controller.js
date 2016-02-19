@@ -66,9 +66,6 @@
                         toastr.success(response.message, 'Success');
                         vm.allProducts.products.splice(index, 1);
                     }
-                    else{
-                        toastr.error(response.message, 'Error');
-                    }
                 });
             }
         }
