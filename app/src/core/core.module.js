@@ -36,7 +36,8 @@
     'ngFileUpload',
     'textAngular',
     'LocalStorageModule',
-    'highcharts-ng'
+    'highcharts-ng',
+    'ngIdle'
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {
@@ -46,7 +47,34 @@
 //	});
 
 	angular.module('app.core')
-    .config(function (ScrollBarsProvider) {
+    .config(scrollBarConfig)
+    .config(localStorageConfig)
+    .config(toastConfig)
+    .config(idleProviderConfig);
+
+    function idleProviderConfig(IdleProvider, KeepaliveProvider){
+        IdleProvider.idle(5); // in seconds
+        IdleProvider.timeout(5); // in seconds
+        KeepaliveProvider.interval(2); // in seconds
+    }
+
+
+    function toastConfig(toastrConfig){
+        angular.extend(toastrConfig, {
+            autoDismiss: true,
+            maxOpened: 1,
+            toastClass: 'toastOpacity',
+            closeButton: false
+        });
+    }
+
+
+    function localStorageConfig (localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('DoniEnterprises');
+    }
+
+    function scrollBarConfig(ScrollBarsProvider){
         ScrollBarsProvider.defaults = {
             theme: 'dark',
             autoHideScrollbar: true,
@@ -56,55 +84,7 @@
                 updateOnContentResize: true
             }
         };
-    })
-    .config(function(toastrConfig) {
-        angular.extend(toastrConfig, {
-            autoDismiss: true,
-            maxOpened: 1,
-            toastClass: 'toastOpacity',
-            closeButton: false
-        });
-    });
+    }
 
-    angular.module('app.core').config(function($httpProvider,httpStatus) {
-
-        $httpProvider.interceptors.push(function($q, $injector) {
-            return {
-                'responseError': function(rejection){
-                    var defer = $q.defer();
-                    if(rejection.status == httpStatus.INTERNAL_SERVER_ERROR){
-                        $injector.get('navigation').internalServerError(rejection.data,rejection.statusText);
-                    }
-
-                    if(rejection.status == httpStatus.UNAUTHORIZED){
-                        $injector.get('$state').transitionTo('login');
-                    }
-                    defer.reject(rejection);
-                    return defer.promise;
-                }
-            };
-        });
-
-    });
-    angular.module('app.core').config(function (localStorageServiceProvider) {
-        localStorageServiceProvider
-            .setPrefix('DoniEnterprises');
-    });
-    angular.module('app.core').run(
-        function ($rootScope, $location, $cookies,$cookieStore, $http) {
-            // keep user logged in after page refresh
-            $rootScope.globals = $cookieStore.get('globals') || {};
-            if ($rootScope.globals.currentUser) {
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-                $http.defaults.headers.common.userId = $rootScope.globals.currentUser.userId;
-            }
-
-            $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                // redirect to login page if not logged in
-                if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                    $location.path('/login');
-                }
-            });
-    });
 
 }());

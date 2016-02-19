@@ -16,7 +16,7 @@
 
     angular
         .module('app.authentication').factory('authentication',
-            function (Base64, $http,  $rootScope, appConfig, $state,  $cookies,$cookieStore, localStorageService) {
+            function (Base64, $http, Idle, $rootScope, appConfig, $state,  $cookies,$cookieStore, localStorageService) {
                 var service = {};
                 var user = {};
 
@@ -32,7 +32,7 @@
                     return $http.post(appConfig.apiHost+'login', { username: username, password: password })
                         .success(function (response) {
                             callback(response);
-
+                            Idle.watch();
                             service.getAppUserData();
                         });
                 };
