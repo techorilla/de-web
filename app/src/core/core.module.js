@@ -53,7 +53,7 @@
     .config(idleProviderConfig);
 
     function idleProviderConfig(IdleProvider, KeepaliveProvider){
-        IdleProvider.idle(5); // in seconds
+        IdleProvider.idle(300); // in seconds
         IdleProvider.timeout(5); // in seconds
         KeepaliveProvider.interval(2); // in seconds
     }

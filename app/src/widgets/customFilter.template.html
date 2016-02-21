@@ -63,9 +63,8 @@
             <ul ng-scrollbars>
                 <li ng-repeat="value in dropDownValues|filter:textFilter">
                     <input type="checkbox" value="value.details.id">
-                    <span class="dg-value singleFilterHeading">{{value.name}} | </span>
-                    <span class="dg-value singleFilterHeading">{{value.origin}} | </span>
-                    <span class="dg-value singleFilterHeading">{{value.quality}}</span>
+                    <span class="dg-value filterHeading">{{value.name}}</span>
+                    <span class="dg-value singleFilterHeading">{{value.origin}} | {{value.quality}}</span>
                 </li>
             </ul>
         </div>
