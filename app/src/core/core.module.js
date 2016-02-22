@@ -37,7 +37,8 @@
     'textAngular',
     'LocalStorageModule',
     'highcharts-ng',
-    'ngIdle'
+    'ngIdle',
+    'daterangepicker'
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {
