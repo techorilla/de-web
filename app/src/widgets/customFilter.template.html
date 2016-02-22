@@ -1,76 +1,36 @@
 <div class="col-sm-3" >
-  <div  class="dg-filterDropdown"  ng-if="(filterType==='shipper')||(filterType==='broker')||(filterType==='buyer')||(filterType==='seller')">
-    <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng>
-        <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
-    </div>
-    <div class="dg-filterDropdownMenu" click-outside="closeFilter()"   ng-show="showOptions">
-      <ul class="dg-head">
-        <li>
-            <input type="checkbox">
-            <span class="dg-value"><input ng-model="searchBpName" type="text" class="form-control"></span>
-        </li>
-      </ul>
-      <ul ng-scrollbars>
-        <li ng-repeat="value in dropDownValues | selectFilter:  searchBpName:'bp_Name' | orderBy: 'bp_Name'">
-          <input ng-model="value.bp_ID" type="checkbox">
-          <span class="dg-value filterHeading">{{value.bp_Name}}</span>
-          <span class="dg-value">{{value.bp_country}} | {{value.bp_Cont_fullName ? value.bp_Cont_fullName : 'No Primary Contact'  }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="dg-filterDropdown" ng-if="(filterType==='bpTypes')||(filterType==='tranStatus')">
-        <div class="dg-filterDropdownField" ng-click="invertShowOptions()"><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
-        <div class="dg-filterDropdownMenu"  click-outside="closeFilter()" ng-show="showOptions">
-            <ul class="dg-head">
-                <li>
-                    <input type="checkbox">
-                    <!--<span class="dg-value"><input ng-model="searchBpName" type="text" class="form-control"></span>-->
-                </li>
-            </ul>
-            <ul ng-scrollbars>
-                <li ng-repeat="value in dropDownValues">
-                    <input type="checkbox">
-                    <span class="dg-value singleFilterHeading">{{value.name}}</span>
-                </li>
-            </ul>
-        </div>
-  </div>
-  <div  class="dg-filterDropdown" ng-if="(filterType==='country')">
-        <div class="dg-filterDropdownField" ng-click="invertShowOptions()">
-            <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
-        </div>
-        <div class="dg-filterDropdownMenu" click-outside="closeFilter()"   ng-show="showOptions">
-            <ul class="dg-head">
-                <li>
-                    <input type="checkbox">
-                    <span class="dg-value"><input type="text" ng-model="textFilter" class="form-control"></span>
-                </li>
-            </ul>
-            <ul ng-scrollbars>
-                <li ng-repeat="value in dropDownValues|filter:textFilter">
-                    <input type="checkbox">
-                    <span class="dg-value filterHeading">{{value.origin_name}}</span>
-                </li>
-            </ul>
-        </div>
-  </div>
-  <div class="dg-filterDropdown" ng-if="filterType==='product'">
+  <div class="dg-filterDropdown">
         <div class="dg-filterDropdownField" ng-click="invertShowOptions()">
             <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
         </div>
         <div class="dg-filterDropdownMenu" id="main-menu{{title}}" click-outside="closeFilter()"  ng-show="showOptions">
             <ul class="dg-head">
                 <li>
-                    <input type="checkbox">
-                    <span class="dg-value"><input ng-model="textFilter" type="text" class="form-control"></span>
+                    <input type="checkbox" ng-change="onSelectAll(selectAll)" ng-model="selectAll" ng-change="">
+                    <span class="dg-value">
+                        <input ng-model="textFilter" type="text" class="form-control">
+                    </span>
                 </li>
             </ul>
             <ul ng-scrollbars>
-                <li ng-repeat="value in dropDownValues|filter:textFilter">
-                    <input type="checkbox" value="value.details.id">
+                <li ng-repeat="value in dropDownValues | selectFilter:  textFilter:'name' | orderBy: 'name'"  ng-if="filterType==='product'">
+                    <input ng-init="value.selected = true" type="checkbox" ng-model="value.selected">
                     <span class="dg-value filterHeading">{{value.name}}</span>
                     <span class="dg-value">{{value.origin}} | {{value.quality}}</span>
+                </li>
+                <li ng-repeat="value in dropDownValues | filter:textFilter | orderBy: 'origin_name'" ng-if="(filterType==='country')">
+                    <input ng-init="value.selected = true" type="checkbox" ng-model="value.selected">
+                    <span class="dg-value filterHeading">{{value.origin_name}}</span>
+                </li>
+                <li ng-repeat="value in dropDownValues | orderBy: 'name'" ng-if="(filterType==='bpTypes')||(filterType==='tranStatus')">
+                    <input ng-init="value.selected = true" type="checkbox" ng-model="value.selected">
+                    <span class="dg-value singleFilterHeading">{{value.name}}</span>
+                </li>
+                <li ng-repeat="value in dropDownValues | selectFilter:  textFilter:'bp_Name' | orderBy: 'bp_Name' "
+                    ng-if="(filterType==='shipper')||(filterType==='broker')||(filterType==='buyer')||(filterType==='seller')">
+                    <input ng-init="value.selected = true" type="checkbox" ng-model="value.selected">
+                    <span class="dg-value filterHeading">{{value.bp_Name}}</span>
+                    <span class="dg-value">{{value.bp_country}} | {{value.bp_Cont_fullName ? value.bp_Cont_fullName : 'No Primary Contact'  }}</span>
                 </li>
             </ul>
         </div>

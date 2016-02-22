@@ -5,8 +5,8 @@
 
     angular.module('app.core').run(onApplicationRun);
 
-    function onApplicationRun ($rootScope, $location,$cookieStore, $http, Idle, authentication) {
-
+    function onApplicationRun ($rootScope, $location,$cookieStore, $http, Idle, authentication, appFormats) {
+        $rootScope.appFormats = appFormats;
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {

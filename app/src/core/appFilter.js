@@ -17,7 +17,9 @@
                     return items;
                 }
                 return items.filter(function(element, index, array) {
-                    return element[bind].toLowerCase().indexOf(search.toLowerCase())===0;
+                    if(element[bind]){
+                        return element[bind].toLowerCase().indexOf(search.toLowerCase())===0;
+                    }
                 });
 
             };

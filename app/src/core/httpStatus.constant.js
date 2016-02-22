@@ -29,6 +29,11 @@
     READ_ALL: 'READ_ALL',
     DELETE_ALL: 'DELETE_ALL'
   };
+
+  var appConstants = {
+
+  };
+
   var httpStatus = {
     /**
      * @ngdoc property
@@ -127,9 +132,15 @@
     SERVICE_UNAVAILABLE: 503
   };
 
+  var appFormats = {
+     Date: 'MMM dd, yyyy',
+     DateAsFilter: 'date:"dd-MMM-yyyy"'
+  };
+
   angular
     .module('app.core')
     .constant('httpStatus', httpStatus)
-    .constant('crud',crud);
+    .constant('crud',crud)
+    .constant('appFormats',appFormats);
 
 }());
