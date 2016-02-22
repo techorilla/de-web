@@ -68,9 +68,6 @@
                         subContactNumber();
                         toastr.success(res.data.message, 'Success');
                     }
-                    else{
-                        toastr.error(res.data.message, 'Error');
-                    }
                 });
             }
             else{
@@ -86,9 +83,6 @@
                     if(vm.businessPartner.contNum.length === 0){
                         vm.addContactNumber();
                     }
-                }
-                else{
-                    toastr.error(response.message, 'Error');
                 }
             });
         };

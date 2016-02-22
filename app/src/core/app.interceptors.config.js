@@ -18,6 +18,16 @@
                     }
                     defer.reject(rejection);
                     return defer.promise;
+                },
+                'response': function(response) {
+
+                    if(response.status == httpStatus.OK && (response.data.success === false)){
+                        $injector.get('navigation').internalServerError(response.data.message,'Error');
+                    }
+                    return response;
+
+                    // do something on success
+
                 }
             };
         });

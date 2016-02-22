@@ -45,9 +45,6 @@
                 if(response.data.success){
                     vm.allBusinessPartner.data = response.data.data;
                 }
-                else{
-                    toastr.error(response.data.message);
-                }
             });
 
         }

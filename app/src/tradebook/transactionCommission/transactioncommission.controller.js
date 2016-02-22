@@ -85,7 +85,6 @@
             if(vm.tran !== 'new'){
                 tradebook.getSingleTransactionCommission($stateParams.tran).then(
                     function(res){
-                        console.log(res);
                         if(res.data.success){
                             if(res.data.commission.length !== 0){
                                 vm.editMode = false;
@@ -95,12 +94,6 @@
                                 vm.commissionDetails.tr_transactionID = $stateParams.tran;
                             }
                         }
-                        else{
-                            toastr.error(res.data.message, 'Error');
-                        }
-                    },
-                    function(){
-                        toastr.error('Could not get commission details.','Error');
                     }
                 );
                 vm.commissionDetails.price = ($scope.vm.newTransaction.tr_price);
@@ -121,11 +114,6 @@
                             toastr.success('','Transaction commission added.')
 
                         }
-                        else{
-                            toastr.error(res.data.message, 'Error');
-                        }
-                    },function(){
-                        toastr.error('Transaction commission was not added due to some problem', 'Error');
                     });
                 }
                 else{
@@ -135,11 +123,6 @@
                             toastr.success('','Transaction commission updated.')
 
                         }
-                        else{
-                            toastr.error(res.data.message, 'Error');
-                        }
-                    },function(){
-                        toastr.error('Transaction commission was not added due to some problem', 'Error');
                     });
                 }
 

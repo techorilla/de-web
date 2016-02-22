@@ -73,9 +73,6 @@
                             vm.editMode = false;
                             toastr.success(res.data.message,'Success');
                         }
-                        else{
-                            toastr.error(res.data.message,'Success');
-                        }
                     }
                 );
             }
@@ -86,9 +83,6 @@
                             vm.editMode = false;
                             vm.newShip = false;
                             toastr.success(res.data.message,'Success');
-                        }
-                        else{
-                            toastr.error(res.data.message,'Success');
                         }
                     }
                 );
@@ -114,7 +108,6 @@
                         }
                     }
                     else{
-                        toastr.error(res.data.message, 'Error');
                         vm.editMode = false;
                     }
                 });

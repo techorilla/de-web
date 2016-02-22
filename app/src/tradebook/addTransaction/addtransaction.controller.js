@@ -55,11 +55,6 @@
                         $stateParams.tran = response.data.transactionId;
                         vm.tran =  response.data.transactionId;
                     }
-                    else{
-                        toastr.error(response.data.message, 'Error');
-                    }
-                },function(err){
-                    console.log(err);
                 });
             }
             else{
@@ -69,11 +64,7 @@
                         toastr.success('Transaction updated', 'Success');
                         vm.editMode=false;
                     }
-                    else{
-                        toastr.error(response.data.message, 'Error');
-                    }
                 },function(err){
-                    toastr.error('Error');
                     vm.editMode=false;
                 });
             }
@@ -91,7 +82,7 @@
             if(vm.tran === 'new'){
                 vm.newTransaction = tradebook.getNewTransaction();
                 vm.heading = 'Transaction';
-                vm.subheading = 'New',
+                vm.subheading = 'New';
                 vm.editMode = true;
             }
             else{
@@ -145,12 +136,6 @@
                             toastr.success('Transaction with File No.' + vm.newTransaction.tr_fileID + ' deleted.', 'Success');
                             $state.go('shell.tradebook');
                         }
-                        else{
-                            toastr.error(response.data.message, 'Error');
-                        }
-                    },function(err){
-                        toastr.error('Unable to delete transaction','Error');
-
                     });
                 }
             });

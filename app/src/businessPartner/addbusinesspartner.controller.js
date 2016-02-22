@@ -68,9 +68,6 @@
                         toastr.success(response.message, 'Success');
                         $state.go('shell.businessPartner.view',{id:response.data});
                     }
-                    else{
-                        toastr.error(response.message, 'Error');
-                    }
                 });
             }
             else{
@@ -91,9 +88,6 @@
                     if (response.success) {
                         toastr.success(response.message, 'Success');
                         $state.go('shell.businessPartner.view',{id:vm.businessPartner.general.bp_ID});
-                    }
-                    else{
-                        toastr.error(response.message, 'Error');
                     }
                 });
             }

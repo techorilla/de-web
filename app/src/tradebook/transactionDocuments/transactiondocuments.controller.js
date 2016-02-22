@@ -45,9 +45,6 @@
                         if(res.data.success){
                             vm.allFiles = res.data.files;
                         }
-                    },
-                    function(err){
-                        toastr.error('Unable to get transaction files','Error');
                     }
                 );
             }
@@ -122,11 +119,6 @@
                     toastr.success("Transaction file successfully deleted");
                     vm.allFiles.splice(vm.allFiles.indexOf(_.where(vm.allFiles, { 'tf_fileID': fileId})), 1);
                 }
-                else{
-                    toastr.error(res.data.message,'Error');
-                }
-            }, function(err){
-                toastr.error('Transaction File was not deleted due to some errors','Error');
             });
         }
     }

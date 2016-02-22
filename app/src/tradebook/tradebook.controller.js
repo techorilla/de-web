@@ -36,10 +36,7 @@
             ];
             vm.allTransactions = [];
             tradebook.getTransactionList().then(function(res){
-                if(!res.data.success){
-                    toastr.error(res.data.message, 'Can Not Get Transaction From Server');
-                }
-                else{
+                if(res.data.success){
                     vm.allTransactions = res.data.transactions;
                 }
             });

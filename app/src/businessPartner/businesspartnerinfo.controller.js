@@ -24,9 +24,6 @@
                     toastr.success(response.message, 'Success');
                     $state.go('shell.businessPartner');
                 }
-                else{
-                    toastr.error(response.message, 'Error');
-                }
             });
         };
 
@@ -38,9 +35,6 @@
                     if(vm.businessPartner.contPers.length === 0){
                         vm.addContactPerson();
                     }
-                }
-                else{
-                    toastr.error(response.message, 'Error');
                 }
             });
         };
@@ -54,9 +48,6 @@
                     if(vm.businessPartner.bank.length === 0){
                         vm.addBankDetails();
                     }
-                }
-                else{
-                    toastr.error(response.message, 'Error');
                 }
             });
         };
@@ -121,7 +112,6 @@
                     toastr.success(res.data.message, 'Success');
                 }
                 else{
-                    toastr.error(res.data.message, 'Error');
                     subContactPerson();
                 }
             });
@@ -184,9 +174,6 @@
                     vm.businessPartner.bank.push(vm.businessPartner.newBankDetails);
                     subContactPerson();
                     toastr.success(res.data.message, 'Success');
-                }
-                else{
-                    toastr.error(res.data.message, 'Error');
                 }
             });
         }

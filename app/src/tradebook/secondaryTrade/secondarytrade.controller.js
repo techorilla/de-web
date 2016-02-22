@@ -39,13 +39,8 @@
                             vm.currentlyAdding = true;
                         }
                     }
-                    else{
-                        toastr.error(res.data.message, 'Error');
-                    }
-                }, function(){
-                    toastr.error('Can not get secondary transactions','Error');
                 });
-            };
+            }
 
             vm.bpConfig = bpConfig;
             vm.sellersList = sellersList;
@@ -96,11 +91,6 @@
                         vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
 
                     }
-                    else{
-                        toastr.error(res.data.message, 'Error');
-                    }
-                },function(){
-                    toastr.error('Secondary Transaction was not added due to some problem', 'Error');
                 });
             }
             else{
@@ -114,11 +104,6 @@
                         vm.newSecondaryTransaction = tradebook.getNewSecondaryTransaction();
 
                     }
-                    else{
-                        toastr.error(res.data.message, 'Error');
-                    }
-                },function(){
-                    toastr.error('Secondary Transaction was not updated due to some problem', 'Error');
                 });
             }
 
@@ -133,11 +118,6 @@
                         vm.currentlyAdding = true;
                     }
                 }
-                else{
-                    toastr.error(res.data.message, 'Error');
-                }
-            },function(err){
-                toastr.error('Secondary Transaction was not deleted due to some error.', 'Error');
             });
         }
 

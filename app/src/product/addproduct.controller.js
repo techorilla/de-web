@@ -95,9 +95,6 @@
                 toastr.success(response.message, 'Success');
                 $state.go('shell.products.all');
             }
-            else{
-                toastr.error(response.message, 'Error');
-            }
         });
     }
 
@@ -113,9 +110,6 @@
             if (response.success) {
                 toastr.success(response.message, 'Success');
                 $state.go('shell.products.all');
-            }
-            else{
-                toastr.error(response.message, 'Error');
             }
         });
     }
@@ -134,9 +128,6 @@
                     if (response.success) {
                         toastr.success(response.message, 'Success');
                         $state.go('shell.products.all');
-                    }
-                    else{
-                        toastr.error(response.message, 'Error');
                     }
                 });
             }

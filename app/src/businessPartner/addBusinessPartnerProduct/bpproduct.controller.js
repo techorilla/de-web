@@ -87,9 +87,6 @@
                     vm.bpProducts.splice(index,1);
                     vm.newProduct = undefined;
                 }
-                else{
-                    toastr.error(res.data.message,'Error');
-                }
             });
         }
 

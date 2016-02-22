@@ -1,7 +1,9 @@
 <div class="col-sm-3" >
   <div  class="dg-filterDropdown"  ng-if="(filterType==='shipper')||(filterType==='broker')||(filterType==='buyer')||(filterType==='seller')">
-    <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
-    <div class="dg-filterDropdownMenu"  ng-show="showOptions">
+    <div class="dg-filterDropdownField" ng-click="invertShowOptions()" ng>
+        <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
+    </div>
+    <div class="dg-filterDropdownMenu" click-outside="closeFilter()"   ng-show="showOptions">
       <ul class="dg-head">
         <li>
             <input type="checkbox">
@@ -35,8 +37,10 @@
         </div>
   </div>
   <div  class="dg-filterDropdown" ng-if="(filterType==='country')">
-        <div class="dg-filterDropdownField" ng-click="invertShowOptions()"><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
-        <div class="dg-filterDropdownMenu"  ng-show="showOptions">
+        <div class="dg-filterDropdownField" ng-click="invertShowOptions()">
+            <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
+        </div>
+        <div class="dg-filterDropdownMenu" click-outside="closeFilter()"   ng-show="showOptions">
             <ul class="dg-head">
                 <li>
                     <input type="checkbox">
@@ -52,7 +56,9 @@
         </div>
   </div>
   <div class="dg-filterDropdown" ng-if="filterType==='product'">
-        <div class="dg-filterDropdownField" ng-click="invertShowOptions()"><i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span></div>
+        <div class="dg-filterDropdownField" ng-click="invertShowOptions()">
+            <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
+        </div>
         <div class="dg-filterDropdownMenu" id="main-menu{{title}}" click-outside="closeFilter()"  ng-show="showOptions">
             <ul class="dg-head">
                 <li>
@@ -64,7 +70,7 @@
                 <li ng-repeat="value in dropDownValues|filter:textFilter">
                     <input type="checkbox" value="value.details.id">
                     <span class="dg-value filterHeading">{{value.name}}</span>
-                    <span class="dg-value singleFilterHeading">{{value.origin}} | {{value.quality}}</span>
+                    <span class="dg-value">{{value.origin}} | {{value.quality}}</span>
                 </li>
             </ul>
         </div>

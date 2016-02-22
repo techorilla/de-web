@@ -93,9 +93,6 @@
                             vm.editMode = false;
                             toastr.success(res.data.message,'Success');
                         }
-                        else{
-                            toastr.error(res.data.message,'Success');
-                        }
                     }
                 );
             }
@@ -106,9 +103,6 @@
                             vm.editMode = false;
                             vm.newStatus = false;
                             toastr.success(res.data.message, 'Success');
-                        }
-                        else {
-                            toastr.error(res.data.message, 'Success');
                         }
                     }
                 );

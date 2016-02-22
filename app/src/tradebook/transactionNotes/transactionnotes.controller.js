@@ -44,8 +44,6 @@
                         vm.newTransactionNote.tr_transactionID = vm.transactionId;
 
                     }
-                },function (error){
-                    toastr.error('Unable to get transaction notes.','Error')
                 });
 
                 $('#noteList').mCustomScrollbar("scrollTo","last",{
@@ -64,11 +62,6 @@
                         });
                         toastr.success(res.data.message,'Success')
                     }
-                    else{
-                        toastr.error(res.data.message,'Error');
-                    }
-                }, function(err){
-                    toastr.error('Unable to delete transaction notes','Error');
                 }
             );
         }
@@ -106,11 +99,6 @@
 
                             toastr.success(res.data.message,'Success')
                         }
-                        else{
-                            toastr.error(res.data.message,'Error');
-                        }
-                    }, function(err){
-                        toastr.error('Unable to get add transaction notes','Error');
                     }
                 );
 
