@@ -18,7 +18,7 @@
     .directive('filterBar', filterBar);
 
   /* @ngInject */
-  function filterBar(){
+  function filterBar(appFormats){
 
     return {
       link: link,
@@ -42,19 +42,41 @@
     function link(scope, elem, attrs){
         if(!scope.datePicker){
             scope.datePicker= {};
-            scope.datePicker.date = {
-                startDate: new Date(moment()._d),
-                endDate: new Date(moment()._d)
-            };
+            scope.datePicker.date =  {startDate: null, endDate: null};
         }
         scope.dateOptions = {
             opens: 'left',
             drops: 'down',
+            format: 'DD/MM/YYYY',
+            customRangeLabel: 'Select Date',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1,
+            showDropdowns: true,
+            showWeekNumbers: true,
             buttonClasses: ['btn', 'btn-sm'],
             applyClass: 'btn-primary',
+            minDate:moment().subtract(20, 'years'),
+            maxDate:moment(),
             cancelClass: 'btn-default',
             separator: ' to ',
             linkedCalendars: false,
+            eventHandlers:{
+                'show.daterangepicker': function(ev, picker){
+                    console.log(ev);
+                    console.log(picker);
+                }
+            },
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Cancel',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            },
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],

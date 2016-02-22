@@ -164,28 +164,40 @@ input, textarea, select, a, button { outline: none; }
 .myDatePicker{
   cursor: pointer;
   padding: 5px 10px;
-  border: 1px solid #1691AC;
-  background: #FFFFFF;
+
+//  background: #FFFFFF;
   font-weight: bold;
   font-size: 12px;
+  .dg-filterDropdown{
+    background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
+    //border: 1px solid #ccc;
+    border: 1px solid #1691AC;
+    box-shadow: 0px 0.5px 0px 1px #ccc ;
+    padding-left: 60px;
+    padding: 5px 25px 5px 35px;
+    position: relative;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+
+  }
   &:after{
     font-family: 'FontAwesome';
     position: absolute;
-    left: 37px;
     content: "\f0d7";
-    top: 32px;
+    top: 14px;
     z-index: 10;
-    font-size: 20px;
+    right: 45px;
   }
   &:before{
     font-family: 'FontAwesome';
     position: absolute;
-    left: 37px;
+    left: 38px;
     content: "\f073";
-    top: 32px;
+    top: 14px;
     z-index: 10;
-    font-size: 20px;
   }
+
 }
 .bpChecks{
   float: left;
