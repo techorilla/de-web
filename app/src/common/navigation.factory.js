@@ -24,7 +24,8 @@
             sideBarStatus: sideBarStatus,
             getCurrentUser: getCurrentUser,
             getTime: getTime,
-            internalServerError: internalServerError
+            internalServerError: internalServerError,
+            successMessage: successMessage
 		};
 
 		////////////////////
@@ -56,6 +57,10 @@
 
         function internalServerError(data,text){
             toastr.error(data,text);
+        }
+
+        function successMessage(msg,title){
+            toastr.success(msg,title);
         }
 	}
 

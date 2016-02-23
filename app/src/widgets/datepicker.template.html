@@ -1,14 +1,14 @@
 <div class="height40px">
     <input type="text"
            class="form-control"
-           datepicker-popup='dd/MM/yyyy'
+           datepicker-popup="{{appFormats.Date}}"
            ng-model="date"
            ng-disabled="disabled"
            placeholder="{{disabled ? '' : 'Select'}}"
 
            is-open="datePickerOpened"
-           min-date="{{minDate |  date : 'dd/MM/yyyy'}}"
-           max-date="'{{maxDate |  date : 'dd/MM/yyyy'}}'"
+           min-date="{{minDate |  date : appFormats.Date}}"
+           max-date="'{{maxDate |  date : appFormats.Date}}'"
            close-text="Close" />
 <span class="input-group-btn datePickerAddTran">
     <button ng-if="!disabled" type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>

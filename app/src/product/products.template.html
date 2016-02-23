@@ -22,7 +22,7 @@
                         <td ng-if="row.quality === null || row.quality===''" >Not Added</td>
                         <td ng-bind="row.origin"></td>
                         <td ng-if="row.t_date === null">No Transaction Done</td>
-                        <td ng-if="row.t_date !== null"><a ui-sref="shell.tradebook.Transaction({tran:row.t_id})" ng-bind="row.t_date| date:'dd/MM/yyyy'"></a></td>
+                        <td ng-if="row.t_date !== null"><a ui-sref="shell.tradebook.Transaction({tran:row.t_id})" ng-bind="row.t_date| date:vm.appFormats.Date"></a></td>
                         <td><a class="deleteTrash textDecoNone" ng-click="vm.deleteProduct(row.name,row.id, $index)"><i class="fa fa-trash redFont"></i> Delete</a></td>
                     </tr>
                 </tbody>

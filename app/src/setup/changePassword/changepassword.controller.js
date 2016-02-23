@@ -13,7 +13,7 @@
 		.controller('ChangePassword', ChangePassword);
 
   /* @ngInject */
-	function ChangePassword(setup, inputFields){
+	function ChangePassword(setup, inputFields, $state, toastr){
 		var vm = this;
         init();
 
@@ -34,9 +34,12 @@
         }
 
         function submitChangePassword(form){
-            console.log(form);
             if(form.$valid){
-                setup.submitChangePassword(vm.passwordDetails);
+                setup.submitChangePassword(vm.passwordDetails).then(function(res){
+                   if(res.data.success){
+                       $state.go('shell.setup');
+                   }
+                });
             }
         }
 	}

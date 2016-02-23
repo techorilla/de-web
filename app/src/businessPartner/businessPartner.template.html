@@ -21,7 +21,7 @@
                 <td ng-bind="row.bp_country"></td>
                 <td><span ng-if="row.bp_isBuyer">Buyer</span>&nbsp;&nbsp;<span ng-if="row.bp_isBroker">Broker</span>&nbsp;&nbsp;<span ng-if="row.bp_isSeller">Seller</span>&nbsp;&nbsp;<span ng-if="row.bp_isShipper">Shipper</span>&nbsp;&nbsp;</td>
                 <td>{{row.bp_credibilityIndex}}/5</td>
-                <td ng-if="row.tr_transactionID"><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.tr_date | date:'dd/MM/yyyy'}}</a></td><td ng-if="!row.tr_transactionID">No Transaction Done</td>
+                <td ng-if="row.tr_transactionID"><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.tr_date | date:vm.vm.appFormats.Date}}</a></td><td ng-if="!row.tr_transactionID">No Transaction Done</td>
             </tr>
             </tbody>
         </table>

@@ -13,11 +13,12 @@
 		.controller('AddBusinessPartner', AddBusinessPartner);
 
   /* @ngInject */
-	function AddBusinessPartner(toastr,$stateParams,bpTypes,contractTypes, originConfig, businessPartner, $state){
+	function AddBusinessPartner(toastr,$stateParams,bpTypes,contractTypes, originConfig, businessPartner, $state, appFormats){
 		var vm = this;
         init();
 
         function init(){
+            vm.appFormats = appFormats;
             vm.possibleBPTypes= bpTypes;
             vm.buyerContractTypes=contractTypes;
             vm.businessPartner = {};

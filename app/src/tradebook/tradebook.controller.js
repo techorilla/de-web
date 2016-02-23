@@ -13,7 +13,7 @@
 		.controller('Tradebook', Tradebook);
 
   /* @ngInject */
-	function Tradebook(tradebook,toastr, documentExporter){
+	function Tradebook(tradebook,documentExporter, appFormats){
 		var vm = this;
         init();
     /////////////////////
@@ -28,6 +28,13 @@
      */
      function init(){
             vm.searchTransaction = '';
+            vm.appFormats = appFormats;
+            vm.buyerFilter = [];
+            vm.sellerFilter = [];
+            vm.productFilter = [];
+            vm.tranStatusFilter = [];
+            vm.dateFilter = [];
+
             vm.headerAnchor = [
                 {
                     text: 'Add new Transaction',

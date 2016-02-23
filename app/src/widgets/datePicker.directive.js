@@ -18,7 +18,7 @@
     .directive('datePicker', datePicker);
 
   /* @ngInject */
-  function datePicker(){
+  function datePicker(appFormats){
 
     return {
       link: link,
@@ -36,6 +36,7 @@
     /////////////////////
 
     function link(scope, elem, attrs){
+        scope.appFormats = appFormats;
         scope.dateOptions = {
             formatYear: 'yy',
             startingDay: 1

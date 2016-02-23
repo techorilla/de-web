@@ -13,7 +13,7 @@
 		.controller('Product', Product);
 
   /* @ngInject */
-	function Product(allProducts,product, toastr ){
+	function Product(allProducts,product, toastr,appFormats ){
 		var vm = this;
         init();
 
@@ -31,6 +31,7 @@
             vm.orderByReverse = false;
             vm.searchProduct = '';
             vm.allProducts = {};
+            vm.appFormats = appFormats;
             vm.allProducts.products = allProducts;
             vm.allProducts.tableHeadings =  [
                                                 {

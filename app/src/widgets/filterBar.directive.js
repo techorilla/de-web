@@ -32,7 +32,12 @@
         product:'=',
         tranStatus:'=',
         bpTypes:'=',
-        country:'='
+        country:'=',
+        buyerList: '=',
+        sellerList: '=',
+        productList: '=',
+        tranStatusList: '=',
+        datePicker: '='
       }
 
     };

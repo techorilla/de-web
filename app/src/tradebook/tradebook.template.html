@@ -1,6 +1,9 @@
 <page-header heading="Transactions" sub-heading="Manage" button-list="vm.headerAnchor"></page-header>
 <filter-bar date-picker-needed="true"
-       buyer="true" seller="true" product="true" tran-status="true">
+       buyer="true" seller="true" product="true" tran-status="true"
+       tran-status-list="vm.tranStatusFilter"
+       buyer-list="vm.buyerFilter"
+       seller-list="vm.sellerFilter" >
 </filter-bar>
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
@@ -30,9 +33,9 @@
                     <td><a ui-sref="shell.businessPartner.view({id:row.tr_productID})">{{row.seller}}</a></td>
                     <td ng-bind="row.origin"></td>
                     <td ng-if="row.shipment_start === null">Not Entered</td>
-                    <td ng-if="row.shipment_start !== null" ng-bind="row.shipment_start | date:'dd/MM/yyyy'"></td>
+                    <td ng-if="row.shipment_start !== null" ng-bind="row.shipment_start | date:vm.appFormats.Date"></td>
                     <td ng-if="row.shipment_end === null">Not Entered</td>
-                    <td ng-if="row.shipment_end !== null" ng-bind="row.shipment_end | date:'dd/MM/yyyy'"></td>
+                    <td ng-if="row.shipment_end !== null" ng-bind="row.shipment_end | date:vm.appFormats.Date"></td>
                     <td ng-bind="row.commission"></td>
                 </tr>
             </tbody>

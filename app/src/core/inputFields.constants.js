@@ -81,7 +81,6 @@
         },
         NewPassword:{
             placeholder:'******',
-            pattern:"^(?=^.{8,32}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$",
             minLength:8,
             maxLength:32,
             errorValidations:{

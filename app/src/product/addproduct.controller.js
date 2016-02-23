@@ -92,7 +92,6 @@
     function deleteProduct(){
         product.deleteProduct(vm.newProduct.name, vm.newProduct.id,function(response){
             if (response.success) {
-                toastr.success(response.message, 'Success');
                 $state.go('shell.products.all');
             }
         });
@@ -108,7 +107,6 @@
         vm.newProduct.quality = quality;
         product.editProduct(vm.newProduct,function(response){
             if (response.success) {
-                toastr.success(response.message, 'Success');
                 $state.go('shell.products.all');
             }
         });
@@ -126,7 +124,6 @@
                 vm.newProduct.quality = quality;
                 product.addNewProduct(vm.newProduct,function(response){
                     if (response.success) {
-                        toastr.success(response.message, 'Success');
                         $state.go('shell.products.all');
                     }
                 });

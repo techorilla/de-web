@@ -24,6 +24,11 @@
                     if(response.status == httpStatus.OK && (response.data.success === false)){
                         $injector.get('navigation').internalServerError(response.data.message,'Error');
                     }
+                    else if(response.status == httpStatus.OK && (response.data.success === true)){
+                        if(response.data.message){
+                            $injector.get('navigation').successMessage(response.data.message,'Success');
+                        }
+                    }
                     return response;
                 }
             };

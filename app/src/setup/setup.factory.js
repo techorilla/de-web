@@ -89,7 +89,16 @@
             };
         }
         function submitChangePassword(passwordDetails){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'changePassword',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: {passwordDetails:passwordDetails}
 
+            };
+            return $http(req);
         }
 	}
 
