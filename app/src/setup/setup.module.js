@@ -6,64 +6,74 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-  angular
-    .module('app.setup', [])
-    .config(configuration);
+    angular
+        .module('app.setup', [])
+        .config(configuration);
 
-  /* @ngInject */
-  function configuration($stateProvider){
+    /* @ngInject */
+    function configuration($stateProvider){
 
-    //add your state mappings here
-    $stateProvider
-      .state('shell.setup', {
-          url:'/setup',
-          views:{
-            'content@shell':{
-                templateUrl: 'src/setup/setup.template.html',
-                controller: 'Setup as vm'
-            }
-          }
-        }
-      ).
-      state('shell.setup.newUser',{
-        url:'/newUser',
-        inSetup: 'true',
-        inSetupTitle: 'New User',
-        views:{
-            'subContent@shell.setup':{
-                templateUrl: 'src/setup/newUser/addNewUser.template.html',
-                controller: 'NewUser as vm'
-            }
-        },
-        resolve:{
-            userRights: function(setup){
-                return setup.getUserRights().then(function(res){
-                    return res.data.userRights;
-                });
-            }
-        }
-      }).
-      state('shell.setup.allUsers',{
-          url:'/allUsers',
-          inSetup: 'true',
-          inSetupTitle: 'All Users',
-          resolve: {
-              setup: 'setup',
-              allUsers: function (setup) {
-                  return setup.getAllUsers().then(function (res) {
-                      return res.data.user;
-                  });
-              }
-          },
-          views:{
-              'subContent@shell.setup':{
-                    templateUrl: 'src/setup/allUsers/allUsers.template.html',
-                    controller: 'AllUsers as vm'
-              }
-          }
-      })
+        //add your state mappings here
+        $stateProvider
+            .state('shell.setup', {
+                url:'/setup',
+                views:{
+                    'content@shell':{
+                        templateUrl: 'src/setup/setup.template.html',
+                        controller: 'Setup as vm'
+                    }
+                }
+            })
+            .state('shell.setup.newUser',{
+                url:'/newUser',
+                inSetup: 'true',
+                inSetupTitle: 'New User',
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl: 'src/setup/newUser/addNewUser.template.html',
+                        controller: 'NewUser as vm'
+                    }
+                },
+                resolve:{
+                    userRights: function(setup){
+                        return setup.getUserRights().then(function(res){
+                            return res.data.userRights;
+                        });
+                    }
+                }
+            })
+            .state('shell.setup.allUsers',{
+                url:'/allUsers',
+                inSetup: 'true',
+                inSetupTitle: 'All Users',
+                resolve: {
+                    setup: 'setup',
+                    allUsers: function (setup) {
+                        return setup.getAllUsers().then(function (res) {
+                            return res.data.user;
+                        });
+                    }
+                },
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl: 'src/setup/allUsers/allUsers.template.html',
+                        controller: 'AllUsers as vm'
+                    }
+                }
+            })
+            .state('shell.setup.changePassword',{
+                url:'/changePassword',
+                inSetup:'true',
+                inSetupTitle: 'Change Password',
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl: 'src/setup/changePassword/changePassword.template.html',
+                        controller: 'ChangePassword as vm'
+                    }
+                }
+            })
 //      .state('shell.setup.userRights',{
 //        url:'/userRights',
 //        inSetup: 'true',
@@ -84,24 +94,24 @@
 //             }
 //         }
 //      })
-      .state('shell.setup.origin',{
-          url:'/origin',
-          inSetup: 'true',
-          inSetupTitle: 'Origin',
-          resolve:{
-              allOrigins: function (setup) {
-                  return setup.getAllOrigin().then(function (res) {
-                      return res.data.origins;
-                  });
-              }
-          },
-          views:{
-              'subContent@shell.setup':{
-                  templateUrl:'src/setup/origin/origin.html',
-                  controller: 'Origin as vm'
-              }
-          }
-      });
-  }
+            .state('shell.setup.origin',{
+                url:'/origin',
+                inSetup: 'true',
+                inSetupTitle: 'Origin',
+                resolve:{
+                    allOrigins: function (setup) {
+                        return setup.getAllOrigin().then(function (res) {
+                            return res.data.origins;
+                        });
+                    }
+                },
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl:'src/setup/origin/origin.html',
+                        controller: 'Origin as vm'
+                    }
+                }
+            });
+    }
 
 }());

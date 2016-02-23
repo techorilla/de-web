@@ -19,7 +19,9 @@
             getUserRights: getUserRights,
             addNewUser: addNewUser,
             originCrud: originCrud,
-            getAllOrigin: getAllOrigin
+            getAllOrigin: getAllOrigin,
+            getChangePasswordObject: getChangePasswordObject,
+            submitChangePassword: submitChangePassword
 		};
 
 		////////////////////
@@ -77,6 +79,17 @@
         }
         function getUserRights(){
             return $http.get('datastore/userRights.json');
+        }
+
+        function getChangePasswordObject(){
+            return {
+                oldPassword:'',
+                newPassword:'',
+                confirmPassword:''
+            };
+        }
+        function submitChangePassword(passwordDetails){
+
         }
 	}
 

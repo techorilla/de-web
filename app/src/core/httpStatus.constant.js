@@ -134,6 +134,7 @@
 
   var appFormats = {
      Date: 'MMM dd, yyyy',
+     FullDate: 'MMMM D, YYYY',
      DateAsFilter: 'date:"dd-MMM-yyyy"'
   };
 

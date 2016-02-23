@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="form-group    col-md-5">
-                    <label>Re-enter Password</label>
+                    <label>Confirm Password</label>
                     <input name="reTypePassword"
                            type="password"
                            ng-disabled="vm.viewMode"
@@ -110,6 +110,7 @@
                            ng-required="true"/>
                     <ng-messages for='addNewUser.reTypePassword.$error' ng-if="addNewUser.reTypePassword.$dirty || addNewUser.$submitted">
                         <div class="errorValidation" ng-message="validator">Passwords do not match</div>
+                        <div ng-message="required" class="errorValidation">Confirm Password is required.</div>
                     </ng-messages>
                 </div>
             </div>
