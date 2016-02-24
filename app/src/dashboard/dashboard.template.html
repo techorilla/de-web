@@ -6,7 +6,8 @@
         <div>
             <page-blue-container class="tabs-panel col-lg-12 col-xs-12" graph-container="true">
                 <filter-bar bp-types="true" country="true" date-picker-needed="true"></filter-bar>
-                <highchart ng-if="vm.chartShow" class="col-lg-12 col-xs-12" id="chart1" config="tab.chartConfig"></highchart>
+                <pie-chart data="tab.data" options="tab.options"></pie-chart>
+                <!--<highchart ng-if="vm.chartShow" class="col-lg-12 col-xs-12" id="chart1" config="tab.chartConfig"></highchart>-->
             </page-blue-container>
         </div>
     </tab>

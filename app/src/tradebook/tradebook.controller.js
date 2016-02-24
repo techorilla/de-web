@@ -13,7 +13,7 @@
 		.controller('Tradebook', Tradebook);
 
   /* @ngInject */
-	function Tradebook(tradebook,documentExporter, appFormats){
+	function Tradebook(tradebook,documentExporter, appFormats, $scope){
 		var vm = this;
         init();
     /////////////////////
@@ -50,6 +50,17 @@
             vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Shipment Start', 'Shipment End', 'Commission'];
             vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'shipment_start', 'shipment_end', 'commission'];
             vm.getTradeBookExcel = getTradeBookExcel;
+            vm.dateRange = {
+                date:{
+                    startDate:  (moment().startOf('month')),
+                    endDate: (moment().endOf('month'))
+                }
+            };
+
+
+//            $scope.$watch('vm.dateRange',function(newVal, oldVal){
+//                console.log(newVal);
+//            },true);
      }
 
      function getTradeBookExcel(headings, dataObject){

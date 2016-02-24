@@ -45,43 +45,27 @@
     /////////////////////
 
     function link(scope, elem, attrs){
-        console.log(typeof scope.datePickerNeeded);
-        if(scope.datePickerNeeded === 'true'){
-            if(!scope.datePicker){
-                scope.datePicker= {
-                    date:{
-                        startDate:  new Date(),
-                        endDate: new Date()
-                    }
-                };
+        scope.datePicker = {
+            date:{
+                endDate:scope.endDate,
+                startDate:scope.startDate
             }
-            scope.maxDate = new Date();
-            scope.$watch('datePicker',function(oldVal,newVal){
-                console.log(newVal);
-            },true);
+        };
+
+        console.log(scope.datePicker);
+        if(scope.datePickerNeeded){
+
             scope.dateOptions = {
                 opens: 'left',
                 drops: 'down',
                 format: appFormats.FullDate,
-                customRangeLabel: 'Select Date',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1,
                 showDropdowns: true,
                 showWeekNumbers: true,
                 buttonClasses: ['btn', 'btn-sm'],
                 applyClass: 'btn-primary',
-                minDate:moment().subtract(20, 'years'),
-                maxDate:moment(),
                 cancelClass: 'btn-default',
                 separator: ' to ',
                 linkedCalendars: false,
-                eventHandlers:{
-                    'show.daterangepicker': function(ev, picker){
-                        console.log(ev);
-                        console.log(picker);
-                    }
-                },
                 locale: {
                     applyLabel: 'Submit',
                     cancelLabel: 'Cancel',
