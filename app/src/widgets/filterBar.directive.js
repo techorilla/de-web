@@ -25,6 +25,7 @@
       restrict: 'E',
       templateUrl: 'src/widgets/filterBar.template.html',
       scope: {
+
         test: '=',
         datePickerNeeded:'=',
         seller:'=',
@@ -38,7 +39,12 @@
         productList: '=',
         tranStatusList: '=',
         datePicker: '=',
-        selectedBuyers: '=',
+        onBPTypesSelectedChanged:'&',
+        onBuyersSelectedChanged:'&',
+        onSellersSelectedChanged:'&',
+        onProductsSelectedChanged:'&',
+        onCountrySelectedChanged:'&',
+        onTranStatusSelectedChanged:'&',
         onDateChange:'&'
       }
 

@@ -36,6 +36,12 @@
             vm.productFilter = [];
             vm.tranStatusFilter = [];
             vm.dateFilter = [];
+            vm.onBuyersSelectedChanged = onBuyersSelectedChanged;
+            vm.onSellersSelectedChanged = onSellersSelectedChanged;
+            vm.onProductsSelectedChanged = onProductsSelectedChanged;
+            vm.onCountrySelectedChanged = onCountrySelectedChanged;
+            vm.onTranStatusSelectedChanged = onTranStatusSelectedChanged;
+            vm.tranCached = [];
 
             vm.headerAnchor = [
                 {
@@ -74,9 +80,40 @@
                 tradebook.getTransactionListOnDateRange(startDate,endDate).then(function(res){
                     if(res.data.success){
                         vm.allTransactions = res.data.transactions;
+                        vm.tranCached = angular.copy(vm.allTransactions);
                     }
                 });
             }
+        }
+
+        function onBpSelectedChanged(selectedList){
+            vm.allTransactions = angular.copy(vm.tranCached);
+            var selectedBuyerID = _.map(selectedList, 'bp_ID');
+            angular.forEach(vm.allTransactions,function(val,key){
+                if(selectedBuyerID.indexOf(val.tr_bpBuyerID) <= -1  ){
+                    vm.allTransactions.splice(key,1);
+                }
+            });
+        }
+        function onBuyersSelectedChanged(selectedList){
+            onBpSelectedChanged(selectedList);
+        }
+
+        function onSellersSelectedChanged(selectedList){
+            onBpSelectedChanged(selectedList);
+        }
+
+        function onProductsSelectedChanged(selectedList){
+            var selectedProductID = _.map(selectedList, 'id');
+        }
+
+        function onCountrySelectedChanged(selectedList){
+            var selectedCountries = _.map(selectedList, 'origin_name');
+        }
+
+
+        function onTranStatusSelectedChanged(selectedList){
+            var selectedTranStatus = _.map(selectedList, 'text');
         }
 
     }

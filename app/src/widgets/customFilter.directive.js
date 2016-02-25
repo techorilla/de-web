@@ -26,7 +26,8 @@
             templateUrl: 'src/widgets/customFilter.template.html',
             scope: {
                 filterType: '@',
-                selectedValues: '@'
+                selectedValues: '@',
+                onSelectedValuesChanged:'&'
             },
             replace:true
         };
@@ -54,6 +55,7 @@
             scope.closeFilter = function(){
                 if(scope.showOptions){
                     scope.showOptions = false;
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 }
 
             };
@@ -133,10 +135,6 @@
 
             function onSingleSelectChange(value,change,property){
                 scope.selectAll = false;
-                console.log(scope.selectedValues);
-                console.log(value);
-
-                console.log(value[property]);
                 if(change){
                     scope.selectedValues.push(value);
                 }
@@ -145,7 +143,6 @@
                         return (obj[property]==value[property]);
                     });
                 }
-                console.log(scope.selectedValues);
             }
 
         }

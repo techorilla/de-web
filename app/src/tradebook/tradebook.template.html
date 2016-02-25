@@ -6,7 +6,12 @@
         buyer-list="vm.buyerFilter"
         seller-list="vm.sellerFilter"
         date-picker="vm.dateRange"
-        on-date-change="vm.onDateRangeChanged(dateRange)" >
+        on-date-change="vm.onDateRangeChanged(dateRange)"
+        on-buyers-selected-changed="vm.onBuyersSelectedChanged(selectedList)"
+        on-sellers-selected-changed="vm.onSellersSelectedChanged(selectedList)"
+        on-country-selected-changed="vm.onCountrySelectedChanged(selectedList)"
+        on-products-selected-changed="vm.onProductsSelectedChanged(selectedList)"
+        on-tran-status-selected-changed="vm.onTranStatusSelectedChanged(selectedList)">
 </filter-bar>
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
@@ -23,7 +28,7 @@
             <thead>
             <tr>
                 <th>
-                    No transactions found in the given date range.
+                    No transactions found in the given date range and selected filters.
                 </th>
             </tr>
             </thead>
@@ -36,7 +41,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in vm.allTransactions | filter:vm.searchTransaction">
+            <tr ng-repeat="row in vm.allTransactions | filter:vm.searchTransaction" ng-hide="row.hide">
                 <td ng-bind="row.transactionDate| date:'dd/MM/yyyy'"></td>
                 <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
                 <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>
