@@ -995,7 +995,7 @@ img {
 
 /* line 859, ../partials/_theme.scss */
 .forms {
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
 }
 

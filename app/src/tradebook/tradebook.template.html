@@ -1,10 +1,12 @@
 <page-header heading="Transactions" sub-heading="Manage" button-list="vm.headerAnchor"></page-header>
-<filter-bar date-picker-needed="true"
-       buyer="true" seller="true" product="true" tran-status="true"
-       tran-status-list="vm.tranStatusFilter"
-       buyer-list="vm.buyerFilter"
-       seller-list="vm.sellerFilter"
-       date-picker="vm.dateRange" >
+<filter-bar
+        date-picker-needed="true"
+        buyer="true" seller="true" product="true" tran-status="true"
+        tran-status-list="vm.tranStatusFilter"
+        buyer-list="vm.buyerFilter"
+        seller-list="vm.sellerFilter"
+        date-picker="vm.dateRange"
+        on-date-change="vm.onDateRangeChanged(dateRange)" >
 </filter-bar>
 <page-blue-container>
     <div class="dg-tablePanelHead clearfix">
@@ -17,6 +19,16 @@
     </div>
 
     <div class="dg-tablePanelBody">
+        <table ng-if="(vm.allTransactions.length ===  0)" class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>
+                    No transactions found in the given date range.
+                </th>
+            </tr>
+            </thead>
+        </table>
+
         <table ng-if="(vm.allTransactions.length >  0)" class="table table-bordered dg-table">
             <thead>
             <tr>
@@ -24,21 +36,21 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="row in vm.allTransactions | filter:vm.searchTransaction">
-                    <td ng-bind="row.transactionDate| date:'dd/MM/yyyy'"></td>
-                    <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
-                    <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>
-                    <td><a ui-sref="shell.products.viewProduct({id:row.tr_productID})">{{row.product}}</a></td>
-                    <td ng-bind="row.quantity"></td>
-                    <td ng-bind="row.rate  | currency:'$':0"></td>
-                    <td><a ui-sref="shell.businessPartner.view({id:row.tr_productID})">{{row.seller}}</a></td>
-                    <td ng-bind="row.origin"></td>
-                    <td ng-if="row.shipment_start === null">Not Entered</td>
-                    <td ng-if="row.shipment_start !== null" ng-bind="row.shipment_start | date:vm.appFormats.Date"></td>
-                    <td ng-if="row.shipment_end === null">Not Entered</td>
-                    <td ng-if="row.shipment_end !== null" ng-bind="row.shipment_end | date:vm.appFormats.Date"></td>
-                    <td ng-bind="row.commission"></td>
-                </tr>
+            <tr ng-repeat="row in vm.allTransactions | filter:vm.searchTransaction">
+                <td ng-bind="row.transactionDate| date:'dd/MM/yyyy'"></td>
+                <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
+                <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>
+                <td><a ui-sref="shell.products.viewProduct({id:row.tr_productID})">{{row.product}}</a></td>
+                <td ng-bind="row.quantity"></td>
+                <td ng-bind="row.rate  | currency:'$':0"></td>
+                <td><a ui-sref="shell.businessPartner.view({id:row.tr_productID})">{{row.seller}}</a></td>
+                <td ng-bind="row.origin"></td>
+                <td ng-if="row.shipment_start === null">Not Entered</td>
+                <td ng-if="row.shipment_start !== null" ng-bind="row.shipment_start | date:vm.appFormats.Date"></td>
+                <td ng-if="row.shipment_end === null">Not Entered</td>
+                <td ng-if="row.shipment_end !== null" ng-bind="row.shipment_end | date:vm.appFormats.Date"></td>
+                <td ng-bind="row.commission"></td>
+            </tr>
             </tbody>
         </table>
 

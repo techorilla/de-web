@@ -38,9 +38,9 @@
     'LocalStorageModule',
     'highcharts-ng',
     'ngIdle',
-    'daterangepicker',
     'ng.epoch',
-    'n3-pie-chart'
+    'n3-pie-chart',
+    'ngBootstrap'
   ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {

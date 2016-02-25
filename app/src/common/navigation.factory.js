@@ -13,7 +13,7 @@
 		.factory('navigation', navigation);
 
   /* @ngInject */
-  function navigation(toastr){
+  function navigation(toastr, moment, appFormats){
         var isSideBarOpen = false;
         var currentUser = {
             'name': 'Immad Imtiaz',
@@ -25,7 +25,8 @@
             getCurrentUser: getCurrentUser,
             getTime: getTime,
             internalServerError: internalServerError,
-            successMessage: successMessage
+            successMessage: successMessage,
+            initialDateRange: initialDateRange
 		};
 
 		////////////////////
@@ -57,6 +58,13 @@
 
         function internalServerError(data,text){
             toastr.error(data,text);
+        }
+
+        function initialDateRange(){
+            var datePicker = {};
+            datePicker.startDate = moment(moment().startOf('month').format(appFormats.FullDate));
+            datePicker.endDate = moment(moment().endOf('month').format(appFormats.FullDate));
+            return datePicker;
         }
 
         function successMessage(msg,title){

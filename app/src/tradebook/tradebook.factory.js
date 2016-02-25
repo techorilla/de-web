@@ -13,7 +13,7 @@
 		.factory('tradebook', tradebook);
 
   /* @ngInject */
-  function tradebook($http,appConfig,crud){
+  function tradebook($http,appConfig,crud, $filter){
            var bpConfig = {
               valueField: 'bp_ID',
               sortField: 'bp_Name',
@@ -48,6 +48,7 @@
 			testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
+            getTransactionListOnDateRange: getTransactionListOnDateRange,
             getTransactionByParameter:getTransactionByParameter,
             getStaticDropDown: getStaticDropDown,
             addNewTransaction: addNewTransaction,
@@ -434,6 +435,20 @@
         }
         function getStaticDropDown(){
             return $http.get('datastore/addTransactionBasicFilters.json');
+        }
+
+        function getTransactionListOnDateRange(startDate,endDate){
+            var sDate = $filter('date')(new Date(startDate), "yyyy-MM-dd HH:mm:ss");
+            var eDate = $filter('date')(new Date(endDate), "yyyy-MM-dd HH:mm:ss");
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'getTransactionTableOnDateRange?startDate=' + sDate + '&endDate='+eDate,
+                headers:{
+                    'Content-Type': "application/json"
+                }
+
+            };
+            return $http(req);
         }
 
         function getCrudRequest(url,data, operation){

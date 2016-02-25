@@ -2,16 +2,13 @@
 <page-blue-container>
     <form>
         <div class="forms">
-            <div class="row">
+            <div class="row clearfix">
                 <div class="col-lg-12  marginLeft15">
                     <div class="col-lg-12 tableHeading">
                         <label>Transaction Information</label>
                         <label ng-if="vm.tran !== 'new'"  ng-click="vm.deleteCompleteTransaction()" class="pull-right cursor-pointer">Delete Complete Transaction&nbsp;&nbsp;
                             <i class="redFont fa fa-trash-o"></i>
                         </label>
-                        <!--<label class="pull-right cursor-pointer" ng-click="vm.showTransactionInfo = !vm.showTransactionInfo">-->
-                            <!--<i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showTransactionInfo,'fa-chevron-circle-right':!vm.showTransactionInfo}"></i>-->
-                        <!--</label>-->
                     </div>
                     <div class="clearfix">
                         <div  class="col-lg-12">
