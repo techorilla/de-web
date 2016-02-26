@@ -1,6 +1,6 @@
 /**
  * @ngdoc overview
- * @name app.dashboard
+ * @name app.analytics
  * @description < description placeholder >
  */
 
@@ -9,23 +9,24 @@
     'use strict';
 
     angular
-        .module('app.dashboard', [])
+        .module('app.analytics', [])
         .config(configuration);
 
     /* @ngInject */
     function configuration($stateProvider){
 
+        //add your state mappings here
 
         $stateProvider
-            .state('shell.dashboard', {
-                url:'/dashboard',
+            .state('shell.analytics', {
+                url:'/analytics',
                 subNav: true,
-                subNavTitle: 'Dashboard',
+                subNavTitle: 'Business Analytics',
                 subNavIndex: 0,
                 views:{
                     'content@shell':{
-                        templateUrl: 'src/dashboard/dashboard.template.html',
-                        controller: 'Dashboard as vm'
+                        templateUrl: 'src/analytics/analytics.template.html',
+                        controller: 'Analytics as vm'
                     }
                 }
             }

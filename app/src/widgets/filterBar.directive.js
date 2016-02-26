@@ -34,12 +34,8 @@
         tranStatus:'=',
         bpTypes:'=',
         country:'=',
-        buyerList: '=',
-        sellerList: '=',
-        productList: '=',
-        tranStatusList: '=',
         datePicker: '=',
-        onBPTypesSelectedChanged:'&',
+        onBpTypesSelectedChanged:'&',
         onBuyersSelectedChanged:'&',
         onSellersSelectedChanged:'&',
         onProductsSelectedChanged:'&',
@@ -67,17 +63,6 @@
         scope.datePickerChanged = function(dateRange){
             scope.onDateChange({dateRange: dateRange});
         };
-
-
-//        scope.$watch('datePicker',function(newVal,oldVal){
-//            console.log('Date Changed');
-//            console.log(oldVal);
-//            console.log(newVal);
-//            scope.onDateChange();
-//        },true);
-
-
-
     }
   }
 

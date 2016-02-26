@@ -22,27 +22,13 @@
     'app.dashboard',
     'app.setup',
     'app.authentication',
-    'app.modal'
+    'app.modal',
+    'app.analytics'
     ]);
 
     angular.module('app').config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
-
     }]);
-
-    angular.module('app').filter('range', function() {
-        return function(input, total) {
-            total = parseInt(total);
-            for (var i=0; i<total; i++)
-                input.push(i);
-            return input;
-        };
-    });
-
-
-
-  
 
 }());

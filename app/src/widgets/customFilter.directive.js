@@ -64,6 +64,7 @@
                 product.getAllProducts().then(function(res){
                     scope.dropDownValues = res.data;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
 
             }
@@ -72,6 +73,7 @@
                 tabFilter.getDropDownBP(scope.title).then(function(res){
                     scope.dropDownValues = res.data.data;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='seller'){
@@ -79,6 +81,7 @@
                 tabFilter.getDropDownBP(scope.title).then(function(res){
                     scope.dropDownValues = res.data.data;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='broker'){
@@ -86,6 +89,7 @@
                 tabFilter.getDropDownBP(scope.title).then(function(res){
                     scope.dropDownValues = res.data.data;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='shipper'){
@@ -93,6 +97,7 @@
                 tabFilter.getDropDownBP(scope.title).then(function(res){
                     scope.dropDownValues = res.data;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='bpTypes'){
@@ -100,6 +105,7 @@
                 tabFilter.getBusinessPartnerTypes().then(function(res){
                     scope.dropDownValues = res.data.bpTypes;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='tranStatus'){
@@ -108,6 +114,7 @@
                     scope.dropDownValues =  res.data.transactionStatus;
                     scope.dropDownValues.unshift({"value":scope.dropDownValues.length,"text":"Not Entered"});
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
             if(scope.filterType==='country'){
@@ -115,6 +122,7 @@
                 tabFilter.getAllCountries().then(function (res) {
                     scope.dropDownValues =  res.data.origins;
                     scope.selectedValues = angular.copy(scope.dropDownValues);
+                    scope.onSelectedValuesChanged({selectedList:scope.selectedValues});
                 });
             }
 

@@ -83,7 +83,6 @@
             };
             businessPartner.deleteBusinessPartnerProduct(prod).then(function(res){
                 if(res.data.success){
-                    toastr.success(res.data.message,'Product Deleted');
                     vm.bpProducts.splice(index,1);
                     vm.newProduct = undefined;
                 }

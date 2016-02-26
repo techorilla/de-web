@@ -38,9 +38,6 @@
                         origin_id: res.data.origin_id, origin_name:vm.newOrigin
                     });
                 }
-                else{
-                    toastr.error(res.data.message,'Error');
-                }
                 vm.newOrigin = '';
                 vm.addNewOrigin.Origin.$setDirty();
                 vm.addNewOrigin.$setPristine();
@@ -51,15 +48,10 @@
 
             setup.originCrud(originName,originId,crud.DELETE).then(function(res){
                 if(res.data.success){
-                    console.log(index);
-                    toastr.success(res.data.message,'Origin Delete');
                     index = vm.allOrigins.indexOf({
                         origin_id: originId, origin_name:originName
                     });
                     vm.allOrigins.splice(index,1);
-                }
-                else{
-                    toastr.error(res.data.message,'Error');
                 }
                 vm.newOrigin = '';
                 vm.addNewOrigin.Origin.$setDirty();

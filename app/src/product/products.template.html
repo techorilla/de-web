@@ -4,7 +4,7 @@
         <div class="dg-tablePanelHead clearfix">
             <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.products.length}} Products</small></div>
             <ul class="dg-pageActionsLinks">
-                <li><input ng-model="vm.searchProduct" type="text" class="search-control form-control" id="exampleInputAmount" placeholder="Find product">
+                <li><input ng-model="vm.searchProduct" type="text" class="search-control form-control" id="exampleInputAmount" placeholder="Find product"></li>
             </ul>
         </div>
         <div class="dg-tablePanelBody">
@@ -16,7 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct">
+                    <tr ng-repeat="row in vm.allProducts.products | selectFilter: vm.searchProduct:'name' | orderBy: 'name'">
                         <td><a ui-sref="shell.products.viewProduct({id:row.id})">{{row.name}}</a></td>
                         <td ng-if="row.quality !== null && row.quality!==''" ng-bind="row.quality"></td>
                         <td ng-if="row.quality === null || row.quality===''" >Not Added</td>

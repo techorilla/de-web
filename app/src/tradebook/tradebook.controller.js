@@ -13,11 +13,10 @@
         .controller('Tradebook', Tradebook);
 
     /* @ngInject */
-    function Tradebook(tradebook,documentExporter, appFormats, navigation, moment){
+    function Tradebook(tradebook,documentExporter, appFormats, navigation, moment, $filter){
         var vm = this;
         init();
         /////////////////////
-
         /**
          * @ngdoc method
          * @name testFunction
@@ -29,19 +28,28 @@
         function init(){
             vm.searchTransaction = '';
             vm.dateRange = navigation.initialDateRange();
-            vm.onDateRangeChanged = onDateRangeChanged;
             vm.appFormats = appFormats;
-            vm.buyerFilter = [];
-            vm.sellerFilter = [];
-            vm.productFilter = [];
-            vm.tranStatusFilter = [];
+
             vm.dateFilter = [];
+            vm.selectedBuyerID = [];
+            vm.selectedSellerID = [];
+            vm.selectedProductID = [];
+            vm.selectedCountries = [];
+            vm.selectedTranStatus = [];
+            vm.allTransactions = [];
+
+            vm.onDateRangeChanged = onDateRangeChanged;
             vm.onBuyersSelectedChanged = onBuyersSelectedChanged;
             vm.onSellersSelectedChanged = onSellersSelectedChanged;
             vm.onProductsSelectedChanged = onProductsSelectedChanged;
             vm.onCountrySelectedChanged = onCountrySelectedChanged;
             vm.onTranStatusSelectedChanged = onTranStatusSelectedChanged;
-            vm.tranCached = [];
+            vm.filterChanged = filterChanged;
+            vm.getTradeBookExcel = getTradeBookExcel;
+            vm.onDateRangeChanged = onDateRangeChanged;
+
+            vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Shipment Start', 'Shipment End', 'Commission'];
+            vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'shipment_start', 'shipment_end', 'commission'];
 
             vm.headerAnchor = [
                 {
@@ -49,27 +57,12 @@
                     state: 'shell.tradebook.Transaction({tran:"new"})'
                 }
             ];
-            vm.allTransactions = [];
-//            tradebook.getTransactionList().then(function(res){
-//                if(res.data.success){
-//                    vm.allTransactions = res.data.transactions;
-//                }
-//            });
-            vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Shipment Start', 'Shipment End', 'Commission'];
-            vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'shipment_start', 'shipment_end', 'commission'];
-            vm.getTradeBookExcel = getTradeBookExcel;
-            vm.onDateRangeChanged = onDateRangeChanged;
 
-
-
-
-//            $scope.$watch('vm.dateRange',function(newVal, oldVal){
-//                console.log(newVal);
-//            },true);
         }
 
         function getTradeBookExcel(headings, dataObject){
-            documentExporter.getTableInExcelSheet(headings, dataObject, vm.headingAssociation, 'Tradebook');
+            var filteredData = $filter('selectedRows')(vm.allTransactions,vm.tranToRemove,'tr_transactionID');
+            documentExporter.getTableInExcelSheet(headings, filteredData, vm.headingAssociation, 'Tradebook');
         }
 
         function onDateRangeChanged(dateRange){
@@ -80,40 +73,49 @@
                 tradebook.getTransactionListOnDateRange(startDate,endDate).then(function(res){
                     if(res.data.success){
                         vm.allTransactions = res.data.transactions;
-                        vm.tranCached = angular.copy(vm.allTransactions);
+                        filterChanged();
                     }
                 });
             }
         }
 
-        function onBpSelectedChanged(selectedList){
-            vm.allTransactions = angular.copy(vm.tranCached);
-            var selectedBuyerID = _.map(selectedList, 'bp_ID');
-            angular.forEach(vm.allTransactions,function(val,key){
-                if(selectedBuyerID.indexOf(val.tr_bpBuyerID) <= -1  ){
-                    vm.allTransactions.splice(key,1);
+        function filterChanged(){
+            vm.tranToRemove = [];
+            angular.forEach(vm.allTransactions,function(transaction,key){
+                var removeTransaction = false;
+                removeTransaction = (vm.selectedBuyerID.indexOf(transaction.tr_bpBuyerID)<=-1);
+                removeTransaction = removeTransaction ||((vm.selectedSellerID.indexOf(transaction.tr_bpSellerID))<=-1);
+                removeTransaction = removeTransaction || (vm.selectedProductID.indexOf(transaction.tr_productID)<=-1);
+                removeTransaction = removeTransaction || (vm.selectedTranStatus.indexOf(transaction.status)<=-1);
+                if(removeTransaction){
+                    vm.tranToRemove.push(transaction.tr_transactionID);
                 }
             });
         }
+
         function onBuyersSelectedChanged(selectedList){
-            onBpSelectedChanged(selectedList);
+            vm.selectedBuyerID = _.map(selectedList, 'bp_ID');
+            filterChanged();
         }
 
         function onSellersSelectedChanged(selectedList){
-            onBpSelectedChanged(selectedList);
+            vm.selectedSellerID = _.map(selectedList, 'bp_ID');
+            filterChanged();
         }
 
         function onProductsSelectedChanged(selectedList){
-            var selectedProductID = _.map(selectedList, 'id');
+            vm.selectedProductID = _.map(selectedList, 'id');
+            filterChanged();
         }
 
-        function onCountrySelectedChanged(selectedList){
-            var selectedCountries = _.map(selectedList, 'origin_name');
+        function onCountrySelectedChanged(selectedList) {
+            vm.selectedCountries = _.map(selectedList, 'origin_name');
+            filterChanged();
         }
-
 
         function onTranStatusSelectedChanged(selectedList){
-            var selectedTranStatus = _.map(selectedList, 'text');
+            vm.selectedTranStatus = _.map(selectedList, 'text');
+            filterChanged();
         }
 
     }

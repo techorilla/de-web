@@ -21,7 +21,6 @@
         vm.deleteBusinessPartner = function(name, id){
             businessPartner.deleteBusinessPartner(name, id,function(response){
                 if (response.success) {
-                    toastr.success(response.message, 'Success');
                     $state.go('shell.businessPartner');
                 }
             });
@@ -30,7 +29,6 @@
         vm.deleteBusinessPartnerContact = function(bpName,contactName,id,index){
             businessPartner.deleteBusinessPartnerContact(bpName,contactName, id,function(response){
                 if (response.success) {
-                    toastr.success(response.message, 'Success');
                     vm.businessPartner.contPers.splice(index,1);
                     if(vm.businessPartner.contPers.length === 0){
                         vm.addContactPerson();
@@ -70,7 +68,6 @@
         vm.singleConfig = originConfig;
 
         vm.editBusinessPartnerBasic = editBusinessPartnerBasic;
-
         vm.addContactPerson = addContactPerson;
         vm.subContactPerson = subContactPerson;
         vm.saveContactPerson = saveContactPerson;
@@ -79,6 +76,7 @@
         vm.subBankDetails = subBankDetails;
         vm.saveBankDetails = saveBankDetails;
 
+        vm.businessPartner = bp;
         vm.showContactForm = false;
         vm.showContactPersonForm = false;
         vm.showBankDetailForm = false;
@@ -90,7 +88,7 @@
 
         };
 
-        vm.businessPartner = bp;
+
         vm.showContactPersonForm = (vm.businessPartner.contPers.length === 0);
         if(vm.businessPartner.contPers.length === 0){
             addContactPerson();
@@ -140,6 +138,7 @@
         };
         vm.showContactPersonForm = true;
     }
+
     function subContactPerson(){
 //        modalFactory.alertModal(name,'current business partner', 'Delete').then(function(res){
 //            if(res){
@@ -148,8 +147,8 @@
 //        });
         vm.businessPartner.newContactPerson = {};
         vm.showContactPersonForm = false;
-
     }
+
     function addBankDetails(){
          vm.businessPartner.newBankDetails = {
              bankName:'',
@@ -160,6 +159,7 @@
          };
          vm.showBankDetailForm = true;
     }
+
     function subBankDetails(){
         vm.businessPartner.newBankDetails = {};
         vm.showBankDetailForm = false;
@@ -169,11 +169,9 @@
         if(vm.bankDetailsForm.$valid){
             vm.businessPartner.newBankDetails.bp_ID = vm.businessPartner.gen[0].bp_ID;
             businessPartner.addNewBankAccount(vm.businessPartner.newBankDetails).then(function(res){
-
                 if (res.data.success) {
                     vm.businessPartner.bank.push(vm.businessPartner.newBankDetails);
                     subContactPerson();
-                    toastr.success(res.data.message, 'Success');
                 }
             });
         }

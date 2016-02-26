@@ -9,7 +9,9 @@
     'use strict';
 
     angular.module('app.core')
-        .filter('selectFilter', selectFilter);
+        .filter('selectFilter', selectFilter)
+        .filter('selectedRows', selectedRows)
+        .filter('range', range);
 
     function selectFilter() {
             return function(items, search, bind) {
@@ -23,6 +25,30 @@
                 });
 
             };
+    }
+
+    function selectedRows(){
+        return function(rows,rowsToRemove,bind){
+
+            if(rowsToRemove.length === 0){
+                return rows;
+            }
+            return rows.filter(function(element,index,array){
+                if(element[bind]){
+                    //return true;
+                    return ((rowsToRemove.indexOf(element[bind])) <= -1)
+                }
+            });
+        }
+    }
+
+    function range(){
+        return function(input, total) {
+            total = parseInt(total);
+            for (var i=0; i<total; i++)
+                input.push(i);
+            return input;
+        };
     }
 
 }());

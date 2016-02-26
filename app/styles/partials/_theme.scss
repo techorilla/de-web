@@ -4,6 +4,7 @@ $fontSecondary: "Questrial", Arial;
 $transitionValue: all 0.3s ease-in-out;
 $orangeColor: #F47414;
 $redColor: #E30C2C;
+$grayBackgroundBase: #F5F5F5;
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -70,7 +71,7 @@ body, html {
   font-family: 'Open Sans', Arial;
   font-weight: normal;
   -webkit-text-size-adjust: 100%;
-  background:#f5f5f5;
+  background:$grayBackgroundBase;
 }
 
 object, embed, a, a:focus, a:active,
@@ -311,7 +312,7 @@ img {
   li{
     margin:0 0 1px 0;
     padding: 0;
-    background:#f5f5f5;
+    background:$grayBackgroundBase;
     position: relative;
     &:before{
       content:" ";
@@ -329,7 +330,7 @@ img {
       padding:3px 12px 3px 24px;
       display: block;
       &:hover{
-        background:#f5f5f5 - 10;
+        background:$grayBackgroundBase - 10;
       }
     }
   }
@@ -435,7 +436,7 @@ img {
   padding: 4px 20px 4px 12px;
   border-radius: 2px;
   display: inline-block;
-  background:url(/images/icons/search-mini-icon.png) no-repeat right center;
+  background:url(/images/icons/search-mini-icon.png) no-repeat right center $grayBackgroundBase;
 }
 
 .dg-table{
@@ -981,7 +982,7 @@ textarea { resize:vertical ; }
 
 .graphContainer{
   box-shadow: 1px 1px 1px 1px  #cccccc;
-  background: #f5f5f5;
+  background: $grayBackgroundBase;
   border:1px #cccccc solid !important;
 
   overflow-x: hidden;
