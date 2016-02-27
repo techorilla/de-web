@@ -1,6 +1,5 @@
 <page-header heading="All Products" sub-heading="List of" button-list="vm.headerAnchor"></page-header>
-<div class="dg-pageContent">
-    <div class="dg-tablePanelWrap">
+<page-blue-container>
         <div class="dg-tablePanelHead clearfix">
             <div class="dg-tablePanelTitle">Products (Standard)<br><small>Total {{vm.allProducts.products.length}} Products</small></div>
             <ul class="dg-pageActionsLinks">
@@ -16,18 +15,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in vm.allProducts.products | selectFilter: vm.searchProduct:'name' | orderBy: 'name'">
-                        <td><a ui-sref="shell.products.viewProduct({id:row.id})">{{row.name}}</a></td>
-                        <td ng-if="row.quality !== null && row.quality!==''" ng-bind="row.quality"></td>
-                        <td ng-if="row.quality === null || row.quality===''" >Not Added</td>
-                        <td ng-bind="row.origin"></td>
-                        <td ng-if="row.t_date === null">No Transaction Done</td>
-                        <td ng-if="row.t_date !== null"><a ui-sref="shell.tradebook.Transaction({tran:row.t_id})" ng-bind="row.t_date| date:vm.appFormats.Date"></a></td>
-                        <td><a class="deleteTrash textDecoNone" ng-click="vm.deleteProduct(row.name,row.id, $index)"><i class="fa fa-trash redFont"></i> Delete</a></td>
-                    </tr>
+                <tr ng-repeat="row in vm.allProducts.products | selectFilter: vm.searchProduct:'name' | orderBy: 'name'">
+                    <td><a ui-sref="shell.products.viewProduct({id:row.id})">{{row.name}}</a></td>
+                    <td ng-if="row.quality !== null && row.quality!==''" ng-bind="row.quality"></td>
+                    <td ng-if="row.quality === null || row.quality===''" >Not Added</td>
+                    <td ng-bind="row.origin"></td>
+                    <td ng-if="row.t_date === null">No Transaction Done</td>
+                    <td ng-if="row.t_date !== null"><a ui-sref="shell.tradebook.Transaction({tran:row.t_id})" ng-bind="row.t_date| date:vm.appFormats.Date"></a></td>
+                    <td><a class="deleteTrash textDecoNone" ng-click="vm.deleteProduct(row.name,row.id, $index)"><i class="fa fa-trash redFont"></i> Delete</a></td>
+                </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
+</page-blue-container>
 
