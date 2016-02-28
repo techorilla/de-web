@@ -1,0 +1,18 @@
+<div class="dg-tablePanelBody dashboardCard">
+    <table class="table table-bordered dg-table">
+        <thead>
+        <tr>
+            <th>{{heading}}
+                    <i class="fa cursor-pointer pull-right expBtn"
+                       ng-class="{'fa-chevron-circle-down':showContent,'fa-chevron-circle-right':!showContent}"
+                       ng-click="showContent=!showContent" >
+                    </i>
+                    <i class="fa fa-refresh pull-right fa-spin expBtn"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody ng-show="showContent">
+            <tr ng-transclude></tr>
+        </tbody>
+    </table>
+</div>

@@ -1616,3 +1616,9 @@ textarea {
   -moz-box-sizing: none !important;
   box-sizing: none !important;
 }
+
+/* line 2, ../partials/_dashboardCard.scss */
+.dashboardCard .expBtn {
+  font-size: 12px;
+  margin-top: 6px;
+}

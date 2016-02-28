@@ -19,7 +19,6 @@
         var vm = this;
         vm.file = new Blob([pdf.data], { type: 'application/pdf' });
         vm.fileURL = URL.createObjectURL(vm.file);
-        console.log(vm.fileURL);
         vm.fileName = 'AllProductsDetails-DhoniGroup.pdf';
         init();
         function init(){

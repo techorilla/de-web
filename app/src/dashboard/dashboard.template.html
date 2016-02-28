@@ -1,17 +1,20 @@
 <page-header heading="Dashboard" sub-heading="Trading"></page-header>
-</br>
+ </br>
+<page-blue-container class="tabs-panel col-lg-9 col-xs-12" graph-container="true">
+    <dashboard-card heading="Product Summary">
+        <tr>
+            <td>hello</td>
+        </tr>
+    </dashboard-card>
+    <dashboard-card heading="Transactions Summary"></dashboard-card>
+    <dashboard-card heading="Business Partner Summary"></dashboard-card>
+</page-blue-container>
 
-<tabset class="de-tabs" justified="true">
-    <tab ng-repeat="tab in vm.tabs" heading="{{tab.title}}">
-        <div>
-            <page-blue-container class="tabs-panel col-lg-12 col-xs-12" graph-container="true">
-                <filter-bar bp-types="true" country="true" date-picker-needed="true"></filter-bar>
-                <pie-chart data="tab.data" options="tab.options"></pie-chart>
-                <!--<highchart ng-if="vm.chartShow" class="col-lg-12 col-xs-12" id="chart1" config="tab.chartConfig"></highchart>-->
-            </page-blue-container>
-        </div>
-    </tab>
-</tabset>
+<page-blue-container class="tabs-panel col-lg-3 col-xs-12" graph-container="true">
+    <dashboard-card heading="Daily Product Prices">
+       <tr>Product Name</tr><tr>Product Price</tr>
+    </dashboard-card>
+</page-blue-container>
 
 
 

@@ -62,8 +62,8 @@
 
         function initialDateRange(){
             var datePicker = {};
-            datePicker.startDate = moment(moment().startOf('month').format(appFormats.FullDate));
-            datePicker.endDate = moment(moment().endOf('month').format(appFormats.FullDate));
+            datePicker.startDate = moment().startOf('month');
+            datePicker.endDate = moment().endOf('month');
             return datePicker;
         }
 

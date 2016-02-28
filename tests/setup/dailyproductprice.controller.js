@@ -4,10 +4,10 @@
 
   'use strict';
 
-  describe('Controller: WelcomeCtrl', function(){
+  describe('Controller: DailyProductPrice', function(){
 
     beforeEach(module('app.core'));
-    beforeEach(module('app.welcome'));
+    beforeEach(module('app.setup'));
 
     var ctrl;
     var scope;
@@ -15,16 +15,16 @@
     beforeEach(inject(function($controller, $injector){
 
       scope = $injector.get('$rootScope');
-      ctrl = $controller('Welcome', {
+
+      ctrl = $controller('DailyProductPrice', {
         //add injectable services
       });
 
     }));
 
-    it('should do nothing', function (){
+    it('should do nothing', function(){
       expect(true).toBe(false);
     });
 
   });
 }());
-
