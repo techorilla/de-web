@@ -14,6 +14,7 @@
     'FBAngular',
     'ngScrollbars',
     'ui.bootstrap',
+    'chart.js',
     'smart-table',
     'angular-loading-bar', 
     'ngAnimate',
