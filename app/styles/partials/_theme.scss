@@ -961,9 +961,17 @@ form .progress {
  margin-top: 10px;
 }
 
+
 .tabs-panel{
   background-color: #fff;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+
+}
+
+.dashboardContent{
+  .graphContainer{
+    background:#ffffff !important;
+  }
 }
 
 .doc-Container{

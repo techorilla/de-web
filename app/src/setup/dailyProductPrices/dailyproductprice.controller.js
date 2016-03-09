@@ -13,24 +13,28 @@
 		.controller('DailyProductPrice', DailyProductPrice);
 
   /* @ngInject */
-	function DailyProductPrice(allProducts, productConfig, product,crud){
+	function DailyProductPrice(allProducts, productConfig, product,crud,appFormats, $filter, $scope){
 		var vm = this;
         init();
 
         function init(){
-            vm.dateSelected = new Date();
+            vm.dateSelected = $filter('date')(new Date(), appFormats.Date);
             vm.allProducts = allProducts;
             vm.getProductsPricesByDate = getProductsPricesByDate;
             vm.productConfig = productConfig;
-            vm.getProductsPricesByDate(vm.dateSelected);
+            //vm.getProductsPricesByDate(vm.dateSelected);
             vm.cancelEdit = cancelEdit;
             vm.editProductPrice = editProductPrice;
             vm.saveProductPrice = saveProductPrice;
             vm.currentlyEditing = {};
+            $scope.$watch('vm.dateSelected',function(newVal,oldVal){
+                vm.getProductsPricesByDate(vm.dateSelected);
+            });
+
         }
 
         function getProductsPricesByDate(date){
-            product.getProductPricesByDate(date.toISOString()).then(function(res){
+            product.getProductPricesByDate(date).then(function(res){
                 if(res.data.success){
                     vm.productPrices = res.data.productPrices;
                 }

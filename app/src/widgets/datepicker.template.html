@@ -3,9 +3,9 @@
            class="form-control"
            datepicker-popup="{{appFormats.Date}}"
            ng-model="date"
+           date-part-only
            ng-disabled="disabled"
            placeholder="{{disabled ? '' : 'Select'}}"
-
            is-open="datePickerOpened"
            min-date="{{minDate |  date : appFormats.Date}}"
            max-date="'{{maxDate |  date : appFormats.Date}}'"

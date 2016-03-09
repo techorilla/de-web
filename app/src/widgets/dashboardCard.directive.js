@@ -24,6 +24,7 @@
             link: link,
             restrict: 'E',
             transclude: true,
+            replace:true,
             templateUrl: 'src/widgets/dashboardCard.template.html',
             scope: {
                 heading: '@'

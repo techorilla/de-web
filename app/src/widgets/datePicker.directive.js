@@ -15,7 +15,20 @@
 
   angular
     .module('app.widgets')
-    .directive('datePicker', datePicker);
+    .directive('datePicker', datePicker)
+    .directive('datePartOnly',datePartOnly);
+
+  function datePartOnly($filter,$parse,appFormats){
+      return{
+          restrict:'EAC',
+          require:'?ngModel',
+          link:function(scope,element,attrs,ngModel,ctrl){
+              ngModel.$parsers.push(function(viewValue){
+                  return $filter('date')(viewValue, appFormats.Date);
+              });
+          }
+      }
+  }
 
   /* @ngInject */
   function datePicker(appFormats){
