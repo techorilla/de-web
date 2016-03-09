@@ -1000,6 +1000,18 @@ textarea { resize:vertical ; }
   border-right: none;
 }
 
+.price{
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 5px;
+  color:$baseColor;
+  & + number-only-input{
+    input{
+      padding-left:25px;
+    }
+  }
+}
+
 
 
 

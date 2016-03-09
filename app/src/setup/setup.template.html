@@ -1,7 +1,7 @@
 <div class="dg-tabPanelWrap">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" ng-repeat="state in vm.setupStates"  ui-sref="{{state.name}}" ui-sref-active="active">
+            <li role="presentation" ng-repeat="state in vm.setupStates | orderBy:'inSetupOrder'"  ui-sref="{{state.name}}" ui-sref-active="active">
             	<a role="tab" data-toggle="tab">
             		{{state.inSetupTitle}}
             	</a>

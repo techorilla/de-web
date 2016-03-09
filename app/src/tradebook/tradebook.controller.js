@@ -66,10 +66,9 @@
         }
 
         function onDateRangeChanged(dateRange){
-            if(typeof dateRange === 'string'){
-                var dates = dateRange.split(' to ');
-                var startDate = new Date(dates[0]);
-                var endDate = new Date(dates[1]);
+            if(true){
+                var startDate = new Date(dateRange.startDate);
+                var endDate = new Date(dateRange.endDate);
                 tradebook.getTransactionListOnDateRange(startDate,endDate).then(function(res){
                     if(res.data.success){
                         vm.allTransactions = res.data.transactions;

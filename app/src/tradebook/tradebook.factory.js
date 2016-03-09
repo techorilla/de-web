@@ -45,6 +45,7 @@
               }
           };
 		return {
+            getCrudRequest: getCrudRequest,
 			testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
@@ -452,7 +453,7 @@
         }
 
         function getCrudRequest(url,data, operation){
-            data.operation = operation
+            data.operation = operation;
             var req = {
                 method:  'POST',//(operation === crud.READ) ? 'GET' : 'POST',
                 url: appConfig.apiHost+url,

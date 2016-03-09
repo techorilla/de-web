@@ -1167,6 +1167,18 @@ textarea {
   border-right: none;
 }
 
+/* line 1003, ../partials/_theme.scss */
+.price {
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 5px;
+  color: #1691ac;
+}
+/* line 1009, ../partials/_theme.scss */
+.price + number-only-input input {
+  padding-left: 25px;
+}
+
 /* line 3, ../partials/_login.scss */
 #signIn label {
   font-family: icon;

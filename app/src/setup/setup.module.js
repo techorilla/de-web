@@ -30,6 +30,7 @@
                 url:'/newUser',
                 inSetup: 'true',
                 inSetupTitle: 'New User',
+                inSetupOrder: 5,
                 views:{
                     'subContent@shell.setup':{
                         templateUrl: 'src/setup/newUser/addNewUser.template.html',
@@ -48,6 +49,7 @@
                 url:'/allUsers',
                 inSetup: 'true',
                 inSetupTitle: 'All Users',
+                inSetupOrder: 4,
                 resolve: {
                     setup: 'setup',
                     allUsers: function (setup) {
@@ -67,6 +69,7 @@
                 url:'/changePassword',
                 inSetup:'true',
                 inSetupTitle: 'Change Password',
+                inSetupOrder: 3,
                 views:{
                     'subContent@shell.setup':{
                         templateUrl: 'src/setup/changePassword/changePassword.template.html',
@@ -98,6 +101,7 @@
                 url:'/origin',
                 inSetup: 'true',
                 inSetupTitle: 'Origin',
+                inSetupOrder: 2,
                 resolve:{
                     allOrigins: function (setup) {
                         return setup.getAllOrigin().then(function (res) {
@@ -111,7 +115,29 @@
                         controller: 'Origin as vm'
                     }
                 }
-            });
+            })
+            .state('shell.setup.productPrices',{
+                url:'/productPrices',
+                inSetup: 'true',
+                inSetupTitle: 'Product Prices',
+                inSetupOrder: 1,
+                resolve:{
+                    allProducts: function (product) {
+                        return product.getAllProducts().then(function(res){
+                            return  res.data;
+                        });
+                    },
+                    productConfig: function(tradebook){
+                        return tradebook.getProductConfig();
+                    }
+                },
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl:'src/setup/dailyProductPrices/dailyProductPrices.template.html',
+                        controller: 'DailyProductPrice as vm'
+                    }
+                }
+            });;
     }
 
 }());

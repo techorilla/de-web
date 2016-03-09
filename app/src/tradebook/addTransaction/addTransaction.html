@@ -31,7 +31,10 @@
                     <div  class="clearfix">
                         <div class="form-group col-lg-4 col-xs-12 height40px">
                             <label>Date of Transaction</label>
-                            <date-picker disabled="!vm.editMode" date="vm.newTransaction.tr_date" max-date="" min-date=""></date-picker>
+                            <date-picker disabled="!vm.editMode"
+                                         date="vm.newTransaction.tr_date"
+                                         max-date="" min-date="">
+                            </date-picker>
                         </div>
                         <div class="form-group col-lg-4 col-xs-12">
                             <label>Buyer</label>
@@ -46,7 +49,11 @@
                     <div  class="clearfix">
                         <div class="form-group col-lg-4 col-xs-12">
                             <label>Product</label>
-                            <selectize ng-disabled="!vm.editMode" placeholder='Please enter product' config="vm.productConfig" options='vm.productList' ng-model="vm.newTransaction.tr_productID"></selectize>
+                            <selectize ng-disabled="!vm.editMode" placeholder='Please enter product'
+                                       config="vm.productConfig"
+                                       options='vm.productList'
+                                       ng-model="vm.newTransaction.tr_productID">
+                            </selectize>
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Origin</label>

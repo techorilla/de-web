@@ -15,13 +15,11 @@
     'ngScrollbars',
     'ui.bootstrap',
     'chart.js',
-    'smart-table',
     'angular-loading-bar', 
     'ngAnimate',
     'selectize',
     'ngTagsInput',
     'angularMoment',
-    'uiSwitch',
     'toastr',
     'ngMessages',
     'ui.validate',
@@ -39,7 +37,6 @@
     'LocalStorageModule',
     'highcharts-ng',
     'ngIdle',
-    'ng.epoch',
     'n3-pie-chart',
     'ngBootstrap'
   ]);

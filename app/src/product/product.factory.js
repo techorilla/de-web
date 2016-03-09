@@ -13,14 +13,16 @@
 		.factory('product', product);
 
   /* @ngInject */
-  function product($http,appConfig, $rootScope, modalFactory){
+  function product($http,appConfig, $rootScope, modalFactory, tradebook){
 		return {
             getAllProducts: getAllProducts,
             getProductById:getProductById,
             addNewProduct: addNewProduct,
             deleteProduct: deleteProduct,
             getAllProductPdf: getAllProductPdf,
-            editProduct: editProduct
+            editProduct: editProduct,
+            getProductPricesByDate: getProductPricesByDate,
+            dailyProductsPricesCrud: dailyProductsPricesCrud
 		};
 
 		////////////////////
@@ -71,7 +73,7 @@
                             'Access-Control-Allow-Origin': '*'
                         },
                         data: {id: id}
-                    }
+                    };
                     return $http(req)
                         .success(function (response) {
                             callback(response);
@@ -89,8 +91,23 @@
                     'Access-Control-Allow-Origin': '*'
                 },
                 data: {id: id}
-            }
+            };
             return $http(req);
+        }
+
+        function getProductPricesByDate(date){
+            var req = {
+                method: 'POST',
+                url: appConfig.apiHost+'getProductsPricesByDate',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                data: {date: date}
+            };
+
+            return $http(req);
+
         }
 
         function addNewProduct(product, callback){
@@ -101,11 +118,15 @@
                     'Content-Type': "application/json"
                 },
                 data: {product: product}
-            }
+            };
             return $http(req)
                 .success(function (response) {
                     callback(response);
                 });
+        }
+
+        function dailyProductsPricesCrud(product,operation){
+            return $http(tradebook.getCrudRequest('productPriceByDateCrud',product, operation));
         }
 	}
 
