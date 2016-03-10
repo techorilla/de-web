@@ -13,7 +13,7 @@
 		.factory('tradebook', tradebook);
 
   /* @ngInject */
-  function tradebook($http,appConfig,crud, $filter){
+  function tradebook($http,appConfig,crud, $filter, appFormats){
            var bpConfig = {
               valueField: 'bp_ID',
               sortField: 'bp_Name',
@@ -439,8 +439,8 @@
         }
 
         function getTransactionListOnDateRange(startDate,endDate){
-            var sDate = $filter('date')(new Date(startDate), "yyyy-MM-dd HH:mm:ss");
-            var eDate = $filter('date')(new Date(endDate), "yyyy-MM-dd HH:mm:ss");
+            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
+            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
             var req = {
                 method: 'GET',
                 url: appConfig.apiHost+'getTransactionTableOnDateRange?startDate=' + sDate + '&endDate='+eDate,

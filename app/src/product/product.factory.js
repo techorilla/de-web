@@ -13,7 +13,7 @@
 		.factory('product', product);
 
   /* @ngInject */
-  function product($http,appConfig, $rootScope, modalFactory, tradebook){
+  function product($http,appConfig, $filter, modalFactory, tradebook, appFormats){
 		return {
             getAllProducts: getAllProducts,
             getProductById:getProductById,
@@ -22,7 +22,9 @@
             getAllProductPdf: getAllProductPdf,
             editProduct: editProduct,
             getProductPricesByDate: getProductPricesByDate,
-            dailyProductsPricesCrud: dailyProductsPricesCrud
+            getProductPricesByDateRange: getProductPricesByDateRange,
+            dailyProductsPricesCrud: dailyProductsPricesCrud,
+            productSalesAnalytics: productSalesAnalytics
 		};
 
 		////////////////////
@@ -40,6 +42,8 @@
      * @param {int} entity id
      */
 
+
+
         function editProduct(product,callback){
             var req = {
                 method: 'POST',
@@ -48,7 +52,7 @@
                     'Content-Type': "application/json"
                 },
                 data: {product: product}
-            }
+            };
             return $http(req)
                 .success(function (response) {
                     callback(response);
@@ -108,6 +112,35 @@
 
             return $http(req);
 
+        }
+
+        function productSalesAnalytics(startDate, endDate){
+            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
+            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'productSalesAnalyticsByDateRange?startDate=' + sDate + '&endDate='+eDate,
+                headers:{
+                    'Content-Type': "application/json"
+                }
+
+            };
+            return $http(req);
+        }
+
+
+        function getProductPricesByDateRange(startDate, endDate){
+            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
+            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
+            var req = {
+                method: 'GET',
+                url: appConfig.apiHost+'productPriceByDateRange?startDate=' + sDate + '&endDate='+eDate,
+                headers:{
+                    'Content-Type': "application/json"
+                }
+
+            };
+            return $http(req);
         }
 
         function addNewProduct(product, callback){

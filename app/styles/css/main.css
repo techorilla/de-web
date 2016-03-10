@@ -1126,30 +1126,38 @@ form .progress {
 .dashboardContent .graphContainer {
   background: #ffffff !important;
 }
+/* line 975, ../partials/_theme.scss */
+.dashboardContent .price {
+  font-weight: 900;
+  position: absolute;
+  top: 7px;
+  left: -20px;
+  color: #000;
+}
 
-/* line 977, ../partials/_theme.scss */
+/* line 984, ../partials/_theme.scss */
 .doc-Container {
   font-size: 15px;
   padding-top: 15px;
 }
 
-/* line 980, ../partials/_theme.scss */
+/* line 987, ../partials/_theme.scss */
 .marginTopmin18px {
   margin-top: -18px;
 }
 
-/* line 984, ../partials/_theme.scss */
+/* line 991, ../partials/_theme.scss */
 .addNote {
   margin-right: 15px;
   border-radius: 0;
 }
 
-/* line 989, ../partials/_theme.scss */
+/* line 996, ../partials/_theme.scss */
 textarea {
   resize: vertical;
 }
 
-/* line 991, ../partials/_theme.scss */
+/* line 998, ../partials/_theme.scss */
 .graphContainer {
   box-shadow: 1px 1px 1px 1px  #cccccc;
   background: #F5F5F5;
@@ -1157,29 +1165,29 @@ textarea {
   overflow-x: hidden;
 }
 
-/* line 999, ../partials/_theme.scss */
+/* line 1005, ../partials/_theme.scss */
 .nav-tabs {
   border-bottom: none;
 }
 
-/* line 1003, ../partials/_theme.scss */
+/* line 1009, ../partials/_theme.scss */
 .nav-tabs.nav-justified > li > a {
   border-right: 1px solid #ddd;
 }
 
-/* line 1007, ../partials/_theme.scss */
+/* line 1013, ../partials/_theme.scss */
 .nav-tabs.nav-justified > li > a:last-child {
   border-right: none;
 }
 
-/* line 1011, ../partials/_theme.scss */
+/* line 1017, ../partials/_theme.scss */
 .price {
   position: absolute;
   margin-left: 15px;
   margin-top: 5px;
   color: #1691ac;
 }
-/* line 1017, ../partials/_theme.scss */
+/* line 1023, ../partials/_theme.scss */
 .price + number-only-input input {
   padding-left: 25px;
 }

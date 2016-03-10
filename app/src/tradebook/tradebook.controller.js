@@ -46,7 +46,7 @@
             vm.onTranStatusSelectedChanged = onTranStatusSelectedChanged;
             vm.filterChanged = filterChanged;
             vm.getTradeBookExcel = getTradeBookExcel;
-            vm.onDateRangeChanged = onDateRangeChanged;
+            onDateRangeChanged(vm.dateRange);
 
             vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Shipment Start', 'Shipment End', 'Commission'];
             vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'shipment_start', 'shipment_end', 'commission'];

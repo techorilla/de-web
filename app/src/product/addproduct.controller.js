@@ -102,7 +102,7 @@
             toastr.error('Invalid Information', 'Error');
             return;
         }
-        var quality = _.pluck(vm.quality,'text');
+        var quality = _.map(vm.quality,'text');
         quality = quality.join(', ');
         vm.newProduct.quality = quality;
         product.editProduct(vm.newProduct,function(response){
@@ -119,7 +119,7 @@
         }
 
             if($state.current.name === 'shell.products.addProduct'){
-                var quality = _.pluck(vm.quality,'text');
+                var quality = _.map(vm.quality,'text');
                 quality = quality.join(', ');
                 vm.newProduct.quality = quality;
                 product.addNewProduct(vm.newProduct,function(response){

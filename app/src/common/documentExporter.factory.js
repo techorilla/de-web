@@ -38,10 +38,12 @@
             for(var heading in headings){
                 headingObj[headings[heading]] = null;
             }
+            var regexExp=/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
             var csvData = [];
             angular.forEach(dataObject, function (dataSet, key) {
                 var tempHeading = angular.copy(headingObj);
                 angular.forEach(association,function(ass,asskey){
+                    console.log(regexExp.test(dataSet[ass]));
                     tempHeading[headings[asskey]] = dataSet[ass];
                 });
                 csvData.push(tempHeading);

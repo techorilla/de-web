@@ -26,7 +26,8 @@
             getTime: getTime,
             internalServerError: internalServerError,
             successMessage: successMessage,
-            initialDateRange: initialDateRange
+            initialDateRange: initialDateRange,
+            getDateRangeArray: getDateRangeArray
 		};
 
 		////////////////////
@@ -69,6 +70,17 @@
 
         function successMessage(msg,title){
             toastr.success(msg,title);
+        }
+
+        function getDateRangeArray(startDate, endDate){
+            var dateArray = new Array();
+            var currentDate = new Date(startDate);
+            endDate = new Date (endDate);
+            while (currentDate <= endDate) {
+                dateArray.push(currentDate);
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
         }
 	}
 

@@ -27,6 +27,16 @@
                         templateUrl: 'src/dashboard/dashboard.template.html',
                         controller: 'Dashboard as vm'
                     }
+                },
+                resolve: {
+                    allProducts: function (product) {
+                        return product.getAllProducts().then(function (res) {
+                            return  res.data;
+                        });
+                    },
+                    productConfig: function(tradebook){
+                        return tradebook.getProductConfig();
+                    }
                 }
             }
         );

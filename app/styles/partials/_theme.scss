@@ -972,6 +972,13 @@ form .progress {
   .graphContainer{
     background:#ffffff !important;
   }
+  .price{
+    font-weight: 900;
+    position: absolute;
+    top: 7px;
+    left: -20px;
+    color:#000;
+  }
 }
 
 .doc-Container{
@@ -992,7 +999,6 @@ textarea { resize:vertical ; }
   box-shadow: 1px 1px 1px 1px  #cccccc;
   background: $grayBackgroundBase;
   border:1px #cccccc solid !important;
-
   overflow-x: hidden;
 }
 

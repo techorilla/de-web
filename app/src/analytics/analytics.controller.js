@@ -13,24 +13,11 @@
 		.controller('Analytics', Analytics);
 
   /* @ngInject */
-	function Analytics(dashboard,navigation,$timeout){
+	function Analytics($scope,navigation,product){
         var vm = this;
-        vm.dateRange = navigation.initialDateRange();
-        vm.tabs = [{
-            title:'Bar Charts',
-            chartConfig: dashboard.getBarChartsConfig('Bar Charts'),
-            options: {thickness: 10},
-            data : [
-                {label: "one", value: 12.2, color: "red"},
-                {label: "two", value: 45, color: "#00ff00"},
-                {label: "three", value: 10, color: "rgb(0, 0, 255)"}
-            ]
-        },{
-            title:'Pie Charts',
-            chartConfig: dashboard.getPieChartConfig('Pie Charts')
-        },{
-            title:'Spline Charts'
-        }];
+
+        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+        $scope.data = [300, 500, 100, 40, 120];
         init();
 
         /////////////////////
@@ -44,9 +31,25 @@
          * My Description rules
          */
         function init(){
-            $timeout(function(){
-                vm.chartShow  = true;
-            },0);
+            vm.dateRange = navigation.initialDateRange();
+            vm.productSalesAnalytics = [];
+            vm.getproductSalesAnalytics = getproductSalesAnalytics;
+            vm.getproductSalesAnalytics(vm.dateRange);
+
+
+        }
+
+        function getproductSalesAnalytics(dateRange){
+            var startDate = new Date(dateRange.startDate);
+            var endDate = new Date(dateRange.endDate);
+            product.productSalesAnalytics(startDate,endDate).then(function(res){
+                vm.productSalesAnalytics = res.data.productSalesAnalytics;
+                vm.productsVolume = _.map(vm.productSalesAnalytics,'volume');
+                vm.productsQuantity = _.map(vm.productSalesAnalytics,'quantity');
+                vm.productsNetCommission = _.map(vm.productSalesAnalytics,'netCommission');
+                vm.products = _.map(vm.productSalesAnalytics,'productName');
+                console.log(vm.productsNetCommission);
+            });
         }
 	}
 
