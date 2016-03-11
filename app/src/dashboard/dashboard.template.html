@@ -17,8 +17,8 @@
                         </div>
                         <div class="col-xs-6 col-md-3">
                             <div>
-                                <span class="price">$ {{pPrice.price}}</span>
-
+                                <span ng-if="pPrice.price" class="price">$ {{pPrice.price}}</span>
+                                <span ng-if="!pPrice.price"class="price">Not Entered</span>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,8 @@
 
                 <canvas id="line" class="chart chart-line" chart-data="vm.priceDetailsArray"
                         chart-labels="vm.dateRangeArray" chart-legend="true" chart-series="vm.products"
-                        chart-click="onClick" >
+                        chart-click="onClick"
+                        chart-colours="vm.chartColors">
                 </canvas>
             </page-blue-container>
         </div>

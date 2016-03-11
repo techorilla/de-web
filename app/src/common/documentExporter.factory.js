@@ -13,7 +13,7 @@
 		.factory('documentExporter', documentExporter);
 
   /* @ngInject */
-  function documentExporter(){
+  function documentExporter($filter, appFormats){
 		return {
             getTableInExcelSheet: getTableInExcelSheet
 		};
@@ -43,7 +43,9 @@
             angular.forEach(dataObject, function (dataSet, key) {
                 var tempHeading = angular.copy(headingObj);
                 angular.forEach(association,function(ass,asskey){
-                    console.log(regexExp.test(dataSet[ass]));
+                    if(regexExp.test(dataSet[ass])){
+                        dataSet[ass] = $filter('date')(new Date(dataSet[ass]), appFormats.Date);
+                    }
                     tempHeading[headings[asskey]] = dataSet[ass];
                 });
                 csvData.push(tempHeading);

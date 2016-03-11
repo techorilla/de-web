@@ -18,6 +18,7 @@
         init();
 
         function init(){
+            vm.chartColors = navigation.chartColors();
             vm.allProducts = allProducts;
             vm.productConfig = productConfig;
             vm.dateRange = navigation.initialDateRange();
@@ -28,6 +29,7 @@
             vm.getProductsPricesByDate(vm.dateSelected);
             vm.getProductPricesByDateRange = getProductPricesByDateRange;
             vm.getProductPricesByDateRange(vm.dateRange);
+
 
         }
 
@@ -60,12 +62,6 @@
                     angular.forEach(vm.dateRangeArray,function(obj,key){
                         vm.dateRangeArray[key] = $filter('date')(obj, appFormats.Date);
                     });
-
-                    console.log(vm.priceDetailsArray);
-                    console.log(vm.productPricesOnDateRange);
-                    console.log(vm.dateRangeArray);
-                    console.log(vm.products);
-                    console.log(vm.priceDetailsArray);
                 }
             });
         }
@@ -74,18 +70,9 @@
             product.getProductPricesByDate(date).then(function(res){
                 if(res.data.success){
                     vm.productPricesForToday = res.data.productPrices;
-                    console.log(vm.productPricesForToday);
                 }
             });
         }
-        $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        $scope.series = ['Series A', 'Series B'];
-
-        $scope.data = [
-            [65, 59, 80, 81, null, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90],
-            [59, 80, 81, 19, 40, 19, 86]
-        ];
     }
 
 }());

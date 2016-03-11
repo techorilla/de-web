@@ -43,7 +43,7 @@
             vm.editMode = true;
 
             $scope.$watch('vm.commissionDetails', function(newVal, oldVal){
-
+                console.log(newVal);
                 if((newVal !== oldVal) && vm.editMode){
                     var type = newVal.tr_ownCommissionType;
                     var price = newVal.price;

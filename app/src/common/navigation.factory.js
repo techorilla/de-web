@@ -22,12 +22,14 @@
 		return {
             invertSideBarState: invertSideBarState,
             sideBarStatus: sideBarStatus,
+            chartColors: chartColors,
             getCurrentUser: getCurrentUser,
             getTime: getTime,
             internalServerError: internalServerError,
             successMessage: successMessage,
             initialDateRange: initialDateRange,
-            getDateRangeArray: getDateRangeArray
+            getDateRangeArray: getDateRangeArray,
+            getYearsInDateRange: getYearsInDateRange
 		};
 
 		////////////////////
@@ -57,6 +59,18 @@
             return isSideBarOpen;
         }
 
+        function chartColors(){
+            return [
+                '#F47414', // red
+                '#1691ac', // blue
+                '#333333', // light grey
+                '#6d426d', // green
+                '#FDB45C', // yellow
+                '#949FB1', // grey
+                '#4D5360'  // dark grey
+            ];
+        }
+
         function internalServerError(data,text){
             toastr.error(data,text);
         }
@@ -70,6 +84,19 @@
 
         function successMessage(msg,title){
             toastr.success(msg,title);
+        }
+
+        function getYearsInDateRange(startDate,endDate){
+            var currentYear = parseInt(new Date(startDate).getFullYear());
+            var endYear = parseInt(new Date(endDate).getFullYear());
+            console.log(currentYear);
+            console.log(endYear);
+            var years = [];
+            while(currentYear <= endYear){
+                years.push(currentYear);
+                currentYear++;
+            }
+            return years;
         }
 
         function getDateRangeArray(startDate, endDate){

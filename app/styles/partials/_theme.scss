@@ -594,6 +594,7 @@ img {
 .dg-filterDropdown{
   cursor: pointer;
   position: relative;
+  padding-bottom: 5px;
   .dg-filterDropdownField{
     border:1px solid #ccc;
     padding:5px 25px 5px 12px;
@@ -978,6 +979,38 @@ form .progress {
     top: 7px;
     left: -20px;
     color:#000;
+    text-align: center;
+  }
+}
+
+
+.analyticsContent{
+  overflow-x: hidden;
+  .graphContainer{
+    background:#ffffff !important;
+  }
+  .filterHeading2{
+    color:$baseColor;
+    width:100%;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 15px;
+  }
+  .options{
+    margin-top: 1px;
+    position: absolute;
+    margin-left: 10px;
+  }
+  .summaryValue{
+    width:100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #333;
+    span{
+      color:$orangeColor;
+      font-size: 14px;
+    }
   }
 }
 

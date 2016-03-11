@@ -70,6 +70,7 @@
     }
 
 
+
     function localStorageConfig (localStorageServiceProvider) {
         localStorageServiceProvider
             .setPrefix('DoniEnterprises');

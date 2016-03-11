@@ -67,6 +67,7 @@
             getBpConfig: getBpConfig,
             getCommissionTypeConfig: getCommissionTypeConfig,
             getTransactionStatusConfig: getTransactionStatusConfig,
+            getTimeDrillConfig: getTimeDrillConfig,
 
             deleteTransactionFile: deleteTransactionFile,
             downloadTransactionFile: downloadTransactionFile,
@@ -238,6 +239,17 @@
                 labelField: 'text',
                 maxItems:1
             };
+        }
+
+        function getTimeDrillConfig(timeDrillOptions){
+            return {
+                options: timeDrillOptions,
+                create: true,
+                sortField: 'text',
+                valueField: 'value',
+                labelField: 'text',
+                maxItems:1
+            }
         }
 
         function getTransactionStatusConfig(transactionStatus){

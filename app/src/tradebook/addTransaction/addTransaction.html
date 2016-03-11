@@ -42,7 +42,13 @@
                         </div>
                         <div class="form-group col-lg-4 col-xs-12">
                             <label>Seller</label>
-                            <selectize ng-disabled="!vm.editMode" ng-disabled="vm.viewMode" placeholder='Please enter seller'  config="vm.bpConfig" options='vm.sellersList' ng-model="vm.newTransaction.tr_bpSellerID"></selectize>
+                            <selectize ng-disabled="!vm.editMode"
+                                       ng-disabled="vm.viewMode"
+                                       placeholder='Please enter seller'
+                                       config="vm.bpConfig"
+                                       options='vm.sellersList'
+                                       ng-model="vm.newTransaction.tr_bpSellerID">
+                            </selectize>
                         </div>
                     </div>
 
