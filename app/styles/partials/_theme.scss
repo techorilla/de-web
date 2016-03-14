@@ -98,7 +98,7 @@ a {
   }
 }
 .cursor-pointer{
-  cursor:pointer;
+  cursor:pointer !important;
 }
 input::-moz-focus-inner {
   border: 0;
@@ -1057,6 +1057,13 @@ textarea { resize:vertical ; }
       padding-left:25px;
     }
   }
+}
+
+.chartLegends{
+  left: 0px;
+  width: 100%;
+  text-align: left;
+  font-weight:bolder;
 }
 
 

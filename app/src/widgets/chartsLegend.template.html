@@ -1,0 +1,38 @@
+<div>
+    <canvas id="bar" class="chart chart-bar"
+            ng-if="showCh && (type==='bar')"
+            chart-data="dataClone"
+            chart-legend="false" chart-colours="colors"
+            chart-labels="labels" chart-series="series">
+    </canvas>
+    <canvas  ng-if="(type==='pie')" id="pie" class="chart chart-pie" chart-legend="false" chart-colours="colors"
+            chart-data="dataClone" chart-labels="labels">
+    </canvas>
+
+    <div class="chart-legend" ng-if="showCh && (type==='bar')">
+        <ul class="line-legend">
+            <li ng-repeat="item in series track by $index"
+                ng-click="show[$index] = !show[$index];onHideSeries();"
+                class="cursor-pointer chartLegends">
+            <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : 'silver')}"
+                    title="Show/hide corresponding line on chart">
+            </span>
+                {{ series[$index] }}
+            </li>
+        </ul>
+    </div>
+
+    <div class="chart-legend" ng-if="(type==='pie')">
+        <ul class="line-legend">
+            <li ng-repeat="item in labels track by $index"
+                ng-click="show[$index] = !show[$index];"
+                class="cursor-pointer chartLegends">
+            <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : 'silver')}"
+                    title="Show/hide corresponding line on chart">
+            </span>
+                {{ item + ' (' + data[$index] + ' )' }}
+            </li>
+        </ul>
+    </div>
+</div>
+

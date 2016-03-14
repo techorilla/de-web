@@ -35,7 +35,6 @@
     'ngFileUpload',
     'textAngular',
     'LocalStorageModule',
-    'highcharts-ng',
     'ngIdle',
     'n3-pie-chart',
     'ngBootstrap'

@@ -45,10 +45,8 @@
             vm.getProductSalesAnalytics = getProductSalesAnalytics;
             vm.getTransactionAnalytics = getTransactionAnalytics;
             vm.onDateRangeChanged = onDateRangeChanged;
-            vm.optionSelectedChanged = optionSelectedChanged;
-            vm.netCommissionSelected = true;
-            vm.quantitySelected = true;
-            vm.volumeSelected = true;
+            vm.showTradeBarCharts = true;
+            vm.showPie = true;
 
 
             vm.onDateRangeChanged = onDateRangeChanged;
@@ -65,17 +63,9 @@
             ];
             vm.timeDrillConfig = tradebook.getTimeDrillConfig(vm.timeDrillOptions);
             vm.seriesBarCharts = ['Quantity','Volume','Net Commission'];
+
             vm.dataBarChars = [[],[],[]];
             vm.timeDrillChanged = timeDrillChanged;
-
-
-            $scope.series = ['Series A', 'Series B'];
-
-            $scope.data = [
-                [65, 59, 80, 81, 56, 55, 40],
-                [28, 48, 40, 19, 86, 27, 90],
-                [28, 48, 40, 19, 86, 27, 90]
-            ];
             vm.onDateRangeChanged(vm.dateRange);
         }
 
@@ -96,9 +86,7 @@
             });
         }
 
-        function optionSelectedChanged(option,value){
 
-        }
 
         function getTransactionAnalytics(dateRange){
             var startDate = new Date(dateRange.startDate);
@@ -106,50 +94,57 @@
             tradebook.getTransactionListOnDateRange(startDate,endDate).then(function(res){
                 vm.allTransactions = res.data.transactions;
                 filterChanged();
-                timeDrillChanged(vm.timeDrillBy);
             });
 
         }
 
 
 
-        function timeDrillChanged(timeDrill){
-            var minDate = _.minBy(vm.allTransactions,'transactionDate').transactionDate ;
-            var maxDate = _.maxBy(vm.allTransactions,'transactionDate').transactionDate;
-            if(timeDrill === 'day'){
-                vm.dateLabels = navigation.getDateRangeArray(minDate,maxDate);
-                vm.dataBarChars = [[],[],[]];
-                angular.forEach(vm.dateLabels,function(date,key){
-                    vm.dateLabels[key] = $filter('date')(date, appFormats.Date);
-                    var tranInDate = _.filter(vm.allTransactions,function(tran){
-                         return vm.dateLabels[key] === $filter('date')(tran.transactionDate, appFormats.Date);
+        function timeDrillChanged(timeDrill,allTransactions){
+            if(allTransactions.length!==0){
+                vm.showTradeBarCharts = false;
+                var minDate = _.minBy(allTransactions,'transactionDate').transactionDate;
+                var maxDate = _.maxBy(allTransactions,'transactionDate').transactionDate;
+                if(timeDrill === 'day'){
+                    vm.dateLabels = navigation.getDateRangeArray(minDate,maxDate);
+                    vm.dataBarChars = [[],[],[]];
+                    angular.forEach(vm.dateLabels,function(date,key){
+                        vm.dateLabels[key] = $filter('date')(date, appFormats.Date);
+                        var tranInDate = _.filter(allTransactions,function(tran){
+                            return vm.dateLabels[key] === $filter('date')(tran.transactionDate, appFormats.Date);
+                        });
+                        vm.dataBarChars[0].push(
+                            _.sumBy(tranInDate,function(tran){
+                                return tran.quantity;
+                            })
+                        );
+                        vm.dataBarChars[1].push(_.sumBy(tranInDate,function(tran){
+                            return (tran.quantity*tran.rate);
+                        }));
+                        vm.dataBarChars[2].push(_.sumBy(tranInDate,function(tran){
+                            if(tran.commission === 'Not Entered'){
+                                return 0;
+                            }
+                            else{
+                                tran.commission = tran.commission.replace('$','');
+                                return (parseInt(tran.commission));
+                            }
+                        }));
+
+
+
                     });
-                    vm.dataBarChars[0].push(
-                        _.sumBy(tranInDate,function(tran){
-                        return tran.quantity;
-                        })
-                    );
-                    vm.dataBarChars[1].push(_.sumBy(tranInDate,function(tran){
-                        return (tran.quantity*tran.rate);
-                    }));
-                    vm.dataBarChars[2].push(_.sumBy(tranInDate,function(tran){
-                        if(tran.commission === 'Not Entered'){
-                            return 0;
-                        }
-                        else{
-                            tran.commission = tran.commission.replace('$','');
-                            return (parseInt(tran.commission));
-                        }
-                    }));
-
-
-
-                });
-                console.log(vm.dataBarChars);
+                }
+                if(timeDrill === 'year'){
+                    vm.dateLabels = navigation.getYearsInDateRange(minDate,maxDate);
+                }
+                vm.showTradeBarCharts = true;
             }
-            if(timeDrill === 'year'){
-                vm.dateLabels = navigation.getYearsInDateRange(minDate,maxDate);
+            else{
+                vm.showTradeBarCharts = false;
             }
+
+
         }
 
         function filterChanged(){
@@ -164,13 +159,12 @@
                     vm.tranToRemove.push(transaction.tr_transactionID);
                 }
             });
-
-            calculateAnalytics();
-
+            var filteredData = $filter('selectedRows')(vm.allTransactions,vm.tranToRemove,'tr_transactionID');
+            calculateAnalytics(filteredData);
+            timeDrillChanged(vm.timeDrillBy,filteredData);
         }
 
-        function calculateAnalytics(){
-            var filteredData = $filter('selectedRows')(vm.allTransactions,vm.tranToRemove,'tr_transactionID');
+        function calculateAnalytics(filteredData){
             vm.totalVolume = _.sumBy(filteredData, function(tran) {
                 return (tran.quantity * tran.rate);
             });

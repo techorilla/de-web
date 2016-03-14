@@ -77,7 +77,7 @@ a:focus {
 
 /* line 100, ../partials/_theme.scss */
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 /* line 103, ../partials/_theme.scss */
@@ -1228,6 +1228,14 @@ textarea {
 /* line 1056, ../partials/_theme.scss */
 .price + number-only-input input {
   padding-left: 25px;
+}
+
+/* line 1062, ../partials/_theme.scss */
+.chartLegends {
+  left: 0px;
+  width: 100%;
+  text-align: left;
+  font-weight: bolder;
 }
 
 /* line 3, ../partials/_login.scss */

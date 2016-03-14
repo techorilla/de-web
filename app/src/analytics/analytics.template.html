@@ -45,41 +45,29 @@
                 <page-blue-container class="col-xs-12 col-md-12" graph-container="true">
                     <div class="filterHeading2">Trade Analytics</div>
 
-
-                    <div class="form-group col-lg-6 col-xs-12 pull-right">
-                        <div class="col-lg-4 col-xs-12">
-                            <input
-                                   ng-change="vm.optionSelectedChanged('quantity',vm.volumeSelected)"
-                                   type="checkbox" ng-model="vm.quantitySelected"/>
-                            <label class="options">Quantity</label>
-                        </div>
-                        <div class="col-lg-4 col-xs-12">
-                            <input
-                                   ng-change="vm.optionSelectedChanged('volume',vm.volumeSelected)"
-                                   type="checkbox" ng-model="vm.volumeSelected"/>
-                            <label class="options">Volume</label>
-                        </div>
-                        <div class="col-lg-4 col-xs-12">
-                            <input 
-                                   ng-change="vm.optionSelectedChanged('netCommission',vm.netCommissionSelected)"
-                                   type="checkbox" ng-model="vm.netCommissionSelected"/>
-                            <label class="options">Net Commission</label>
-                        </div>
-                    </div>
                     <div class="form-group col-lg-4 col-xs-12">
                         <label>Time Drill</label>
                         <selectize
                                 config="vm.timeDrillConfig"
                                 options='vm.timeDrillOptions'
                                 ng-model="vm.timeDrillBy"
-                                ng-change="vm.timeDrillChanged(vm.timeDrillBy)">
+                                ng-change="vm.timeDrillChanged(vm.timeDrillBy,vm.allTransactions)">
                         </selectize>
                     </div>
-                    <canvas id="bar" class="chart chart-bar"
-                            chart-data="vm.dataBarChars"
-                            chart-legend="true" chart-colours="vm.chartColors"
-                            chart-labels="vm.dateLabels" chart-series="vm.seriesBarCharts">
-                    </canvas>
+                    <!--<canvas id="bar" class="chart chart-bar"-->
+                            <!--ng-if="vm.showTradeBarCharts"-->
+                            <!--chart-data="vm.dataBarChars"-->
+                            <!--chart-legend="false" chart-colours="vm.chartColors"-->
+                            <!--chart-labels="vm.dateLabels" chart-series="vm.seriesBarCharts">-->
+                    <!--</canvas>-->
+                    <charts-legend
+                                   type="bar"
+                                   labels="vm.dateLabels"
+                                   data="vm.dataBarChars"
+                                   colors="vm.chartColors"
+                                   show-chart="vm.showTradeBarCharts"
+                                   series="vm.seriesBarCharts">
+                    </charts-legend>
                 </page-blue-container>
             </div>
         </div>
@@ -91,9 +79,15 @@
             <page-header heading="Sales Analytics" sub-heading="Product" style="margin-left:15px"></page-header>
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
                 <div class="filterHeading2">Volume</div>
-                <canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"
-                        chart-data="vm.productsVolume" chart-labels="vm.products">
-                </canvas>
+                <charts-legend
+                        type="pie"
+                        labels="vm.products"
+                        data="vm.productsVolume"
+                        colors="vm.chartColors">
+                </charts-legend>
+                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+                        <!--chart-data="vm.productsVolume" chart-labels="vm.products">-->
+                <!--</canvas>-->
             </page-blue-container>
 
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
