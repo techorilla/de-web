@@ -13,7 +13,7 @@
         .controller('Analytics', Analytics);
 
     /* @ngInject */
-    function Analytics($scope,navigation,product,tradebook,$filter,appFormats){
+    function Analytics($scope,navigation,product,tradebook,$filter,appFormats, analytics){
         var vm = this;
         init();
 
@@ -55,12 +55,7 @@
             vm.onProductsSelectedChanged = onProductsSelectedChanged;
             vm.onCountrySelectedChanged = onCountrySelectedChanged;
             vm.onTranStatusSelectedChanged = onTranStatusSelectedChanged;
-            vm.timeDrillOptions = [
-                {text:'By Day', value: 'day'},
-                {text:'By Week', value:'week'},
-                {text:'By Month', value:'month'},
-                {text:'By Year', value:'year'}
-            ];
+            vm.timeDrillOptions = analytics.getTimeDrillOptions();
             vm.timeDrillConfig = tradebook.getTimeDrillConfig(vm.timeDrillOptions);
             vm.seriesBarCharts = ['Quantity','Volume','Net Commission'];
 
@@ -113,23 +108,7 @@
                         var tranInDate = _.filter(allTransactions,function(tran){
                             return vm.dateLabels[key] === $filter('date')(tran.transactionDate, appFormats.Date);
                         });
-                        vm.dataBarChars[0].push(
-                            _.sumBy(tranInDate,function(tran){
-                                return tran.quantity;
-                            })
-                        );
-                        vm.dataBarChars[1].push(_.sumBy(tranInDate,function(tran){
-                            return (tran.quantity*tran.rate);
-                        }));
-                        vm.dataBarChars[2].push(_.sumBy(tranInDate,function(tran){
-                            if(tran.commission === 'Not Entered'){
-                                return 0;
-                            }
-                            else{
-                                tran.commission = tran.commission.replace('$','');
-                                return (parseInt(tran.commission));
-                            }
-                        }));
+                        analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
 
 
 
@@ -137,15 +116,39 @@
                 }
                 if(timeDrill === 'year'){
                     vm.dateLabels = navigation.getYearsInDateRange(minDate,maxDate);
+                    vm.dataBarChars = [[],[],[]];
+                    angular.forEach(vm.dateLabels,function(year,key){
+                        var tranInDate = _.filter(allTransactions,function(tran){
+                            return year === ((new Date(tran.transactionDate)).getFullYear());
+                        });
+                        analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
+
+                    });
+
+                }
+                if(timeDrill === 'month'){
+                    vm.dateLabels = navigation.getMonthsInDateRange(minDate,maxDate);
+                    vm.dataBarChars = [[],[],[]];
+                    console.log(vm.dateLabels);
+                    angular.forEach(vm.dateLabels,function(month,key){
+                        var sMonth = new Date(month);
+                        var eMonth = new Date(vm.dateLabels[parseInt(key)+1]);
+                        var tranInDate = _.filter(allTransactions,function(tran){
+                            var tranDate = new Date(tran.transactionDate);
+                            return ((tranDate >= sMonth) && (tranDate < eMonth));
+                        });
+                        vm.dateLabels[key] = navigation.getMonthTitle(sMonth);
+                        analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
+                    });
                 }
                 vm.showTradeBarCharts = true;
             }
             else{
                 vm.showTradeBarCharts = false;
             }
-
-
         }
+
+
 
         function filterChanged(){
             vm.tranToRemove = [];

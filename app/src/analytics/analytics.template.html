@@ -92,15 +92,27 @@
 
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
                 <div class="filterHeading2">Quantity</div>
-                <canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"
-                        chart-data="vm.productsQuantity" chart-labels="vm.products">
-                </canvas>
+                <charts-legend
+                        type="pie"
+                        labels="vm.products"
+                        data="vm.productsQuantity"
+                        colors="vm.chartColors">
+                </charts-legend>
+                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+                        <!--chart-data="vm.productsQuantity" chart-labels="vm.products">-->
+                <!--</canvas>-->
             </page-blue-container>
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
                 <div class="filterHeading2">Net Commission</div>
-                <canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"
-                        chart-data="vm.productsNetCommission" chart-labels="vm.products">
-                </canvas>
+                <charts-legend
+                        type="pie"
+                        labels="vm.products"
+                        data="vm.productsNetCommission"
+                        colors="vm.chartColors">
+                </charts-legend>
+                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+                        <!--chart-data="vm.productsNetCommission" chart-labels="vm.products">-->
+                <!--</canvas>-->
             </page-blue-container>
         </div>
 

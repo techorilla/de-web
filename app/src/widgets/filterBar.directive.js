@@ -57,11 +57,11 @@
                     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                     'This Month': [moment().startOf('month'), moment()],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-                    'This Year': [moment().startOf('year'), moment()]
+                    'This Year': [moment().startOf('year'), moment()],
+                    'Last 1 Year': [moment().subtract(1, 'year'),moment()]
         };
         scope.seperator = ' to ';
         scope.datePickerChanged = function(dateRange){
-            console.log(dateRange);
             scope.onDateChange({dateRange: dateRange});
         };
     }

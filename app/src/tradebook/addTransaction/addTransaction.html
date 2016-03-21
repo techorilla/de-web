@@ -108,12 +108,18 @@
                             <label>Shipment Begin</label>
                             <date-picker
                                     disabled="!vm.editMode"
-                                    date="vm.newTransaction.tr_shipment_start" max-date="" min-date=""></date-picker>
+                                    date="vm.newTransaction.tr_shipment_start"
+                                    max-date=""
+                                    min-date=""></date-picker>
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Shipment End</label>&nbsp;&nbsp;
-                            <input ng-if="vm.editMode" type="checkbox" ng-disabled="vm.newTransaction.tr_shipment_start === null" ng-model="vm.newTransaction.tr_shipment30days">&nbsp;<label  class="font30days"> 30 days</label>
-                            <date-picker disabled="(vm.newTransaction.tr_shipment_start === null) || !vm.editMode"  date="vm.newTransaction.tr_shipment_end" max-date="" min-date="vm.newTransaction.tr_shipment_start"></date-picker>
+                            <input ng-if="vm.editMode" type="checkbox" ng-disabled="vm.newTransaction.tr_shipment_start === null" ng-model="vm.newTransaction.tr_shipment30days">&nbsp;<label  class="font30days" ng-if="vm.editMode"> 30 days</label>
+                            <date-picker disabled="(vm.newTransaction.tr_shipment_start === null) || !vm.editMode"
+                                         date="vm.newTransaction.tr_shipment_end"
+                                         max-date=""
+                                         min-date="vm.newTransaction.tr_shipment_start">
+                            </date-picker>
                         </div>
                         <div class="form-group col-lg-4 col-xs-12">
                             <label>File Id</label>

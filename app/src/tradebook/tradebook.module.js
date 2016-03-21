@@ -64,6 +64,11 @@
                     bpConfig: function(tradebook){
                         return tradebook.getBpConfig();
                     },
+                    brokersList: function(tabFilter){
+                        return tabFilter.getDropDownBP("Broker").then(function(res){
+                            return res.data.data;
+                        });
+                    },
                     completeTransaction: function(tradebook,crud,$stateParams){
                         if($stateParams.tran === 'new'){
                             return null

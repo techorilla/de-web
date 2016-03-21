@@ -1,5 +1,5 @@
 <div>
-    <canvas id="bar" class="chart chart-bar"
+    <canvas id="bar" class="chart chart-bar" style="overflow-x: scroll"
             ng-if="showCh && (type==='bar')"
             chart-data="dataClone"
             chart-legend="false" chart-colours="colors"
@@ -26,11 +26,11 @@
         <ul class="line-legend">
             <li ng-repeat="item in labels track by $index"
                 ng-click="show[$index] = !show[$index];"
-                class="cursor-pointer chartLegends">
-            <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : 'silver')}"
+                class="chartLegends">
+            <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : colors[$index])}"
                     title="Show/hide corresponding line on chart">
             </span>
-                {{ item + ' (' + data[$index] + ' )' }}
+                {{ item + ' (' + data[$index] + ')' }}
             </li>
         </ul>
     </div>

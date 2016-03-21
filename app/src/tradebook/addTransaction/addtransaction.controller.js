@@ -13,7 +13,7 @@
         .controller('AddTransaction', AddTransaction);
 
     /* @ngInject */
-    function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, originConfig,toastr, $filter, completeTransaction){
+    function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, originConfig,toastr, appEvents, completeTransaction){
         var vm = this;
         init();
 
@@ -60,8 +60,8 @@
             else{
                 tradebook.transactionBasicCrud(vm.newTransaction,crud.UPDATE).then(function(response){
                     if(response.data.success){
+                        $scope.$broadcast(appEvents.TransactionBasicChanged);
                         vm.newTransaction.tr_transactionID = response.data.transactionId;
-                        toastr.success('Transaction updated', 'Success');
                         vm.editMode=false;
                     }
                 },function(err){

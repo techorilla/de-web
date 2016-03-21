@@ -15,10 +15,10 @@
   /* @ngInject */
   function navigation(toastr, moment, appFormats){
         var isSideBarOpen = false;
-        var currentUser = {
-            'name': 'Immad Imtiaz',
-            'id': 1245
-        };
+        var months = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct', 'Nov', 'Dec'
+        ];
+
 		return {
             invertSideBarState: invertSideBarState,
             sideBarStatus: sideBarStatus,
@@ -29,7 +29,9 @@
             successMessage: successMessage,
             initialDateRange: initialDateRange,
             getDateRangeArray: getDateRangeArray,
-            getYearsInDateRange: getYearsInDateRange
+            getYearsInDateRange: getYearsInDateRange,
+            getMonthsInDateRange: getMonthsInDateRange,
+            getMonthTitle: getMonthTitle
 		};
 
 		////////////////////
@@ -75,6 +77,8 @@
             toastr.error(data,text);
         }
 
+
+
         function initialDateRange(){
             var datePicker = {};
             datePicker.startDate = moment().startOf('month');
@@ -89,14 +93,31 @@
         function getYearsInDateRange(startDate,endDate){
             var currentYear = parseInt(new Date(startDate).getFullYear());
             var endYear = parseInt(new Date(endDate).getFullYear());
-            console.log(currentYear);
-            console.log(endYear);
             var years = [];
             while(currentYear <= endYear){
                 years.push(currentYear);
                 currentYear++;
             }
             return years;
+        }
+
+        function getMonthTitle(date){
+            return months[date.getMonth()]+', '+date.getFullYear();
+        }
+
+        function getMonthsInDateRange(startDate,endDate){
+            console.log(startDate);
+            console.log(endDate);
+            var sDate = new Date(startDate);
+            var eDate = new Date(endDate);
+            sDate = new Date( sDate.getFullYear()+'-'+sDate.getMonth());
+            eDate = new Date( eDate.getFullYear()+'-'+eDate.getMonth());
+            var monthList = [];
+            while(sDate<=eDate){
+                monthList.push(sDate);
+                sDate = new Date(sDate.setMonth(sDate.getMonth()+1));
+            }
+            return monthList;
         }
 
         function getDateRangeArray(startDate, endDate){

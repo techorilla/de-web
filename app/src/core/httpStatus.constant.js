@@ -139,10 +139,15 @@
      DBDate:'yyyy-MM-dd HH:mm:ss'
   };
 
+  var appEvents = {
+     TransactionBasicChanged:  'TransactionBasicChanged'
+  };
+
   angular
     .module('app.core')
     .constant('httpStatus', httpStatus)
     .constant('crud',crud)
-    .constant('appFormats',appFormats);
+    .constant('appFormats',appFormats)
+    .constant('appEvents', appEvents);
 
 }());
