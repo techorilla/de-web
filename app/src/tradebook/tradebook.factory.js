@@ -44,7 +44,12 @@
                   }
               }
           };
+          var transactionBasic = {};
 		return {
+
+            setTransactionBasic: setTransactionBasic,
+            getTransactionBasic: getTransactionBasic,
+
             getCrudRequest: getCrudRequest,
 			testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
@@ -89,7 +94,8 @@
             transactionSecondaryCrud: transactionSecondaryCrud,
             transactionStatusCrud: transactionStatusCrud,
             transactionContractCrud: transactionContractCrud,
-            transactionDocumentCrud: transactionDocumentCrud
+            transactionDocumentCrud: transactionDocumentCrud,
+            calculateCommission: calculateCommission
 
 		};
 
@@ -107,6 +113,35 @@
      * </pre>
      * @param {int} entity id
      */
+        function setTransactionBasic(transaction){
+            this.transactionBasic = transaction;
+        }
+
+        function getTransactionBasic(){
+            return this.transactionBasic;
+        }
+
+      function calculateCommission(commissionDetails,transactionBasic){
+          var type = commissionDetails.tr_ownCommissionType;
+          var price = transactionBasic.tr_price;
+          var quantity = transactionBasic.tr_quantity;
+          var comm =  commissionDetails.tr_own_Commission;
+          var commIntoPrice = 0;
+          var brokerCommType = commissionDetails.tr_buyerBroker_comm_type;
+          var brokerIntoPrice = 0;
+          var bComm = commissionDetails.tr_buyerBroker_comm;
+          if(type !== ''){
+              commIntoPrice = (type === 'Fixed') ? (comm) : (comm*0.01)*price;
+          }
+          if(brokerCommType!==''){
+              brokerIntoPrice = (brokerCommType==='Fixed') ? bComm : (bComm*100)*price;
+          }
+          var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + commissionDetails.tr_difference )- commissionDetails.tr_discount);
+
+          commissionDetails.tr_netCommission = tr_netCommission * quantity;
+      }
+
+
         function getNewTransaction(tranID){
             return {
                 tr_transactionID: (tranID) ? tranID : null,
@@ -140,7 +175,6 @@
                 persist: false,
                 render: {
                     item: function(item, escape) {
-                        console.log(item);
                         var label = item.name;
                         var caption = item.origin;
                         var pContact = (item.quality === null)? 'No Quality Tags' : item.quality;

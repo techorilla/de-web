@@ -23,12 +23,13 @@
         </div>
     </div>
     <div ng-if="vm.showCommission" class="form-group col-md-4">
-        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_brokerInvolved"/>
+        <input ng-disabled="!vm.editMode" ng-change="vm.brokerInvolvedChanged(vm.commissionDetails.tr_brokerInvolved)" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_brokerInvolved"/>
         <label>Broker Involved</label>
     </div>
     <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4">
 
-        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_sellerBroker"/>
+        <input ng-disabled="!vm.editMode" ng-change="vm.sellerBrokerChanged(vm.commissionDetails.tr_sellerBroker)" name="contractType" type="checkbox"
+               ng-model="vm.commissionDetails.tr_sellerBroker"/>
         <label>Seller Broker</label>
         <selectize ng-if="vm.commissionDetails.tr_sellerBroker" ng-disabled="!vm.editMode"
                    placeholder='Please enter broker involved' config="vm.bpConfig"
@@ -36,7 +37,9 @@
     </div>
     <div ng-if="vm.showCommission && vm.commissionDetails.tr_brokerInvolved" class="form-group col-md-4">
 
-        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox" ng-model="vm.commissionDetails.tr_buyerBroker"/>
+        <input ng-disabled="!vm.editMode" name="contractType" type="checkbox"
+               ng-change="vm.buyerBrokerChanged(vm.commissionDetails.tr_buyerBroker)"
+               ng-model="vm.commissionDetails.tr_buyerBroker"/>
         <label>Buyer Broker</label>
         <selectize ng-if="vm.commissionDetails.tr_buyerBroker" ng-disabled="!vm.editMode "
                    placeholder='Please enter broker involved' config="vm.bpConfig"

@@ -129,18 +129,42 @@
                 if(timeDrill === 'month'){
                     vm.dateLabels = navigation.getMonthsInDateRange(minDate,maxDate);
                     vm.dataBarChars = [[],[],[]];
-                    console.log(vm.dateLabels);
                     angular.forEach(vm.dateLabels,function(month,key){
-                        var sMonth = new Date(month);
-                        var eMonth = new Date(vm.dateLabels[parseInt(key)+1]);
-                        var tranInDate = _.filter(allTransactions,function(tran){
-                            var tranDate = new Date(tran.transactionDate);
-                            return ((tranDate >= sMonth) && (tranDate < eMonth));
-                        });
-                        vm.dateLabels[key] = navigation.getMonthTitle(sMonth);
-                        analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
+                        if(key <= vm.dateLabels.length-2){
+                            var sMonth = new Date(month);
+                            var eMonth = new Date(vm.dateLabels[parseInt(key)+1]);
+                            var tranInDate = _.filter(allTransactions,function(tran){
+                                var tranDate = new Date(tran.transactionDate);
+                                return ((tranDate >= sMonth) && (tranDate < eMonth));
+                            });
+                            vm.dateLabels[key] = navigation.getMonthTitle(sMonth);
+                            analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
+                        }
+
                     });
+                    vm.dateLabels.splice(vm.dateLabels.length-1,1);
                 }
+                if(timeDrill === 'week'){
+                    vm.dateLabels = navigation.getWeeksInDateRange(minDate,maxDate);
+                    vm.dataBarChars = [[],[],[]];
+                    angular.forEach(vm.dateLabels,function(week,key){
+                        if(key <= vm.dateLabels.length-2){
+                            var sWeek = new Date(week);
+                            var eWeek = new Date(vm.dateLabels[parseInt(key)+1]);
+                            var tranInDate = _.filter(allTransactions,function(tran){
+                                var tranDate = new Date(tran.transactionDate);
+                                tranDate = new Date( tranDate.getFullYear()+'-'+(tranDate.getMonth()+1)+'-'+tranDate.getDate());
+                                return ((tranDate >= sWeek) && (tranDate <= eWeek));
+                            });
+                            vm.dateLabels[key] = navigation.getWeekTitle(sWeek,eWeek);
+                            analytics.getBarChartValuesOnTimeDrillChanged(vm.dataBarChars,tranInDate);
+                        }
+
+                    });
+                    vm.dateLabels.splice(vm.dateLabels.length-1,1);
+
+                }
+
                 vm.showTradeBarCharts = true;
             }
             else{

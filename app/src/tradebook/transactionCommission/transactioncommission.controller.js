@@ -14,7 +14,7 @@
 
     /* @ngInject */
     function TransactionCommission(tradebook, brokersList,$rootScope, $stateParams, toastr,crud, bpConfig,staticDropDown, $scope,appEvents){
-        var tc = this;
+        var vm = this;
         init();
 
         /////////////////////
@@ -29,99 +29,93 @@
          */
 
         function init(){
-            tc.bpConfig = bpConfig;
-            tc.initializeCommission = initializeCommission;
-            tc.initializeCommission();
-            tc.brokersList = brokersList;
-            tc.commissionTypeConfig = tradebook.getCommissionTypeConfig(staticDropDown.commissionType);
-            tc.showCommission = false;
-            tc.saveCommission = saveCommission;
-            tc.editCommission = editCommission;
-            tc.commissionDetails.tr_transactionID = $stateParams.tran;
-            tc.editMode = true;
+            vm.bpConfig = bpConfig;
+            vm.initializeCommission = initializeCommission;
+            vm.initializeCommission();
+            vm.brokersList = brokersList;
+            vm.commissionTypeConfig = tradebook.getCommissionTypeConfig(staticDropDown.commissionType);
+            vm.showCommission = false;
+            vm.saveCommission = saveCommission;
+            vm.editCommission = editCommission;
+            vm.commissionDetails.tr_transactionID = $stateParams.tran;
+            vm.sellerBrokerChanged = sellerBrokerChanged;
+            vm.buyerBrokerChanged = buyerBrokerChanged;
+            vm.brokerInvolvedChanged = brokerInvolvedChanged;
+            vm.editMode = true;
             $scope.$on(appEvents.TransactionBasicChanged,function(){
-                initializeCommission();
+                tradebook.calculateCommission(vm.commissionDetails,vm.basicTransaction);
+                saveCommission(true);
             });
 
-
-            $scope.$watch('tc.commissionDetails', function(newVal, oldVal){
-
-                if((newVal !== oldVal) && tc.editMode){
-                    var type = newVal.tr_ownCommissionType;
-                    var price = newVal.price;
-                    var quantity = newVal.quantity;
-                    var comm =  newVal.tr_own_Commission;
-                    var commIntoPrice = 0;
-                    var brokerCommType = newVal.tr_buyerBroker_comm_type;
-                    var brokerIntoPrice = 0;
-                    var bComm = newVal.tr_buyerBroker_comm;
-                    if(type !== ''){
-                        if(type === 'Fixed'){
-                            commIntoPrice = (comm);
-                        }
-                        else if(type==='Percentage'){
-                            commIntoPrice = (comm/100)*price;
-                        }
-                    }
-                    if(brokerCommType!==''){
-                        if(brokerCommType==='Fixed'){
-                            brokerIntoPrice = bComm;
-                        }
-                        else if(brokerCommType==='Percentage'){
-                            brokerIntoPrice = (bComm/100)*price;
-                        }
-                    }
-
-                    var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + newVal.tr_difference )- newVal.tr_discount);
-
-                    tc.commissionDetails.tr_netCommission = tr_netCommission * quantity;
+            $scope.$watch('vm.commissionDetails', function(newVal, oldVal){
+                if((newVal !== oldVal) && vm.editMode){
+                    tradebook.calculateCommission(newVal,vm.basicTransaction);
                 }
 
             }, true);
 
         }
 
+        function brokerInvolvedChanged(val){
+            if(!val){
+                vm.commissionDetails.tr_sellerBroker = false;
+                vm.commissionDetails.tr_buyerBroker = false;
+
+                sellerBrokerChanged(false);
+                buyerBrokerChanged(false);
+            }
+        }
+
+        function sellerBrokerChanged(val){
+            if(!val){
+                vm.commissionDetails.tr_sellerBrokerID = null;
+            }
+        }
+
+        function buyerBrokerChanged(val){
+            if(!val){
+                vm.commissionDetails.tr_buyerBrokerID = null;
+                vm.commissionDetails.tr_buyerBroker_comm = 0;
+            }
+        }
+
         function initializeCommission(){
-            tc.tran = $stateParams.tran;
-            tc.commissionDetails = tradebook.getNewTransactionCommission();
-            console.log($scope.vm);
-            tc.commissionDetails.price = $scope.vm.newTransaction.tr_price;
-            tc.commissionDetails.quantity = $scope.vm.newTransaction.tr_quantity;
+            vm.tran = $stateParams.tran;
+            vm.commissionDetails = tradebook.getNewTransactionCommission();
             tradebook.getSingleTransactionCommission($stateParams.tran).then(
                 function(res){
                     if(res.data.success){
                         if(res.data.commission.length !== 0){
-                            tc.editMode = false;
-                            tc.commissionDetails = res.data.commission[0];
+                            vm.editMode = false;
+                            vm.commissionDetails = res.data.commission[0];
                         }
                         else{
-                            tc.commissionDetails.tr_transactionID = $stateParams.tran;
+                            vm.commissionDetails.tr_transactionID = $stateParams.tran;
                         }
+                        vm.basicTransaction = tradebook.getTransactionBasic();
                     }
                 }
             );
         }
 
-        function saveCommission(){
+        function saveCommission(isUpdate){
             if($stateParams.tran !== 'new'){
-                var op = (tc.commissionDetails.tr_createdBy) ? true : false;
+                var op = (vm.commissionDetails.tr_createdBy || isUpdate) ? true : false;
 
                 if(!op){
-                    tradebook.transactionCommissionCrud(tc.commissionDetails,crud.CREATE).then(function(res){
+                    tradebook.transactionCommissionCrud(vm.commissionDetails,crud.CREATE).then(function(res){
                         if(res.data.success){
-                            tc.editMode = false;
-                            tc.commissionDetails.tr_createdBy = 'Created';
+                            vm.editMode = false;
+                            vm.commissionDetails.tr_createdBy = 'Created';
                             toastr.success('','Transaction commission added.')
 
                         }
                     });
                 }
                 else{
-                    tradebook.transactionCommissionCrud(tc.commissionDetails,crud.UPDATE).then(function(res){
+                    tradebook.transactionCommissionCrud(vm.commissionDetails,crud.UPDATE).then(function(res){
                         if(res.data.success){
-                            tc.editMode = false;
-                            toastr.success('','Transaction commission updated.')
-
+                            vm.editMode = false;
                         }
                     });
                 }
@@ -134,8 +128,8 @@
         }
 
         function editCommission(){
-            tc.editMode = true;
-            tc.commTemp= angular.copy(tc.newTransaction);
+            vm.editMode = true;
+            vm.commTemp= angular.copy(vm.newTransaction);
         }
 
 

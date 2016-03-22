@@ -54,15 +54,17 @@
                         toastr.success('New Transaction with File No.' + vm.newTransaction.tr_fileID + ' has been created', 'Added');
                         $stateParams.tran = response.data.transactionId;
                         vm.tran =  response.data.transactionId;
+                        tradebook.setTransactionBasic(vm.newTransaction);
                     }
                 });
             }
             else{
                 tradebook.transactionBasicCrud(vm.newTransaction,crud.UPDATE).then(function(response){
                     if(response.data.success){
-                        $scope.$broadcast(appEvents.TransactionBasicChanged);
+                        tradebook.setTransactionBasic(vm.newTransaction);
                         vm.newTransaction.tr_transactionID = response.data.transactionId;
                         vm.editMode=false;
+                        $scope.$broadcast(appEvents.TransactionBasicChanged);
                     }
                 },function(err){
                     vm.editMode=false;
@@ -87,6 +89,7 @@
             }
             else{
                 vm.newTransaction = completeTransaction.basic[0];
+                tradebook.setTransactionBasic(vm.newTransaction);
                 vm.subheading = 'File No.';
                 vm.heading = vm.newTransaction.tr_fileID;
                 vm.editMode = false;

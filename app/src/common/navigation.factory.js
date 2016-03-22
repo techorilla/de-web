@@ -31,7 +31,9 @@
             getDateRangeArray: getDateRangeArray,
             getYearsInDateRange: getYearsInDateRange,
             getMonthsInDateRange: getMonthsInDateRange,
-            getMonthTitle: getMonthTitle
+            getWeeksInDateRange: getWeeksInDateRange,
+            getMonthTitle: getMonthTitle,
+            getWeekTitle: getWeekTitle
 		};
 
 		////////////////////
@@ -105,17 +107,49 @@
             return months[date.getMonth()]+', '+date.getFullYear();
         }
 
-        function getMonthsInDateRange(startDate,endDate){
-            console.log(startDate);
-            console.log(endDate);
+        function getWeeksInDateRange(startDate,endDate){
             var sDate = new Date(startDate);
             var eDate = new Date(endDate);
-            sDate = new Date( sDate.getFullYear()+'-'+sDate.getMonth());
-            eDate = new Date( eDate.getFullYear()+'-'+eDate.getMonth());
+            sDate = new Date( sDate.getFullYear()+'-'+ (sDate.getMonth()+1)+'-'+sDate.getDate());
+            eDate = new Date( eDate.getFullYear()+'-'+(eDate.getMonth()+1)+'-'+eDate.getDate());
+            var weekList = [];
+            while(sDate<eDate){
+                var temp = new Date(sDate);
+                weekList.push(temp);
+                var dayToAdd = (sDate.getDay() === 0) ? 7 : sDate.getDay()+1;
+                sDate.setDate(sDate.getDate()+dayToAdd);
+            }
+            weekList.push(eDate);
+            return weekList;
+
+        }
+
+        function getWeekTitle(weekStart, weekEnd){
+            return  weekStart.getDate()+' '+months[weekStart.getMonth()]+', '+weekStart.getFullYear() + ' - '+ weekEnd.getDate()+' '+months[weekEnd.getMonth()]+', '+weekEnd.getFullYear();
+        }
+
+
+
+        function getMonthsInDateRange(startDate,endDate){
+            var sDate = new Date(startDate);
+            var eDate = new Date(endDate);
+            sDate = new Date( sDate.getFullYear()+'-'+ (sDate.getMonth()+1));
+            eDate = new Date( eDate.getFullYear()+'-'+(eDate.getMonth()+1));
             var monthList = [];
-            while(sDate<=eDate){
-                monthList.push(sDate);
+            if(sDate.toString() === eDate.toString()){
+                var temp = new Date(sDate);
+                monthList.push(temp);
+                eDate = new Date(sDate.setMonth(sDate.getMonth()+1));
+                monthList.push(eDate);
+            }
+            else{
+                while(sDate<=eDate){
+                    var temp = new Date(sDate);
+                    monthList.push(temp);
+                    sDate = new Date(sDate.setMonth(sDate.getMonth()+1));
+                }
                 sDate = new Date(sDate.setMonth(sDate.getMonth()+1));
+                monthList.push(sDate);
             }
             return monthList;
         }
