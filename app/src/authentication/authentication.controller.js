@@ -13,7 +13,7 @@
 		.controller('Authentication', Authentication);
 
   /* @ngInject */
-	function Authentication(authentication,$state){
+	function Authentication(authentication,$state,localStorageService){
 		var vm = this;
 
 		vm.testFunction = testFunction;
@@ -27,7 +27,14 @@
             authentication.userLogin(vm.email, vm.pass,function (response) {
                 if (response.success) {
                     authentication.SetCredentials(vm.email, vm.pass, response.userId);
-                    $state.go('shell.dashboard');
+                    var lastPage = localStorageService.get('lastState');
+                    if(lastPage){
+                        $state.go(lastPage.stateOnLogin,lastPage.stateParamsOnLogin);
+                    }
+                    else{
+                        $state.go('shell.dashboard');
+                    }
+
                 } else {
                     vm.message = response.message;
                     vm.hideLogin = true;

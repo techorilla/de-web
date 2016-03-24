@@ -29,9 +29,10 @@
       //do some title setting
       $rootScope.pageTitle = toState.title || 'Doni Enterprises';
       fromState.wentTo = toState.name;
+      toState.params = toParams;
       if(toState.wentTo !== fromState.name){
         toState.prevState = fromState.name;
-        toState.prevParam = fromState.params;
+        toState.prevParam = fromParams;
       }
     });
   }

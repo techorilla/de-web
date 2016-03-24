@@ -77,8 +77,13 @@
 
                 service.userLogOut = function(){
                     this.user = {};
-                    localStorageService.clearAll();
+                    localStorageService.remove('user');
                     service.ClearCredentials();
+                    var lastState = {
+                        stateOnLogin: $state.current.name,
+                        stateParamsOnLogin: $state.params
+                    };
+                    localStorageService.set('lastState',lastState);
                     $state.go('login');
                 };
 
