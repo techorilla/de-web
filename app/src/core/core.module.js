@@ -30,6 +30,7 @@
     'rzModule',
     'ngSanitize',
     'angular-click-outside',
+    'offClick',
     'ngSanitize',
     'ngCsv',
     'ngFileUpload',

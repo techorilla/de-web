@@ -53,6 +53,7 @@
                 scope.showOptions = !scope.showOptions;
             };
             scope.closeFilter = function(){
+
                 if(scope.showOptions){
                     scope.showOptions = false;
                     scope.onSelectedValuesChanged({selectedList:scope.selectedValues});

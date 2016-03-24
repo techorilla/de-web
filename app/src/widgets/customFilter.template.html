@@ -1,12 +1,12 @@
-<div class="col-sm-3" >
+<div class="col-sm-3" off-click="closeFilter();">
   <div class="dg-filterDropdown">
-        <div class="dg-filterDropdownField" ng-click="invertShowOptions()">
+        <div class="dg-filterDropdownField" ng-click="invertShowOptions();">
             <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
         </div>
-        <div class="dg-filterDropdownMenu" id="main-menu{{title}}" click-outside="closeFilter()"  ng-show="showOptions">
+        <div class="dg-filterDropdownMenu" id="main-menu{{title}}" ng-show="showOptions">
             <ul class="dg-head">
                 <li>
-                    <input type="checkbox" ng-change="onSelectAll(selectAll)" ng-model="selectAll">
+                    <input type="checkbox"  ng-change="onSelectAll(selectAll)" ng-model="selectAll">
                     <span class="dg-value">
                         <input ng-model="textFilter" type="text" class="form-control">
                     </span>
