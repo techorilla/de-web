@@ -13,7 +13,7 @@
 		.controller('AddProduct', AddProduct);
 
   /* @ngInject */
-	function AddProduct($scope, originConfig, productInfo, $state, navigation, product, toastr, $stateParams, modalFactory){
+	function AddProduct($scope, originConfig, productInfo, $state, routing, product, toastr, $stateParams, modalFactory){
 		var vm = this;
         init();
         vm.addProduct = addProduct;
@@ -61,6 +61,7 @@
                         state: 'shell.products.viewProduct.edit({id:' + vm.newProduct.id + '})'
                     }
                 ];
+                routing.addRecentlyViewItems(vm.newProduct.name);
             }
             else {
                 vm.viewMode = false;
@@ -70,6 +71,7 @@
 
         else if(vm.addMode){
             vm.newProduct = new NewProduct();
+            routing.addRecentlyViewItems('Add Product');
         }
 
 		}

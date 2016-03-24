@@ -33,12 +33,18 @@
                     on-date-change="vm.getProductPricesByDateRange(dateRange)">
             </filter-bar>
             <page-blue-container class="tabs-panel" graph-container="true">
-
-                <canvas id="line" class="chart chart-line" chart-data="vm.priceDetailsArray"
-                        chart-labels="vm.dateRangeArray" chart-legend="true" chart-series="vm.products"
-                        chart-click="onClick"
-                        chart-colours="vm.chartColors">
-                </canvas>
+                <charts-legend
+                        type="line"
+                        labels="vm.dateRangeArray"
+                        data="vm.priceDetailsArray"
+                        colors="vm.chartColors"
+                        series="vm.products">
+                </charts-legend>
+                <!--<canvas id="line" class="chart chart-line" chart-data="vm.priceDetailsArray"-->
+                        <!--chart-labels="vm.dateRangeArray" chart-legend="true" chart-series="vm.products"-->
+                        <!--chart-click="onClick"-->
+                        <!--chart-colours="vm.chartColors">-->
+                <!--</canvas>-->
             </page-blue-container>
         </div>
 

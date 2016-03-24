@@ -18,10 +18,11 @@
     .directive('sideBar', sideBar);
 
   /* @ngInject */
-  function sideBar(tradebook){
+  function sideBar(tradebook,routing,$state){
     var directive = {
           scope: {
-              isOpen: '='
+              isOpen: '=',
+              onClickOutside:'&'
           },
           link: link,
           restrict: 'E',
@@ -31,11 +32,14 @@
     return directive;
     /////////////////////
     function link(scope, elem, attrs){
+        scope.closeSideBar = function(){
+            scope.onClickOutside();
+        };
         scope.searchTransactionOptions = [
             {val: 'tr_fileID', text:'File ID'},
-            {val: 'tr_contractID', text:'Contract ID'},
-            {val: 'tr_date', text:'Transaction Date'}
+            {val: 'tr_contractID', text:'Contract ID'}
         ];
+        scope.recentItems = routing.getRecentlyViewedItems();
         scope.parameter='';
         scope.inputText='';
         scope.inputDate=null;
@@ -43,8 +47,15 @@
         scope.notFound = false;
         scope.searchPlaceholder = {
             tr_fileID: 'Enter File Id',
-            tr_contractID: 'Enter Contract Id',
-            tr_date: 'Enter Date (dd/mm/yyyy)'
+            tr_contractID: 'Enter Contract Id'
+        };
+
+        scope.clearRecentItems = function(){
+            routing.clearRecentItems();
+        };
+
+        scope.goToItem = function(item){
+            $state.go(item.pageStateName,item.pageStateParams);
         };
 
         scope.onSearchTransaction = function(){

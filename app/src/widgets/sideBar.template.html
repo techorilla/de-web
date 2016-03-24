@@ -1,4 +1,4 @@
-<div class="dg-sideBarWrapper" ng-class="{'close': !isOpen}">
+<div class="dg-sideBarWrapper" ng-class="{'close': !isOpen}" off-click="closeSideBar();" off-click-filter="'#sideBarButton'">
     <div class="dg-sBWidget">
         <div class="dg-sBWidgetHeader">
             <!--<a class="dg-sBWidgetHeaderLink" href="#">Advanced Search&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></a>-->
@@ -35,17 +35,12 @@
 
     <div class="dg-sBWidget">
         <div class="dg-sBWidgetHeader">
-            <div class="dg-sBWidgetTitle">Recent Transaction</div>
+            <div class="dg-sBWidgetTitle">Recent Transaction <i ng-click="clearRecentItems()" class="fa fa-times-circle-o pull-right clear"></i></div>
         </div>
         <div class="dg-sbWidgetBody">
             <ul class="dg-sideBarListNav">
-                <li><a href="#">Edge Emergency Generator</a></li>
-                <li><a href="#">Jason Venable</a></li>
-                <li><a href="#">Edge Emergency Generator</a></li>
-                <li><a href="#">Jason Venabl</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">DemoSite Guest User</a></li>
-                <li><a href="#">Edge Emergency Generator</a></li>
+                <li ng-repeat="item in recentItems | uniqueByAttribute:'pageTitle'"><a ng-click="goToItem(item)" ng-bind-html="item.pageTitle"></a></li>
+                <li ng-if="recentItems.length === 0"><a>No recent Items</a></li>
             </ul>
         </div>
     </div>

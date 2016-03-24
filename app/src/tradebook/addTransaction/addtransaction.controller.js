@@ -13,7 +13,7 @@
         .controller('AddTransaction', AddTransaction);
 
     /* @ngInject */
-    function AddTransaction(tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, originConfig,toastr, appEvents, completeTransaction){
+    function AddTransaction(routing,navigation, tradebook, staticDropDown,modalFactory, crud, $state,$stateParams, $scope,tabFilter,sellersList,buyersList, bpConfig, product, originConfig,toastr, appEvents, completeTransaction){
         var vm = this;
         init();
 
@@ -86,6 +86,7 @@
                 vm.heading = 'Transaction';
                 vm.subheading = 'New';
                 vm.editMode = true;
+                routing.addRecentlyViewItems('Add New Transaction');
             }
             else{
                 vm.newTransaction = completeTransaction.basic[0];
@@ -93,6 +94,7 @@
                 vm.subheading = 'File No.';
                 vm.heading = vm.newTransaction.tr_fileID;
                 vm.editMode = false;
+                routing.addRecentlyViewItems(vm.newTransaction.tr_fileID+'  ( '+navigation.filterDate(vm.newTransaction.tr_date)+' )');
             }
 
 

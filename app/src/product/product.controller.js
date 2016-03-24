@@ -13,7 +13,7 @@
 		.controller('Product', Product);
 
   /* @ngInject */
-	function Product(allProducts,product, toastr,appFormats ){
+	function Product(allProducts,product, toastr,appFormats,routing,$state ){
 		var vm = this;
         init();
 
@@ -28,6 +28,7 @@
      * My Description rules
      */
     function init(){
+            routing.addRecentlyViewItems('All Products' , $state.current.name, $state.params);
             vm.orderByReverse = false;
             vm.searchProduct = '';
             vm.allProducts = {};

@@ -13,7 +13,7 @@
 		.controller('BusinessPartner', BusinessPartner);
 
   /* @ngInject */
-	function BusinessPartner(businessPartner,toastr,crud){
+	function BusinessPartner(businessPartner,routing,crud){
 		var vm = this;
         init();
 
@@ -28,7 +28,7 @@
      * My Description rules
      */
     function init(){
-
+            routing.addRecentlyViewItems('Business Partner Directory');
             vm.selectedBPTypes = [];
             vm.selectedOrigin = [];
             vm.allBusinessPartner = {};

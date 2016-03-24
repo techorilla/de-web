@@ -13,7 +13,7 @@
 		.controller('BusinessPartnerInfo', BusinessPartnerInfo);
 
   /* @ngInject */
-	function BusinessPartnerInfo(modalFactory, originConfig, businessPartner, $state,toastr, bp, crud){
+	function BusinessPartnerInfo(routing,modalFactory, originConfig, businessPartner, $state,toastr, bp, crud){
 		var vm = this;
         init();
         vm.addContactPerson = addContactPerson;
@@ -64,6 +64,7 @@
      * My Description rules
      */
     function init(){
+
         vm.businessPartner = {};
         vm.singleConfig = originConfig;
 
@@ -77,6 +78,7 @@
         vm.saveBankDetails = saveBankDetails;
 
         vm.businessPartner = bp;
+        routing.addRecentlyViewItems(vm.businessPartner.gen[0].bp_Name);
         vm.showContactForm = false;
         vm.showContactPersonForm = false;
         vm.showBankDetailForm = false;

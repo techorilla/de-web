@@ -11,6 +11,7 @@
     angular.module('app.core')
         .filter('selectFilter', selectFilter)
         .filter('selectedRows', selectedRows)
+        .filter('uniqueByAttribute', uniqueByAttribute)
         .filter('range', range);
 
     function selectFilter() {
@@ -25,6 +26,12 @@
                 });
 
             };
+    }
+
+    function uniqueByAttribute(){
+        return function(items,attribute){
+            return _.uniqBy(items, attribute );
+        }
     }
 
     function selectedRows(){

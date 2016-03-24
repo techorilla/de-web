@@ -13,7 +13,7 @@
 		.factory('navigation', navigation);
 
   /* @ngInject */
-  function navigation(toastr, moment, appFormats){
+  function navigation(toastr, moment, appFormats, localStorageService, $filter){
         var isSideBarOpen = false;
         var months = [
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct', 'Nov', 'Dec'
@@ -33,7 +33,8 @@
             getMonthsInDateRange: getMonthsInDateRange,
             getWeeksInDateRange: getWeeksInDateRange,
             getMonthTitle: getMonthTitle,
-            getWeekTitle: getWeekTitle
+            getWeekTitle: getWeekTitle,
+            filterDate: filterDate
 		};
 
 		////////////////////
@@ -56,10 +57,24 @@
         function getTime(){
             return (new Date()).getTime();
         }
-        function invertSideBarState(){
+
+        function filterDate(datetime){
+            return $filter('date')(datetime, appFormats.Date);
+        }
+
+        function invertSideBarState(flag){
+            
             isSideBarOpen = !isSideBarOpen;
+            localStorageService.set('sideBarStatus', {flag:isSideBarOpen});
         }
         function sideBarStatus(){
+            var sideBarStatus = localStorageService.get('sideBarStatus');
+            if(sideBarStatus){
+                isSideBarOpen = sideBarStatus.flag;
+            }
+            else{
+                localStorageService.set('sideBarStatus', {flag:isSideBarOpen});
+            }
             return isSideBarOpen;
         }
 

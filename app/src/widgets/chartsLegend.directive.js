@@ -39,13 +39,16 @@
 
         function link(scope, elem, attrs){
             scope.show=[];
-            scope.$watch('data',function(newVal){
+            scope.$watch('data',function(newVal,oldVal){
                 scope.showCh = false;
                 scope.dataClone = angular.copy(newVal);
                 scope.showCh = scope.showChart;
-                angular.forEach(scope.dataClone,function(){
-                    scope.show.push(true);
-                });
+                if(!oldVal){
+                    angular.forEach(scope.dataClone,function(){
+                        scope.show.push(true);
+                    });
+                }
+                scope.onHideSeries();
             });
 
             scope.$watch('showChart',function(newVal){
@@ -58,11 +61,9 @@
                 scope.showCh = false;
                 var output = [];
                 angular.copy(scope.data, output);
-
-
                     for(var i=0; i<output.length; i++){
                         if (scope.show[i] === false){
-                            if(scope.type === 'bar'){
+                            if(scope.type === 'bar' || scope.type === 'line'){
                                 for(var j=0; j<output[i].length; j++){
                                     output[i][j] = null;
                                 }
@@ -72,9 +73,6 @@
                             }
                         }
                     }
-
-
-
                 scope.dataClone = output;
                 scope.showCh = true;
             };

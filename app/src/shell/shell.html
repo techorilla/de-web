@@ -5,11 +5,14 @@
 
 <div class="dg-mainContentWrapper"> 
     <div class="dg-sideBarContentLayout">
-        <side-bar is-open="vm.sideBarStatus()"></side-bar>
+        <side-bar is-open="vm.sideBarStatus()" on-click-outside="vm.invertSideBar()"></side-bar>
         <section class="dg-innerContentWrapper">
-            <a ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn" ng-class="{'orangeBg': !vm.sideBarStatus()}">
-            <i class="fa" ng-class="{'fa-angle-double-left':vm.sideBarStatus(),'fa-angle-double-right':!vm.sideBarStatus()}"></i></a>
-            <div ui-view="content"><div>
+            <a id="sideBarButton" ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn" ng-class="{'orangeBg': !vm.sideBarStatus()}">
+                <i class="fa"
+                   ng-class="{'fa-angle-double-left':vm.sideBarStatus(),'fa-angle-double-right':!vm.sideBarStatus()}">
+                </i>
+            </a>
+            <div ui-view="content"></div>
             <span us-spinner spinner-key="spinner-1"></span>
         </section>
     </div>

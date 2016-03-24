@@ -13,7 +13,7 @@
         .controller('Analytics', Analytics);
 
     /* @ngInject */
-    function Analytics($scope,navigation,product,tradebook,$filter,appFormats, analytics){
+    function Analytics(routing,navigation,product,tradebook,$filter,appFormats, analytics){
         var vm = this;
         init();
 
@@ -28,6 +28,7 @@
          * My Description rules
          */
         function init(){
+            routing.addRecentlyViewItems('Business Analytics');
             vm.dateRange = navigation.initialDateRange();
             vm.chartColors = navigation.chartColors();
             vm.timeDrillBy = 'day';

@@ -13,7 +13,7 @@
         .controller('Tradebook', Tradebook);
 
     /* @ngInject */
-    function Tradebook(tradebook,documentExporter, appFormats, navigation, moment, $filter){
+    function Tradebook(tradebook,routing,documentExporter, appFormats, navigation, moment, $filter){
         var vm = this;
         init();
         /////////////////////
@@ -26,10 +26,10 @@
          * My Description rules
          */
         function init(){
+            routing.addRecentlyViewItems('Trade Book');
             vm.searchTransaction = '';
             vm.dateRange = navigation.initialDateRange();
             vm.appFormats = appFormats;
-
             vm.dateFilter = [];
             vm.selectedBuyerID = [];
             vm.selectedSellerID = [];
