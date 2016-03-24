@@ -29,7 +29,6 @@
     'angularSpinner',
     'rzModule',
     'ngSanitize',
-    'angular-click-outside',
     'offClick',
     'ngSanitize',
     'ngCsv',
