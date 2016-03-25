@@ -13,15 +13,24 @@
         .controller('Dashboard', Dashboard);
 
     /* @ngInject */
-    function Dashboard($filter,allProducts,productConfig, $scope, navigation,appFormats, product){
+    function Dashboard($filter,allProducts,productConfig, $state, navigation,appFormats, product){
         var vm = this;
         init();
 
         function init(){
+            vm.showProductsPrices = true;
+            vm.showArrivedAtPort = true;
+            vm.showExpected = true;
+            vm.showExpiration = true;
+            vm.priceAnalysis = true;
+            vm.localPriceAnalysis = true;
             vm.chartColors = navigation.chartColors();
             vm.allProducts = allProducts;
             vm.productConfig = productConfig;
             vm.dateRange = navigation.initialDateRange();
+            vm.arrivedAtPortDateRange = navigation.initialDateRange();
+            vm.expirationDateRange = navigation.initialDateRange();
+            vm.expectedArrivalDateRange = navigation.initialDateRange();
             vm.dateSelected = $filter('date')(new Date(), appFormats.Date);
             vm.productPricesForToday = [];
             vm.productPricesOnDateRange = [];
@@ -29,8 +38,31 @@
             vm.getProductsPricesByDate(vm.dateSelected);
             vm.getProductPricesByDateRange = getProductPricesByDateRange;
             vm.getProductPricesByDateRange(vm.dateRange);
+            vm.goToProductPrices = goToProductPrices;
+            vm.getArrivedAtPortByDateRange = getArrivedAtPortByDateRange;
+            vm.getExpirationByDateRange = getExpirationByDateRange;
+            vm.getExpectedArrivalByDateRange = getExpectedArrivalByDateRange;
 
 
+        }
+
+        function goToProductPrices(){
+            $state.go('shell.productPrices');
+        }
+
+        function getArrivedAtPortByDateRange(dateRange){
+            var startDate = new Date(dateRange.startDate);
+            var endDate = new Date(dateRange.endDate);
+        }
+
+        function getExpectedArrivalByDateRange(dateRange){
+            var startDate = new Date(dateRange.startDate);
+            var endDate = new Date(dateRange.endDate);
+        }
+
+        function getExpirationByDateRange(dateRange){
+            var startDate = new Date(dateRange.startDate);
+            var endDate = new Date(dateRange.endDate);
         }
 
         function getProductPricesByDateRange(dateRange){

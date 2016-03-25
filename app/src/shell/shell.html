@@ -5,7 +5,7 @@
 
 <div class="dg-mainContentWrapper"> 
     <div class="dg-sideBarContentLayout">
-        <side-bar is-open="vm.sideBarStatus()" on-click-outside="vm.invertSideBar()"></side-bar>
+        <side-bar is-open="vm.sideBarStatus()" on-click-outside="vm.closeSideBar()"></side-bar>
         <section class="dg-innerContentWrapper">
             <a id="sideBarButton" ng-click="vm.invertSideBar()" class="dg-sideBarExpandBtn" ng-class="{'orangeBg': !vm.sideBarStatus()}">
                 <i class="fa"

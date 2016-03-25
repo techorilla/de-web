@@ -40,6 +40,7 @@
         function link(scope, elem, attrs){
             scope.show=[];
             scope.$watch('data',function(newVal,oldVal){
+                console.log(oldVal);
                 scope.showCh = false;
                 scope.dataClone = angular.copy(newVal);
                 scope.showCh = scope.showChart;

@@ -22,6 +22,12 @@
         vm.onSetupPage = function(){
             return ($state.current.name.substring( 0, 11 )==='shell.setup');
         };
+        vm.onLogs = function(){
+            return ($state.current.name === 'shell.systemLogs');
+        };
+
+
+
 
     /////////////////////
 

@@ -60,7 +60,7 @@
             vm.timeDrillConfig = tradebook.getTimeDrillConfig(vm.timeDrillOptions);
             vm.seriesBarCharts = ['Quantity','Volume','Net Commission'];
 
-            vm.dataBarChars = [[],[],[]];
+            vm.dataBarChars = undefined;
             vm.timeDrillChanged = timeDrillChanged;
             vm.onDateRangeChanged(vm.dateRange);
         }

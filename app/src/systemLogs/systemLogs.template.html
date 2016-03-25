@@ -1,0 +1,51 @@
+
+<page-header heading="Activity Logs" go-back="true" sub-heading="System"></page-header>
+<filter-bar
+        date-picker-needed="true"
+        date-picker="vm.dateRange"
+        on-date-change="vm.onDateRangeChanged(dateRange)">
+</filter-bar>
+<page-blue-container>
+    <div class="dg-tablePanelHead clearfix">
+        <div class="dg-tablePanelTitle">Logs <br><small>Total {{vm.allLogs.length}} System Logs</small></div>
+        <ul class="dg-pageActionsLinks">
+            <li>
+                <label class="cursor-pointer excelExport" ng-click="vm.getTradeBookExcel(vm.transactionTableHeadings,vm.allTransactions)">
+                    <i class="fa fa-file-excel-o greenFont"></i>&nbsp;&nbsp;Export to Excel
+                </label>
+            </li>
+            <li>
+                <input ng-model="vm.searchTransactionByFileID" type="text" class="search-control form-control" id="exampleInputAmount" placeholder="Find by User Name">
+            </li>
+        </ul>
+    </div>
+
+    <div class="dg-tablePanelBody">
+        <table ng-if="(vm.allLogs.length === 0)" class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>
+                    No system logs are found in the given date range.
+                </th>
+            </tr>
+            </thead>
+        </table>
+
+        <table class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>User</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in vm.allLogs">
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</page-blue-container>

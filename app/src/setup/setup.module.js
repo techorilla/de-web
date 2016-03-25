@@ -116,11 +116,8 @@
                     }
                 }
             })
-            .state('shell.setup.productPrices',{
+            .state('shell.productPrices',{
                 url:'/productPrices',
-                inSetup: 'true',
-                inSetupTitle: 'Product Prices',
-                inSetupOrder: 1,
                 resolve:{
                     allProducts: function (product) {
                         return product.getAllProducts().then(function(res){
@@ -132,12 +129,12 @@
                     }
                 },
                 views:{
-                    'subContent@shell.setup':{
+                    'content@shell':{
                         templateUrl:'src/setup/dailyProductPrices/dailyProductPrices.template.html',
                         controller: 'DailyProductPrice as vm'
                     }
                 }
-            });;
+            });
     }
 
 }());

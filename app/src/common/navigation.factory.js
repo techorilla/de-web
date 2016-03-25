@@ -63,9 +63,17 @@
         }
 
         function invertSideBarState(flag){
-            
-            isSideBarOpen = !isSideBarOpen;
-            localStorageService.set('sideBarStatus', {flag:isSideBarOpen});
+            if(!flag){
+                isSideBarOpen = !isSideBarOpen;
+                localStorageService.set('sideBarStatus', {flag:isSideBarOpen});
+            }
+            else{
+                if(isSideBarOpen){
+                    isSideBarOpen = !isSideBarOpen;
+                    localStorageService.set('sideBarStatus', {flag:isSideBarOpen});
+                }
+            }
+
         }
         function sideBarStatus(){
             var sideBarStatus = localStorageService.get('sideBarStatus');

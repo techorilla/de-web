@@ -1,76 +1,64 @@
-<page-blue-container>
-    <div class="col-xs-12 col-md-4 pull-right">
-        <date-picker disabled="false"
-                     date="vm.dateSelected"
-                     max-date="" min-date="">
-        </date-picker>
-    </div>
-    <div class="col-lg-12 col-xs-12">
-        <div class="dg-pageContent">
-            <div class="dg-tablePanelWrap">
-                <div class="dg-tablePanelHead clearfix">
-                    <div class="dg-tablePanelTitle">Products Prices<br><small>Total {{vm.allProducts.length}} Products</small></div>
-                    <ul class="dg-pageActionsLinks">
-                        <li>
-                            <!--<input ng-model="vm.searchOrigin"-->
-                                   <!--type="text"-->
-                                   <!--class="form-control search-control"-->
-                                   <!--id="exampleInputAmount"-->
-                                   <!--placeholder="Find Origin">-->
-                        </li>
-                    </ul>
-                </div>
-                <div class="dg-tablePanelBody">
+<page-header heading="Product Prices" sub-heading="International & Local"  go-back="true"></page-header>
+</br>
+<div class="col-xs-12 col-md-4 pull-right">
+    <date-picker disabled="false"
+                 date="vm.dateSelected"
+                 max-date="" min-date="">
+    </date-picker>
+</div>
+</br></br></br>
+<div class="col-lg-12 col-xs-12">
 
-                    <table class="table table-bordered dg-table">
-                        <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!--<tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct | selectFilter: vm.searchOrigin:'origin_name' | orderBy: 'origin_name'">-->
-                        <tr ng-repeat="product in vm.productPrices " ng-init="product.editMode = false;">
-                            <td>
-                                <selectize ng-disabled="true"
-                                           config="vm.productConfig"
-                                           options='vm.allProducts'
-                                           ng-model="product.productId">
-                                </selectize>
-                            </td>
-                            <td>
-                                <div  ng-if="product.editMode">
-                                    <span class="price">$</span>
-                                    <number-only-input
-                                            input-value="product.price"
-                                            input-name="product.price"
-                                            currency="true">
-                                    </number-only-input>
-                                </div>
-                                <span ng-if="!product.editMode" ng-bind="(product.price === null) ? 'Not Entered' : '$'+product.price "></span>
-                            </td>
-                            <td>
-                                <label ng-click="vm.editProductPrice(product)" ng-if="!product.editMode" class="cursor-pointer">
-                                    <i class="fa fa-edit orangeFont"></i>
-                                    Edit
-                                </label>
-                                <label ng-click="vm.saveProductPrice($index, product)" ng-if="product.editMode" class="cursor-pointer border-right-gray">
-                                    <i class="fa fa-database blueFont"></i>
-                                    &nbsp;Save&nbsp;&nbsp;
-                                </label>
-                                <label ng-click="vm.cancelEdit($index, product)" ng-if="product.editMode" class="cursor-pointer">
-                                    &nbsp;&nbsp;
-                                    <i class="fa fa-times-circle redFont"></i>
-                                    &nbsp;Cancel
-                                </label>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+    <div class="dg-tablePanelBody">
+
+        <table class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr ng-repeat="row in vm.allProducts.products| filter:vm.searchProduct | selectFilter: vm.searchOrigin:'origin_name' | orderBy: 'origin_name'">-->
+            <tr ng-repeat="product in vm.productPrices " ng-init="product.editMode = false;">
+                <td>
+                    <selectize ng-disabled="true"
+                               config="vm.productConfig"
+                               options='vm.allProducts'
+                               ng-model="product.productId">
+                    </selectize>
+                </td>
+                <td>
+                    <div  ng-if="product.editMode">
+                        <span class="price">$</span>
+                        <number-only-input
+                                input-value="product.price"
+                                input-name="product.price"
+                                currency="true">
+                        </number-only-input>
+                    </div>
+                    <span ng-if="!product.editMode" ng-bind="(product.price === null) ? 'Not Entered' : '$'+product.price "></span>
+                </td>
+                <td>
+                    <label ng-click="vm.editProductPrice(product)" ng-if="!product.editMode" class="cursor-pointer">
+                        <i class="fa fa-edit orangeFont"></i>
+                        Edit
+                    </label>
+                    <label ng-click="vm.saveProductPrice($index, product)" ng-if="product.editMode" class="cursor-pointer border-right-gray">
+                        <i class="fa fa-database blueFont"></i>
+                        &nbsp;Save&nbsp;&nbsp;
+                    </label>
+                    <label ng-click="vm.cancelEdit($index, product)" ng-if="product.editMode" class="cursor-pointer">
+                        &nbsp;&nbsp;
+                        <i class="fa fa-times-circle redFont"></i>
+                        &nbsp;Cancel
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</page-blue-container>
+
+</div>

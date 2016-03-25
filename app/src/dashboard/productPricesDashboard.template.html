@@ -1,0 +1,41 @@
+<div class="col-lg-12  marginLeft15">
+    <div class="col-lg-12 tableHeading">
+        <label>Products Prices ({{vm.dateSelected}})</label>
+        <label class="pull-right cursor-pointer" ng-click="vm.showProductsPrices = !vm.showProductsPrices">
+            <!--<span ng-bind="vm.bpProducts.length + ' Product'"></span>-->
+            <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showProductsPrices,'fa-chevron-circle-right':!vm.showProductsPrices}"></i>
+        </label>
+    </div>
+</div>
+<div class="col-lg-12"  ng-show="vm.showProductsPrices">
+    <div class="dg-tablePanelBody">
+        <table class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Local Price</th>
+                <th>International Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="pPrice in vm.productPricesForToday">
+                <td>
+                    <selectize ng-disabled="true"
+                               config="vm.productConfig"
+                               options='vm.allProducts'
+                               ng-model="pPrice.productId">
+                    </selectize>
+                </td>
+                <td>
+                    <span ng-if="pPrice.price" class="">$ {{pPrice.price}}</span>
+                    <span ng-if="!pPrice.price"class="">Not Entered</span>
+                </td>
+                <td>
+                    <span ng-if="pPrice.price" class="">PKR {{pPrice.price}}</span>
+                    <span ng-if="!pPrice.price"class="">Not Entered</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
