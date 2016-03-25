@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2206ecfc-3fbb-4b12-923b-d4820fdad75a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/dashboard/expectedArrivalAtPort.template.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/dashboard/productPricesDashboard.template.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/dashboard/productPricesGraph.template.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/dashboard/shipmentExpirationAtPort.template.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/analytics/analytics.controller.js" afterPath="$PROJECT_DIR$/app/src/analytics/analytics.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/analytics/analytics.template.html" afterPath="$PROJECT_DIR$/app/src/analytics/analytics.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/app.module.js" afterPath="$PROJECT_DIR$/app/src/app.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/widgets/chartsLegend.directive.js" afterPath="$PROJECT_DIR$/app/src/widgets/chartsLegend.directive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/setup/dailyProductPrices/dailyProductPrices.template.html" afterPath="$PROJECT_DIR$/app/src/setup/dailyProductPrices/dailyProductPrices.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/dashboard/dashboard.controller.js" afterPath="$PROJECT_DIR$/app/src/dashboard/dashboard.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/dashboard/dashboard.template.html" afterPath="$PROJECT_DIR$/app/src/dashboard/dashboard.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/common/navigation.factory.js" afterPath="$PROJECT_DIR$/app/src/common/navigation.factory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/widgets/pageHeader.template.html" afterPath="$PROJECT_DIR$/app/src/widgets/pageHeader.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/setup/setup.module.js" afterPath="$PROJECT_DIR$/app/src/setup/setup.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/shell/shell.controller.js" afterPath="$PROJECT_DIR$/app/src/shell/shell.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/shell/shell.html" afterPath="$PROJECT_DIR$/app/src/shell/shell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/shell/topNavBar.html" afterPath="$PROJECT_DIR$/app/src/shell/topNavBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/shell/topnavbar.controller.js" afterPath="$PROJECT_DIR$/app/src/shell/topnavbar.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/systemLogs/logs.controller.js" afterPath="$PROJECT_DIR$/app/src/systemLogs/logs.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html" afterPath="$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html" />
     </list>
     <ignored path="de-web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="logs.controller.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="logs.controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/systemLogs/logs.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-              <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.6370107" vertical-offset="75" max-vertical-offset="1020">
+              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -65,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="systemLogs.template.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="systemLogs.template.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2176617" vertical-offset="114" max-vertical-offset="969">
-              <caret line="17" column="165" selection-start-line="17" selection-start-column="165" selection-end-line="17" selection-end-column="165" />
+            <state vertical-scroll-proportion="-3.4615386" vertical-offset="114" max-vertical-offset="969">
+              <caret line="12" column="103" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -137,8 +118,8 @@
         <option value="$PROJECT_DIR$/app/src/shell/topNavBar.html" />
         <option value="$PROJECT_DIR$/app/src/shell/topnavbar.controller.js" />
         <option value="$PROJECT_DIR$/app/src/systemLogs/systemLogs.module.js" />
-        <option value="$PROJECT_DIR$/app/src/systemLogs/logs.controller.js" />
         <option value="$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html" />
+        <option value="$PROJECT_DIR$/app/src/systemLogs/logs.controller.js" />
       </list>
     </option>
   </component>
@@ -1330,18 +1311,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/systemLogs/logs.controller.js">
+    <entry file="file://$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        <state vertical-scroll-proportion="-3.4615386" vertical-offset="114" max-vertical-offset="969">
+          <caret line="12" column="103" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="103" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/systemLogs/systemLogs.template.html">
+    <entry file="file://$PROJECT_DIR$/app/src/systemLogs/logs.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2176617" vertical-offset="114" max-vertical-offset="969">
-          <caret line="17" column="165" selection-start-line="17" selection-start-column="165" selection-end-line="17" selection-end-column="165" />
+        <state vertical-scroll-proportion="0.6370107" vertical-offset="75" max-vertical-offset="1020">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
           <folding />
         </state>
       </provider>

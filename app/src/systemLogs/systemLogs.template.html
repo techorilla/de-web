@@ -10,7 +10,7 @@
         <div class="dg-tablePanelTitle">Logs <br><small>Total {{vm.allLogs.length}} System Logs</small></div>
         <ul class="dg-pageActionsLinks">
             <li>
-                <label class="cursor-pointer excelExport" ng-click="vm.getTradeBookExcel(vm.transactionTableHeadings,vm.allTransactions)">
+                <label class="cursor-pointer excelExport" ng-click="vm.getLogsExcelSheet(vm.logsHeading,vm.allLogs)">
                     <i class="fa fa-file-excel-o greenFont"></i>&nbsp;&nbsp;Export to Excel
                 </label>
             </li>

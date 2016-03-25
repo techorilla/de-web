@@ -34,9 +34,15 @@
             vm.dateRange = navigation.initialDateRange();
             vm.onDateRangeChanged = onDateRangeChanged;
             vm.allLogs = [];
+            vm.logsHeading = [];
+            vm.getLogsExcelSheet = getLogsExcelSheet;
         }
 
         function onDateRangeChanged(){
+
+        }
+
+        function getLogsExcelSheet(){
 
         }
 
