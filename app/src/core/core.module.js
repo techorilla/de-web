@@ -36,7 +36,6 @@
     'textAngular',
     'LocalStorageModule',
     'ngIdle',
-    'n3-pie-chart',
     'ngBootstrap'
   ]);
 
