@@ -11,17 +11,17 @@
     <div class="col-lg-12 col-xs-12" style="padding-right: 10px;">
         <filter-bar
                 date-picker-needed="true"
-                date-picker="vm.dateRange"
-                on-date-change="vm.getProductPricesByDateRange(dateRange)">
+                date-picker="vm.dateRangeLocal"
+                on-date-change="vm.getLocalProductPricesByDateRange(dateRange)">
         </filter-bar>
         </hr>
         <!--<page-blue-container class="tabs-panel" graph-container="true">-->
         <charts-legend
                 type="line"
-                labels="vm.dateRangeArray"
-                data="vm.priceDetailsArray"
+                labels="vm.dateRangeArrayLocal"
+                data="vm.localPriceDetailArray"
                 colors="vm.chartColors"
-                series="vm.products">
+                series="vm.productsLocal">
         </charts-legend>
         <!--<canvas id="line" class="chart chart-line" chart-data="vm.priceDetailsArray"-->
         <!--chart-labels="vm.dateRangeArray" chart-legend="true" chart-series="vm.products"-->

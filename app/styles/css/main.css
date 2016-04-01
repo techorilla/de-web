@@ -1240,6 +1240,18 @@ textarea {
 }
 
 /* line 1070, ../partials/_theme.scss */
+.pricePKR {
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 5px;
+  color: #1691ac;
+}
+/* line 1076, ../partials/_theme.scss */
+.pricePKR + number-only-input input {
+  padding-left: 45px;
+}
+
+/* line 1082, ../partials/_theme.scss */
 .chartLegends {
   left: 0px;
   width: 100%;

@@ -1067,6 +1067,18 @@ textarea { resize:vertical ; }
   }
 }
 
+.pricePKR{
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 5px;
+  color:$baseColor;
+  & + number-only-input{
+    input{
+      padding-left:25px;
+    }
+  }
+}
+
 .chartLegends{
   left: 0px;
   width: 100%;
