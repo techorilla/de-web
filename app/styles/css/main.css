@@ -1248,26 +1248,38 @@ textarea {
 }
 
 /* line 3, ../partials/_login.scss */
+#loading-bar .bar {
+  background: #333;
+  height: 4px;
+}
+
+/* line 7, ../partials/_login.scss */
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #333;
+  border-left-color: #333;
+}
+
+/* line 13, ../partials/_login.scss */
 #signIn label {
   font-family: icon;
   text-shadow: 0 -1px 0 #666;
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 8, ../partials/_login.scss */
+/* line 18, ../partials/_login.scss */
 #block, #option {
   width: 230px;
   height: 113px;
   margin: auto;
 }
 
-/* line 13, ../partials/_login.scss */
+/* line 23, ../partials/_login.scss */
 #block {
   background: #1691ac;
   margin-top: 100px;
 }
 
-/* line 17, ../partials/_login.scss */
+/* line 27, ../partials/_login.scss */
 #block:before {
   content: '';
   display: block;
@@ -1275,7 +1287,7 @@ textarea {
   height: 3px;
 }
 
-/* line 24, ../partials/_login.scss */
+/* line 34, ../partials/_login.scss */
 #block:after {
   content: '';
   display: block;
@@ -1287,7 +1299,7 @@ textarea {
   position: absolute;
 }
 
-/* line 34, ../partials/_login.scss */
+/* line 44, ../partials/_login.scss */
 #block label, #submit {
   position: absolute;
   width: 33px;
@@ -1300,14 +1312,14 @@ textarea {
   border-bottom-left-radius: 2px;
 }
 
-/* line 45, ../partials/_login.scss */
+/* line 55, ../partials/_login.scss */
 .errorMsg {
   font-size: 12px !important;
   color: #1691ac;
   text-transform: none !important;
 }
 
-/* line 50, ../partials/_login.scss */
+/* line 60, ../partials/_login.scss */
 #block label#pass {
   position: absolute;
   width: 33px;
@@ -1315,7 +1327,7 @@ textarea {
   margin: -5px 15px;
 }
 
-/* line 56, ../partials/_login.scss */
+/* line 66, ../partials/_login.scss */
 #submit {
   color: #eee;
   border: 0;
@@ -1331,26 +1343,26 @@ textarea {
   padding: 0;
 }
 
-/* line 70, ../partials/_login.scss */
+/* line 80, ../partials/_login.scss */
 #submit:hover {
   color: #eee;
   cursor: pointer;
   background: #3d3d3d;
 }
 
-/* line 75, ../partials/_login.scss */
+/* line 85, ../partials/_login.scss */
 #user, #pass {
   box-shadow: 0.1px 0 2px #6c5B6d;
 }
 
-/* line 78, ../partials/_login.scss */
+/* line 88, ../partials/_login.scss */
 #block input[type=text], #block input[type=password], #option p {
   font-family: 'Open Sans';
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
-/* line 83, ../partials/_login.scss */
+/* line 93, ../partials/_login.scss */
 #block input[type=text], #block input[type=password] {
   width: 200px;
   height: 32px;
@@ -1362,20 +1374,20 @@ textarea {
   font-size: 18px;
 }
 
-/* line 93, ../partials/_login.scss */
+/* line 103, ../partials/_login.scss */
 #block input[type=password] {
   width: 200px;
   height: 32px;
   margin: -5px 15px;
 }
 
-/* line 98, ../partials/_login.scss */
+/* line 108, ../partials/_login.scss */
 #submit {
   font-size: 12px;
   font-weight: bold;
 }
 
-/* line 102, ../partials/_login.scss */
+/* line 112, ../partials/_login.scss */
 #option {
   width: 230px;
   height: 80px;
@@ -1383,7 +1395,7 @@ textarea {
   margin: auto;
 }
 
-/* line 108, ../partials/_login.scss */
+/* line 118, ../partials/_login.scss */
 #option p {
   font-size: 24px;
   text-transform: uppercase;
@@ -1395,7 +1407,7 @@ textarea {
   /*text-shadow:0 -1px 0 #000;*/
 }
 
-/* line 118, ../partials/_login.scss */
+/* line 128, ../partials/_login.scss */
 #option a {
   -webkit-font-smoothing: antialiased;
   /*text-shadow:0 -1px 0 #000;*/
@@ -1405,78 +1417,78 @@ textarea {
   margin: 26px 15px;
 }
 
-/* line 127, ../partials/_login.scss */
+/* line 137, ../partials/_login.scss */
 #signIn input {
   padding-left: 40px;
 }
 
-/* line 128, ../partials/_login.scss */
+/* line 138, ../partials/_login.scss */
 #block:active > #block:before {
   background-position: 100px 100px;
 }
 
-/* line 131, ../partials/_login.scss */
+/* line 141, ../partials/_login.scss */
 .orangeBg {
   background: #F47414 !important;
 }
 
-/* line 134, ../partials/_login.scss */
+/* line 144, ../partials/_login.scss */
 .submitBtn {
   background: #1691ac !important;
   color: #ddd;
   border: none;
 }
 
-/* line 139, ../partials/_login.scss */
+/* line 149, ../partials/_login.scss */
 .submitBtn:hover {
   opacity: 0.9;
   color: #ddd !important;
 }
 
-/* line 143, ../partials/_login.scss */
+/* line 153, ../partials/_login.scss */
 .blueBorder {
   border: 1px solid #1691ac;
 }
 
-/* line 146, ../partials/_login.scss */
+/* line 156, ../partials/_login.scss */
 .filterHeading {
   color: #1691ac;
   font-weight: bold;
   font-size: 11px;
 }
 
-/* line 151, ../partials/_login.scss */
+/* line 161, ../partials/_login.scss */
 .singleFilterHeading {
   padding-top: 4px;
   font-weight: bold;
   font-size: 12px;
 }
 
-/* line 156, ../partials/_login.scss */
+/* line 166, ../partials/_login.scss */
 button, a:focus {
   outline: 0;
 }
 
-/* line 157, ../partials/_login.scss */
+/* line 167, ../partials/_login.scss */
 input, textarea, select, a, button {
   outline: none;
 }
 
-/* line 159, ../partials/_login.scss */
+/* line 169, ../partials/_login.scss */
 .panel-default > .panel-heading {
   color: #ddd;
   background-color: #333333;
   border-color: #ddd;
 }
 
-/* line 164, ../partials/_login.scss */
+/* line 174, ../partials/_login.scss */
 .myDatePicker {
   cursor: pointer;
   padding: 5px 10px;
   font-weight: bold;
   font-size: 12px;
 }
-/* line 171, ../partials/_login.scss */
+/* line 181, ../partials/_login.scss */
 .myDatePicker .dg-filterDropdown {
   background: linear-gradient(to bottom, #f7f7f7 0%, #eaeaea 100%);
   border: 1px solid #1691AC;
@@ -1488,7 +1500,7 @@ input, textarea, select, a, button {
   font-weight: 600;
   cursor: pointer;
 }
-/* line 184, ../partials/_login.scss */
+/* line 194, ../partials/_login.scss */
 .myDatePicker:after {
   font-family: 'FontAwesome';
   position: absolute;
@@ -1497,7 +1509,7 @@ input, textarea, select, a, button {
   z-index: 10;
   right: 45px;
 }
-/* line 192, ../partials/_login.scss */
+/* line 202, ../partials/_login.scss */
 .myDatePicker:before {
   font-family: 'FontAwesome';
   position: absolute;
@@ -1507,35 +1519,35 @@ input, textarea, select, a, button {
   z-index: 10;
 }
 
-/* line 202, ../partials/_login.scss */
+/* line 212, ../partials/_login.scss */
 .bpChecks {
   float: left;
   margin-right: 10px !important;
   margin-top: 6px !important;
 }
 
-/* line 208, ../partials/_login.scss */
+/* line 218, ../partials/_login.scss */
 .marginLeft15 {
   margin-left: -15px !important;
 }
 
-/* line 212, ../partials/_login.scss */
+/* line 222, ../partials/_login.scss */
 .addSubtract {
   margin-left: 10px;
   cursor: pointer;
 }
 
-/* line 216, ../partials/_login.scss */
+/* line 226, ../partials/_login.scss */
 .addSubtract:hover {
   color: #F47414 !important;
 }
 
-/* line 220, ../partials/_login.scss */
+/* line 230, ../partials/_login.scss */
 .largerFont {
   font-size: larger;
 }
 
-/* line 229, ../partials/_login.scss */
+/* line 239, ../partials/_login.scss */
 .tags {
   box-shadow: none !important;
   width: 99% !important;
@@ -1543,32 +1555,32 @@ input, textarea, select, a, button {
   border-radius: 3px;
 }
 
-/* line 235, ../partials/_login.scss */
+/* line 245, ../partials/_login.scss */
 .tags .tag-item.selected {
   background: #F47414 !important;
 }
 
-/* line 247, ../partials/_login.scss */
+/* line 257, ../partials/_login.scss */
 .paddingRow {
   padding-left: 5px;
 }
 
-/* line 251, ../partials/_login.scss */
+/* line 261, ../partials/_login.scss */
 tbody tr td {
   font-weight: bold;
 }
 
-/* line 255, ../partials/_login.scss */
+/* line 265, ../partials/_login.scss */
 tbody tr td a {
   text-decoration: underline;
 }
 
-/* line 258, ../partials/_login.scss */
+/* line 268, ../partials/_login.scss */
 .marginTop1 {
   margin-top: 20px;
 }
 
-/* line 262, ../partials/_login.scss */
+/* line 272, ../partials/_login.scss */
 .tableHeading {
   border-bottom: 1px solid #1691AC;
   margin-left: 15px;
@@ -1578,37 +1590,37 @@ tbody tr td a {
   margin-top: 20px;
   font-weight: bolder;
 }
-/* line 271, ../partials/_login.scss */
+/* line 281, ../partials/_login.scss */
 .tableHeading label {
   margin-left: -15px;
 }
 
-/* line 276, ../partials/_login.scss */
+/* line 286, ../partials/_login.scss */
 .innerHeading {
   border-bottom: 1px solid #cccccc;
   margin-bottom: 10px;
   font-size: 12px;
   font-weight: bolder;
 }
-/* line 281, ../partials/_login.scss */
+/* line 291, ../partials/_login.scss */
 .innerHeading:first-child {
   color: #1691ac;
 }
-/* line 284, ../partials/_login.scss */
+/* line 294, ../partials/_login.scss */
 .innerHeading label {
   margin-left: -15px;
 }
-/* line 287, ../partials/_login.scss */
+/* line 297, ../partials/_login.scss */
 .innerHeading button {
   color: #333333;
 }
 
-/* line 292, ../partials/_login.scss */
+/* line 302, ../partials/_login.scss */
 .width96 {
   width: 96%;
 }
 
-/* line 296, ../partials/_login.scss */
+/* line 306, ../partials/_login.scss */
 textarea {
   border-radius: 2px;
   border: 1px solid #D0D0D0;
@@ -1616,81 +1628,81 @@ textarea {
   font-size: 12px;
 }
 
-/* line 304, ../partials/_login.scss */
+/* line 314, ../partials/_login.scss */
 .formCheckBox input {
   height: 20px;
   margin-left: 20px;
 }
-/* line 308, ../partials/_login.scss */
+/* line 318, ../partials/_login.scss */
 .formCheckBox label {
   height: 20px;
 }
 
-/* line 313, ../partials/_login.scss */
+/* line 323, ../partials/_login.scss */
 .marginTop5 {
   margin-top: 5px;
 }
 
-/* line 317, ../partials/_login.scss */
+/* line 327, ../partials/_login.scss */
 .subTableHeading {
   margin-left: 1px;
   margin-top: 0px;
 }
 
-/* line 322, ../partials/_login.scss */
+/* line 332, ../partials/_login.scss */
 .width106 {
   width: 104% !important;
 }
 
-/* line 326, ../partials/_login.scss */
+/* line 336, ../partials/_login.scss */
 .datePickerAddTran {
   top: -34px;
   right: 0;
 }
-/* line 329, ../partials/_login.scss */
+/* line 339, ../partials/_login.scss */
 .datePickerAddTran button {
   margin-left: calc(100% - 39px) !important;
 }
 
-/* line 334, ../partials/_login.scss */
+/* line 344, ../partials/_login.scss */
 .marginTop50 {
   margin-top: -50px !important;
 }
 
-/* line 338, ../partials/_login.scss */
+/* line 348, ../partials/_login.scss */
 .btn-info {
   color: #fff !important;
   background-color: #1691AC !important;
   border-color: #333333 !important;
 }
 
-/* line 344, ../partials/_login.scss */
+/* line 354, ../partials/_login.scss */
 .btn-danger {
   color: #fff;
   background-color: #44A6BC !important;
   border-color: #333333 !important;
 }
 
-/* line 350, ../partials/_login.scss */
+/* line 360, ../partials/_login.scss */
 .btn-success {
   color: #fff;
   background-color: #333333 !important;
   border-color: #AFAFAF !important;
 }
 
-/* line 356, ../partials/_login.scss */
+/* line 366, ../partials/_login.scss */
 .btn-success:hover {
   background-color: #333356 !important;
 }
 
-/* line 360, ../partials/_login.scss */
+/* line 370, ../partials/_login.scss */
 .width33 {
   width: 24%;
   float: left;
   margin-left: 16px;
 }
 
-/* line 366, ../partials/_login.scss */
+/* line 376, ../partials/_login.scss */
 *:before, *:after {
   -webkit-box-sizing: none !important;
   -moz-box-sizing: none !important;

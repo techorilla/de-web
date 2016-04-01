@@ -31,6 +31,7 @@
                 inSetup: 'true',
                 inSetupTitle: 'New User',
                 inSetupOrder: 5,
+                userAdminOnly: true,
                 views:{
                     'subContent@shell.setup':{
                         templateUrl: 'src/setup/newUser/addNewUser.template.html',
@@ -50,6 +51,7 @@
                 inSetup: 'true',
                 inSetupTitle: 'All Users',
                 inSetupOrder: 4,
+                userAdminOnly: true,
                 resolve: {
                     setup: 'setup',
                     allUsers: function (setup) {
@@ -69,7 +71,7 @@
                 url:'/changePassword',
                 inSetup:'true',
                 inSetupTitle: 'Change Password',
-                inSetupOrder: 3,
+                inSetupOrder: 1,
                 views:{
                     'subContent@shell.setup':{
                         templateUrl: 'src/setup/changePassword/changePassword.template.html',

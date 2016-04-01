@@ -1,5 +1,15 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans');
 
+#loading-bar .bar {
+  background: #333;
+  height: 4px;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  #333;
+  border-left-color: #333;
+}
+
+
 #signIn label{
 	font-family:icon;
 	text-shadow:0 -1px 0 #666;

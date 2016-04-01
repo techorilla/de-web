@@ -69,7 +69,7 @@
             var startDate = new Date(dateRange.startDate);
             var endDate = new Date(dateRange.endDate);
             product.getProductPricesByDateRange(startDate,endDate).then(function(res){
-                if(res.data.success){
+                if(res.data.success && (res.data.productsPrices.length>0)){
                     vm.productPricesOnDateRange = res.data.productsPrices;
                     var minDate = _.minBy(vm.productPricesOnDateRange,'priceDate').priceDate ;
                     var maxDate = _.maxBy(vm.productPricesOnDateRange,'priceDate').priceDate;

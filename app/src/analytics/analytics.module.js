@@ -23,6 +23,7 @@
                 subNav: true,
                 subNavTitle: 'Business Analytics',
                 subNavIndex: 0,
+                userAdminOnly: true,
                 views:{
                     'content@shell':{
                         templateUrl: 'src/analytics/analytics.template.html',

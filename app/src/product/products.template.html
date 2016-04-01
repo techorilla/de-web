@@ -7,7 +7,18 @@
             </ul>
         </div>
         <div class="dg-tablePanelBody">
-            <table class="table table-bordered dg-table">
+
+            <table ng-if="vm.allProducts.products.length === 0" class="table table-bordered dg-table">
+                <thead>
+                <tr>
+                    <th>
+                        No products have been entered in to the system.
+                    </th>
+                </tr>
+                </thead>
+            </table>
+
+            <table ng-if="vm.allProducts.products.length !== 0" class="table table-bordered dg-table">
                 <thead>
                 <tr>
                     <th ng-repeat="heading in vm.allProducts.tableHeadings" ng-bind="heading.name"></th>

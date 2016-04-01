@@ -13,7 +13,7 @@
 		.controller('Setup', Setup);
 
   /* @ngInject */
-	function Setup($state){
+	function Setup($state,authentication){
 		var vm = this;
         vm.setupStates = [];
         init();        
@@ -32,15 +32,18 @@
     
         function init(){
           $state.get()
-          .forEach(function(state){          
+          .forEach(function(state){
               if(state.inSetup){
-                vm.setupStates.push(state);
+                  if(state.userAdminOnly && authentication.isUserAdmin()){
+                      vm.setupStates.push(state);
+                  }
+                  else if(!state.userAdminOnly){
+                      vm.setupStates.push(state);
+                  }
+
               }
           });
         }
-      
-        
-     
 
 	}
 

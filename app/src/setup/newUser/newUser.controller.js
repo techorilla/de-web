@@ -47,7 +47,7 @@
                         }
                         else if(res.data === 'Saved'){
                             toastr.success('New app user Created', 'Success');
-                            $state.go($state.current, {}, {reload: true});
+                            $state.go('shell.setup.allUsers');
                         }
                         else if(res.data === 'Error'){
                             toastr.error('User was not saved due to some error on server', 'Error');
