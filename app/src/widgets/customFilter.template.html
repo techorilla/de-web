@@ -21,7 +21,7 @@
                     <span class="dg-value filterHeading">{{value.name}}</span>
                     <span class="dg-value">{{value.origin}} | {{value.quality}}</span>
                 </li>
-                <li ng-repeat="value in dropDownValues | filter:textFilter | orderBy: 'origin_name'" ng-if="(filterType==='country')">
+                <li ng-repeat="value in dropDownValues | selectFilter:  textFilter:'origin_name'  | orderBy: 'origin_name'" ng-if="(filterType==='country')">
                     <input ng-init="value.selected = true" ng-change="onSingleSelectChange(value,value.selected,'origin_name')" type="checkbox" ng-model="value.selected">
                     <span class="dg-value filterHeading">{{value.origin_name}}</span>
                 </li>

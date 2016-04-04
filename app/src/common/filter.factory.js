@@ -49,6 +49,7 @@
                 labelField: 'origin_name',
                 options: origins,
                 sortField: 'origin_name',
+                searchField:'origin_name',
                 maxItems: 1
             };
         }

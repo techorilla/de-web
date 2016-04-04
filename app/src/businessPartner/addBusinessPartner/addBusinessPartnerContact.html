@@ -74,12 +74,11 @@
                     <label>Contact Person Email</label>
                     <input class="form-control" type="text" name="cpEmail"
                            ng-pattern="/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/"
-                           ng-disabled="vm.viewMode" ng-required="true"
+                           ng-disabled="vm.viewMode"
                            placeholder='Please enter contact person full name'
                            ng-model="vm.businessPartner.newContactPerson.bp_Cont_Email"/>
                     <div ng-messages='vm.contactPersonForm.cpEmail.$error'
                          ng-if='vm.contactPersonForm.cpEmail.$dirty || vm.contactPersonForm.$submitted'>
-                        <div class="errorValidation" ng-message="required">Contact person full name required</div>
                         <div class="errorValidation" ng-message="pattern">Invalid contact Person Email</div>
                     </div>
                 </div>

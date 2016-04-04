@@ -131,7 +131,7 @@
         vm.businessPartner.newContactPerson = {
             bp_cont_id:'',
             bp_ID:'',
-            bp_Cont_IsPrimary:'',
+            bp_Cont_IsPrimary:false,
             bp_Cont_Designation:'',
             bp_Cont_Email:'',
             bp_Cont_PrimaryNumber:'',
