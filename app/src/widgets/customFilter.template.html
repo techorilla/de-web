@@ -5,13 +5,13 @@
         </div>
         <div class="dg-filterDropdownMenu" id="main-menu{{title}}" ng-show="showOptions">
             <ul class="dg-head">
-                <li ng-if="dropDownValues.length !== 0">
+                <li ng-show="dropDownValues.length !== 0">
                     <input type="checkbox"  ng-change="onSelectAll(selectAll)" ng-model="selectAll">
                     <span class="dg-value">
                         <input ng-model="textFilter" type="text" class="form-control">
                     </span>
                 </li>
-                <li ng-if="dropDownValues.length === 0">
+                <li ng-show="dropDownValues.length === 0">
                     <span class="dg-value">No value has been entered in to the system</span>
                 </li>
             </ul>
