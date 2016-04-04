@@ -13,7 +13,7 @@
         .factory('product', product);
 
     /* @ngInject */
-    function product($http,appConfig, $filter, modalFactory, tradebook, appFormats){
+    function product($http,appConfig, $filter, modalFactory, dataService, appFormats){
         return {
             getAllProducts: getAllProducts,
             getProductById:getProductById,
@@ -61,7 +61,7 @@
                 });
         }
         function getAllProducts(){
-            return $http.get(appConfig.apiHost+'getAllproducts');
+            return dataService.getRequest('getAllproducts');
         }
 
         function getAllProductPdf(){
@@ -175,11 +175,11 @@
         }
 
         function dailyProductsPricesCrud(product,operation){
-            return $http(tradebook.getCrudRequest('productPriceByDateCrud',product, operation));
+            return dataService.getCrudRequest('productPriceByDateCrud',product, operation);
         }
 
         function dailyProductsLocalPricesCrud(product,operation){
-            return $http(tradebook.getCrudRequest('productPriceLocalByDateCrud',product, operation));
+            return dataService.getCrudRequest('productPriceLocalByDateCrud',product, operation);
         }
     }
 

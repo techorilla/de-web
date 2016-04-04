@@ -94,7 +94,7 @@
                           'Access-Control-Allow-Origin': '*'
                       },
                       data: {id: id}
-                  }
+                  };
                   return $http(req)
                       .success(function (response) {
                           callback(response);
@@ -114,7 +114,7 @@
                           'Access-Control-Allow-Origin': '*'
                       },
                       data: {id: id}
-                  }
+                  };
                   return $http(req)
                       .success(function (response) {
                           callback(response);
@@ -134,7 +134,7 @@
                           'Access-Control-Allow-Origin': '*'
                       },
                       data: {id: id}
-                  }
+                  };
                   return $http(req)
                       .success(function (response) {
                           callback(response);

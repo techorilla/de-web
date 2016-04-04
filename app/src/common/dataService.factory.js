@@ -6,36 +6,47 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-	angular
-		.module('app.common')
-		.factory('dataService', dataService);
+    angular
+        .module('app.common')
+        .factory('dataService', dataService);
 
-  /* @ngInject */
-  function dataService(){
-		return {
-			testFunction: testFunction
-		};
+    /* @ngInject */
+    function dataService(appConfig,$http){
+        return {
+            getCrudRequest: getCrudRequest,
+            getRequest: getRequest,
+            postRequest: postRequest
+        };
 
-		////////////////////
+        function getRequestObj(reqType,url){
+            return {
+                method: reqType,
+                url: appConfig.apiHost+url,
+                headers: {
+                    'Content-Type': "application/json",
+                    'Access-Control-Allow-Origin': '*'
+                }
+            };
+        }
 
-    /**
-     * @ngdoc
-     * @name app.common.dataService#testFunction
-     * @methodOf app.common.dataService
-     *
-     * @description < description placeholder >
-     * @example
-     * <pre>
-     * dataService.testFunction(id);
-     * </pre>
-     * @param {int} entity id
-     */
+        function getCrudRequest(url,data, operation){
+            data.operation = operation;
+            return postRequest(url,{data: data});
+            return req;
+        }
 
-		function testFunction(id){
-			console.info('This is a test function');
-		}
-	}
+        function postRequest(url, data){
+            var req = getRequestObj('POST',url);
+            req.data = data;
+            return $http(req);
+        }
+
+        function getRequest(url){
+            return $http(getRequestObj('GET',url));
+        }
+
+    }
 
 }());

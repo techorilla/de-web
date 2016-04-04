@@ -6,52 +6,52 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-	angular
-		.module('app.tradebook')
-		.factory('tradebook', tradebook);
+    angular
+        .module('app.tradebook')
+        .factory('tradebook', tradebook);
 
-  /* @ngInject */
-  function tradebook($http,appConfig,crud, $filter, appFormats){
-           var bpConfig = {
-              valueField: 'bp_ID',
-              sortField: 'bp_Name',
-              searchField: ['bp_Name','bp_Cont_fullName', 'bp_country'],
-              maxItems:1,
-              create: false,
-              persist: false,
-              render: {
-                  item: function(item, escape) {
-                      var label = item.bp_Name;
-                      var caption = item.bp_country;
-                      var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
-                      return '<div>' +
-                          '<span class="dropdownLabel">' + label + '</span>' +
-                          '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
-                          '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
-                          '</div>';
-                  },
-                  option: function(item, escape) {
-                      var label = item.bp_Name;
-                      var caption = item.bp_country;
-                      var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
-                      return '<div>' +
-                          '<span class="dropdownLabel">' + label + '</span>' +
-                          '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
-                          '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
-                          '</div>';
-                  }
-              }
-          };
-          var transactionBasic = {};
-		return {
+    /* @ngInject */
+    function tradebook($http,appConfig,crud, $filter, appFormats){
+        var bpConfig = {
+            valueField: 'bp_ID',
+            sortField: 'bp_Name',
+            searchField: ['bp_Name','bp_Cont_fullName', 'bp_country'],
+            maxItems:1,
+            create: false,
+            persist: false,
+            render: {
+                item: function(item, escape) {
+                    var label = item.bp_Name;
+                    var caption = item.bp_country;
+                    var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
+                    return '<div>' +
+                        '<span class="dropdownLabel">' + label + '</span>' +
+                        '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
+                        '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
+                        '</div>';
+                },
+                option: function(item, escape) {
+                    var label = item.bp_Name;
+                    var caption = item.bp_country;
+                    var pContact = (item.bp_Cont_fullName === null)? 'No Primary Contact' : item.bp_Cont_fullName;
+                    return '<div>' +
+                        '<span class="dropdownLabel">' + label + '</span>' +
+                        '<span class="dropdownCaption">' + ' | '+ caption + '</span>' +
+                        '<span class="dropdownCaption">' + ' | '+ pContact + '</span>' +
+                        '</div>';
+                }
+            }
+        };
+        var transactionBasic = {};
+        return {
 
             setTransactionBasic: setTransactionBasic,
             getTransactionBasic: getTransactionBasic,
 
             getCrudRequest: getCrudRequest,
-			testFunction: testFunction,
+            testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
             getTransactionListOnDateRange: getTransactionListOnDateRange,
@@ -97,22 +97,22 @@
             transactionDocumentCrud: transactionDocumentCrud,
             calculateCommission: calculateCommission
 
-		};
+        };
 
-		////////////////////
+        ////////////////////
 
-    /**
-     * @ngdoc
-     * @name app.tradebook.tradebook#testFunction
-     * @methodOf app.tradebook.tradebook
-     *
-     * @description < description placeholder >
-     * @example
-     * <pre>
-     * tradebook.testFunction(id);
-     * </pre>
-     * @param {int} entity id
-     */
+        /**
+         * @ngdoc
+         * @name app.tradebook.tradebook#testFunction
+         * @methodOf app.tradebook.tradebook
+         *
+         * @description < description placeholder >
+         * @example
+         * <pre>
+         * tradebook.testFunction(id);
+         * </pre>
+         * @param {int} entity id
+         */
         function setTransactionBasic(transaction){
             this.transactionBasic = transaction;
         }
@@ -121,25 +121,25 @@
             return this.transactionBasic;
         }
 
-      function calculateCommission(commissionDetails,transactionBasic){
-          var type = commissionDetails.tr_ownCommissionType;
-          var price = transactionBasic.tr_price;
-          var quantity = transactionBasic.tr_quantity;
-          var comm =  commissionDetails.tr_own_Commission;
-          var commIntoPrice = 0;
-          var brokerCommType = commissionDetails.tr_buyerBroker_comm_type;
-          var brokerIntoPrice = 0;
-          var bComm = commissionDetails.tr_buyerBroker_comm;
-          if(type !== ''){
-              commIntoPrice = (type === 'Fixed') ? (comm) : (comm*0.01)*price;
-          }
-          if(brokerCommType!==''){
-              brokerIntoPrice = (brokerCommType==='Fixed') ? bComm : (bComm*100)*price;
-          }
-          var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + commissionDetails.tr_difference )- commissionDetails.tr_discount);
+        function calculateCommission(commissionDetails,transactionBasic){
+            var type = commissionDetails.tr_ownCommissionType;
+            var price = transactionBasic.tr_price;
+            var quantity = transactionBasic.tr_quantity;
+            var comm =  commissionDetails.tr_own_Commission;
+            var commIntoPrice = 0;
+            var brokerCommType = commissionDetails.tr_buyerBroker_comm_type;
+            var brokerIntoPrice = 0;
+            var bComm = commissionDetails.tr_buyerBroker_comm;
+            if(type !== ''){
+                commIntoPrice = (type === 'Fixed') ? (comm) : (comm*0.01)*price;
+            }
+            if(brokerCommType!==''){
+                brokerIntoPrice = (brokerCommType==='Fixed') ? bComm : (bComm*100)*price;
+            }
+            var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + commissionDetails.tr_difference )- commissionDetails.tr_discount);
 
-          commissionDetails.tr_netCommission = tr_netCommission * quantity;
-      }
+            commissionDetails.tr_netCommission = tr_netCommission * quantity;
+        }
 
 
         function getNewTransaction(tranID){
@@ -162,9 +162,9 @@
 
         }
 
-		function testFunction(id){
+        function testFunction(id){
 
-		}
+        }
         function getProductConfig(){
             return {
                 valueField: 'id',
@@ -220,13 +220,13 @@
         }
 
         function getNewTransactionDocument(){
-                return {
-                    tf_transactionID: null,
-                    tf_fileID: null,
-                    tf_file: null,
-                    tf_fileType: null,
-                    tf_fileName: null
-                };
+            return {
+                tf_transactionID: null,
+                tf_fileID: null,
+                tf_file: null,
+                tf_fileType: null,
+                tf_fileName: null
+            };
         }
 
         function getNewTransactionCommission(){
@@ -545,6 +545,6 @@
         }
 
 
-	}
+    }
 
 }());
