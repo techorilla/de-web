@@ -29,7 +29,7 @@
                     <input ng-init="value.selected = true" ng-change="onSingleSelectChange(value,value.selected,'text')" type="checkbox" ng-model="value.selected">
                     <span class="dg-value singleFilterHeading">{{value.text}}</span>
                 </li>
-                <li ng-repeat="value in dropDownValues | selectFilter:  textFilter:'text' | orderBy: 'name'" ng-if="(filterType==='bpTypes')">
+                <li ng-repeat="value in dropDownValues | selectFilter:  textFilter:'name' | orderBy: 'name'" ng-if="(filterType==='bpTypes')">
                     <input ng-init="value.selected = true" ng-change="onSingleSelectChange(value,value.selected,'name')" type="checkbox" ng-model="value.selected">
                     <span class="dg-value singleFilterHeading">{{value.name}}</span>
                 </li>

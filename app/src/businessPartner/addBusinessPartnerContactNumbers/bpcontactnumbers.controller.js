@@ -13,7 +13,7 @@
 		.controller('BpContactNumbers', BpContactNumbers);
 
   /* @ngInject */
-	function BpContactNumbers(toastr,bp,$stateParams,businessPartner){
+	function BpContactNumbers(toastr,bp,$stateParams,businessPartner,dropDownConfig){
 		var vm = this;
         init();
 
@@ -33,7 +33,7 @@
             if(vm.businessPartner.contNum.length === 0){
                 addContactNumber();
             }
-            vm.contactTypeConfig = businessPartner.getBusinessPartnerContactType();
+            vm.contactTypeConfig = dropDownConfig.contactTypeConfig();
             vm.addContactNumber = addContactNumber;
             vm.subContactNumber = subContactNumber;
             vm.saveContactNumber = saveContactNumber;
@@ -64,9 +64,9 @@
 
                     if (res.data.success) {
                         vm.businessPartner.contNum = (vm.businessPartner.contNum) ? vm.businessPartner.contNum : [];
+                        vm.businessPartner.newContactNumber.ph_ID = res.data.conNumID;
                         vm.businessPartner.contNum.push(vm.businessPartner.newContactNumber);
                         subContactNumber();
-                        toastr.success(res.data.message, 'Success');
                     }
                 });
             }
@@ -78,7 +78,6 @@
         function deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id, index){
             businessPartner.deleteBusinessPartnerContactNumber(bpName, contactNumber, contactType, id,function(response){
                 if (response.success) {
-                    toastr.success(response.message, 'Success');
                     vm.businessPartner.contNum.splice(index,1);
                     if(vm.businessPartner.contNum.length === 0){
                         vm.addContactNumber();

@@ -24,10 +24,9 @@
             vm.businessPartner = {};
             vm.editMode = false;
             vm.singleConfig = originConfig;
-            initializeBusinessPartner();
             vm.saveBusinessPartner = saveBusinessPartner;
             vm.updateBusinessPartner = updateBusinessPartner;
-
+            initializeBusinessPartner();
         }
 
         function initializeBusinessPartner(){
@@ -66,7 +65,6 @@
                 businessPartner.addBusinessPartner(vm.businessPartner.general,function(response){
 
                     if (response.success) {
-                        toastr.success(response.message, 'Success');
                         $state.go('shell.businessPartner.view',{id:response.data});
                     }
                 });
@@ -85,9 +83,7 @@
                     return;
                 }
                 businessPartner.updateBusinessPartner(vm.businessPartner.general,function(response){
-
                     if (response.success) {
-                        toastr.success(response.message, 'Success');
                         $state.go('shell.businessPartner.view',{id:vm.businessPartner.general.bp_ID});
                     }
                 });

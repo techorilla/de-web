@@ -129,10 +129,10 @@
                     <tr ng-repeat="contPers in vm.businessPartner.contPers">
                         <td ng-bind="contPers.bp_Cont_fullName"></td>
                         <td ng-bind="contPers.bp_Cont_IsPrimary ? 'Yes' : 'No'"></td>
-                        <td ng-bind="contPers.bp_Cont_designation"></td>
-                        <td ng-bind="contPers.bp_Cont_Email"></td>
-                        <td ng-bind="contPers.bp_Cont_PrimaryNumber"></td>
-                        <td ng-bind="contPers.bp_Cont_SecondryNumber"></td>
+                        <td ng-bind="contPers.bp_Cont_designation ? contPers.bp_Cont_designation : 'Not Entered'"></td>
+                        <td ng-bind="contPers.bp_Cont_Email ? contPers.bp_Cont_Email: 'Not Entered' "></td>
+                        <td ng-bind="contPers.bp_Cont_PrimaryNumber ? contPers.bp_Cont_PrimaryNumber : 'Not Entered'"></td>
+                        <td ng-bind="contPers.bp_Cont_SecondryNumber ? contPers.bp_Cont_SecondryNumber:'Not Entered' "></td>
                         <td>
                             <label ng-click="vm.deleteBusinessPartnerContact(vm.businessPartner.gen[0].bp_Name, contPers.bp_Cont_fullName, contPers.bp_cont_ID, $index)" class="cursor-pointer">
                                 <i class="fa fa-trash-o redFont"></i>

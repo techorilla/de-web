@@ -34,7 +34,8 @@
             getWeeksInDateRange: getWeeksInDateRange,
             getMonthTitle: getMonthTitle,
             getWeekTitle: getWeekTitle,
-            filterDate: filterDate
+            filterDate: filterDate,
+            resetFormValidation: resetFormValidation
 		};
 
 		////////////////////
@@ -186,6 +187,15 @@
                 currentDate = currentDate.addDays(1);
             }
             return dateArray;
+        }
+
+        function resetFormValidation(formObj){
+            for (var att in formObj.$error) {
+                if (formObj.$error.hasOwnProperty(att)) {
+                    formObj.$setValidity(att, true);
+                }
+            }
+            formObj.$setPristine(true);
         }
 	}
 

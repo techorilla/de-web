@@ -31,20 +31,31 @@
             };
         }
 
-        function getCrudRequest(url,data, operation){
-            data.operation = operation;
-            return postRequest(url,{data: data});
-            return req;
+        function executeApiRequest(req,callBack){
+            if(callBack){
+                return $http(req).success(function(response){
+                    callBack(response);
+                });
+            }
+            else{
+                return $http(req);
+            }
         }
 
-        function postRequest(url, data){
+        function getCrudRequest(url,data,operation,callBack){
+            data.operation = operation;
+            return postRequest(url,{data: data},callBack);
+        }
+
+        function postRequest(url, data,callBack){
             var req = getRequestObj('POST',url);
             req.data = data;
-            return $http(req);
+            return executeApiRequest(req,callBack);
         }
 
-        function getRequest(url){
-            return $http(getRequestObj('GET',url));
+        function getRequest(url,callBack){
+            var req = getRequestObj('GET',url);
+            return executeApiRequest(req,callBack);
         }
 
     }

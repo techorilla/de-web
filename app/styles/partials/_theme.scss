@@ -704,6 +704,7 @@ img {
   font-size: 10px;
   font-weight: bold;
   margin-top: 2px;
+  position: absolute;
 }
 
 .marginTopMinus20{
@@ -1084,6 +1085,10 @@ textarea { resize:vertical ; }
   width: 100%;
   text-align: left;
   font-weight:bolder;
+}
+
+.col-width-huge{
+  width: 570px;
 }
 
 

@@ -63,7 +63,6 @@
             };
             businessPartner.addBusinessPartnerProduct(prod).then(function(res){
                 if(res.data.success){
-                    toastr.success(res.data.message,'Product Added');
                     vm.addingProduct = false;
                     vm.bpProducts.push({bp_ID:$stateParams.id,prod_ID:newProduct});
                     vm.newProduct = undefined;
