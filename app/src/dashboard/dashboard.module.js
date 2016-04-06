@@ -34,6 +34,19 @@
                             return  res.data;
                         });
                     },
+                    sellersList: function(tabFilter){
+                        return tabFilter.getDropDownBP("Seller").then(function(res){
+                            return res.data.data;
+                        });
+                    },
+                    buyersList: function(tabFilter) {
+                        return tabFilter.getDropDownBP("Buyer").then(function (res) {
+                            return res.data.data;
+                        });
+                    },
+                    bpConfig: function(tradebook){
+                        return tradebook.getBpConfig();
+                    },
                     productConfig: function(tradebook){
                         return tradebook.getProductConfig();
                     }

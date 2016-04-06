@@ -99,6 +99,10 @@ a {
 }
 .cursor-pointer{
   cursor:pointer !important;
+  .selectized{
+    cursor:pointer !important;
+    position:relative;
+  }
 }
 input::-moz-focus-inner {
   border: 0;

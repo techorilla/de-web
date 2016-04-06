@@ -50,7 +50,7 @@
                 <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
                 <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>
                 <td><a ui-sref="shell.products.viewProduct({id:row.tr_productID})">{{row.product}}</a></td>
-                <td ng-bind="row.quantity"></td>
+                <td ng-bind="row.quantity + ' MT'"></td>
                 <td ng-bind="row.rate  | currency:'$':0"></td>
                 <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpSellerID})">{{row.seller}}</a></td>
                 <td ng-bind="row.origin"></td>

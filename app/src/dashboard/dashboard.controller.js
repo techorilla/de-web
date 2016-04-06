@@ -13,11 +13,15 @@
         .controller('Dashboard', Dashboard);
 
     /* @ngInject */
-    function Dashboard($filter,allProducts,productConfig, $state, navigation,appFormats, product){
+    function Dashboard($filter,allProducts,productConfig,sellersList,buyersList, $state, navigation,appFormats, product,dashboard,bpConfig){
         var vm = this;
         init();
 
         function init(){
+            vm.bpConfig = bpConfig;
+            vm.appFormats = appFormats;
+            vm.sellersList = sellersList;
+            vm.buyersList = buyersList;
             vm.showProductsPrices = true;
             vm.showArrivedAtPort = true;
             vm.showExpected = true;
@@ -35,6 +39,9 @@
             vm.dateSelected = $filter('date')(new Date(), appFormats.Date);
             vm.productPricesForToday = [];
             vm.productPricesOnDateRange = [];
+            vm.arrivedAtPortReport = [];
+            vm.expectedArrivalReport = [];
+            vm.expirationReport = [];
             vm.getProductsPricesByDate = getProductsPricesByDate;
             vm.getProductsPricesByDate(vm.dateSelected);
             vm.getProductPricesByDateRange = getProductPricesByDateRange;
@@ -45,6 +52,10 @@
             vm.getArrivedAtPortByDateRange = getArrivedAtPortByDateRange;
             vm.getExpirationByDateRange = getExpirationByDateRange;
             vm.getExpectedArrivalByDateRange = getExpectedArrivalByDateRange;
+            getArrivedAtPortByDateRange(vm.arrivedAtPortDateRange);
+            getExpectedArrivalByDateRange(vm.expectedArrivalDateRange);
+            getExpirationByDateRange(vm.expirationDateRange);
+
 
 
         }
@@ -53,19 +64,36 @@
             $state.go('shell.productPrices');
         }
 
-        function getArrivedAtPortByDateRange(dateRange){
+        function executeMethodOnDateRange(dateRange,method,successCallBack){
             var startDate = new Date(dateRange.startDate);
             var endDate = new Date(dateRange.endDate);
+            method(startDate,endDate).then(function(response){
+                successCallBack(response);
+            });
+        }
+
+        function getArrivedAtPortByDateRange(dateRange){
+            executeMethodOnDateRange(dateRange,dashboard.getArrivedAtPortReport,function(res){
+                if(res.data.success){
+                    vm.arrivedAtPortReport = res.data.report;
+                }
+            });
         }
 
         function getExpectedArrivalByDateRange(dateRange){
-            var startDate = new Date(dateRange.startDate);
-            var endDate = new Date(dateRange.endDate);
+            executeMethodOnDateRange(dateRange,dashboard.getExpectedArrivalReport,function(res){
+                if(res.data.success){
+                    vm.expectedArrivalReport = res.data.report;
+                }
+            });
         }
 
         function getExpirationByDateRange(dateRange){
-            var startDate = new Date(dateRange.startDate);
-            var endDate = new Date(dateRange.endDate);
+            executeMethodOnDateRange(dateRange,dashboard.getShipmentExpirationReport,function(res){
+                if(res.data.success){
+                    vm.expirationReport = res.data.report;
+                }
+            });
         }
 
         function getLocalProductPricesByDateRange(dateRange){

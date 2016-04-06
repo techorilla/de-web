@@ -57,7 +57,7 @@
                 <div class="form-group col-xs-6">
                     <label>Account Number</label>
                     <input class="form-control" type="text" name="accountNumber"
-                           ng-disabled="vm.viewMode" ng-required="true"
+                           ng-disabled="vm.viewMode"
                            placeholder='Please enter account number of bank account'
                            ng-model="vm.businessPartner.newBankDetails.accountNumber"/>
                     <div ng-messages='vm.bankDetailsForm.accountNumber.$error'
@@ -71,8 +71,13 @@
             <div class="row">
                 <div class="form-group col-lg-6">
                     <label>Country of Bank Account</label>
-                    <selectize name="accountCountry" ng-required="true" placeholder='Please enter country of bank account' config="vm.singleConfig" ng-model="vm.businessPartner.newBankDetails.accountCountry"></selectize>
-                    <ng-messages for="vm.bankDetailsForm.accountCountry.$error" ng-if='vm.bankDetailsForm.accountCountry.$dirty || vm.businessPartnerForm.$submitted'>
+                    <selectize name="accountCountry" ng-required="true"
+                               placeholder='Please enter country of bank account'
+                               config="vm.singleConfig"
+                               ng-model="vm.businessPartner.newBankDetails.accountCountry">
+                    </selectize>
+                    <ng-messages for="vm.bankDetailsForm.accountCountry.$error"
+                                 ng-if='vm.bankDetailsForm.accountCountry.$dirty || vm.bankDetailsForm.$submitted'>
                         <div ng-message="required" class="errorValidation">Country of Bank Account is required</div>
                     </ng-messages>
                 </div>
@@ -85,7 +90,7 @@
                            ng-model="vm.businessPartner.newBankDetails.bankName"/>
                     <div ng-messages='vm.bankDetailsForm.bankName.$error'
                          ng-if='vm.bankDetailsForm.bankName.$dirty || vm.bankDetailsForm.$submitted'>
-                        <div class="errorValidation" ng-message="required">Account Number is required</div>
+                        <div class="errorValidation" ng-message="required">Bank Name is required</div>
                     </div>
                 </div>
             </div>
@@ -119,7 +124,7 @@
                 <tbody>
                 <tr ng-repeat="bank in vm.businessPartner.bank">
                     <td ng-bind="bank.accountTitle"></td>
-                    <td ng-bind="bank.accountNumber"></td>
+                    <td ng-bind="bank.accountNumber ? bank.accountNumber : 'N/A' "></td>
                     <td ng-bind="bank.bankName"></td>
                     <td ng-bind="bank.accountCountry"></td>
                     <td ng-bind="bank.branchAddress ? bank.branchAddress : 'Not Entered' "></td>

@@ -58,12 +58,12 @@
         function saveBusinessPartner(){
             if(!vm.businessPartnerForm.$invalid){
                 var bp = vm.businessPartner.general;
-                if(!(bp.bp_isBroker || bp.bp_isShipper || bp.bp_isBuyer || bp.bp_isSupplier)){
+                console.log(bp);
+                if(!(bp.bp_isBroker || bp.bp_isShipper || bp.bp_isBuyer || bp.bp_isSeller)){
                     toastr.error('Business partner should have one type', 'Error');
                     return;
                 }
                 businessPartner.addBusinessPartner(vm.businessPartner.general,function(response){
-
                     if (response.success) {
                         $state.go('shell.businessPartner.view',{id:response.data});
                     }
@@ -78,7 +78,8 @@
         function updateBusinessPartner(){
             if(!vm.businessPartnerForm.$invalid){
                 var bp = vm.businessPartner.general;
-                if(!(bp.bp_isBroker || bp.bp_isShipper || bp.bp_isBuyer || bp.bp_isSupplier)){
+                console.log(bp);
+                if(!(bp.bp_isBroker || bp.bp_isShipper || bp.bp_isBuyer || bp.bp_isSeller)){
                     toastr.error('Business partner should have one type', 'Error');
                     return;
                 }

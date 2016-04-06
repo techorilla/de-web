@@ -29,21 +29,41 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="pPrice in vm.productPricesForToday">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <selectize ng-disabled="true"
-                               config="vm.productConfig"
-                               options='vm.allProducts'
-                               ng-model="pPrice.productId">
-                    </selectize>
+            <tr ng-repeat="report in vm.expirationReport">
+                <td ng-bind="report.tr_shipment_end | date:vm.appFormats.Date"></td>
+                <td ng-if="report.days === 0">Expired Today</td>
+                <td ng-if="report.days < 0">Will expire after {{report.days*-1}} day(s)</td>
+                <td ng-if="report.days > 0">Expired {{report.days}} day(s) ago</td>
+                <td><a ui-sref="shell.tradebook.Transaction({tran:report.tr_transactionID})">{{report.tr_fileID}}</a></td>
+                <td class="cursor-pointer">
+                    <a ui-sref="shell.businessPartner.view({id:report.tr_bpBuyerID})">
+                        <selectize ng-disabled="true"
+                                   config="vm.bpConfig"
+                                   options='vm.buyersList'
+                                   ng-model="report.tr_bpBuyerID">
+                        </selectize>
+                    </a>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="cursor-pointer" >
+                    <a ui-sref="shell.products.viewProduct({id:report.tr_productID})">
+                        <selectize ng-disabled="true"
+                                   config="vm.productConfig"
+                                   options='vm.allProducts'
+                                   ng-model="report.tr_productID">
+                        </selectize>
+                    </a>
+                </td>
+                <td ng-bind="report.tr_quantity + ' MT'"></td>
+                <td ng-bind="'$'+report.tr_price"></td>
+                <td class="cursor-pointer">
+                    <a ui-sref="shell.businessPartner.view({id:report.tr_bpSellerID})">
+                        <selectize ng-disabled="true"
+                                   config="vm.bpConfig"
+                                   options='vm.sellersList'
+                                   ng-model="report.tr_bpSellerID">
+                        </selectize>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>

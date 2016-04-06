@@ -6,52 +6,74 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-	angular
-		.module('app.dashboard')
-		.factory('dashboard', dashboard);
+    angular
+        .module('app.dashboard')
+        .factory('dashboard', dashboard);
 
-  /* @ngInject */
-  function dashboard($timeout,$compile){
+    /* @ngInject */
+    function dashboard(dataService,$filter, appFormats){
 
         var chartType={
-          pie: 'pie',
-          areaSpline: 'areaspline'
+            pie: 'pie',
+            areaSpline: 'areaspline'
 
         };
         return {
             getBarChartsConfig: getBarChartsConfig,
             getPieChartConfig: getPieChartConfig,
-            getBasicChartConfig: getBasicChartConfig
-		};
+            getBasicChartConfig: getBasicChartConfig,
+            getArrivedAtPortReport: getArrivedAtPortReport,
+            getExpectedArrivalReport:getExpectedArrivalReport,
+            getShipmentExpirationReport:getShipmentExpirationReport
+        };
+
+        function getReport(startDate,endDate,url){
+            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
+            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
+            var queryUrl = url + '?startDate=' + sDate + '&endDate='+eDate;
+            return dataService.getRequest(queryUrl);
+        }
+
+        function getArrivedAtPortReport(startDate,endDate){
+            return getReport(startDate,endDate,'getArrivedAtPortReport');
+        }
+
+        function getExpectedArrivalReport(startDate,endDate){
+            return getReport(startDate,endDate,'getExpectedArrivalReport');
+        }
+
+        function getShipmentExpirationReport(startDate,endDate){
+            return getReport(startDate,endDate,'getShipmentExpirationReport');
+        }
 
         function getBasicChartConfig(type, title, series,scope){
             return {
-              options:{
-                  title: title,
-                  chart:{
-                      type: type,
-                      options3d: {
-                          enabled: true,
-                          alpha: 45
-                      },
-                      tooltip:  {
-                          style: {
-                              padding: 10,
-                              fontWeight: 'bold'
-                          }
-                      },
-                      zoomType:'x',
-                      width:1180
-                  }
-              },
-              series: series,
-              loading: false,
-              func: function (chart) {
+                options:{
+                    title: title,
+                    chart:{
+                        type: type,
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        },
+                        tooltip:  {
+                            style: {
+                                padding: 10,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        zoomType:'x',
+                        width:1180
+                    }
+                },
+                series: series,
+                loading: false,
+                func: function (chart) {
 
                     //setup some logic for the chart
-              }
+                }
             };
         }
 
@@ -83,8 +105,8 @@
             config.options.plotOptions = {
                 pie: {
                     innerSize: 100,
-                        depth: 45,
-                        dataLabels: {
+                    depth: 45,
+                    dataLabels: {
                         enabled: true
                     },
                     enableMouseTracking: false
@@ -163,21 +185,21 @@
 
         }
 
-		////////////////////
+        ////////////////////
 
-    /**
-     * @ngdoc
-     * @name app.dashboard.dashboard#testFunction
-     * @methodOf app.dashboard.dashboard
-     *
-     * @description < description placeholder >
-     * @example
-     * <pre>
-     * dashboard.testFunction(id);
-     * </pre>
-     * @param {int} entity id
-     */
+        /**
+         * @ngdoc
+         * @name app.dashboard.dashboard#testFunction
+         * @methodOf app.dashboard.dashboard
+         *
+         * @description < description placeholder >
+         * @example
+         * <pre>
+         * dashboard.testFunction(id);
+         * </pre>
+         * @param {int} entity id
+         */
 
-	}
+    }
 
 }());
