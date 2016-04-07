@@ -31,7 +31,8 @@
                 colors:'=',
                 series:'=',
                 labels:'=',
-                showChart:'='
+                showChart:'=',
+                pieType:'@'
             }
         };
 
@@ -40,7 +41,6 @@
         function link(scope, elem, attrs){
 
             scope.show=[];
-
 
             scope.$watch('data',function(newVal,oldVal){
                 scope.showCh = false;
@@ -58,14 +58,11 @@
                             colorsCount += 1;
                         }
                     }
-
                 }
                 scope.onHideSeries();
             });
 
             scope.getRandomColor = function(defaultColor) {
-
-
                     var letters = '0123456789ABCDEF'.split('');
                     var colors = [
                         '#F47', // red
@@ -88,8 +85,6 @@
                 scope.showCh = newVal;
             });
 
-
-
             scope.onHideSeries = function(){
                 scope.showCh = false;
                 var output = [];
@@ -109,9 +104,6 @@
                 scope.dataClone = output;
                 scope.showCh = true;
             };
-
-
-
         }
     }
 

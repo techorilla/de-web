@@ -1,5 +1,5 @@
 <div>
-    <canvas id="bar" class="chart chart-bar" 
+    <canvas id="bar" class="chart chart-bar"
             ng-if="showCh && (type==='bar')"
             chart-data="dataClone"
             chart-legend="false" chart-colours="colors"
@@ -13,7 +13,7 @@
             chart-colours="colors">
     </canvas>
     <canvas  ng-if="(type==='pie')" id="pie" class="chart chart-pie" chart-legend="false" chart-colours="colors"
-            chart-data="dataClone" chart-labels="labels">
+             chart-data="dataClone" chart-labels="labels">
     </canvas>
 
     <div class="chart-legend" ng-if="showCh && (type==='bar')">
@@ -50,7 +50,8 @@
             <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : colors[$index])}"
                     title="Show/hide corresponding line on chart">
             </span>
-                {{ item + ' (' + data[$index] + ')' }}
+                <div ng-if="pieType === 'USD'">{{ item}} ({{ data[$index] | currency:'$ ':0}})</div>
+                <div ng-if="pieType === 'MT'">{{ item}} ({{ data[$index] | currency:'':0}} MT)</div>
             </li>
         </ul>
     </div>

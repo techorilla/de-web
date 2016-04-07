@@ -26,8 +26,8 @@
     <div ui-view></div>
   </body>
 
-  <!-- build:js scripts/app.js -->
   <!-- bower:js -->
+  <!-- build:js scripts/vendor_1.js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -35,6 +35,8 @@
   <script src="bower_components/Chart.js/Chart.js"></script>
   <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <!-- endbuild -->
+  <!-- build:js scripts/vendor_2.js -->
   <script src="bower_components/blob-polyfill/Blob.js"></script>
   <script src="bower_components/file-saver.js/FileSaver.js"></script>
   <script src="bower_components/angular-file-saver/dist/angular-file-saver.js"></script>
@@ -53,6 +55,8 @@
   <script src="bower_components/microplugin/src/microplugin.js"></script>
   <script src="bower_components/selectize/dist/js/selectize.js"></script>
   <script src="bower_components/angular-selectize2/dist/angular-selectize.js"></script>
+  <!-- endbuild -->
+  <!-- build:js scripts/vendor_3.js -->
   <script src="bower_components/spin.js/spin.js"></script>
   <script src="bower_components/angular-spinner/angular-spinner.js"></script>
   <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
@@ -83,8 +87,11 @@
   <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
   <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
   <script src="bower_components/angular-off-click/offClick.js"></script>
+  <!-- endbuild -->
   <!-- endbower -->
 
+
+  <!-- build:js scripts/app.js -->
   <script src="src/core/core.module.js"></script>
   <script src="src/common/common.module.js"></script>
   <script src="src/shell/shell.module.js"></script>

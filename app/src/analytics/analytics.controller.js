@@ -48,8 +48,6 @@
             vm.onDateRangeChanged = onDateRangeChanged;
             vm.showTradeBarCharts = true;
             vm.showPie = true;
-
-
             vm.onDateRangeChanged = onDateRangeChanged;
             vm.onBuyersSelectedChanged = onBuyersSelectedChanged;
             vm.onSellersSelectedChanged = onSellersSelectedChanged;
@@ -59,7 +57,6 @@
             vm.timeDrillOptions = analytics.getTimeDrillOptions();
             vm.timeDrillConfig = tradebook.getTimeDrillConfig(vm.timeDrillOptions);
             vm.seriesBarCharts = ['Quantity (MT)','Volume ($)','Net Commission ($)'];
-
             vm.dataBarChars = undefined;
             vm.timeDrillChanged = timeDrillChanged;
             vm.onDateRangeChanged(vm.dateRange);
