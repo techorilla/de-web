@@ -15,7 +15,16 @@
     </filter-bar>
     <hr/>
     <div class="dg-tablePanelBody">
-        <table class="table table-bordered dg-table">
+        <table ng-if="(vm.expirationReport.length ===  0)" class="table table-bordered dg-table">
+            <thead>
+            <tr>
+                <th>
+                    No report on the given date range.
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <table ng-if="(vm.expirationReport.length !==  0)" class="table table-bordered dg-table">
             <thead>
             <tr>
                 <th>Expiration Date</th>

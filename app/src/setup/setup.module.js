@@ -37,13 +37,6 @@
                         templateUrl: 'src/setup/newUser/addNewUser.template.html',
                         controller: 'NewUser as vm'
                     }
-                },
-                resolve:{
-                    userRights: function(setup){
-                        return setup.getUserRights().then(function(res){
-                            return res.data.userRights;
-                        });
-                    }
                 }
             })
             .state('shell.setup.allUsers',{
@@ -115,6 +108,28 @@
                     'subContent@shell.setup':{
                         templateUrl:'src/setup/origin/origin.html',
                         controller: 'Origin as vm'
+                    }
+                }
+            })
+            .state('shell.setup.dashboardProduct',{
+                url:'/dashboardProducts',
+                inSetup: 'true',
+                inSetupTitle: 'My Dashboard Products',
+                inSetupOrder: 2,
+                resolve:{
+                    allProducts: function (product) {
+                        return product.getAllProducts().then(function(res){
+                            return  res.data;
+                        });
+                    },
+                    productConfig: function(tradebook){
+                        return tradebook.getProductConfig();
+                    }
+                },
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl:'src/setup/dashboardProducts/dashboardProducts.template.html',
+                        controller: 'DashboardProducts as vm'
                     }
                 }
             })

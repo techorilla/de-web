@@ -16,6 +16,7 @@
             <tr>
                 <th>Product</th>
                 <th  style="width:200px">International Price</th>
+                <th  style="width:200px">Local Price</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -38,10 +39,22 @@
                                 currency="true">
                         </number-only-input>
                     </div>
-                    <span ng-if="!product.editMode" ng-bind="(product.price === null) ? 'Not Entered' : '$'+product.price "></span>
+                    <span ng-if="!product.editMode" ng-bind="(product.price === null || product.price === 0) ? 'Not Entered' : '$ '+product.price "></span>
                 </td>
                 <td>
-                    <label ng-click="vm.editProductPrice(product)" ng-if="!product.editMode" class="cursor-pointer">
+                    <div  ng-if="product.editMode">
+                        <span class="pricePKR">PKR</span>
+                        <number-only-input
+                                input-value="product.localPrice"
+                                input-name="product.localPrice"
+                                currency="true">
+                        </number-only-input>
+                    </div>
+                    <span ng-if="!product.editMode" ng-bind="(product.localPrice === null || product.localPrice === 0) ? 'Not Entered' : 'PKR '+product.localPrice "></span>
+
+                </td>
+                <td>
+                    <label ng-click="vm.editProductPrice($index, product)" ng-if="!product.editMode" class="cursor-pointer">
                         <i class="fa fa-edit orangeFont"></i>
                         Edit
                     </label>
@@ -59,55 +72,4 @@
             </tbody>
         </table>
     </div>
-
-    <div class="dg-tablePanelBody">
-        <table class="table table-bordered dg-table">
-            <thead>
-            <tr>
-                <th>Product</th>
-                <th style="width:200px">Local Price</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="product in vm.productLocalPrices " ng-init="product.editMode = false;">
-                <td>
-                    <selectize ng-disabled="true"
-                               config="vm.productConfig"
-                               options='vm.allProducts'
-                               ng-model="product.productId">
-                    </selectize>
-                </td>
-                <td>
-                    <div  ng-if="product.editLocalMode">
-                        <span class="pricePKR">PKR</span>
-                        <number-only-input
-                                input-value="product.price"
-                                input-name="product.price"
-                                currency="true">
-                        </number-only-input>
-                    </div>
-                    <span ng-if="!product.editLocalMode" ng-bind="(product.price === null) ? 'Not Entered' : 'PKR '+product.price "></span>
-
-                </td>
-                <td>
-                    <label ng-click="vm.editProductPriceLocal(product)" ng-if="!product.editLocalMode" class="cursor-pointer">
-                        <i class="fa fa-edit orangeFont"></i>
-                        Edit
-                    </label>
-                    <label ng-click="vm.saveProductPriceLocal($index, product)" ng-if="product.editLocalMode" class="cursor-pointer border-right-gray">
-                        <i class="fa fa-database blueFont"></i>
-                        &nbsp;Save&nbsp;&nbsp;
-                    </label>
-                    <label ng-click="vm.cancelEditLocal($index, product)" ng-if="product.editLocalMode" class="cursor-pointer">
-                        &nbsp;&nbsp;
-                        <i class="fa fa-times-circle redFont"></i>
-                        &nbsp;Cancel
-                    </label>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
 </div>

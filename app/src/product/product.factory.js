@@ -22,11 +22,8 @@
             getAllProductPdf: getAllProductPdf,
             editProduct: editProduct,
             getProductPricesByDate: getProductPricesByDate,
-            getProductPricesByDateRange: getProductPricesByDateRange,
             dailyProductsPricesCrud: dailyProductsPricesCrud,
-            productSalesAnalytics: productSalesAnalytics,
-            getLocalProductPricesByDate:getLocalProductPricesByDate,
-            dailyProductsLocalPricesCrud:dailyProductsLocalPricesCrud
+            productSalesAnalytics: productSalesAnalytics
         };
 
         ////////////////////
@@ -117,19 +114,6 @@
         }
 
 
-        function getLocalProductPricesByDate(date){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'getProductsPricesLocalByDate',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: {date: date}
-            };
-            return $http(req);
-        }
-
         function productSalesAnalytics(startDate, endDate){
             var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
             var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
@@ -144,20 +128,6 @@
             return $http(req);
         }
 
-
-        function getProductPricesByDateRange(startDate, endDate){
-            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
-            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'productPriceByDateRange?startDate=' + sDate + '&endDate='+eDate,
-                headers:{
-                    'Content-Type': "application/json"
-                }
-
-            };
-            return $http(req);
-        }
 
         function addNewProduct(product, callback){
             var req = {
@@ -176,10 +146,6 @@
 
         function dailyProductsPricesCrud(product,operation){
             return dataService.getCrudRequest('productPriceByDateCrud',product, operation);
-        }
-
-        function dailyProductsLocalPricesCrud(product,operation){
-            return dataService.getCrudRequest('productPriceLocalByDateCrud',product, operation);
         }
     }
 

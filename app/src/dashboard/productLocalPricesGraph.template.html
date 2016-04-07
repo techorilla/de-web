@@ -9,19 +9,14 @@
 </div>
 <div class="col-lg-12"  ng-show="vm.localPriceAnalysis">
     <div class="col-lg-12 col-xs-12" style="padding-right: 10px;">
-        <filter-bar
-                date-picker-needed="true"
-                date-picker="vm.dateRangeLocal"
-                on-date-change="vm.getLocalProductPricesByDateRange(dateRange)">
-        </filter-bar>
         </hr>
         <!--<page-blue-container class="tabs-panel" graph-container="true">-->
         <charts-legend
                 type="line"
-                labels="vm.dateRangeArrayLocal"
-                data="vm.localPriceDetailArray"
+                labels="vm.dateRangeArray"
+                data="vm.localPriceDetailsArray"
                 colors="vm.chartColors"
-                series="vm.productsLocal">
+                series="vm.products">
         </charts-legend>
         <!--<canvas id="line" class="chart chart-line" chart-data="vm.priceDetailsArray"-->
         <!--chart-labels="vm.dateRangeArray" chart-legend="true" chart-series="vm.products"-->

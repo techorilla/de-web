@@ -24,13 +24,9 @@
             vm.productConfig = productConfig;
             //vm.getProductsPricesByDate(vm.dateSelected);
             vm.cancelEdit = cancelEdit;
-            vm.cancelEditLocal = cancelEditLocal;
             vm.editProductPrice = editProductPrice;
-            vm.editProductPriceLocal = editProductPriceLocal;
             vm.saveProductPrice = saveProductPrice;
-            vm.saveProductPriceLocal = saveProductPriceLocal;
-            vm.currentlyEditing = {};
-            vm.currentlyEditingLocal={};
+            vm.currentlyEditing = [];
             $scope.$watch('vm.dateSelected',function(newVal,oldVal){
                 vm.getProductsPricesByDate(vm.dateSelected);
             });
@@ -41,55 +37,37 @@
             product.getProductPricesByDate(date).then(function(res){
                 if(res.data.success){
                     vm.productPrices = res.data.productPrices;
-                }
-            });
-            product.getLocalProductPricesByDate(date).then(function(res){
-                if(res.data.success){
-                    vm.productLocalPrices = res.data.productPrices;
+                    var totalProducts = vm.productPrices.length;
+                    while(totalProducts>0){
+                        vm.currentlyEditing.push({});
+                        totalProducts--;
+                    }
+                    console.log(vm.productPrices);
 
                 }
             });
         }
 
         function cancelEdit(index){
-            vm.productPrices[index] = vm.currentlyEditing;
+            vm.productPrices[index] = vm.currentlyEditing[index];
             vm.productPrices[index].editMode = false;
         }
 
-        function cancelEditLocal(index){
-            vm.productLocalPrices[index] = vm.currentlyEditingLocal;
-            vm.productLocalPrices[index].editLocalMode = false;
-        }
-
-        function editProductPrice(productPrice){
-            vm.currentlyEditing = angular.copy(productPrice);
+        function editProductPrice(index, productPrice){
+            vm.currentlyEditing[index] = angular.copy(productPrice);
             productPrice.editMode = true;
         }
 
-        function editProductPriceLocal(productPrice){
-            vm.currentlyEditingLocal = angular.copy(productPrice);
-            productPrice.editLocalMode = true;
-        }
-
         function saveProductPrice(index,productPrice){
-            var operation = (vm.currentlyEditing.price === null) ? crud.CREATE : crud.UPDATE;
+            var operation = (vm.currentlyEditing[index].price === null && vm.currentlyEditing[index].localPrice === null) ? crud.CREATE : crud.UPDATE;
             productPrice.date = vm.dateSelected;
             product.dailyProductsPricesCrud(productPrice,operation).then(function(res){
-                productPrice.editLocalMode = false;
+                productPrice.editMode = false;
             },function(err){
                 vm.cancel(index);
             });
         }
 
-        function saveProductPriceLocal(index,productPrice){
-            var operation = (vm.currentlyEditingLocal.price === null) ? crud.CREATE : crud.UPDATE;
-            productPrice.date = vm.dateSelected;
-            product.dailyProductsLocalPricesCrud(productPrice,operation).then(function(res){
-                productPrice.editLocalMode = false;
-            },function(err){
-                vm.cancel(index);
-            });
-        }
 
     /////////////////////
 

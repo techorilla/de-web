@@ -13,11 +13,10 @@
 		.controller('NewUser', NewUser);
 
   /* @ngInject */
-	function NewUser(toastr, userRights,$scope, setup, $state){
+	function NewUser(toastr,$scope, setup, $state){
 		var vm = this;
 
 		vm.testFunction = testFunction;
-        vm.userRights = userRights;
         vm.titleConfig = {
             valueField: 'text',
             labelField: 'text',

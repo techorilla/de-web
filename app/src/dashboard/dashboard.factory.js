@@ -26,7 +26,9 @@
             getBasicChartConfig: getBasicChartConfig,
             getArrivedAtPortReport: getArrivedAtPortReport,
             getExpectedArrivalReport:getExpectedArrivalReport,
-            getShipmentExpirationReport:getShipmentExpirationReport
+            getShipmentExpirationReport:getShipmentExpirationReport,
+            getProductPriceForToday: getProductPriceForToday,
+            getProductPriceByDateRangeForDashboard: getProductPriceByDateRangeForDashboard
         };
 
         function getReport(startDate,endDate,url){
@@ -36,6 +38,12 @@
             return dataService.getRequest(queryUrl);
         }
 
+        function getProductPriceByDateRangeForDashboard(startDate,endDate){
+            return getReport(startDate,endDate,'productPriceByDateRangeForDashboard');
+        }
+        function getProductPriceForToday(date){
+            return dataService.postRequest('getProductsPricesByDateForDashboard',{date: date});
+        }
         function getArrivedAtPortReport(startDate,endDate){
             return getReport(startDate,endDate,'getArrivedAtPortReport');
         }

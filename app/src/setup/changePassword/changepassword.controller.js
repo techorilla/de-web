@@ -37,7 +37,7 @@
             if(form.$valid){
                 setup.submitChangePassword(vm.passwordDetails).then(function(res){
                    if(res.data.success){
-                       $state.go('shell.setup');
+                       $state.go('shell.dashboard');
                    }
                 });
             }

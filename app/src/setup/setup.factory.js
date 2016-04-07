@@ -13,15 +13,16 @@
 		.factory('setup', setup);
 
   /* @ngInject */
-  function setup($http, appConfig){
+  function setup($http, dataService, appConfig){
 		return {
 			getAllUsers: getAllUsers,
-            getUserRights: getUserRights,
             addNewUser: addNewUser,
             originCrud: originCrud,
             getAllOrigin: getAllOrigin,
             getChangePasswordObject: getChangePasswordObject,
-            submitChangePassword: submitChangePassword
+            submitChangePassword: submitChangePassword,
+            getDashboardProducts: getDashboardProducts,
+            dashboardProductCRUD: dashboardProductCRUD
 		};
 
 		////////////////////
@@ -38,47 +39,27 @@
      * </pre>
      * @param {int} entity id
      */
+        function getDashboardProducts(){
+            return dataService.getRequest('getDashboardProducts');
+        }
+
+        function dashboardProductCRUD(productId,operation){
+            return dataService.postRequest('dashboardProductCRUD',{productId: productId, operation: operation});
+        }
+
         function getAllOrigin(){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getAllOrigin'
-            };
-            return $http(req);
+            return dataService.getRequest('getAllOrigin');
         }
 
         function originCrud(originName,originId,operation){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'originCRUD',
-                headers: {
-                    'Content-Type': "application/json",
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: {origin_id: originId, origin_name:originName, operation: operation}
-            };
-            return $http(req);
+            return dataService.postRequest('originCRUD',{origin_id: originId, origin_name:originName, operation: operation});
         }
 
 		function getAllUsers(){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getAppUsers'
-            };
-            return $http(req);
+            return dataService.getRequest('getAppUsers');
 		}
         function addNewUser(newUser){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'addNewUser',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {newUser: newUser}
-            };
-            return $http(req);
-        }
-        function getUserRights(){
-            return $http.get('datastore/userRights.json');
+            return dataService.postRequest('addNewUser',{newUser: newUser});
         }
 
         function getChangePasswordObject(){
@@ -89,16 +70,7 @@
             };
         }
         function submitChangePassword(passwordDetails){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'changePassword',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {passwordDetails:passwordDetails}
-
-            };
-            return $http(req);
+            return dataService.postRequest('changePassword',{passwordDetails:passwordDetails});
         }
 	}
 

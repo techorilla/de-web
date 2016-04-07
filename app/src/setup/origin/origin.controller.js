@@ -33,7 +33,6 @@
         function addOrigin(newOrigin){
             setup.originCrud(newOrigin,null,crud.CREATE).then(function(res){
                 if(res.data.success){
-                    toastr.success(res.data.message,'Origin Added');
                     vm.allOrigins.push({
                         origin_id: res.data.origin_id, origin_name:vm.newOrigin
                     });
