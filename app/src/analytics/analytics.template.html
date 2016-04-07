@@ -29,15 +29,15 @@
 
                 <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
                     <div class="filterHeading2">Trade Volume</div>
-                    <div class="summaryValue">$ {{vm.totalVolume}}</div>
+                    <div class="summaryValue">{{vm.totalVolume | currency:'$ ':0}}</div>
                 </page-blue-container>
                 <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
                     <div class="filterHeading2">Net Commission</div>
-                    <div class="summaryValue">$ {{vm.totalNetCommission}}</div>
+                    <div class="summaryValue">{{vm.totalNetCommission | currency:'$ ':0}}</div>
                 </page-blue-container>
                 <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
                     <div class="filterHeading2">Quantity</div>
-                    <div class="summaryValue">{{vm.totalQuantity}} <span>MT</span></div>
+                    <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
                 </page-blue-container>
             </div>
 

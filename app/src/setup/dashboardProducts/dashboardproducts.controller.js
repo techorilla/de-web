@@ -41,14 +41,14 @@
 
         function addDashboardProduct(productId){
             vm.isAlreadyPresent = false;
-            if(vm.dashboardProducts >= 5){
-                toastr.error('You can only have 5 products on dashboard', 'Error');
+            if(vm.dashboardProducts.length >= 7){
+                toastr.error('You can only have 7 products on dashboard', 'Error');
                 vm.productId = '';
                 return;
             }
             else{
                 angular.forEach(vm.dashboardProducts,function(val){
-                    if(val.productId === productId){
+                    if(parseInt(val.productId) === parseInt(productId)){
                         toastr.error('You already have this product on the list', 'Error');
 
                         vm.isAlreadyPresent = true;
@@ -58,7 +58,7 @@
                 if(!vm.isAlreadyPresent){
                     setup.dashboardProductCRUD(productId,crud.CREATE).then(function(res){
                         if(res.data.success){
-                            vm.dashboardProducts.push({productId: vm.productId});
+                            vm.dashboardProducts.push({productId: productId});
                         }
                     });
                 }

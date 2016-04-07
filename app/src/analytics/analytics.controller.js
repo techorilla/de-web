@@ -58,7 +58,7 @@
             vm.onTranStatusSelectedChanged = onTranStatusSelectedChanged;
             vm.timeDrillOptions = analytics.getTimeDrillOptions();
             vm.timeDrillConfig = tradebook.getTimeDrillConfig(vm.timeDrillOptions);
-            vm.seriesBarCharts = ['Quantity','Volume','Net Commission'];
+            vm.seriesBarCharts = ['Quantity (MT)','Volume ($)','Net Commission ($)'];
 
             vm.dataBarChars = undefined;
             vm.timeDrillChanged = timeDrillChanged;
