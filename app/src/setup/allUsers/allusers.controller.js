@@ -31,12 +31,16 @@
         function changeUserActivation(userId,username,activation,user){
             if(activation){
                 setup.deActivateUser(userId,username,function(response){
-                    user.isActivated = false;
+                    if(response.success){
+                        user.isActivated = false;
+                    }
                 });
             }
             else{
                 setup.activateUser(userId,username,function(response){
-                    user.isActivated = true;
+                   if(response.success){
+                       user.isActivated = true;
+                   }
                 });
             }
         }
