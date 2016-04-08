@@ -1132,17 +1132,22 @@ form .progress {
   margin-top: 10px;
 }
 
-/* line 979, ../partials/_theme.scss */
+/* line 977, ../partials/_theme.scss */
+.float-left {
+  float: left;
+}
+
+/* line 982, ../partials/_theme.scss */
 .tabs-panel {
   background-color: #fff;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
-/* line 986, ../partials/_theme.scss */
+/* line 989, ../partials/_theme.scss */
 .dashboardContent .graphContainer {
   background: #ffffff !important;
 }
-/* line 989, ../partials/_theme.scss */
+/* line 992, ../partials/_theme.scss */
 .dashboardContent .price {
   font-weight: 900;
   position: absolute;
@@ -1152,15 +1157,15 @@ form .progress {
   text-align: center;
 }
 
-/* line 1000, ../partials/_theme.scss */
+/* line 1003, ../partials/_theme.scss */
 .analyticsContent {
   overflow-x: hidden;
 }
-/* line 1002, ../partials/_theme.scss */
+/* line 1005, ../partials/_theme.scss */
 .analyticsContent .graphContainer {
   background: #ffffff !important;
 }
-/* line 1005, ../partials/_theme.scss */
+/* line 1008, ../partials/_theme.scss */
 .analyticsContent .filterHeading2 {
   color: #1691ac;
   width: 100%;
@@ -1168,13 +1173,13 @@ form .progress {
   font-size: 16px;
   padding-bottom: 15px;
 }
-/* line 1012, ../partials/_theme.scss */
+/* line 1015, ../partials/_theme.scss */
 .analyticsContent .options {
   margin-top: 1px;
   position: absolute;
   margin-left: 10px;
 }
-/* line 1017, ../partials/_theme.scss */
+/* line 1020, ../partials/_theme.scss */
 .analyticsContent .summaryValue {
   width: 100%;
   text-align: center;
@@ -1182,35 +1187,35 @@ form .progress {
   font-weight: bolder;
   color: #333;
 }
-/* line 1023, ../partials/_theme.scss */
+/* line 1026, ../partials/_theme.scss */
 .analyticsContent .summaryValue span {
   color: #F47414;
   font-size: 14px;
 }
 
-/* line 1030, ../partials/_theme.scss */
+/* line 1033, ../partials/_theme.scss */
 .doc-Container {
   font-size: 15px;
   padding-top: 15px;
 }
 
-/* line 1033, ../partials/_theme.scss */
+/* line 1036, ../partials/_theme.scss */
 .marginTopmin18px {
   margin-top: -18px;
 }
 
-/* line 1037, ../partials/_theme.scss */
+/* line 1040, ../partials/_theme.scss */
 .addNote {
   margin-right: 15px;
   border-radius: 0;
 }
 
-/* line 1042, ../partials/_theme.scss */
+/* line 1045, ../partials/_theme.scss */
 textarea {
   resize: vertical;
 }
 
-/* line 1044, ../partials/_theme.scss */
+/* line 1047, ../partials/_theme.scss */
 .graphContainer {
   box-shadow: 1px 1px 1px 1px  #cccccc;
   background: #F5F5F5;
@@ -1218,46 +1223,46 @@ textarea {
   overflow-x: hidden;
 }
 
-/* line 1051, ../partials/_theme.scss */
+/* line 1054, ../partials/_theme.scss */
 .nav-tabs {
   border-bottom: none;
 }
 
-/* line 1055, ../partials/_theme.scss */
+/* line 1058, ../partials/_theme.scss */
 .nav-tabs.nav-justified > li > a {
   border-right: 1px solid #ddd;
 }
 
-/* line 1059, ../partials/_theme.scss */
+/* line 1062, ../partials/_theme.scss */
 .nav-tabs.nav-justified > li > a:last-child {
   border-right: none;
 }
 
-/* line 1063, ../partials/_theme.scss */
+/* line 1066, ../partials/_theme.scss */
 .price {
   position: absolute;
   margin-left: 15px;
   margin-top: 5px;
   color: #1691ac;
 }
-/* line 1069, ../partials/_theme.scss */
+/* line 1072, ../partials/_theme.scss */
 .price + number-only-input input {
   padding-left: 25px;
 }
 
-/* line 1075, ../partials/_theme.scss */
+/* line 1078, ../partials/_theme.scss */
 .pricePKR {
   position: absolute;
   margin-left: 15px;
   margin-top: 5px;
   color: #1691ac;
 }
-/* line 1081, ../partials/_theme.scss */
+/* line 1084, ../partials/_theme.scss */
 .pricePKR + number-only-input input {
   padding-left: 45px;
 }
 
-/* line 1087, ../partials/_theme.scss */
+/* line 1090, ../partials/_theme.scss */
 .chartLegends {
   left: 0px;
   width: 100%;
@@ -1265,14 +1270,20 @@ textarea {
   font-weight: bolder;
 }
 
-/* line 1094, ../partials/_theme.scss */
+/* line 1097, ../partials/_theme.scss */
 .col-width-huge {
   width: 570px;
 }
 
-/* line 1098, ../partials/_theme.scss */
+/* line 1101, ../partials/_theme.scss */
 .textCenterAlign {
   text-align: center;
+}
+
+/* line 1105, ../partials/_theme.scss */
+.documentUpload {
+  position: relative;
+  top: 26px;
 }
 
 /* line 3, ../partials/_login.scss */

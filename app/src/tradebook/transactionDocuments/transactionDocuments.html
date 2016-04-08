@@ -6,7 +6,9 @@
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showDocument,'fa-chevron-circle-right':!vm.showDocument}"></i>
         </label>
     </div>
+
     <div ng-if="vm.showDocument" class="form-group col-lg-12">
+
         <div class="row">
             <div class="col-lg-12 border-bottom-gray">
                 <label ng-if="vm.documentAdding">New Transaction Document</label>
@@ -19,43 +21,38 @@
                     <i class="fa fa-times-circle redFont"></i>
                     &nbsp;&nbsp;Cancel
                 </label>
-                <!--<label ng-click="vm.saveTransactionDocument()" class="cursor-pointer pull-right border-right-gray" ng-if="vm.documentAdding">-->
-                    <!--<i class="fa fa-database blueFont"></i>-->
-                    <!--&nbsp;&nbsp;Save&nbsp;&nbsp;-->
-                <!--</label>-->
             </div>
         </div>
-        <div class="clearfix" ng-if="vm.documentAdding && vm.showDocument">
-            <div class="col-lg-12 clearfix">
+
+        <div class="row" ng-if="vm.documentAdding && vm.showDocument">
+            <div class="col-lg-12">
                 </br>
                 <div class="form-group col-lg-4  col-xs-12">
                     <label>Document Name</label>
                     <input class="form-control" ng-model="vm.documentName" type="text"/>
-
                 </div>
-                <div ng-if="vm.documentName !== ''" class="form-group col-lg-4 col-xs-12">
+                <div ng-if="vm.documentName !== ''" class="form-group col-lg-4 col-xs-12 documentUpload">
                     <label>Document</label>
-                    <button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                    <button class="success" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
                             accept="*">
-                        <i class="fa fa-upload"></i></button>
-                    File:
+                        <i class="fa fa-upload"></i>
+                    </button>
                 <div style="font:smaller">{{vm.file.name}} {{vm.errFile.name}} {{vm.errFile.$error}} {{vm.errFile.$errorParam}}
                     <span class="progress" ng-show="vm.file.progress >= 0">
-                        <div style="width:{{vm.file.progress}}%"
-                        ng-bind="vm.file.progress + '%'"></div>
+                        <div style="width:{{vm.file.progress}}%" ng-bind="vm.file.progress + '%'">
+                        </div>
                     </span>
                 </div>
                 {{vm.errorMsg}}
-
-
                 </div>
             </div>
-
         </div>
-        <div class="clearfix" ng-if="vm.showDocument">
+
+
+        <div class="row" ng-if="vm.showDocument">
             <div class="col-lg-4 doc-Container" ng-click="vm.downloadFile(file.tf_fileID)"
                  ng-repeat="file in vm.allFiles | orderBy: 'tf_createdOn'">
-                <div class="clearfix">
+                <div class="row">
                     <a href="{{vm.transactionFileDownloadUrl(file.tf_fileID)}}">
                         <div ng-click="">
                             <i class="fa fa-file-pdf-o redFont" ng-if="file.tf_fileType === 'application/pdf'"></i>
@@ -65,12 +62,10 @@
                             &nbsp; &nbsp;
                         </div>
                     </a>
-
                     <label  ng-click="vm.deleteTransactionDocuments(file.tf_fileID)" class="pull-right cursor-pointer marginTopmin18px">Delete&nbsp;&nbsp;
-                        <i class=" fa fa-trash-o"></i>
+                        <i class=" fa fa-trash-o redFont"></i>
                     </label>
                 </div>
-
             </div>
         </div>
 
