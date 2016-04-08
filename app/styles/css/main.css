@@ -1270,6 +1270,11 @@ textarea {
   width: 570px;
 }
 
+/* line 1098, ../partials/_theme.scss */
+.textCenterAlign {
+  text-align: center;
+}
+
 /* line 3, ../partials/_login.scss */
 #loading-bar .bar {
   background: #333;

@@ -10,16 +10,22 @@
             <table class="table table-bordered dg-table">
                 <thead>
                 <tr>
-                    <th ng-repeat="heading in vm.allUsers.heading" ng-bind="heading"></th>
+                    <th class="textCenterAlign" ng-repeat="heading in vm.allUsers.heading" ng-bind="heading"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in vm.allUsers.users| filter:vm.searchUser">
-                    <td><a class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a></td>
-                    <td ng-bind="user.userDesignation"></td>
-                    <td ng-bind="user.userEmail"></td>
-                    <td am-time-ago="user.lastActive" am-preprocess="unix"></td>
-                    <td ng-bind="user.createdOn| date:'dd/MM/yyyy'"></td>
+                    <td class="textCenterAlign">
+                        <a class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a>
+                        <i ng-if="user.isSuperUser" class="fa fa-user-secret"></i>
+                    </td>
+                    <td class="textCenterAlign" ng-bind="user.userDesignation"></td>
+                    <td class="textCenterAlign" ng-bind="user.userEmail"></td>
+                    <td class="textCenterAlign">
+                        <i ng-if="user.isActivated" ng-click="vm.changeUserActivation(user.userID,user.initials+'. '+user.firstName+' '+user.lastName,user.isActivated,user)" class="fa fa-unlock cursor-pointer"></i>
+                        <i ng-if="!user.isActivated" ng-click="vm.changeUserActivation(user.userID,user.initials+'. '+user.firstName+' '+user.lastName,user.isActivated,user)" class="fa fa-lock cursor-pointer"></i>
+                    </td>
+                    <td class="textCenterAlign" ng-bind="user.createdOn| date:'dd/MM/yyyy'"></td>
                 </tr>
                 </tbody>
             </table>

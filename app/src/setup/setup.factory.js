@@ -13,7 +13,7 @@
 		.factory('setup', setup);
 
   /* @ngInject */
-  function setup($http, dataService, appConfig){
+  function setup(modalFactory, dataService, appConfig){
 		return {
 			getAllUsers: getAllUsers,
             addNewUser: addNewUser,
@@ -22,7 +22,9 @@
             getChangePasswordObject: getChangePasswordObject,
             submitChangePassword: submitChangePassword,
             getDashboardProducts: getDashboardProducts,
-            dashboardProductCRUD: dashboardProductCRUD
+            dashboardProductCRUD: dashboardProductCRUD,
+            activateUser: activateUser,
+            deActivateUser: deActivateUser
 		};
 
 		////////////////////
@@ -71,6 +73,21 @@
         }
         function submitChangePassword(passwordDetails){
             return dataService.postRequest('changePassword',{passwordDetails:passwordDetails});
+        }
+
+        function activateUser(userid,userName,callback){
+            modalFactory.alertModal(userName,'Application User', 'Activate').then(function(res){
+                if(res){
+                    return dataService.postRequest('activateUser',{userId: userid},callback);
+                }
+            });
+        }
+        function deActivateUser(userid,userName,callback){
+            modalFactory.alertModal(userName,'Application User', 'Deactivate').then(function(res){
+                if(res){
+                    return dataService.postRequest('deactivateUser',{userId: userid},callback);
+                }
+            });
         }
 	}
 

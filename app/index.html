@@ -1,181 +1,181 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head lang="en">
-  <meta charset="UTF-8">
-  <title ng-bind="pageTitle"></title>
-  <link rel="icon" type="image/png" href="/images/logo/favIcon.png" />
-  <!-- build:css styles/main.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
-  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-  <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css" />
-  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-  <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
-  <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
-  <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
-  <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
-  <!-- endbower -->
-  <link rel="stylesheet" href="styles/css/main.css"/>
-  <!-- endbuild -->
+    <meta charset="UTF-8">
+    <title ng-bind="pageTitle"></title>
+    <link rel="icon" type="image/png" href="/images/logo/favIcon.png" />
+    <!-- build:css styles/main.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/css/main.css"/>
+    <!-- endbuild -->
 </head>
 
-  <body>
-    <div ui-view></div>
-  </body>
+<body>
+<div ui-view></div>
+</body>
 
-  <!-- bower:js -->
-  <!-- build:js scripts/vendor_1.js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="bower_components/Chart.js/Chart.js"></script>
-  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <!-- endbuild -->
-  <!-- build:js scripts/vendor_2.js -->
-  <script src="bower_components/blob-polyfill/Blob.js"></script>
-  <script src="bower_components/file-saver.js/FileSaver.js"></script>
-  <script src="bower_components/angular-file-saver/dist/angular-file-saver.js"></script>
-  <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
-  <script src="bower_components/angular-fullscreen/src/angular-fullscreen.js"></script>
-  <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-  <script src="bower_components/angular-messages/angular-messages.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/angular-moment/angular-moment.js"></script>
-  <script src="bower_components/pdfjs-dist/build/pdf.js"></script>
-  <script src="bower_components/pdfjs-dist/build/pdf.worker.js"></script>
-  <script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/sifter/sifter.js"></script>
-  <script src="bower_components/microplugin/src/microplugin.js"></script>
-  <script src="bower_components/selectize/dist/js/selectize.js"></script>
-  <script src="bower_components/angular-selectize2/dist/angular-selectize.js"></script>
-  <!-- endbuild -->
-  <!-- build:js scripts/vendor_3.js -->
-  <script src="bower_components/spin.js/spin.js"></script>
-  <script src="bower_components/angular-spinner/angular-spinner.js"></script>
-  <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-ui-validate/dist/validate.js"></script>
-  <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/momentjs/moment.js"></script>
-  <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script src="bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
-  <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
-  <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-  <script src="bower_components/ng-idle/angular-idle.js"></script>
-  <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
-  <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
-  <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
-  <script src="bower_components/lodash/lodash.js"></script>
-  <script src="bower_components/restangular/dist/restangular.js"></script>
-  <script src="bower_components/signalr/jquery.signalR.js"></script>
-  <script src="bower_components/rangy/rangy-core.js"></script>
-  <script src="bower_components/rangy/rangy-classapplier.js"></script>
-  <script src="bower_components/rangy/rangy-highlighter.js"></script>
-  <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
-  <script src="bower_components/rangy/rangy-serializer.js"></script>
-  <script src="bower_components/rangy/rangy-textrange.js"></script>
-  <script src="bower_components/textAngular/dist/textAngular.js"></script>
-  <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
-  <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
-  <script src="bower_components/angular-off-click/offClick.js"></script>
-  <!-- endbuild -->
-  <!-- endbower -->
+<!-- bower:js -->
+<!-- build:js scripts/vendor_1.js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/Chart.js/Chart.js"></script>
+<script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/blob-polyfill/Blob.js"></script>
+<script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/angular-file-saver/dist/angular-file-saver.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="bower_components/angular-fullscreen/src/angular-fullscreen.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/vendor_2.js -->
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.worker.js"></script>
+<script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/sifter/sifter.js"></script>
+<script src="bower_components/microplugin/src/microplugin.js"></script>
+<script src="bower_components/selectize/dist/js/selectize.js"></script>
+<script src="bower_components/angular-selectize2/dist/angular-selectize.js"></script>
+<script src="bower_components/spin.js/spin.js"></script>
+<script src="bower_components/angular-spinner/angular-spinner.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-ui-validate/dist/validate.js"></script>
+<script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/vendor_3.js -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/momentjs/moment.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
+<script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ng-idle/angular-idle.js"></script>
+<script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
+<script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/signalr/jquery.signalR.js"></script>
+<script src="bower_components/rangy/rangy-core.js"></script>
+<script src="bower_components/rangy/rangy-classapplier.js"></script>
+<script src="bower_components/rangy/rangy-highlighter.js"></script>
+<script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+<script src="bower_components/rangy/rangy-serializer.js"></script>
+<script src="bower_components/rangy/rangy-textrange.js"></script>
+<script src="bower_components/textAngular/dist/textAngular.js"></script>
+<script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+<script src="bower_components/angular-off-click/offClick.js"></script>
+<!-- endbuild -->
+<!-- endbower -->
 
 
-  <!-- build:js scripts/app.js -->
-  <script src="src/core/core.module.js"></script>
-  <script src="src/common/common.module.js"></script>
-  <script src="src/shell/shell.module.js"></script>
-  <script src="src/product/product.module.js"></script>
-  <script src="src/businessPartner/businessPartner.module.js"></script>
-  <script src="src/widgets/widgets.module.js"></script>
-  <script src="src/tradebook/tradebook.module.js"></script>
-  <script src="src/dashboard/dashboard.module.js"></script>
-  <script src="src/setup/setup.module.js"></script>
-  <script src="src/authentication/authentication.module.js"></script>
-  <script src="src/modal/modal.module.js"></script>
-  <script src="src/analytics/analytics.module.js"></script>
-  <script src="src/systemLogs/systemLogs.module.js"></script>
-  <script src="src/app.module.js"></script>
-  <script src="src/app.config.js"></script>
-  <script src="src/core/appRun.js"></script>
-  <script src="src/core/app.interceptors.config.js"></script>
-  <script src="src/core/restangular.config.js"></script>
-  <script src="src/core/router.config.js"></script>
-  <script src="src/core/httpStatus.constant.js"></script>
-  <script src="src/core/inputFields.constants.js"></script>
-  <script src="src/core/pageTitle.constant.js"></script>
-  <script src="src/widgets/sideBar.directive.js"></script>
-  <script src="src/core/appFilter.js"></script>
-  <script src="src/widgets/pageHeader.directive.js"></script>
-  <script src="src/common/navigation.factory.js"></script>
-  <script src="src/shell/shell.controller.js"></script>
-  <script src="src/product/product.controller.js"></script>
-  <script src="src/businessPartner/businesspartner.controller.js"></script>
-  <script src="src/shell/topnavbar.controller.js"></script>
-  <script src="src/shell/subnavbar.controller.js"></script>
-  <script src="src/tradebook/tradebook.controller.js"></script>
-  <script src="src/product/product.factory.js"></script>
-  <script src="src/tradebook/tradebook.factory.js"></script>
-  <script src="src/dashboard/dashboard.controller.js"></script>
-  <script src="src/widgets/table.directive.js"></script>
-  <script src="src/dashboard/dashboard.factory.js"></script>
-  <script src="src/businessPartner/businessPartner.factory.js"></script>
-  <script src="src/tradebook/tradebook.factory.js"></script>
-  <script src="src/widgets/pageBlueContainer.directive.js"></script>
-  <script src="src/tradebook/addTransaction/addtransaction.controller.js"></script>
-  <script src="src/widgets/filterBar.directive.js"></script>
-  <script src="src/setup/setup.controller.js"></script>
-  <script src="src/widgets/customFilter.directive.js"></script>
-  <script src="src/common/filter.factory.js"></script>
-  <script src="src/businessPartner/addbusinesspartner.controller.js"></script>
-  <script src="src/product/addproduct.controller.js"></script>
-  <script src="src/setup/setup.factory.js"></script>
-  <script src="src/setup/allUsers/allusers.controller.js"></script>
-  <script src="src/setup/newUser/newUser.controller.js"></script>
-  <script src="src/authentication/authentication.controller.js"></script>
-  <script src="src/authentication/authentication.factory.js"></script>
-  <script src="src/modal/alertmodal.controller.js"></script>
-  <script src="src/modal/modalFactory.factory.js"></script>
-  <script src="src/product/allproductpdf.controller.js"></script>
-  <script src="src/businessPartner/businesspartnerinfo.controller.js"></script>
-  <script src="src/tradebook/viewTransaction/viewtransaction.controller.js"></script>
-  <script src="src/tradebook/viewTransaction/transactionnotes.controller.js"></script>
-  <script src="src/tradebook/viewTransaction/transactiondocuments.controller.js"></script>
-  <script src="src/widgets/datePicker.directive.js"></script>
-  <script src="src/tradebook/secondaryTrade/secondarytrade.controller.js"></script>
-  <script src="src/tradebook/transactionDocuments/transactiondocuments.controller.js"></script>
-  <script src="src/tradebook/transactionNotes/transactionnotes.controller.js"></script>
-  <script src="src/widgets/numberOnlyInput.directive.js"></script>
-  <script src="src/tradebook/shipmentDetails/shipmentdetails.controller.js"></script>
-  <script src="src/tradebook/transactionCommission/transactioncommission.controller.js"></script>
-  <script src="src/common/documentExporter.factory.js"></script>
-  <script src="src/tradebook/transactionContract/transactioncontract.controller.js"></script>
-  <script src="src/tradebook/transactionStatus/transactionstatus.controller.js"></script>
-  <script src="src/setup/origin/origin.controller.js"></script>
-  <script src="src/businessPartner/addBusinessPartnerProduct/bpproduct.controller.js"></script>
-  <script src="src/businessPartner/addBusinessPartnerContactNumbers/bpcontactnumbers.controller.js"></script>
-  <script src="src/common/routing.factory.js"></script>
-  <script src="src/setup/changePassword/changepassword.controller.js"></script>
-  <script src="src/analytics/analytics.factory.js"></script>
-  <script src="src/analytics/analytics.controller.js"></script>
-  <script src="src/widgets/dashboardCard.directive.js"></script>
-  <script src="src/setup/dailyProductPrices/dailyproductprice.controller.js"></script>
-  <script src="src/common/extendedMethods.js"></script>
-  <script src="src/widgets/chartsLegend.directive.js"></script>
-  <script src="src/systemLogs/logs.controller.js"></script>
-  <script src="src/common/dataService.factory.js"></script>
-  <script src="src/common/dropDownConfig.factory.js"></script>
-  <script src="src/setup/dashboardProducts/dashboardproducts.controller.js"></script>
-  <!-- endbuild -->
+<!-- build:js scripts/app.js -->
+<script src="src/core/core.module.js"></script>
+<script src="src/common/common.module.js"></script>
+<script src="src/shell/shell.module.js"></script>
+<script src="src/product/product.module.js"></script>
+<script src="src/businessPartner/businessPartner.module.js"></script>
+<script src="src/widgets/widgets.module.js"></script>
+<script src="src/tradebook/tradebook.module.js"></script>
+<script src="src/dashboard/dashboard.module.js"></script>
+<script src="src/setup/setup.module.js"></script>
+<script src="src/authentication/authentication.module.js"></script>
+<script src="src/modal/modal.module.js"></script>
+<script src="src/analytics/analytics.module.js"></script>
+<script src="src/systemLogs/systemLogs.module.js"></script>
+<script src="src/app.module.js"></script>
+<script src="src/app.config.js"></script>
+<script src="src/core/appRun.js"></script>
+<script src="src/core/app.interceptors.config.js"></script>
+<script src="src/core/restangular.config.js"></script>
+<script src="src/core/router.config.js"></script>
+<script src="src/core/httpStatus.constant.js"></script>
+<script src="src/core/inputFields.constants.js"></script>
+<script src="src/core/pageTitle.constant.js"></script>
+<script src="src/widgets/sideBar.directive.js"></script>
+<script src="src/core/appFilter.js"></script>
+<script src="src/widgets/pageHeader.directive.js"></script>
+<script src="src/common/navigation.factory.js"></script>
+<script src="src/shell/shell.controller.js"></script>
+<script src="src/product/product.controller.js"></script>
+<script src="src/businessPartner/businesspartner.controller.js"></script>
+<script src="src/shell/topnavbar.controller.js"></script>
+<script src="src/shell/subnavbar.controller.js"></script>
+<script src="src/tradebook/tradebook.controller.js"></script>
+<script src="src/product/product.factory.js"></script>
+<script src="src/tradebook/tradebook.factory.js"></script>
+<script src="src/dashboard/dashboard.controller.js"></script>
+<script src="src/widgets/table.directive.js"></script>
+<script src="src/dashboard/dashboard.factory.js"></script>
+<script src="src/businessPartner/businessPartner.factory.js"></script>
+<script src="src/tradebook/tradebook.factory.js"></script>
+<script src="src/widgets/pageBlueContainer.directive.js"></script>
+<script src="src/tradebook/addTransaction/addtransaction.controller.js"></script>
+<script src="src/widgets/filterBar.directive.js"></script>
+<script src="src/setup/setup.controller.js"></script>
+<script src="src/widgets/customFilter.directive.js"></script>
+<script src="src/common/filter.factory.js"></script>
+<script src="src/businessPartner/addbusinesspartner.controller.js"></script>
+<script src="src/product/addproduct.controller.js"></script>
+<script src="src/setup/setup.factory.js"></script>
+<script src="src/setup/allUsers/allusers.controller.js"></script>
+<script src="src/setup/newUser/newUser.controller.js"></script>
+<script src="src/authentication/authentication.controller.js"></script>
+<script src="src/authentication/authentication.factory.js"></script>
+<script src="src/modal/alertmodal.controller.js"></script>
+<script src="src/modal/modalFactory.factory.js"></script>
+<script src="src/product/allproductpdf.controller.js"></script>
+<script src="src/businessPartner/businesspartnerinfo.controller.js"></script>
+<script src="src/tradebook/viewTransaction/viewtransaction.controller.js"></script>
+<script src="src/tradebook/viewTransaction/transactionnotes.controller.js"></script>
+<script src="src/tradebook/viewTransaction/transactiondocuments.controller.js"></script>
+<script src="src/widgets/datePicker.directive.js"></script>
+<script src="src/tradebook/secondaryTrade/secondarytrade.controller.js"></script>
+<script src="src/tradebook/transactionDocuments/transactiondocuments.controller.js"></script>
+<script src="src/tradebook/transactionNotes/transactionnotes.controller.js"></script>
+<script src="src/widgets/numberOnlyInput.directive.js"></script>
+<script src="src/tradebook/shipmentDetails/shipmentdetails.controller.js"></script>
+<script src="src/tradebook/transactionCommission/transactioncommission.controller.js"></script>
+<script src="src/common/documentExporter.factory.js"></script>
+<script src="src/tradebook/transactionContract/transactioncontract.controller.js"></script>
+<script src="src/tradebook/transactionStatus/transactionstatus.controller.js"></script>
+<script src="src/setup/origin/origin.controller.js"></script>
+<script src="src/businessPartner/addBusinessPartnerProduct/bpproduct.controller.js"></script>
+<script src="src/businessPartner/addBusinessPartnerContactNumbers/bpcontactnumbers.controller.js"></script>
+<script src="src/common/routing.factory.js"></script>
+<script src="src/setup/changePassword/changepassword.controller.js"></script>
+<script src="src/analytics/analytics.factory.js"></script>
+<script src="src/analytics/analytics.controller.js"></script>
+<script src="src/widgets/dashboardCard.directive.js"></script>
+<script src="src/setup/dailyProductPrices/dailyproductprice.controller.js"></script>
+<script src="src/common/extendedMethods.js"></script>
+<script src="src/widgets/chartsLegend.directive.js"></script>
+<script src="src/systemLogs/logs.controller.js"></script>
+<script src="src/common/dataService.factory.js"></script>
+<script src="src/common/dropDownConfig.factory.js"></script>
+<script src="src/setup/dashboardProducts/dashboardproducts.controller.js"></script>
+<!-- endbuild -->
 
 </html>

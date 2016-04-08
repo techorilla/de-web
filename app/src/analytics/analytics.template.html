@@ -28,6 +28,10 @@
                 </div>
 
                 <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
+                    <div class="filterHeading2">Quantity</div>
+                    <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
+                </page-blue-container>
+                <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
                     <div class="filterHeading2">Trade Volume</div>
                     <div class="summaryValue">{{vm.totalVolume | currency:'$ ':0}}</div>
                 </page-blue-container>
@@ -35,10 +39,7 @@
                     <div class="filterHeading2">Net Commission</div>
                     <div class="summaryValue">{{vm.totalNetCommission | currency:'$ ':0}}</div>
                 </page-blue-container>
-                <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
-                    <div class="filterHeading2">Quantity</div>
-                    <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                </page-blue-container>
+
             </div>
 
             <div class="row" style="padding-right: 10px;">
@@ -77,6 +78,21 @@
 
         <div class="row" style="padding-right: 10px;">
             <page-header heading="Sales Analytics" sub-heading="Product" style="margin-left:15px"></page-header>
+
+            <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
+                <div class="filterHeading2">Quantity</div>
+                <charts-legend
+                        type="pie"
+                        labels="vm.products"
+                        pie-type="MT"
+                        data="vm.productsQuantity"
+                        colors="vm.chartColors">
+                </charts-legend>
+                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+                <!--chart-data="vm.productsQuantity" chart-labels="vm.products">-->
+                <!--</canvas>-->
+            </page-blue-container>
+
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
                 <div class="filterHeading2">Volume</div>
                 <charts-legend
@@ -91,19 +107,7 @@
                 <!--</canvas>-->
             </page-blue-container>
 
-            <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
-                <div class="filterHeading2">Quantity</div>
-                <charts-legend
-                        type="pie"
-                        labels="vm.products"
-                        pie-type="MT"
-                        data="vm.productsQuantity"
-                        colors="vm.chartColors">
-                </charts-legend>
-                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
-                        <!--chart-data="vm.productsQuantity" chart-labels="vm.products">-->
-                <!--</canvas>-->
-            </page-blue-container>
+
             <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
                 <div class="filterHeading2">Net Commission</div>
                 <charts-legend

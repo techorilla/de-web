@@ -50,6 +50,7 @@
                         action: function(){
                            return action
                         }
+
                     }
                 });
             return modalInstance.result.then(function (confirm) {
