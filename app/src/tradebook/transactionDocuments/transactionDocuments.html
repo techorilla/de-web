@@ -50,11 +50,11 @@
 
 
         <div class="row" ng-if="vm.showDocument">
-            <div class="col-lg-4 doc-Container" ng-click="vm.downloadFile(file.tf_fileID)"
+            <div class="col-lg-4 doc-Container"
                  ng-repeat="file in vm.allFiles | orderBy: 'tf_createdOn'">
-                <div class="row">
-                    <a href="{{vm.transactionFileDownloadUrl(file.tf_fileID)}}">
-                        <div ng-click="">
+                <div>
+                    <a ng-click="vm.downloadFile(file.tf_fileID,file.tf_fileName,file.tf_fileType)">
+                        <div>
                             <i class="fa fa-file-pdf-o redFont" ng-if="file.tf_fileType === 'application/pdf'"></i>
                             <i class="fa fa-file-word-o blueFont" ng-if="file.tf_fileType === 'application/msword' || file.tf_fileType === 'application/vnd.openxmlformats-officedocument.word'"></i>
                             <i class="fa fa-file-text orangeFont" ng-if="file.tf_fileType !== 'application/msword' && file.tf_fileType !== 'application/pdf' && file.tf_fileType !== 'application/vnd.openxmlformats-officedocument.word'"></i>
@@ -62,7 +62,7 @@
                             &nbsp; &nbsp;
                         </div>
                     </a>
-                    <label  ng-click="vm.deleteTransactionDocuments(file.tf_fileID)" class="pull-right cursor-pointer marginTopmin18px">Delete&nbsp;&nbsp;
+                    <label  ng-click="vm.deleteTransactionDocuments(file.tf_fileID,$index)" class="pull-right cursor-pointer marginTopmin18px">Delete&nbsp;&nbsp;
                         <i class=" fa fa-trash-o redFont"></i>
                     </label>
                 </div>

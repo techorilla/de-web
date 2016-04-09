@@ -11,61 +11,60 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-  angular
-    .module('app.widgets')
-    .directive('datePicker', datePicker)
-    .directive('datePartOnly',datePartOnly);
+    angular
+        .module('app.widgets')
+        .directive('datePicker', datePicker)
+        .directive('datePartOnly',datePartOnly);
 
-  function datePartOnly($filter,$parse,appFormats){
-      return{
-          restrict:'EAC',
-          require:'?ngModel',
-          link:function(scope,element,attrs,ngModel,ctrl){
-              ngModel.$parsers.push(function(viewValue){
-                  return $filter('date')(viewValue, appFormats.Date);
-              });
-          }
-      }
-  }
+    function datePartOnly($filter,$parse,appFormats){
+        return{
+            restrict:'EAC',
+            require:'?ngModel',
+            link:function(scope,element,attrs,ngModel,ctrl){
+                ngModel.$parsers.push(function(viewValue){
+                    return $filter('date')(viewValue, appFormats.Date);
+                });
+            }
+        }
+    }
 
-  /* @ngInject */
-  function datePicker(appFormats){
+    /* @ngInject */
+    function datePicker(appFormats){
 
-    return {
-      link: link,
-      restrict: 'E',
-      templateUrl: 'src/widgets/datepicker.template.html',
-      scope: {
-        date: '=',
-        maxDate: '=',
-        minDate: '=',
-        disabled:'='
-
-      }
-    };
-
-    /////////////////////
-
-    function link(scope, elem, attrs){
-        scope.appFormats = appFormats;
-        scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
-        scope.datePickerOpened = false;
-
-        scope.minDate = (scope.minDate === '') ? '1970-01-01' : scope.minDate;
-
-        scope.openDatePicker = function($event){
-            if(!scope.disabled){
-                $event.preventDefault();
-                $event.stopPropagation();
-                scope.datePickerOpened = true;
+        return {
+            link: link,
+            restrict: 'E',
+            templateUrl: 'src/widgets/datepicker.template.html',
+            scope: {
+                date: '=',
+                maxDate: '=',
+                minDate: '=',
+                disabled:'='
             }
         };
+
+        /////////////////////
+
+        function link(scope, elem, attrs){
+            scope.appFormats = appFormats;
+            scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+            scope.datePickerOpened = false;
+
+            scope.minDate = (scope.minDate === '') ? '1970-01-01' : scope.minDate;
+
+            scope.openDatePicker = function($event){
+                if(!scope.disabled){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    scope.datePickerOpened = true;
+                }
+            };
+        }
     }
-  }
 
 }());

@@ -6,38 +6,38 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-  angular.module('app.core', [
-    'ui.router',
-    'restangular',
-    'FBAngular',
-    'ngScrollbars',
-    'ui.bootstrap',
-    'chart.js',
-    'angular-loading-bar', 
-    'ngAnimate',
-    'selectize',
-    'ngTagsInput',
-    'angularMoment',
-    'toastr',
-    'ngMessages',
-    'ui.validate',
-    'ngCookies',
-    'pdf',
-    'fileSaver',
-    'angularSpinner',
-    'rzModule',
-    'ngSanitize',
-    'offClick',
-    'ngSanitize',
-    'ngCsv',
-    'ngFileUpload',
-    'textAngular',
-    'LocalStorageModule',
-    'ngIdle',
-    'ngBootstrap'
-  ]);
+    angular.module('app.core', [
+        'ui.router',
+        'restangular',
+        'FBAngular',
+        'ngScrollbars',
+        'ui.bootstrap',
+        'chart.js',
+        'angular-loading-bar',
+        'ngAnimate',
+        'selectize',
+        'ngTagsInput',
+        'angularMoment',
+        'toastr',
+        'ngMessages',
+        'ui.validate',
+        'ngCookies',
+        'pdf',
+        'angularSpinner',
+        'rzModule',
+        'ngSanitize',
+        'offClick',
+        'ngSanitize',
+        'ngCsv',
+        'ngFileUpload',
+        'textAngular',
+        'LocalStorageModule',
+        'ngIdle',
+        'ngBootstrap',
+        'ngFileSaver'
+    ]);
 
 //  	angular.module('app.core').config(function (localStorageServiceProvider) {
 //	  	localStorageServiceProvider
@@ -45,16 +45,34 @@
 //	    .setStorageType('sessionStorage');
 //	});
 
-	angular.module('app.core')
-    .config(scrollBarConfig)
-    .config(localStorageConfig)
-    .config(toastConfig)
-    .config(idleProviderConfig);
+    angular.module('app.core')
+        .config(scrollBarConfig)
+        .config(localStorageConfig)
+        .config(toastConfig)
+        .config(idleProviderConfig)
+        .config(chartConfiguration);
 
     function idleProviderConfig(IdleProvider, KeepaliveProvider){
         IdleProvider.idle(1800); // in seconds
         IdleProvider.timeout(5); // in seconds
         KeepaliveProvider.interval(2); // in seconds
+    }
+
+    function chartConfiguration(ChartJsProvider){
+        ChartJsProvider.setOptions(
+            {scaleLabel: function(label){return label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}}
+        );
+        ChartJsProvider.setOptions(
+            {multiTooltipTemplate: function(label) {
+                return label.datasetLabel + ': ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }}
+        );
+        ChartJsProvider.setOptions(
+            {tooltipTemplate: function(label) {
+                console.log(label);
+                return label.label + ': ' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }}
+        );
     }
 
 

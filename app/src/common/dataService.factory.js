@@ -17,7 +17,8 @@
         return {
             getCrudRequest: getCrudRequest,
             getRequest: getRequest,
-            postRequest: postRequest
+            postRequest: postRequest,
+            downloadFile: downloadFile
         };
 
         function getRequestObj(reqType,url){
@@ -51,6 +52,10 @@
             var req = getRequestObj('POST',url);
             req.data = data;
             return executeApiRequest(req,callBack);
+        }
+
+        function downloadFile(url){
+            return $http.get(appConfig.apiHost+url, {responseType: 'arraybuffer'});
         }
 
         function getRequest(url,callBack){

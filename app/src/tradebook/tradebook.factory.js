@@ -13,7 +13,7 @@
         .factory('tradebook', tradebook);
 
     /* @ngInject */
-    function tradebook($http,appConfig,crud, $filter, appFormats){
+    function tradebook($http,appConfig,crud, $filter, appFormats,dataService, FileSaver, Blob){
         var bpConfig = {
             valueField: 'bp_ID',
             sortField: 'bp_Name',
@@ -451,8 +451,13 @@
                 });
         }
 
-        function downloadTransactionFile(fileID){
-            return appConfig.apiHost+'downloadTransactionFile?fileID=' + fileID;
+        function downloadTransactionFile(fileID,fileName,fileType){
+            return dataService.downloadFile('getTransactionFile?fileID=' + fileID).then(function(res, status, header){
+                console.log(res,status,header);
+                var data = new Blob( [res.data], { type: fileType });
+                FileSaver.saveAs(data, fileName);
+
+            });
         }
 
         function saveBasicTransaction(newTransaction, callback){

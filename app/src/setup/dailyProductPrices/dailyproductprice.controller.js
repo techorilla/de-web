@@ -13,7 +13,7 @@
 		.controller('DailyProductPrice', DailyProductPrice);
 
   /* @ngInject */
-	function DailyProductPrice(allProducts, productConfig, product,crud,appFormats, $filter, $scope){
+	function DailyProductPrice(allProducts, productConfig, product,crud,appFormats, $filter, $scope,toastr){
 		var vm = this;
         init();
 
@@ -41,10 +41,7 @@
                     while(totalProducts>0){
                         vm.currentlyEditing.push({});
                         totalProducts--;
-                    }
-                    console.log(vm.productPrices);
-
-                }
+                    }                }
             });
         }
 
@@ -59,6 +56,10 @@
         }
 
         function saveProductPrice(index,productPrice){
+            if((productPrice.localPrice === 0)&&(productPrice.price === 0)){
+                toastr.error('Please enter local or international price.', 'Error');
+                return;
+            }
             var operation = (vm.currentlyEditing[index].price === null && vm.currentlyEditing[index].localPrice === null) ? crud.CREATE : crud.UPDATE;
             productPrice.date = vm.dateSelected;
             product.dailyProductsPricesCrud(productPrice,operation).then(function(res){

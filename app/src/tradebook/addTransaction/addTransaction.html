@@ -80,13 +80,16 @@
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Price (USD)</label>
-                            <number-only-input
-                                    input-value="vm.newTransaction.tr_price"
-                                    input-name="vm.newTransaction.tr_price"
-                                    currency="true"
-                                    disabled="!vm.editMode"
-                                    input-place="USD$">
-                            </number-only-input>
+                            <td>
+                                    <number-only-input
+                                            input-value="vm.newTransaction.tr_price"
+                                            input-name="vm.newTransaction.tr_price"
+                                            currency="true"
+                                            disabled="!vm.editMode"
+                                            input-place="USD$">
+                                    </number-only-input>
+                            </td>
+
                             <!--<input type="number"-->
                                    <!--ng-disabled="!vm.editMode"-->
                                    <!--ng-model="vm.newTransaction.tr_price" class="form-control" placeholder="Enter price/rate">-->

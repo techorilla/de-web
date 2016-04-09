@@ -29,7 +29,6 @@
          */
         function init(){
             vm.transactionId = $stateParams.tran;
-            vm.transactionFileDownloadUrl = tradebook.downloadTransactionFile;
             vm.showDocument = false;
             vm.documentAdding = false;
             vm.cancelDocumentUpload = cancelDocumentUpload;
@@ -50,8 +49,8 @@
             }
         }
 
-        function downloadFile(fileId){
-
+        function downloadFile(fileId,fileName,fileType){
+            tradebook.downloadTransactionFile(fileId,fileName,fileType);
         }
 
         function uploadFiles(file, errFiles){
@@ -63,7 +62,7 @@
             else if(vm.transactionId === 'new'){
                 toastr.error('Please add/save transaction basic information first', 'Error');
                 return;
-            };
+            }
             vm.file = file;
             var extension = file.name.split('.');
             var ext = extension[extension.length - 1];
@@ -78,12 +77,10 @@
 
                 file.upload.then(function (response) {
                     if(response.data.success){
-                        toastr.success(response.data.message,'File Added')
                         $timeout(function () {
                             file.result = response.data;
                         });
                         vm.documentAdding = false;
-                        console.log(response.data);
                         vm.allFiles.push({
                             tf_fileID: response.data.fileId,
                             tf_fileName: vm.documentName + '.' + ext,
@@ -113,11 +110,11 @@
             vm.documentAdding = false;
         }
 
-        function deleteTransactionDocuments(fileId){
+        function deleteTransactionDocuments(fileId,index){
             tradebook.deleteTransactionFile(fileId).then(function(res){
                 if(res.data.success){
-                    toastr.success("Transaction file successfully deleted");
-                    vm.allFiles.splice(vm.allFiles.indexOf(_.where(vm.allFiles, { 'tf_fileID': fileId})), 1);
+                    //vm.allFiles.splice(vm.allFiles.indexOf(_.where(vm.allFiles, { 'tf_fileID': fileId})), 1);
+                    vm.allFiles.splice(index,1);
                 }
             });
         }
