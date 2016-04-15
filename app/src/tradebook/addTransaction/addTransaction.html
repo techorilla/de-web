@@ -124,11 +124,11 @@
                                          min-date="vm.newTransaction.tr_shipment_start">
                             </date-picker>
                         </div>
-                        <div class="form-group col-lg-4 col-xs-12">
+                        <div class="form-group col-lg-2 col-xs-12">
                             <label>File Id</label>
                             <input class="form-control" ng-disabled="!vm.editMode" placeholder='Please enter file id'ng-model="vm.newTransaction.tr_fileID">
                         </div>
-                        <div class="form-group col-lg-4 col-xs-12">
+                        <div class="form-group col-lg-2 col-xs-12">
                             <label>Contract Id</label>
                             <input class="form-control" type="text" ng-disabled="!vm.editMode" placeholder='Please enter contract id' ng-model="vm.newTransaction.tr_contractID">
                         </div>
@@ -144,10 +144,10 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="vm.tran !== 'new'" class="row" ui-view="status"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="contractInfo"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="commission"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="shipmentDetails"></div>
-            <div ng-if="vm.tran !== 'new'" class="row" ui-view="status"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="secondaryTransaction"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="documents"></div>
             <div ng-if="vm.tran !== 'new'" class="row" ui-view="notes"></div>

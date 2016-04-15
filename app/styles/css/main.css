@@ -980,14 +980,14 @@ img {
 /* line 849, ../partials/_theme.scss */
 .dropdownLabel {
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
   color: #1691ac;
 }
 
 /* line 854, ../partials/_theme.scss */
 .dropdownCaption {
   font-weight: bold;
-  font-size: 9px;
+  font-size: 11px;
   color: #000;
 }
 

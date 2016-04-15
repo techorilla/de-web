@@ -1,9 +1,9 @@
 <div class="col-lg-12  marginLeft15">
-    <div class="col-lg-12 tableHeading">
-        <label>Secondary Trade</label>
+    <div class="col-lg-12 tableHeading  cursor-pointer" ng-click="vm.showSecondaryTrade = !vm.showSecondaryTrade">
+        <label class="cursor-pointer">Secondary Trade</label>
         <label class="pull-right cursor-pointer" >
             <span ng-bind="vm.secondaryTransactions.length + ' Secondary Trades'"></span>
-            <i ng-click="vm.showSecondaryTrade = !vm.showSecondaryTrade" class="fa" ng-class="{'fa-chevron-circle-down':vm.showSecondaryTrade,'fa-chevron-circle-right':!vm.showSecondaryTrade}"></i>
+            <i class="fa" ng-class="{'fa-chevron-circle-down':vm.showSecondaryTrade,'fa-chevron-circle-right':!vm.showSecondaryTrade}"></i>
         </label>
     </div>
 

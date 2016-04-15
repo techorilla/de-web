@@ -36,10 +36,10 @@
 
         function getTimeDrillOptions(){
             return [
-                {text:'By Day', value: 'day'},
-                {text:'By Week', value:'week'},
-                {text:'By Month', value:'month'},
-                {text:'By Year', value:'year'}
+                {text:'By Day', value: 'day', order:1},
+                {text:'By Week', value:'week', order:2},
+                {text:'By Month', value:'month', order:3},
+                {text:'By Year', value:'year', order:4}
             ];
         }
 

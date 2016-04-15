@@ -1,7 +1,7 @@
 <div class="col-md-12  marginLeft15">
-    <div class="col-md-12 tableHeading">
-        <label>Commission Details</label>
-        <label class="pull-right cursor-pointer" ng-click="vm.showCommission = !vm.showCommission">
+    <div class="col-md-12 tableHeading cursor-pointer" ng-click="vm.showCommission = !vm.showCommission">
+        <label class="cursor-pointer">Commission Details</label>
+        <label class="pull-right cursor-pointer">
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showCommission,'fa-chevron-circle-right':!vm.showCommission}"></i>
         </label>
     </div>
@@ -107,11 +107,11 @@
                     input-place="USD$">
             </number-only-input>
         </div>
-        <div class="form-group col-lg-12 marginLeft15 width106 font20px">
+        <div class="form-group col-lg-12 marginLeft15 width106">
             <label>Net Commission</label>
             <label ng-class="{'redFont':(vm.commissionDetails.tr_netCommission < 0)}"
-                   ng-bind="vm.commissionDetails.tr_netCommission | currency:'USD$ ':0"
-                   class=" dropdownLabel font20px">
+                   ng-bind="vm.commissionDetails.tr_netCommission | currency:' $ ':0"
+                   class=" dropdownLabel">
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="col-lg-12  marginLeft15">
-    <div class="col-lg-12 tableHeading">
-        <label>Transaction Status</label>
-        <label class="pull-right cursor-pointer" ng-click="vm.showStatus = !vm.showStatus">
+    <div class="col-lg-12 tableHeading cursor-pointer" ng-click="vm.showStatus = !vm.showStatus">
+        <label class="cursor-pointer">Transaction Status</label>
+        <label class="pull-right cursor-pointer">
             <span class="orangeFont" ng-bind="vm.transactionStatus.tr_transactionStatus ? vm.transactionStatus.tr_transactionStatus : 'Not Entered'"></span>
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showStatus,'fa-chevron-circle-right':!vm.showStatus}"></i>
         </label>

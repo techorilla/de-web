@@ -279,7 +279,7 @@
             return {
                 options: timeDrillOptions,
                 create: true,
-                sortField: 'text',
+                sortField: 'order',
                 valueField: 'value',
                 labelField: 'text',
                 maxItems:1

@@ -11,13 +11,13 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-  angular
-    .module('app.widgets')
-    .directive('numberOnlyInput', numberOnlyInput);
+    angular
+        .module('app.widgets')
+        .directive('numberOnlyInput', numberOnlyInput);
 
-  /* @ngInject */
+    /* @ngInject */
     function numberOnlyInput () {
         return {
             restrict: 'EA',
@@ -31,20 +31,25 @@
             },
             link: function (scope) {
 
-                scope.reset = function(){
-                  if(scope.inputValue === "" || scope.inputValue === null){
-                      scope.inputValue=0;
-                  }
-                  scope.inputValue = parseInt(scope.inputValue);
-                };
-                scope.reset();
+//                scope.reset = function(){
+//                  if(scope.inputValue === "" || scope.inputValue === null){
+//                      scope.inputValue=0;
+//                  }
+//                  scope.inputValue = parseInt(scope.inputValue);
+//                };
+//                scope.reset();
                 scope.$watch('inputValue', function(newValue,oldValue) {
-                    var arr = String(newValue).split("");
-                    if (arr.length === 0) return;
-                    if (arr.length === 1 && (arr[0] == '-' || arr[0] === '.' )) return;
-                    if (arr.length === 2 && newValue === '-.') return;
-                    if (isNaN(newValue)) {
+                    if(newValue === '' || newValue === null){
+                        scope.inputValue = 0;
+                    }
+                    else if (! /^[0-9.]+$/.test(newValue)) {
+                        // Validation failed
+
                         scope.inputValue = oldValue;
+                        return;
+                    }
+                    else if(scope.inputValue.length >= 2 && scope.inputValue[1]!=='.' && scope.inputValue[0]==='0'){
+                        scope.inputValue = scope.inputValue.substr(1);
                     }
                 });
             }

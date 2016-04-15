@@ -1,7 +1,7 @@
 <div class="col-lg-12  marginLeft15">
-    <div class="col-lg-12 tableHeading">
-        <label>Notes</label>
-        <label class="pull-right cursor-pointer" ng-click="vm.showNotes = !vm.showNotes">
+    <div class="col-lg-12 tableHeading cursor-pointer" ng-click="vm.showNotes = !vm.showNotes">
+        <label class="cursor-pointer">Notes</label>
+        <label class="pull-right cursor-pointer">
             <span ng-bind="vm.transactionNotes.length + ' Transaction Notes'"></span>
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showNotes,'fa-chevron-circle-right':!vm.showNotes}"></i>
         </label>

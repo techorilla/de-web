@@ -10,22 +10,38 @@
 
     angular.module('app.core')
         .filter('selectFilter', selectFilter)
+        .filter('selectFilterDropDown', selectFilterDropDown)
         .filter('selectedRows', selectedRows)
         .filter('uniqueByAttribute', uniqueByAttribute)
         .filter('range', range);
 
-    function selectFilter() {
-            return function(items, search, bind) {
-                if (!search) {
-                    return items;
+    function selectFilter(){
+        return function(items, search, bind) {
+            if (!search) {
+                return items;
+            }
+            return items.filter(function(element, index, array) {
+                if(element[bind]){
+                    return element[bind].toLowerCase().indexOf(search.toLowerCase())===0;
                 }
-                return items.filter(function(element, index, array) {
-                    if(element[bind]){
-                        return element[bind].toLowerCase().indexOf(search.toLowerCase())===0;
-                    }
-                });
+            });
 
-            };
+        };
+    }
+
+    function selectFilterDropDown(){
+        return function(items, search, bind) {
+            if (!search) {
+                return items;
+            }
+            return items.filter(function(element, index, array) {
+                console.log(element.selected);
+                if(element[bind]){
+                    return element[bind].toLowerCase().indexOf(search.toLowerCase())===0;
+                }
+            });
+
+        };
     }
 
     function uniqueByAttribute(){
