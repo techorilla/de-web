@@ -39,9 +39,10 @@
 //                };
 //                scope.reset();
                 scope.$watch('inputValue', function(newValue,oldValue) {
-                    if(newValue === '' || newValue === null){
-                        scope.inputValue = 0;
+                    if(newValue === '' || newValue === null || newValue == 0){
+                        scope.inputValue = 0.00;
                     }
+
                     else if (! /^[0-9.]+$/.test(newValue)) {
                         // Validation failed
 
