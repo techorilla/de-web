@@ -116,6 +116,8 @@
                     if (res.data.success) {
                         vm.businessPartner.newContactPerson.bp_Cont_designation = vm.businessPartner.newContactPerson.bp_Cont_Designation;
                         vm.businessPartner.newContactPerson.bp_cont_ID = res.data.conPerId;
+                        vm.businessPartner.newContactPerson.bp_Cont_SecondryNumber = vm.businessPartner.newContactPerson.bp_Cont_SecondaryNumber;
+
                         vm.businessPartner.contPers.push(vm.businessPartner.newContactPerson);
                         subContactPerson();
                     }

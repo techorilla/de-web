@@ -71,7 +71,7 @@
                     function(res){
                         if(res.data.success){
                             vm.editMode = false;
-                            toastr.success(res.data.message,'Success');
+                            vm.newShip = false;
                         }
                     }
                 );
@@ -82,7 +82,6 @@
                         if(res.data.success){
                             vm.editMode = false;
                             vm.newShip = false;
-                            toastr.success(res.data.message,'Success');
                         }
                     }
                 );

@@ -28,6 +28,7 @@
      * My Description rules
      */
         function init(){
+            vm.yourPassword = $state.current.name === 'shell.setup.changePassword';
             vm.passwordDetails = setup.getChangePasswordObject();
             vm.submitChangePassword = submitChangePassword;
             vm.inputFields = inputFields;
@@ -38,6 +39,7 @@
                 setup.submitChangePassword(vm.passwordDetails).then(function(res){
                    if(res.data.success){
                        $state.go('shell.dashboard');
+
                    }
                 });
             }

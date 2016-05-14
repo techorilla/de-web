@@ -13,7 +13,7 @@
         .controller('AllUsers', AllUsers);
 
     /* @ngInject */
-    function AllUsers(allUsers, setup){
+    function AllUsers(allUsers, setup, $state){
         var vm = this;
         init();
 
@@ -21,11 +21,17 @@
             vm.allUsers = {};
             vm.allUsers.users = allUsers;
             vm.allUsers.heading = [
-                "User Name", "Designation", "E-mail", "Activation", "Created By"
+                "User Name", "Designation", "E-mail", "Activation", "Created On"
             ];
+
             vm.searchUser = '';
             vm.viewMode = false;
             vm.changeUserActivation = changeUserActivation;
+            vm.goToAddNewUser = goToAddNewUser;
+        }
+
+        function goToAddNewUser(){
+            $state.go('shell.setup.allUsers.newUser');
         }
 
         function changeUserActivation(userId,username,activation,user){

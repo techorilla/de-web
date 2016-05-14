@@ -46,40 +46,24 @@
                 scope.showCh = false;
                 scope.dataClone = angular.copy(newVal);
                 scope.showCh = scope.showChart;
-                if(!oldVal){
-                    angular.forEach(scope.dataClone,function(){
-                        scope.show.push(true);
-                    });
-                    if(scope.series){
-                        var colorsCount = scope.colors.length;
+                scope.pieLabels = [];
 
-                        while(colorsCount<scope.series.length){
-                            scope.colors.push(scope.getRandomColor());
-                            colorsCount += 1;
+                    angular.forEach(scope.dataClone,function(val,key){
+                        if(scope.type == 'pie'){
+                            var temp = {
+                              name: scope.labels[key],
+                              value: val,
+                              color: scope.colors[key]
+                            };
+                            scope.pieLabels.push(temp);
                         }
-                    }
-                }
+                        if(!oldVal){
+                            scope.show.push(true);
+                        }
+                    });
+
                 scope.onHideSeries();
             });
-
-            scope.getRandomColor = function(defaultColor) {
-                    var letters = '0123456789ABCDEF'.split('');
-                    var colors = [
-                        '#F47', // red
-                        '#169', // blue
-                        '#333', // light grey
-                        '#6d4', // green
-                        '#FDB', // yellow
-                        '#949', // grey
-                        '#4D5'
-                    ];
-                    var color = colors[Math.floor(Math.random() * 7)]
-                    for (var i = 0; i < 3; i++ ) {
-                        color += letters[Math.floor(Math.random() * 16)];
-                    }
-                    return color;
-
-            };
 
             scope.$watch('showChart',function(newVal){
                 scope.showCh = newVal;

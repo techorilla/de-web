@@ -45,6 +45,9 @@
 
         function getOriginConfig(origins){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 valueField: 'origin_name',
                 labelField: 'origin_name',
                 options: origins,

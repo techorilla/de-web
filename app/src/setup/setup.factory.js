@@ -17,6 +17,7 @@
 		return {
 			getAllUsers: getAllUsers,
             addNewUser: addNewUser,
+            getUserById: getUserById,
             originCrud: originCrud,
             getAllOrigin: getAllOrigin,
             getChangePasswordObject: getChangePasswordObject,
@@ -24,7 +25,9 @@
             getDashboardProducts: getDashboardProducts,
             dashboardProductCRUD: dashboardProductCRUD,
             activateUser: activateUser,
-            deActivateUser: deActivateUser
+            deActivateUser: deActivateUser,
+            updateUserById: updateUserById,
+            changePasswordForUser: changePasswordForUser
 		};
 
 		////////////////////
@@ -60,6 +63,15 @@
 		function getAllUsers(){
             return dataService.getRequest('getAppUsers');
 		}
+
+        function getUserById(userId){
+            return dataService.getRequest('getUserById/'+userId,null);
+        }
+
+        function updateUserById(newUser){
+            return dataService.postRequest('updateUserById',{newUser: newUser})
+        }
+
         function addNewUser(newUser){
             return dataService.postRequest('addNewUser',{newUser: newUser});
         }
@@ -73,6 +85,10 @@
         }
         function submitChangePassword(passwordDetails){
             return dataService.postRequest('changePassword',{passwordDetails:passwordDetails});
+        }
+
+        function changePasswordForUser(passwordDetails){
+            return dataService.postRequest('changePasswordForUser',{passwordDetails:passwordDetails});
         }
 
         function activateUser(userid,userName,callback){

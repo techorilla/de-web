@@ -31,7 +31,7 @@
                     <div  class="clearfix">
                         <div class="form-group col-lg-4 col-xs-12 height40px">
                             <label>Date of Transaction</label>
-                            <date-picker disabled="!vm.editMode"
+                            <date-picker no-border="!vm.editMode"
                                          date="vm.newTransaction.tr_date"
                                          max-date="" min-date="">
                             </date-picker>
@@ -73,26 +73,31 @@
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Quantity (Mt)</label>
-                            <input class="form-control" type="number"
-                                   ng-disabled="!vm.editMode"
-                                   placeholder='Please enter amount in unit selected'
-                                   ng-model="vm.newTransaction.tr_quantity" >
+                            <td>
+                                <number-only-input
+                                        input-value="vm.newTransaction.tr_quantity"
+                                        input-name="vm.newTransaction.tr_quantity"
+                                        currency="true"
+                                        no-border="!vm.editMode"
+                                        input-place="MT">
+                                </number-only-input>
+                            </td>
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Price (USD)</label>
                             <td>
-                                    <number-only-input
-                                            input-value="vm.newTransaction.tr_price"
-                                            input-name="vm.newTransaction.tr_price"
-                                            currency="true"
-                                            disabled="!vm.editMode"
-                                            input-place="USD$">
-                                    </number-only-input>
+                                <number-only-input
+                                        input-value="vm.newTransaction.tr_price"
+                                        input-name="vm.newTransaction.tr_price"
+                                        currency="true"
+                                        no-border="!vm.editMode"
+                                        input-place="USD $">
+                                </number-only-input>
                             </td>
 
                             <!--<input type="number"-->
-                                   <!--ng-disabled="!vm.editMode"-->
-                                   <!--ng-model="vm.newTransaction.tr_price" class="form-control" placeholder="Enter price/rate">-->
+                            <!--ng-disabled="!vm.editMode"-->
+                            <!--ng-model="vm.newTransaction.tr_price" class="form-control" placeholder="Enter price/rate">-->
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Packing</label>
@@ -110,15 +115,15 @@
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Shipment Begin</label>
                             <date-picker
-                                    disabled="!vm.editMode"
+                                    no-border="!vm.editMode"
                                     date="vm.newTransaction.tr_shipment_start"
-                                    max-date=""
-                                    min-date=""></date-picker>
+                                    maxi-date=""
+                                    mini-date=""></date-picker>
                         </div>
                         <div class="form-group col-lg-2 col-xs-12">
                             <label>Shipment End</label>&nbsp;&nbsp;
                             <input ng-if="vm.editMode" type="checkbox" ng-disabled="vm.newTransaction.tr_shipment_start === null" ng-model="vm.newTransaction.tr_shipment30days">&nbsp;<label  class="font30days" ng-if="vm.editMode"> 30 days</label>
-                            <date-picker disabled="(vm.newTransaction.tr_shipment_start === null) || !vm.editMode"
+                            <date-picker no-border="(vm.newTransaction.tr_shipment_start === null) || !vm.editMode"
                                          date="vm.newTransaction.tr_shipment_end"
                                          max-date=""
                                          min-date="vm.newTransaction.tr_shipment_start">
@@ -156,8 +161,8 @@
 
 
         <!--<div class="form-group  col-xs-12 border-top-black marginTop5">-->
-            <!--&lt;!&ndash;<button type="submit" class="btn btn-default submitBtn marginLeft15" ng-click="vm.saveTransaction()">Save Transaction</button>&ndash;&gt;-->
-            <!--&lt;!&ndash;<button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="submit" class="btn btn-default submitBtn marginLeft15" ng-click="vm.saveTransaction()">Save Transaction</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="submit" class="btn btn-default" ui-sref="^">Cancel</button>&ndash;&gt;-->
         <!--</div>-->
         </br>
 

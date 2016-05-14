@@ -4,13 +4,13 @@
            datepicker-popup="{{appFormats.Date}}"
            ng-model="date"
            date-part-only
-           ng-disabled="disabled"
-           placeholder="{{disabled ? '' : 'Select'}}"
+           ng-disabled="noBorder"
+           placeholder="{{noBorder ? '' : 'Select'}}"
            is-open="datePickerOpened"
            min-date="'{{minDate}}'"
            max-date="'{{maxDate}}'"
            close-text="Close" />
 <span class="input-group-btn datePickerAddTran">
-    <button ng-if="!disabled" type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    <button ng-if="!noBorder" type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 </span>
 </div>

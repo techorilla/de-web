@@ -43,17 +43,40 @@
     </div>
 
     <div class="chart-legend" ng-if="(type==='pie')">
-        <ul class="line-legend">
-            <li ng-repeat="item in labels track by $index"
-                ng-click="show[$index] = !show[$index];"
-                class="chartLegends">
-            <span   ng-style="{ 'background' : ((show[$index] === true) ? colors[$index] : colors[$index])}"
-                    title="Show/hide corresponding line on chart">
-            </span>
-                <div ng-if="pieType === 'USD'">{{ item}} ({{ data[$index] | currency:'$ ':0}})</div>
-                <div ng-if="pieType === 'MT'">{{ item}} ({{ data[$index] | currency:'':0}} MT)</div>
-            </li>
-        </ul>
+        <table class="table table-bordered dg-table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Products</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="max-height: 50px;" ng-repeat="item in pieLabels | orderBy:'-value' track by $index" ng-if="item.value > 0">
+                    <td ng-style="{ 'background' : item.color}">
+                    </td>
+                    <td>
+                        <div ng-bind="item.name" class="ellipsis pieName"></div>
+                    </td>
+                    <td style="text-align: left">
+                        <div ng-if="pieType === 'USD'">{{ item.value | currency:'$ ':0}}</div>
+                        <div ng-if="pieType === 'MT'">{{ item.value | currency:'':0}} MT</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--<ul class="line-legend">-->
+            <!--<li ng-repeat="item in pieLabels | orderBy:'-value' track by $index" ng-if="item.value > 0"-->
+                <!--ng-click="show[$index] = !show[$index];"-->
+                <!--class="chartLegends">-->
+            <!--<span   ng-style="{ 'background' : item.color}"-->
+                    <!--title="Show/hide corresponding line on chart">-->
+            <!--</span>-->
+                <!--<div ng-if="pieType === 'USD'">{{item.name}} ({{ item.value | currency:'$ ':0}})</div>-->
+                <!--<div ng-if="pieType === 'MT'">{{item.name}} ({{ item.value | currency:'':0}} MT)</div>-->
+            <!--</li>-->
+        <!--</ul>-->
     </div>
 </div>
 

@@ -6,20 +6,25 @@
 
 (function(){
 
-  'use strict';
+    'use strict';
 
-	angular
-		.module('app.common')
-		.factory('navigation', navigation);
+    angular
+        .module('app.common')
+        .factory('navigation', navigation);
 
-  /* @ngInject */
-  function navigation(toastr, moment, appFormats, localStorageService, $filter){
+    /* @ngInject */
+    function navigation(toastr, moment, appFormats, localStorageService, $filter){
         var isSideBarOpen = false;
         var months = [
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct', 'Nov', 'Dec'
         ];
 
-		return {
+        var colors = [
+            "#F47414", "#1691ac", "#333333", "#6d426d", "#FDB45C", "#949FB1",
+            "#4D5360", "#3336AA", "#CC9678", "#F47267", "#169002", "#6d43F4",
+        ];
+
+        return {
             invertSideBarState: invertSideBarState,
             sideBarStatus: sideBarStatus,
             chartColors: chartColors,
@@ -35,23 +40,25 @@
             getMonthTitle: getMonthTitle,
             getWeekTitle: getWeekTitle,
             filterDate: filterDate,
-            resetFormValidation: resetFormValidation
-		};
+            resetFormValidation: resetFormValidation,
+            colors: colors,
+            dashboardDateRange: dashboardDateRange
+        };
 
-		////////////////////
+        ////////////////////
 
-    /**
-     * @ngdoc
-     * @name app.common.navigation#testFunction
-     * @methodOf app.common.navigation
-     *
-     * @description < description placeholder >
-     * @example
-     * <pre>
-     * navigation.testFunction(id);
-     * </pre>
-     * @param {int} entity id
-     */
+        /**
+         * @ngdoc
+         * @name app.common.navigation#testFunction
+         * @methodOf app.common.navigation
+         *
+         * @description < description placeholder >
+         * @example
+         * <pre>
+         * navigation.testFunction(id);
+         * </pre>
+         * @param {int} entity id
+         */
         function getCurrentUser(){
             return currentUser;
         }
@@ -88,14 +95,7 @@
         }
 
         function chartColors(){
-            return [
-                "#F47414", "#1691ac", "#333333", "#6d426d", "#FDB45C", "#949FB1",
-                "#4D5360", "#3336AA", "#CC9678", "#F47267", "#169002", "#6d43F4",
-                "#477860", "#34887A", "#900999", "#F00897", "#AA4512", "#BBB444",
-                "#445360", "#3456AA", "#900578", "#F00267", "#104512", "#6d4444",
-                "#FCCC60", "#FDB2FA", "#FD0CF6", "#949F59", "#3332BF", "#CCCCCC",
-                "#FDBB08", "#FDBFA3", "#333F03",  "#FDBF08", "#FFB6A3", "#3F3F03"
-            ];
+            return this.colors;
         }
 
         function internalServerError(data,text){
@@ -106,10 +106,18 @@
 
         function initialDateRange(){
             var datePicker = {};
-            datePicker.startDate = moment().startOf('month');
-            datePicker.endDate = moment().endOf('month');
+            datePicker.startDate = moment().subtract(14,'days').startOf('day');
+            datePicker.endDate = moment().endOf('day');
             return datePicker;
         }
+
+        function dashboardDateRange(){
+            var datePicker = {};
+            datePicker.startDate = moment().subtract(30,'days').startOf('day');
+            datePicker.endDate = moment().add(14,'days').endOf('day');
+            return datePicker;
+        }
+
 
         function successMessage(msg,title){
             toastr.success(msg,title);
@@ -196,6 +204,6 @@
             }
             formObj.$setPristine(true);
         }
-	}
+    }
 
 }());

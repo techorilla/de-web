@@ -41,11 +41,11 @@
         <table ng-if="(vm.allTransactions.length >  vm.tranToRemove.length)" class="table table-bordered dg-table">
             <thead>
             <tr>
-                <th ng-repeat="heading in vm.transactionTableHeadings" ng-bind="heading"></th>
+                <th ng-repeat="heading in vm.transactionTableHeadings" class="{{vm.headingclass[$index]}}" ng-bind="heading"></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in vm.allTransactions | selectedRows:vm.tranToRemove:'tr_transactionID' | selectFilter: vm.searchTransactionByFileID:'fileNo' | orderBy: '-transactionDate'" ng-hide="row.hide">
+            <tr ng-repeat="row in vm.allTransactions | selectedRows:vm.tranToRemove:'tr_transactionID' | selectFilter: vm.searchTransactionByFileID:'fileNo'" ng-hide="row.hide">
                 <td ng-bind="row.transactionDate | date:vm.appFormats.Date"></td>
                 <td><a ui-sref="shell.tradebook.Transaction({tran:row.tr_transactionID})">{{row.fileNo}}</a></td>
                 <td><a ui-sref="shell.businessPartner.view({id:row.tr_bpBuyerID})">{{row.buyer}}</a></td>

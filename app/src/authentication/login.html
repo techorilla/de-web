@@ -1,15 +1,26 @@
-<form id="signIn" name="form">
-	<div id="block">
-		<label id="user" for="name"><i class="fa fa-user"></i></label>
-		<input type="text" name="name" id="name" placeholder="Username" ng-model="vm.email" required/>
-		<label id="pass" for="password"><i class="fa fa-key"></i></label>
-		<input type="password" name="password" id="password" placeholder="Password" required ng-model="vm.pass"/>
-		<a id="submit" ng-click="vm.login()">
-        	<i class="fa fa-arrow-right"></i>
-        </a>
-	</div>
-</form>
-<div id="option"> 
-	<p ng-if="!vm.hideLogin">Login</p>
-	<p ng-if="vm.invalidUserNamePass" class="errorMsg">{{vm.message}}</p>
+<div class="login-page" name="form">
+    <div class="form">
+        <form class="login-form">
+            <input type="text" name="name" ng-model="vm.email" required placeholder="email"/>
+            <input type="password" placeholder="password" required ng-model="vm.pass"/>
+            <button ng-click="vm.login()">login</button>
+            <p ng-if="vm.invalidUserNamePass" class="errorValidation">{{vm.message}}</p>
+        </form>
+    </div>
 </div>
+
+<!--<form id="signIn" name="form">-->
+<!--<div id="block">-->
+<!--<label id="user" for="name"><i class="fa fa-user"></i></label>-->
+<!--<input type="text" name="name" id="name" placeholder="Username" ng-model="vm.email" required/>-->
+<!--<label id="pass" for="password"><i class="fa fa-key"></i></label>-->
+<!--<input type="password" name="password" id="password" placeholder="Password" required ng-model="vm.pass"/>-->
+<!--<a id="submit" ng-click="vm.login()">-->
+<!--<i class="fa fa-arrow-right"></i>-->
+<!--</a>-->
+<!--</div>-->
+<!--</form>-->
+<!--<div id="option"> -->
+<!--<p ng-if="!vm.hideLogin">Login</p>-->
+<!--<p ng-if="vm.invalidUserNamePass" class="errorMsg">{{vm.message}}</p>-->
+<!--</div>-->

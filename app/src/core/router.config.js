@@ -28,6 +28,7 @@
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
             //do some title setting
             $rootScope.pageTitle = toState.title || 'Doni Enterprises';
+            $rootScope.background = toState.bodyBackground || null ;
             fromState.wentTo = toState.name;
             toState.params = toParams;
             if(toState.wentTo !== fromState.name){

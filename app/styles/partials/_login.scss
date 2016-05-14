@@ -143,12 +143,24 @@
 }
 .submitBtn {
   background: $baseColor !important;
-  color: #ddd;
-  border:none;
+  color: #fff;
+  border:1px solid;
 }
+
+.UpdateBtn{
+  background: $orangeColor !important;
+  color: #fff;
+  border:1px solid;
+}
+
+.UpdateBtn:hover{
+  opacity: 0.9;
+  color: #fff !important;
+}
+
 .submitBtn:hover{
   opacity: 0.9;
-  color: #ddd !important;
+  color: #fff !important;
 }
 .blueBorder{
 	border: 1px solid $baseColor;
@@ -360,7 +372,8 @@ textarea{
 .btn-success {
   color: #fff;
   background-color: #333333 !important;
-  border-color: #AFAFAF !important;
+  border: 1px solid #000;
+  border-color:none;
 }
 
 .btn-success:hover{

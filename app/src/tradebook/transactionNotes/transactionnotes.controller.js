@@ -95,6 +95,7 @@
                             else{
                                 vm.transactionNotes.push(vm.newTransactionNote);
                                 vm.newTransactionNote = tradebook.getNewTransactionNotes();
+                                vm.newTransactionNote.tr_transactionID = vm.transactionId;
                             }
 
                             toastr.success(res.data.message,'Success')

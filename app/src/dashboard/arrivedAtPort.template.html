@@ -1,6 +1,7 @@
 <div class="col-lg-12  marginLeft15">
     <div class="col-lg-12 tableHeading">
         <label>Arrived at Port</label>
+        <small>({{vm.arrivedAtPortReport.length}} Transactions)</small>
         <label class="pull-right cursor-pointer" ng-click="vm.showArrivedAtPort = !vm.showArrivedAtPort">
             <!--<span ng-bind="vm.bpProducts.length + ' Product'"></span>-->
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showArrivedAtPort,'fa-chevron-circle-right':!vm.showArrivedAtPort}"></i>
@@ -26,14 +27,14 @@
         <table class="table table-bordered dg-table" ng-if="(vm.arrivedAtPortReport.length !==  0)">
             <thead>
             <tr>
-                <th>Date Arrived</th>
-                <th>Days Since Arrival</th>
-                <th>File ID</th>
-                <th>Buyer</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Supplier</th>
+                <th class="dateColumn">Arrived On</th>
+                <th class="estimate">Days Since Arrival</th>
+                <th class="fileId">File ID</th>
+                <th class="dropDownCol">Buyer</th>
+                <th class="dropDownCol">Product</th>
+                <th class="fileId">Quantity</th>
+                <th class="fileId">Rate</th>
+                <th class="dropDownCol">Supplier</th>
             </tr>
             </thead>
             <tbody>

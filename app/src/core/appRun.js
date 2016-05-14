@@ -3,7 +3,36 @@
 
     'use strict';
 
-    angular.module('app.core').run(onApplicationRun);
+    angular.module('app.core')
+        .run(onApplicationRun)
+        .run(selectizeSetup)
+        .run(chartColors);
+
+    function chartColors(navigation){
+        var letters = '0123456789ABCDEF'.split('');
+        var count = 100;
+        var colors = [
+            '#A7', // red
+            '#18', // blue
+            '#29', // light grey
+            '#30', // green
+            '#41', // yellow
+            '#52', // grey
+            '#63'
+        ];
+
+        while(count>0){
+            var color = colors[Math.floor(Math.random() * 7)];
+            for (var i = 0; i < 4; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            if(navigation.colors.indexOf(color)===-1){
+                navigation.colors.push(color);
+                count--;
+            }
+
+        }
+    }
 
     function onApplicationRun ($rootScope, $location,$cookieStore, $http, Idle, authentication, appFormats) {
         $rootScope.appFormats = appFormats;
@@ -43,6 +72,25 @@
 
         $rootScope.$on('Keepalive', function() {
             // do something to keep the user's session alive
+        });
+    }
+
+    function selectizeSetup(){
+        Selectize.define("no-delete", function (options) {
+            var self = this;
+
+
+            this.deleteSelection = (function() {
+                var original = self.deleteSelection;
+
+                return function (e) {
+                    if (!e || e.keyCode !== 8) {
+                        return original.apply(this);
+                    }
+
+                    return false;
+                };
+            })();
         });
     }
 

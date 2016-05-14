@@ -26,11 +26,11 @@
                     }
                 }
             })
-            .state('shell.setup.newUser',{
+            .state('shell.setup.allUsers.newUser',{
                 url:'/newUser',
-                inSetup: 'true',
-                inSetupTitle: 'New User',
-                inSetupOrder: 5,
+//                inSetup: 'true',
+//                inSetupTitle: 'New User',
+//                inSetupOrder: 5,
                 userAdminOnly: true,
                 views:{
                     'subContent@shell.setup':{
@@ -38,6 +38,16 @@
                         controller: 'NewUser as vm'
                     }
                 }
+            })
+            .state('shell.setup.allUsers.editUser',{
+                url:'/editUser/:userId',
+                userAdminOnly: true,
+                views:{
+                    'subContent@shell.setup':{
+                        templateUrl: 'src/setup/newUser/addNewUser.template.html',
+                        controller: 'NewUser as vm'
+                    }
+            }
             })
             .state('shell.setup.allUsers',{
                 url:'/allUsers',

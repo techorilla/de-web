@@ -22,6 +22,7 @@
         return{
             restrict:'EAC',
             require:'?ngModel',
+
             link:function(scope,element,attrs,ngModel,ctrl){
                 ngModel.$parsers.push(function(viewValue){
                     return $filter('date')(viewValue, appFormats.Date);
@@ -39,9 +40,9 @@
             templateUrl: 'src/widgets/datepicker.template.html',
             scope: {
                 date: '=',
-                maxDate: '=',
-                minDate: '=',
-                disabled:'='
+                maxiDate: '=',
+                miniDate: '=',
+                noBorder:'='
             }
         };
 
@@ -58,7 +59,7 @@
             scope.minDate = (scope.minDate === '') ? '1970-01-01' : scope.minDate;
 
             scope.openDatePicker = function($event){
-                if(!scope.disabled){
+                if(!scope.noBorder){
                     $event.preventDefault();
                     $event.stopPropagation();
                     scope.datePickerOpened = true;

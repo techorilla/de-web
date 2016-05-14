@@ -15,6 +15,9 @@
     /* @ngInject */
     function tradebook($http,appConfig,crud, $filter, appFormats,dataService, FileSaver, Blob){
         var bpConfig = {
+            plugins: {
+                'no-delete': {}
+            },
             valueField: 'bp_ID',
             sortField: 'bp_Name',
             searchField: ['bp_Name','bp_Cont_fullName', 'bp_country'],
@@ -134,7 +137,7 @@
                 commIntoPrice = (type === 'Fixed') ? (comm) : (comm*0.01)*price;
             }
             if(brokerCommType!==''){
-                brokerIntoPrice = (brokerCommType==='Fixed') ? bComm : (bComm*100)*price;
+                brokerIntoPrice = (brokerCommType==='Fixed') ? bComm : (bComm*0.01)*price;
             }
             var tr_netCommission = (((commIntoPrice - brokerIntoPrice) + commissionDetails.tr_difference )- commissionDetails.tr_discount);
 
@@ -156,7 +159,7 @@
                 tr_shipment_start:null,
                 tr_shipment_end:null,
                 tr_fileID:'',
-                tr_contractID:'',
+                tr_contractID:null,
                 tr_other_info:null
             };
 
@@ -167,6 +170,9 @@
         }
         function getProductConfig(){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 valueField: 'id',
                 sortField: 'name',
                 searchField: ['name','origin', 'quality'],
@@ -215,7 +221,8 @@
                 tr_sec_date:null,
                 tr_sec_buyerPrice:null,
                 tr_sec_sellerPrice:null,
-                tr_sec_otherInfo:''
+                tr_sec_otherInfo:'',
+                tr_sec_quantity: null
             };
         }
 
@@ -238,12 +245,12 @@
                 tr_buyerBroker:false,
                 tr_buyerBrokerID:null,
                 tr_buyerBroker_comm_type: 'Fixed',
-                tr_buyerBroker_comm: 0,
-                tr_own_Commission:0,
+                tr_buyerBroker_comm: 0.00,
+                tr_own_Commission:0.00,
                 tr_ownCommissionType:'Fixed',
-                tr_difference:0,
-                tr_discount:0,
-                tr_netCommission:0
+                tr_difference:0.00,
+                tr_discount:0.00,
+                tr_netCommission:0.00
             };
         }
 
@@ -266,6 +273,9 @@
 
         function getCommissionTypeConfig(commissionTypes){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 options: commissionTypes,
                 create: true,
                 sortField: 'text',
@@ -277,6 +287,9 @@
 
         function getTimeDrillConfig(timeDrillOptions){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 options: timeDrillOptions,
                 create: true,
                 sortField: 'order',
@@ -288,6 +301,9 @@
 
         function getTransactionStatusConfig(transactionStatus){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 options: transactionStatus,
                 create: true,
                 sortField: 'value',
@@ -453,7 +469,6 @@
 
         function downloadTransactionFile(fileID,fileName,fileType){
             return dataService.downloadFile('getTransactionFile?fileID=' + fileID).then(function(res, status, header){
-                console.log(res,status,header);
                 var data = new Blob( [res.data], { type: fileType });
                 FileSaver.saveAs(data, fileName);
 

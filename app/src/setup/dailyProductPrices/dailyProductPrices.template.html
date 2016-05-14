@@ -14,7 +14,16 @@
         <table class="table table-bordered dg-table">
             <thead>
             <tr>
-                <th>Product</th>
+                <th>Product
+
+                            <input
+                                    ng-model="vm.searchProduct"
+                                    type="text"
+                                    class="search-control form-control"
+                                    id="exampleInputAmount"
+                                    placeholder="Find by Product Name">
+
+                </th>
                 <th  style="width:200px">International Price</th>
                 <th  style="width:200px">Local Price</th>
                 <th>Action</th>
@@ -22,7 +31,7 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="product in vm.productPrices " ng-init="product.editMode = false;">
+            <tr ng-repeat="product in vm.productPrices | selectFilter: vm.searchProduct:'name'" ng-init="product.editMode = false;">
                 <td>
                     <selectize ng-disabled="true"
                                config="vm.productConfig"

@@ -82,6 +82,7 @@
                     function(res){
                         if(res.data.success){
                             vm.editMode = false;
+                            vm.newContract = false;
                             toastr.success(res.data.message,'Success');
                         }
                     }

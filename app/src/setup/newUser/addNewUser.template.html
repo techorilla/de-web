@@ -1,145 +1,146 @@
-<form name="addNewUser" novalidate>
-    <div class="row">
-        <div class="col-lg-12 tableHeading width96">
-            <label>New User Details</label>
+<div class="">
+    <form name="addNewUser" novalidate>
+        <div class="clearfix tableHeading2 cursor-pointer">
+            <label ng-show="vm.editPage" class="cursor-pointer">UpdateUser</label>
+            <label ng-show="!vm.editPage" class="cursor-pointer">Add New User</label>
         </div>
-        <div class="col-md-12">
-            <div class="row">
-                <div class="form-group col-md-2" >
-                    <label>Initials</label>
-                    <selectize  name="initials" ng-disabled="vm.viewMode" placeholder='Mr' config="vm.titleConfig" ng-model="vm.newUser.initials" ng-required="true"></selectize>.
-                    <ng-messages for="addNewUser.initials.$error" ng-if='addNewUser.initials.$dirty || addNewUser.$submitted'>
-                        <div ng-message="required" class="errorValidation marginTopMinus20">This is required.</div>
-                    </ng-messages>
-                </div>
-                <div class="form-group col-md-5">
-                    <label>First Name</label>
-                    <input name="firstName"
-                           type="text"
-                           ng-model-options="{ updateOn: 'default blur' }"
-                           ng-disabled="vm.viewMode"
-                           ng-model="vm.newUser.firstName"
-                           class="form-control"
-                           placeholder="Bilal"
-                           ng-required="true"
-                           ng-pattern="/^[a-zA-Z .]*$/"/>
-                    <ng-messages for='addNewUser.firstName.$error' ng-if='addNewUser.firstName.$dirty || addNewUser.$submitted'>
-                        <div ng-message="required" class="errorValidation">This is required.</div>
-                        <!-- <div ng-message="email">Invalid email.</div> -->
-                        <div ng-message="pattern" class="errorValidation">Invalid first name</div>
-                    </ng-messages>
-                </div>
-
-                <div class="form-group  col-md-5">
-                    <label>Last Name</label>
-                    <input name="lastName"
-                           ng-model-options="{ updateOn: 'default blur' }"
-                           type="text"
-                           ng-disabled="vm.viewMode"
-                           ng-model="vm.newUser.lastName"
-                           class="form-control"
-                           placeholder="Doni"
-                           ng-required="true"
-                           ng-pattern="/^[a-zA-Z .]*$/"/>
-                    <ng-messages for='addNewUser.lastName.$error' ng-if='addNewUser.lastName.$dirty || addNewUser.$submitted'>
-                        <div ng-message="required" class="errorValidation">This is required.</div>
-                        <!-- <div ng-message="email">Invalid email.</div> -->
-                        <div ng-message="pattern" class="errorValidation">Invalid first name</div>
-                    </ng-messages>
-                </div>
+        <div class="clearfix">
+            <div class="col-lg-12 col-sm-12 form-group">
+                <button type="submit" ng-show="vm.editPage"
+                        class=" cursor-pointer pull-right btn btn-success"
+                        ng-click="vm.changePasswordForUser()">Change Password</button>
+            </div>
+            <div class="col-lg-12 col-sm-12 form-group">
+                <input class="isAdminChkBox" ng-disabled="vm.viewMode" type="checkbox" ng-model="vm.newUser.isAdmin"/>
+                <label name="isAdmin">Is Admin User</label>
+            </div>
+            <div class="col-lg-4 col-sm-12 form-group">
+                <label>Initials</label>
+                <selectize  name="initials" ng-disabled="vm.viewMode" placeholder='Mr' config="vm.titleConfig" ng-model="vm.newUser.initials" ng-required="true"></selectize>.
+                <ng-messages for="addNewUser.initials.$error" ng-if='addNewUser.initials.$dirty || addNewUser.$submitted'>
+                    <div ng-message="required" class="errorValidation marginTopMinus20">This is required.</div>
+                </ng-messages>
+            </div>
+            <div class="col-lg-4 col-sm-12 form-group">
+                <label>First Name</label>
+                <input name="firstName"
+                       type="text"
+                       ng-model-options="{ updateOn: 'default blur' }"
+                       ng-disabled="vm.viewMode"
+                       ng-model="vm.newUser.firstName"
+                       class="form-control"
+                       placeholder="Enter First Name"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z .]*$/"/>
+                <ng-messages for='addNewUser.firstName.$error' ng-if='addNewUser.firstName.$dirty || addNewUser.$submitted'>
+                    <div ng-message="required" class="errorValidation">This is required.</div>
+                    <!-- <div ng-message="email">Invalid email.</div> -->
+                    <div ng-message="pattern" class="errorValidation">Invalid first name</div>
+                </ng-messages>
+            </div>
+            <div class="col-lg-4 col-sm-12 form-group">
+                <label>Last Name</label>
+                <input name="lastName"
+                       ng-model-options="{ updateOn: 'default blur' }"
+                       type="text"
+                       ng-disabled="vm.viewMode"
+                       ng-model="vm.newUser.lastName"
+                       class="form-control"
+                       placeholder="Enter Last Name"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z .]*$/"/>
+                <ng-messages for='addNewUser.lastName.$error' ng-if='addNewUser.lastName.$dirty || addNewUser.$submitted'>
+                    <div ng-message="required" class="errorValidation">This is required.</div>
+                    <!-- <div ng-message="email">Invalid email.</div> -->
+                    <div ng-message="pattern" class="errorValidation">Invalid first name</div>
+                </ng-messages>
             </div>
 
-            <div class="row">
-                <div class="form-group   col-md-5 col-md-offset-2">
-                    <label>Email</label>
-                    <input name="email"
-                           type="email"
-                           ng-disabled="vm.viewMode"
-                           ng-model="vm.newUser.email"
-                           ng-model-options="{ updateOn: 'default blur' }"
-                           class="form-control"
-                           placeholder="bilaldoni@donigroup.com"
-                           ng-required="true"
-                           ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i">
-                    <ng-messages for="addNewUser.email.$error" ng-if='addNewUser.email.$dirty || addNewUser.$submitted'>
-                        <div ng-message="required" class="errorValidation">This is required.</div>
-                        <!-- <div ng-message="email">Invalid email.</div> -->
-                        <div ng-message="pattern" class="errorValidation">Invalid email</div>
-                    </ng-messages>
-                </div>
-                <div class="form-group   col-md-5">
-                    <label>Designation</label>
-                    <input name="designation"
-                           type="text"
-                           ng-disabled="vm.viewMode"
-                           ng-model="vm.newUser.designation"
-                           class="form-control"
-                           placeholder="Cheif Executive"
-                           ng-model-options="{ updateOn: 'default blur' }"
-                           required ng-pattern="/^[a-zA-Z .]*$/"/>
-                    <div ng-messages='addNewUser.designation.$error'
-                         ng-if='addNewUser.designation.$dirty || addNewUser.$submitted'>
-                        <div class="errorValidation" ng-message="required">This is required.</div>
-                        <div class="errorValidation" ng-message="pattern">Can only contain letters and spaces</div>
-                    </div>
+            <div class="col-lg-8 col-sm-12 form-group">
+                <label>Email</label>
+                <input name="email"
+                       type="email"
+                       ng-disabled="vm.viewMode"
+                       ng-model="vm.newUser.email"
+                       ng-model-options="{ updateOn: 'default blur' }"
+                       class="form-control"
+                       placeholder="Enter Email"
+                       ng-required="true"
+                       ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i">
+                <ng-messages for="addNewUser.email.$error" ng-if='addNewUser.email.$dirty || addNewUser.$submitted'>
+                    <div ng-message="required" class="errorValidation">This is required.</div>
+                    <!-- <div ng-message="email">Invalid email.</div> -->
+                    <div ng-message="pattern" class="errorValidation">Invalid email</div>
+                </ng-messages>
+            </div>
+            <div class="col-lg-8 col-sm-12  col-lg-offset-4 form-group">
+                <label>Designation</label>
+                <input name="designation"
+                       type="text"
+                       ng-disabled="vm.viewMode"
+                       ng-model="vm.newUser.designation"
+                       class="form-control"
+                       placeholder="Designation"
+                       ng-model-options="{ updateOn: 'default blur' }"
+                       required ng-pattern="/^[a-zA-Z .]*$/"/>
+                <div ng-messages='addNewUser.designation.$error'
+                     ng-if='addNewUser.designation.$dirty || addNewUser.$submitted'>
+                    <div class="errorValidation" ng-message="required">This is required.</div>
+                    <div class="errorValidation" ng-message="pattern">Can only contain letters and spaces</div>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-5 col-md-offset-2">
-                    <label>Password</label>
-                    <input name="password" type="password" ng-disabled="vm.viewMode"
-                           ng-pattern="/^(?=^.{8,32}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/"
-                           ng-model="vm.newUser.password" class="form-control" placeholder="******" ng-minlength="8" ng-maxlength="32" required/>
-                    <div ng-messages="addNewUser.password.$error"
-                         ng-if='addNewUser.password.$dirty || addNewUser.$submitted'>
-                        <div class="errorValidation" ng-message="required">This is required.</div>
-                        <div class="errorValidation" ng-message="minlength">Password too short.</div>
-                        <div class="errorValidation" ng-message="maxlength">Password too long.</div>
-                        <div class="errorValidation" ng-message="pattern">Password should be at least 8 characters and must contain letters, a number & a special character.</div>
-                    </div>
+            <div ng-if="!vm.editPage" class="col-lg-4 col-sm-12 col-lg-offset-4 form-group">
+                <label>Password</label>
+                <input name="password" type="password" ng-disabled="vm.viewMode"
+                       ng-pattern="/^(?=^.{8,32}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/"
+                       ng-model="vm.newUser.password" class="form-control" placeholder="******" ng-minlength="8" ng-maxlength="32" required/>
+                <div ng-messages="addNewUser.password.$error"
+                     ng-if='addNewUser.password.$dirty || addNewUser.$submitted'>
+                    <div class="errorValidation" ng-message="required">This is required.</div>
+                    <div class="errorValidation" ng-message="minlength">Password too short.</div>
+                    <div class="errorValidation" ng-message="maxlength">Password too long.</div>
+                    <div class="errorValidation" ng-message="pattern">Password should be at least 8 characters and must contain letters, a number & a special character.</div>
                 </div>
-                <div class="form-group    col-md-5">
-                    <label>Confirm Password</label>
-                    <input name="reTypePassword"
-                           type="password"
-                           ng-disabled="vm.viewMode"
-                           ng-model="vm.newUser.reTypePassword"
-                           class="form-control"
-                           placeholder="******"
-                           ui-validate="'$value===vm.newUser.password'" ui-validate-watch="'vm.newUser.password'"
-                           ng-required="true"/>
-                    <ng-messages for='addNewUser.reTypePassword.$error' ng-if="addNewUser.reTypePassword.$dirty || addNewUser.$submitted">
-                        <div class="errorValidation" ng-message="validator">Passwords do not match</div>
-                        <div ng-message="required" class="errorValidation">Confirm Password is required.</div>
-                    </ng-messages>
-                </div>
+            </div>
+            <div ng-if="!vm.editPage" class="col-lg-4 col-sm-12 form-group">
+                <label>Confirm Password</label>
+                <input name="reTypePassword"
+                       type="password"
+                       ng-disabled="vm.viewMode"
+                       ng-model="vm.newUser.reTypePassword"
+                       class="form-control"
+                       placeholder="******"
+                       ui-validate="'$value===vm.newUser.password'" ui-validate-watch="'vm.newUser.password'"
+                       ng-required="true"/>
+                <ng-messages for='addNewUser.reTypePassword.$error' ng-if="addNewUser.reTypePassword.$dirty || addNewUser.$submitted">
+                    <div class="errorValidation" ng-message="validator">Passwords do not match</div>
+                    <div ng-message="required" class="errorValidation">Confirm Password is required.</div>
+                </ng-messages>
             </div>
 
+
+            <div class="col-lg-12 col-sm-12 form-group">
+                <button type="submit"
+                        class="btn btn-default pull-right" ui-sref="^">Cancel</button>
+
+                <button ng-show="!vm.editPage" type="submit"
+                        class="btn btn-default pull-right submitBtn"
+                        ng-click="vm.addNewUser()">Create User</button>
+
+                <button ng-show="vm.editPage && vm.viewMode"
+                        type="button" class=" cursor-pointer pull-right btn UpdateBtn"
+                        ng-click="vm.editUser()">Edit User</button>
+
+
+
+
+                <button ng-show="vm.editPage && !vm.viewMode"
+                        type="submit" class=" cursor-pointer pull-right btn UpdateBtn"
+                        ng-click="vm.updateUser()">Update User</button>
+
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 tableHeading width96">
-            <label>New User Rights</label>
-        </div>
-        <div class="col-md-12 marginBottom20px">
-            <input class="isAdminChkBox" type="checkbox" ng-model="vm.newUser.isAdmin"/>
-            <label name="isAdmin">Is Admin User</label>
-            </br>
-            <!--<page-blue-container ng-show="!vm.newUser.isAdmin" class="col-md-8">-->
-                <!--<div class="col-lg-12 width96">-->
-                    <!--<label>Select rights you want to assign to user</label>-->
-                    <!--<div  ng-repeat="right in vm.userRights" >-->
-                        <!--<div class="col-lg-12 subheading1 width96 tableHeading">-->
-                            <!--<label ng-bind="right.domain"></label>-->
-                        <!--</div>-->
-                        <!--<div ng-repeat="action in right.rights" class="marginLeftPlus15">-->
-                            <!--<input id="{{right.domain}}.{{action}}" type="checkbox"/><label class="subheading1 marginLeftPlus15" ng-bind="action" for="{{right.domain}}.{{action}}"></label>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</page-blue-container>-->
-        </div>
-    </div>
-    <button type="submit" ng-show="!vm.viewMode" class="btn btn-default submitBtn" ng-click="vm.addNewUser()">Create User</button>
-    <button type="submit" ng-show="!vm.viewMode" class="btn btn-default" ui-sref="^">Cancel</button>
-</form>
+    </form>
+</div>
+
+

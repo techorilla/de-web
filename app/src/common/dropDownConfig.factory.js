@@ -20,6 +20,9 @@
 
         function contactTypeConfig(){
             return {
+                plugins: {
+                    'no-delete': {}
+                },
                 valueField: 'text',
                 labelField: 'text',
                 options: [

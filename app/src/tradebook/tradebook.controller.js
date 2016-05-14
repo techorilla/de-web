@@ -50,7 +50,7 @@
 
             vm.transactionTableHeadings = ['Date', 'File No','Buyer', 'Product', 'Quantity', 'Rate', 'Seller', 'Origin', 'Shipment Start', 'Shipment End', 'Commission'];
             vm.headingAssociation = ['transactionDate','fileNo','buyer','product', 'quantity', 'rate', 'seller', 'origin', 'shipment_start', 'shipment_end', 'commission'];
-
+            vm.headingclass = ['dateColumn','fileId','dropDownCol2','dropDownCol2','','','dropDownCol2','','dateColumn2','dateColumn',''];
             vm.headerAnchor = [
                 {
                     text: 'Add new Transaction',
@@ -66,6 +66,7 @@
         }
 
         function onDateRangeChanged(dateRange){
+            console.log(dateRange);
             if(true){
                 var startDate = new Date(dateRange.startDate);
                 var endDate = new Date(dateRange.endDate);

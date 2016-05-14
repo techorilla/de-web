@@ -7,6 +7,11 @@
             </ul>
         </div>
         <div class="dg-tablePanelBody">
+            <div class="col-lg-12 col-sm-12 form-group">
+                <button type="submit"
+                        class=" cursor-pointer pull-right btn btn-success"
+                        ng-click="vm.goToAddNewUser()">Add New User</button>
+            </div>
             <table class="table table-bordered dg-table">
                 <thead>
                 <tr>
@@ -16,7 +21,7 @@
                 <tbody>
                 <tr ng-repeat="user in vm.allUsers.users| filter:vm.searchUser">
                     <td class="textCenterAlign">
-                        <a class="textDecoNone">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a>
+                        <a class="textDecoNone" ui-sref="shell.setup.allUsers.editUser({userId:user.userID})">{{user.initials}}. {{user.firstName}} {{user.lastName}}</a>
                         <i ng-if="user.isSuperUser" class="fa fa-user-secret"></i>
                     </td>
                     <td class="textCenterAlign" ng-bind="user.userDesignation"></td>

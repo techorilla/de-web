@@ -73,7 +73,7 @@
                            type="checkbox" ng-model="vm.shipment.tr_ship_chk_expShp"/>
                     <label>Expected Shipment</label>
                     <date-picker ng-show="vm.shipment.tr_ship_chk_expShp"
-                                 disabled="!vm.editMode"
+                                 no-border="!vm.editMode"
                                  date="vm.shipment.tr_expectedShipment" max-date="" min-date=""></date-picker>
                 </div>
                 <div ng-show="vm.shipment.tr_ship_appReceived" class="col-lg-4 col-xs-12">
@@ -83,7 +83,7 @@
                            type="checkbox" ng-model="vm.shipment.tr_ship_chk_inTransit"/>
                     <label>In Transit</label>
                     <date-picker ng-show="vm.shipment.tr_ship_chk_inTransit"
-                                 disabled="!vm.editMode"
+                                 no-border="!vm.editMode"
                                  date="vm.shipment.tr_inTransit" max-date="" min-date=""></date-picker>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                            ng-change="vm.resetFields(vm.shipment.tr_ship_chk_dateShipped,['tr_dateShipped'])"
                            ng-model="vm.shipment.tr_ship_chk_dateShipped"/>
                     <label>Date Shipped</label>
-                    <date-picker disabled="!vm.editMode"
+                    <date-picker no-border="!vm.editMode"
                                  ng-show="vm.shipment.tr_ship_chk_dateShipped"
                                  date="vm.shipment.tr_dateShipped"
                                  max-date="" min-date=""></date-picker>
@@ -116,7 +116,7 @@
                            ng-change="vm.resetFields(vm.shipment.tr_ship_chk_expArrival,['tr_expectedArrival'])"
                            ng-model="vm.shipment.tr_ship_chk_expArrival"/>
                     <label>Expected Arrival</label>
-                    <date-picker disabled="!vm.editMode"
+                    <date-picker no-border="!vm.editMode"
                                  ng-show="vm.shipment.tr_ship_chk_expArrival"
                                  date="vm.shipment.tr_expectedArrival"
                                  max-date="" min-date=""></date-picker>
@@ -155,20 +155,20 @@
                            ng-model="vm.shipment.tr_ship_chk_dateArrived"/>
                     <label>Date Arrived</label>
                     <date-picker ng-show="vm.shipment.tr_ship_chk_dateArrived"
-                                 disabled="!vm.editMode"
+                                 no-border="!vm.editMode"
                                  date="vm.shipment.tr_dateArrived" max-date="" min-date=""></date-picker>
                 </div>
-                <div class="col-lg-4 col-xs-12" ng-show="vm.shipment.tr_ship_arrivedAtPort">
+                <!--<div class="col-lg-4 col-xs-12" ng-show="vm.shipment.tr_ship_arrivedAtPort">-->
 
-                    <input ng-disabled="!vm.editMode" name="tr_ship_chk_expArrival"
-                           type="checkbox"
-                           ng-change="vm.resetFields(vm.shipment.tr_ship_chk_actualArrived,['tr_actualArrived'])"
-                           ng-model="vm.shipment.tr_ship_chk_actualArrived"/>
-                    <label>Actual Arrived</label>
-                    <date-picker ng-show="vm.shipment.tr_ship_chk_actualArrived"
-                                 disabled="!vm.editMode"
-                                 date="vm.shipment.tr_actualArrived" max-date="" min-date=""></date-picker>
-                </div>
+                    <!--<input ng-disabled="!vm.editMode" name="tr_ship_chk_expArrival"-->
+                           <!--type="checkbox"-->
+                           <!--ng-change="vm.resetFields(vm.shipment.tr_ship_chk_actualArrived,['tr_actualArrived'])"-->
+                           <!--ng-model="vm.shipment.tr_ship_chk_actualArrived"/>-->
+                    <!--<label>Actual Arrived</label>-->
+                    <!--<date-picker ng-show="vm.shipment.tr_ship_chk_actualArrived"-->
+                                 <!--no-border="!vm.editMode"-->
+                                 <!--date="vm.shipment.tr_actualArrived" max-date="" min-date=""></date-picker>-->
+                <!--</div>-->
             </div>
         </div>
 
@@ -183,11 +183,21 @@
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Invoice Amount (USD)</label>
-                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_invoiceAmt" class="form-control" placeholder="">
+                <number-only-input
+                        no-border="!vm.editMode"
+                        input-value="vm.shipment.tr_ship_invoiceAmt"
+                        input-name="vm.shipment.tr_ship_invoiceAmt"
+                        input-place="USD$">
+                </number-only-input>
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Quantity Shipped (Mt)</label>
-                <input type="text" ng-disabled="!vm.editMode"  ng-model="vm.shipment.tr_ship_quantity" class="form-control" placeholder="">
+                <number-only-input
+                        no-border="!vm.editMode"
+                        input-value="vm.shipment.tr_ship_quantity"
+                        input-name="vm.shipment.tr_ship_quantity"
+                        input-place="MT">
+                </number-only-input>
             </div>
             <div class="form-group col-lg-4 col-xs-12">
                 <label>Vessel/Voyage Number</label>

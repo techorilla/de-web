@@ -18,41 +18,34 @@
         .directive('numberOnlyInput', numberOnlyInput);
 
     /* @ngInject */
-    function numberOnlyInput () {
+    function numberOnlyInput ($filter) {
         return {
             restrict: 'EA',
-            template: '<input ng-class="{\'currency\': currency}" style="cursor:default" ng-disabled="disabled" ng-change="reset()" class="form-control " placeholder="{{inputPlace}}" name="{{inputName}}" ng-model="inputValue" />',
+            replace: true,
+            templateUrl: 'src/widgets/numberOnlyInput.template.html',
             scope: {
                 inputValue: '=',
                 inputName: '=',
                 inputPlace: '@',
-                disabled: '=',
+                noBorder: '=',
                 currency: '='
             },
             link: function (scope) {
 
-//                scope.reset = function(){
-//                  if(scope.inputValue === "" || scope.inputValue === null){
-//                      scope.inputValue=0;
-//                  }
-//                  scope.inputValue = parseInt(scope.inputValue);
-//                };
-//                scope.reset();
-                scope.$watch('inputValue', function(newValue,oldValue) {
-                    if(newValue === '' || newValue === null || newValue == 0){
-                        scope.inputValue = 0.00;
-                    }
+                scope.onFocus = function(){
+                    scope.oldValue = scope.inputValue;
+                };
 
-                    else if (! /^[0-9.]+$/.test(newValue)) {
-                        // Validation failed
+                scope.onBlur = function(){
+                    if(scope.inputValue === ''){
+                        scope.inputValue = 0.00
+                    }
+                    else if(/[a-zA-Z!@#$%^&*()_+=/\\,]/i.test(scope.inputValue)){
+                        scope.inputValue = scope.oldValue;
+                    }
+                };
 
-                        scope.inputValue = oldValue;
-                        return;
-                    }
-                    else if(scope.inputValue.length >= 2 && scope.inputValue[1]!=='.' && scope.inputValue[0]==='0'){
-                        scope.inputValue = scope.inputValue.substr(1);
-                    }
-                });
+
             }
         };
     }

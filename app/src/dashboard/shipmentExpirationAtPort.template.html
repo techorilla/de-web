@@ -1,6 +1,7 @@
 <div class="col-lg-12  marginLeft15">
     <div class="col-lg-12 tableHeading">
         <label>Shipment Expiration at Port</label>
+        <small>({{vm.expirationReport.length}} Transactions)</small>
         <label class="pull-right cursor-pointer" ng-click="vm.showExpiration = !vm.showExpiration">
             <!--<span ng-bind="vm.bpProducts.length + ' Product'"></span>-->
             <i  class="fa" ng-class="{'fa-chevron-circle-down':vm.showExpiration,'fa-chevron-circle-right':!vm.showExpiration}"></i>
@@ -26,14 +27,14 @@
         <table ng-if="(vm.expirationReport.length !==  0)" class="table table-bordered dg-table">
             <thead>
             <tr>
-                <th>Expiration Date</th>
-                <th>Days To Expiration</th>
-                <th>File ID</th>
-                <th>Buyer</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Supplier</th>
+                <th class="dateColumn">Expiration On</th>
+                <th class="estimate">Days To Expiration</th>
+                <th class="fileId">File ID</th>
+                <th class="dropDownCol">Buyer</th>
+                <th class="dropDownCol">Product</th>
+                <th class="fileId">Quantity</th>
+                <th class="fileId">Rate</th>
+                <th class="dropDownCol">Supplier</th>
             </tr>
             </thead>
             <tbody>

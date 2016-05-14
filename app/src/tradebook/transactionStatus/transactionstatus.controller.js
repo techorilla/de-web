@@ -91,7 +91,7 @@
                     function(res){
                         if(res.data.success){
                             vm.editMode = false;
-                            toastr.success(res.data.message,'Success');
+                            vm.newStatus = false;
                         }
                     }
                 );
@@ -102,7 +102,6 @@
                         if (res.data.success) {
                             vm.editMode = false;
                             vm.newStatus = false;
-                            toastr.success(res.data.message, 'Success');
                         }
                     }
                 );

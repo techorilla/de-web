@@ -33,9 +33,9 @@
             vm.productConfig = productConfig;
             vm.dateRange = navigation.initialDateRange();
             vm.dateRangeLocal = navigation.initialDateRange();
-            vm.arrivedAtPortDateRange = navigation.initialDateRange();
-            vm.expirationDateRange = navigation.initialDateRange();
-            vm.expectedArrivalDateRange = navigation.initialDateRange();
+            vm.arrivedAtPortDateRange = navigation.dashboardDateRange();
+            vm.expirationDateRange = navigation.dashboardDateRange();
+            vm.expectedArrivalDateRange = navigation.dashboardDateRange();
             vm.dateSelected = $filter('date')(new Date(), appFormats.Date);
             vm.productPricesForToday = [];
             vm.productPricesOnDateRange = [];
@@ -95,10 +95,11 @@
         }
 
         function getProductPricesByDateRange(dateRange){
-
+            console.log(dateRange);
             var startDate = new Date(dateRange.startDate);
             var endDate = new Date(dateRange.endDate);
             dashboard.getProductPriceByDateRangeForDashboard(startDate,endDate).then(function(res){
+                console.log(dateRange);
                 if(res.data.success && (res.data.productsPrices.length>0)){
                     vm.productPricesOnDateRange = res.data.productsPrices;
                     var minDate = _.minBy(vm.productPricesOnDateRange,'priceDate').priceDate ;

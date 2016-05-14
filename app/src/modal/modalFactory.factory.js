@@ -15,7 +15,8 @@
   /* @ngInject */
   function modalFactory($modal){
 		return {
-            alertModal: alertModal
+            alertModal: alertModal,
+            changePassword: changePassword
 		};
 
 		////////////////////
@@ -33,6 +34,21 @@
      * @param {int} entity id
      */
 
+        function changePassword(userId){
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'src/setup/changePassword/changePassword.template.html',
+                controller: 'ChangePasswordModal as vm',
+                size: 'md',
+                windowClass: 'marginTopPlus150px',
+                resolve:{
+                    userId: function(){
+                        return userId;
+                    }
+                }
+
+            });
+        }
 		function alertModal(name, type, action){
             var modalInstance = $modal.open({
                     animation: true,

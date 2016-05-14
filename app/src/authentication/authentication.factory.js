@@ -92,7 +92,9 @@
                         stateOnLogin: $state.current.name,
                         stateParamsOnLogin: $state.params
                     };
-                    localStorageService.set('lastState',lastState);
+                    if($state.current.name !== 'login'){
+                        localStorageService.set('lastState',lastState);
+                    }
                     $state.go('login');
                 };
 
