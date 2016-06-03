@@ -63,8 +63,8 @@
                     <label>Designation</label>
                     <input class="form-control" type="text" name="cpRole"
                            ng-disabled="vm.viewMode"
-                           placeholder='Please enter contact person deignation'
-                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_Designation"/>
+                           placeholder='Please enter contact person designation'
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_designation"/>
                     <!--<div ng-messages='vm.contactPersonForm.cpRole.$error'-->
                          <!--ng-if='vm.contactPersonForm.cpRole.$dirty || vm.contactPersonForm.$submitted'>-->
                         <!--<div class="errorValidation" ng-message="required">Contact person designation required</div>-->
@@ -101,7 +101,7 @@
                            ng-pattern="/^([0-9\(\)\/\+ \-]*)$/"
                            ng-disabled="vm.viewMode" ng-required="false"
                            placeholder='Please enter contact number secondary contact number'
-                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_SecondaryNumber"/>
+                           ng-model="vm.businessPartner.newContactPerson.bp_Cont_SecondryNumber"/>
                     <div ng-messages='vm.contactPersonForm.$error'
                          ng-if='vm.contactPersonForm.cpPc2.$dirty || vm.contactPersonForm.$submitted'>
                         <div class="errorValidation" ng-message="pattern">Invalid contact number</div>
@@ -122,7 +122,7 @@
                         <th>Email</th>
                         <th>Primary Contact</th>
                         <th>Secondary Contact</th>
-                        <th>Actions</th>
+                        <th class="actions">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -134,9 +134,12 @@
                         <td ng-bind="contPers.bp_Cont_PrimaryNumber ? contPers.bp_Cont_PrimaryNumber : 'Not Entered'"></td>
                         <td ng-bind="contPers.bp_Cont_SecondryNumber ? contPers.bp_Cont_SecondryNumber:'Not Entered' "></td>
                         <td>
-                            <label ng-click="vm.deleteBusinessPartnerContact(vm.businessPartner.gen[0].bp_Name, contPers.bp_Cont_fullName, contPers.bp_cont_ID, $index)" class="cursor-pointer">
+                            <label ng-click="vm.deleteBusinessPartnerContact(vm.businessPartner.gen[0].bp_Name, contPers.bp_Cont_fullName, contPers.bp_cont_ID, $index)" class="cursor-pointer border-right-gray">
                                 <i class="fa fa-trash-o redFont"></i>
-                                Delete
+                                Delete&nbsp;&nbsp;
+                            </label>
+                            <label  ng-click="vm.editBusinessPartnerContact($index)" class="cursor-pointer ">&nbsp;&nbsp;Edit
+                                <i class="fa fa-edit orangeFont"></i>&nbsp;&nbsp;
                             </label>
                         </td>
                     </tr>

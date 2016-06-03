@@ -115,23 +115,26 @@
                 <tr>
                     <th>Account Title</th>
                     <th>Account Number</th>
-                    <th>Bank Name</th>
+                    <th class="dropDownCol">Bank Name</th>
                     <th>Origin</th>
-                    <th class="col-width-huge">Branch Address & Details</th>
-                    <th>Actions</th>
+                    <th class="dropDownCol">Branch Address & Details</th>
+                    <th class="actions">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="bank in vm.businessPartner.bank">
+                <tr ng-repeat="bank in vm.businessPartner.bank | orderBy: 'accountTitle' track by $index">
                     <td ng-bind="bank.accountTitle"></td>
                     <td ng-bind="bank.accountNumber ? bank.accountNumber : 'N/A' "></td>
                     <td ng-bind="bank.bankName"></td>
                     <td ng-bind="bank.accountCountry"></td>
                     <td ng-bind="bank.branchAddress ? bank.branchAddress : 'Not Entered' "></td>
                     <td>
-                        <label ng-click="vm.deleteBusinessPartnerBankDetails(vm.businessPartner.gen[0].bp_Name, bank.accountTitle, bank.accountNumber, bank.bankDetails_ID,$index)" class="cursor-pointer">
+                        <label ng-click="vm.deleteBusinessPartnerBankDetails(vm.businessPartner.gen[0].bp_Name, bank.accountTitle, bank.accountNumber, bank.bankDetails_ID, $index)" class="cursor-pointer border-right-gray">
                             <i class="fa fa-trash-o redFont"></i>
-                            Delete
+                            Delete&nbsp;&nbsp;
+                        </label>
+                        <label  ng-click="vm.editBusinessPartnerBankDetails($index)" class="cursor-pointer ">&nbsp;&nbsp;Edit
+                            <i class="fa fa-edit orangeFont"></i>&nbsp;&nbsp;
                         </label>
                     </td>
                 </tr>

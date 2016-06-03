@@ -1304,20 +1304,24 @@ table .estimate {
   width: 200px;
 }
 /* line 1119, ../partials/_theme.scss */
+table .actions {
+  width: 126px;
+}
+/* line 1122, ../partials/_theme.scss */
 table .dropDownCol {
   width: 250px;
 }
-/* line 1122, ../partials/_theme.scss */
+/* line 1125, ../partials/_theme.scss */
 table .dropDownCol2 {
   text-overflow: ellipsis;
   max-width: 200px;
 }
-/* line 1128, ../partials/_theme.scss */
+/* line 1131, ../partials/_theme.scss */
 table td a {
   text-overflow: ellipsis;
 }
 
-/* line 1134, ../partials/_theme.scss */
+/* line 1137, ../partials/_theme.scss */
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -1325,7 +1329,7 @@ table td a {
   -o-text-overflow: ellipsis;
 }
 
-/* line 1141, ../partials/_theme.scss */
+/* line 1144, ../partials/_theme.scss */
 .tableHeading2 {
   border-bottom: 2px solid #1691AC;
   margin-bottom: 10px;
@@ -1334,7 +1338,7 @@ table td a {
   padding-left: 15px;
 }
 
-/* line 1150, ../partials/_theme.scss */
+/* line 1153, ../partials/_theme.scss */
 .pieName {
   width: 220px;
   text-align: left;
@@ -1816,6 +1820,19 @@ textarea {
   box-sizing: none !important;
 }
 
+/* line 395, ../partials/_login.scss */
+.filter-count {
+  border-radius: 3px;
+  background: #ccc;
+  border: #1691ac 1px solid;
+  text-align: center;
+  min-width: 20px;
+  font-size: 12px;
+  padding: 0px 4px 0px 4px;
+  color: #333333;
+  opacity: 0.5;
+}
+
 /* line 2, ../partials/_dashboardCard.scss */
 .dashboardCard .expBtn {
   font-size: 12px;
@@ -1952,4 +1969,14 @@ textarea {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 103, ../partials/_newLogin.scss */
+.errorValidation2 {
+  color: darkred;
+  font-size: 8px;
+  font-weight: bold;
+  margin-top: -14px;
+  position: absolute;
+  text-align: center;
 }

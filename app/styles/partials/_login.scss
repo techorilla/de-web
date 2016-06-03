@@ -391,3 +391,16 @@ textarea{
   -moz-box-sizing: none !important;
   box-sizing: none !important;
 }
+
+.filter-count{
+  border-radius: 3px;
+  background: #ccc;
+  border: $baseColor 1px solid;
+  text-align: center;
+  min-width:20px;
+  font-size: 12px;
+  padding: 0px 4px 0px 4px;
+  color: #333333;
+  opacity: 0.5;
+}
+

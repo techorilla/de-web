@@ -13,7 +13,7 @@
         .factory('tradebook', tradebook);
 
     /* @ngInject */
-    function tradebook($http,appConfig,crud, $filter, appFormats,dataService, FileSaver, Blob){
+    function tradebook($http,appConfig,dataService , $filter, appFormats, FileSaver, Blob){
         var bpConfig = {
             plugins: {
                 'no-delete': {}
@@ -52,9 +52,6 @@
 
             setTransactionBasic: setTransactionBasic,
             getTransactionBasic: getTransactionBasic,
-
-            getCrudRequest: getCrudRequest,
-            testFunction: testFunction,
             saveBasicTransaction: saveBasicTransaction,
             getTransactionList: getTransactionList,
             getTransactionListOnDateRange: getTransactionListOnDateRange,
@@ -373,98 +370,51 @@
         }
 
         function getSingleTransactionDetails(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getSingleTransaction?id='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getSingleTransaction?id='+id);
         }
 
         function deleteTransactionFile(fileId){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'deleteTransactionFile?fileId='+fileId
-            };
-            return $http(req);
+            return dataService.getRequest('deleteTransactionFile?fileId='+fileId);
         }
 
         function getSingleTransactionSec(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getSecondaryTransaction?id='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getSecondaryTransaction?id='+id);
         }
 
         function getSingleTransactionShipment(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionShipment?transactionId='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionShipment?transactionId='+id);
         }
 
         function getSingleTransactionStatus(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionStatus?transactionId='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionStatus?transactionId='+id);
         }
 
         function getSingleTransactionContract(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionContract?transactionId='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionContract?transactionId='+id);
         }
 
         function getAllTransactionFiles(transactionId){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionFiles?transactionId='+transactionId
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionFiles?transactionId='+transactionId);
         }
 
         function getSingleTransactionCommission(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getCommissionTransaction?id='+id
-            };
-            return $http(req);
+            return dataService.getRequest('getCommissionTransaction?id='+id);
         }
 
         function getSingleTransactionNotes(transactionId){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'TransactionNotesList?transactionId='+transactionId
-            };
-            return $http(req);
+            return dataService.getRequest('TransactionNotesList?transactionId='+transactionId);
         }
 
         function getTransactionByParameter(parameter, textInput, dateInput){
-            var req = {
-                method:'GET',
-                url: appConfig.apiHost+'TransactionGetByParameter?parameter='+parameter+'&textInput='+textInput+'&dateInput='+dateInput
-            };
-            return $http(req);
+            return dataService.getRequest('TransactionGetByParameter?parameter='+parameter+'&textInput='+textInput+'&dateInput='+dateInput);
         }
 
         function addNewTransaction(transaction,callback){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'addNewTransaction',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {transaction: transaction}
-            };
-            return $http(req)
-                .success(function (response) {
-                    callback(response);
-                });
+            return dataService.postRequest(
+                'addNewTransaction',
+                {transaction: transaction},
+                callback
+            );
         }
 
         function downloadTransactionFile(fileID,fileName,fileType){
@@ -476,29 +426,15 @@
         }
 
         function saveBasicTransaction(newTransaction, callback){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'addNewTransaction/basic',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {newTransaction: newTransaction}
-            };
-            return $http(req)
-                .success(function (response) {
-                    callback(response);
-                });
+            return dataService.postRequest(
+                'addNewTransaction/basic',
+                {newTransaction: newTransaction},
+                callback
+            );
         }
 
         function getTransactionList(){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionTable',
-                headers: {
-                    'Content-Type': "application/json"
-                }
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionTable');
         }
         function getStaticDropDown(){
             return $http.get('datastore/addTransactionBasicFilters.json');
@@ -507,61 +443,32 @@
         function getTransactionListOnDateRange(startDate,endDate){
             var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
             var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getTransactionTableOnDateRange?startDate=' + sDate + '&endDate='+eDate,
-                headers:{
-                    'Content-Type': "application/json"
-                }
-
-            };
-            return $http(req);
+            return dataService.getRequest('getTransactionTableOnDateRange?startDate=' + sDate + '&endDate='+eDate,null);
         }
-
-        function getCrudRequest(url,data, operation){
-            data.operation = operation;
-            var req = {
-                method:  'POST',//(operation === crud.READ) ? 'GET' : 'POST',
-                url: appConfig.apiHost+url,
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {data: data}
-            };
-            return req;
-        }
-
-        function executeApiCall(requestObj, callBack){
-            return $http(requestObj)
-                .success(function (response) {
-                    callback(response);
-                });
-        }
-
 
         function transactionBasicCrud(transactionBasic, operation, callBack){
-            return $http(getCrudRequest('TransactionBasicCrud',transactionBasic, operation));
+            return dataService.getCrudRequest('TransactionBasicCrud',transactionBasic, operation, callBack);
         }
         function transactionCommissionCrud(transactionCommission, operation, callBack){
-            return $http(getCrudRequest('TransactionCommissionCrud',transactionCommission, operation));
+            return dataService.getCrudRequest('TransactionCommissionCrud',transactionCommission, operation, callBack);
         }
         function transactionShipmentCrud(transactionShipment, operation, callBack){
-            return $http(getCrudRequest('TransactionShipmentCRUD',transactionShipment, operation));
+            return dataService.getCrudRequest('TransactionShipmentCRUD',transactionShipment, operation, callBack);
         }
         function transactionSecondaryCrud(transactionSecondary, operation, callBack){
-            return $http(getCrudRequest('TransactionSecondaryCrud',transactionSecondary, operation));
+            return dataService.getCrudRequest('TransactionSecondaryCrud',transactionSecondary, operation, callBack);
         }
         function transactionStatusCrud(transactionStatus, operation, callBack){
-            return $http(getCrudRequest('TransactionStatusCrud',transactionStatus, operation));
+            return dataService.getCrudRequest('TransactionStatusCrud',transactionStatus, operation, callBack);
         }
         function transactionContractCrud(transactionContract, operation, callBack){
-            return $http(getCrudRequest('TransactionContractCrud',transactionContract, operation));
+            return dataService.getCrudRequest('TransactionContractCrud',transactionContract, operation, callBack);
         }
         function transactionDocumentCrud(transactionDocument, operation, callBack){
-            return $http(getCrudRequest('TransactionDocumentCrud',transactionDocument, operation));
+            return dataService.getCrudRequest('TransactionDocumentCrud',transactionDocument, operation, callBack);
         }
         function transactionNotesCrud(transactionNotes, operation, callBack){
-            return $http(getCrudRequest('TransactionNotesCrud',transactionNotes, operation));
+            return dataService.getCrudRequest('TransactionNotesCrud',transactionNotes, operation, callBack);
         }
 
 

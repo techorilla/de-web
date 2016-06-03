@@ -44,18 +44,7 @@
 
 
         function editProduct(product,callback){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'editProduct',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {product: product}
-            };
-            return $http(req)
-                .success(function (response) {
-                    callback(response);
-                });
+            return dataService.postRequest('editProduct', {product: product},callback);
         }
         function getAllProducts(){
             return dataService.getRequest('getAllproducts');
@@ -68,80 +57,28 @@
         function deleteProduct(name, id, callback){
             modalFactory.alertModal(name,'Product', 'Delete').then(function(res){
                 if(res){
-                    var req = {
-                        method: 'GET',
-                        url: appConfig.apiHost+'deleteProduct/'+id,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        },
-                        data: {id: id}
-                    };
-                    return $http(req)
-                        .success(function (response) {
-                            callback(response);
-                        });
+                    return dataService.getRequest('deleteProduct/'+id,callback);
                 }
             });
         }
 
         function getProductById(id){
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'getProduct/'+id,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: {id: id}
-            };
-            return $http(req);
+            return dataService.getRequest('getProduct/'+id,null);
         }
 
         function getProductPricesByDate(date){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'getProductsPricesByDate',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                data: {date: date}
-            };
-
-            return $http(req);
-
+            return dataService.postRequest('getProductsPricesByDate', {date: date}, null);
         }
-
 
         function productSalesAnalytics(startDate, endDate){
             var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
             var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
-            var req = {
-                method: 'GET',
-                url: appConfig.apiHost+'productSalesAnalyticsByDateRange?startDate=' + sDate + '&endDate='+eDate,
-                headers:{
-                    'Content-Type': "application/json"
-                }
-
-            };
-            return $http(req);
+            return dataService.getRequest('productSalesAnalyticsByDateRange?startDate=' + sDate + '&endDate='+eDate,null);
         }
 
 
         function addNewProduct(product, callback){
-            var req = {
-                method: 'POST',
-                url: appConfig.apiHost+'addProduct',
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                data: {product: product}
-            };
-            return $http(req)
-                .success(function (response) {
-                    callback(response);
-                });
+            return dataService.postRequest('addProduct', {product: product}, callback);
         }
 
         function dailyProductsPricesCrud(product,operation){

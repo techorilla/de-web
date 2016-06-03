@@ -76,13 +76,23 @@
                         controller: 'BusinessPartnerInfo as vm'
                     },
                     'bpProducts@shell.businessPartner.view':{
-                        templateUrl:'src/businessPartner/addBusinessPartnerProduct/addBusinessPartnerProduct.html',
+                        templateUrl:'src/businessPartner/products/products.html',
                         controller: 'BpProduct as vm'
                     },
                     'bpContactNumbers@shell.businessPartner.view':{
-                        templateUrl:'src/businessPartner/addBusinessPartnerContactNumbers/addBusinessPartnerContactNumbers.html',
+                        templateUrl:'src/businessPartner/contactNumbers/contactNumbers.html',
                         controller: 'BpContactNumbers as vm'
+                    },
+                    'bpContactPersons@shell.businessPartner.view':{
+                        templateUrl:'src/businessPartner/contactPersons/contactPersons.html',
+                        controller: 'BpContactPersons as vm'
+
+                    },
+                    'bpBankDetails@shell.businessPartner.view':{
+                        templateUrl:'src/businessPartner/bankDetails/bankDetails.html',
+                        controller: 'BpBankDetails as vm'
                     }
+
                 }
             });
     }

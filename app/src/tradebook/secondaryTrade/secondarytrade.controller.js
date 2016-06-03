@@ -13,7 +13,7 @@
 		.controller('SecondaryTrade', SecondaryTrade);
 
   /* @ngInject */
-	function SecondaryTrade(toastr, sellersList,buyersList, bpConfig, tradebook, $stateParams, crud){
+	function SecondaryTrade(toastr, sellersList,buyersList, bpConfig, tradebook, $stateParams, crud, appFormats){
 		var vm = this;
         init();
 
@@ -30,6 +30,7 @@
      * My Description rules
      */
         function init(){
+            vm.appFormats = appFormats;
             vm.secondaryTransactions = [];
             if($stateParams.tran !== 'new'){
                 tradebook.getSingleTransactionSec($stateParams.tran).then(function(res){

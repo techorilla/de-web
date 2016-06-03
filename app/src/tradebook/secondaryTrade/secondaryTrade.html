@@ -99,20 +99,20 @@
             <table class="table table-bordered dg-table">
                 <thead>
                 <tr ng-show="vm.secondaryTransactions.length > 0">
-                    <th>Date</th>
-                    <th>Buyer</th>
+                    <th class="dateColumn">Date</th>
+                    <th class="dropDownCol2">Buyer</th>
                     <th>Buyer Price</th>
-                    <th>Seller</th>
+                    <th class="dropDownCol2">Seller</th>
                     <th>Seller Price</th>
-                    <th>Quantity</th>
-                    <th>Resale Commission</th>
+                    <th class="fileId">Quantity</th>
+                    <th class="fileId">Resale Commission</th>
                     <th>Other Information</th>
-                    <th>Actions</th>
+                    <th class="actions">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="tran in vm.secondaryTransactions | orderBy: 'tr_sec_date'">
-                    <td ng-bind="tran.tr_sec_date | date: 'dd/MM/yyyy'"></td>
+                    <td ng-bind="tran.tr_sec_date  | date:vm.appFormats.Date"></td>
                     <td>
                         <selectize ng-disabled="true" placeholder='Please enter buyer' config="vm.bpConfig" options='vm.buyersList' ng-model="tran.tr_sec_bpBuyerID"></selectize>
                     </td>

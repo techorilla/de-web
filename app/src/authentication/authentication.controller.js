@@ -13,7 +13,7 @@
         .controller('Authentication', Authentication);
 
     /* @ngInject */
-    function Authentication(authentication,$state,localStorageService,$rootScope){
+    function Authentication(authentication,$state,localStorageService){
         var vm = this;
 
         vm.testFunction = testFunction;
@@ -24,23 +24,25 @@
         vm.message = '';
 
         vm.login = function(){
-            authentication.userLogin(vm.email, vm.pass,function (response) {
-                if (response.success) {
-                    authentication.SetCredentials(vm.email, vm.pass, response.userId);
-                    var lastPage = localStorageService.get('lastState');
-                    if(lastPage){
-                        $state.go(lastPage.stateOnLogin,lastPage.stateParamsOnLogin);
-                    }
-                    else{
-                        $state.go('shell.dashboard');
-                    }
+            if(vm.signIn.$valid){
+                authentication.userLogin(vm.email, vm.pass,function (response) {
+                    if (response.success) {
+                        authentication.SetCredentials(vm.email, vm.pass, response.userId);
+                        var lastPage = localStorageService.get('lastState');
+                        if(lastPage){
+                            $state.go(lastPage.stateOnLogin,lastPage.stateParamsOnLogin);
+                        }
+                        else{
+                            $state.go('shell.dashboard');
+                        }
 
-                } else {
-                    vm.message = response.message;
-                    vm.hideLogin = true;
-                    vm.invalidUserNamePass = true;
-                }
-            });
+                    } else {
+                        vm.message = response.message;
+                        vm.hideLogin = true;
+                        vm.invalidUserNamePass = true;
+                    }
+                });
+            }
         };
 
 

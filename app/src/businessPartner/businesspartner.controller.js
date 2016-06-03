@@ -40,7 +40,12 @@
             vm.onCountrySelectedChanged = onCountrySelectedChanged;
 
             vm.allBusinessPartner.tableHeadings = [
-                {name: 'Name'},{name:'Contact Person'},{name:'Origin'},{name:'Type'},{name:'Rating'},{name:'Last Transaction On'}
+                {name: 'Name'},
+                {name:'Contact Person'},
+                {name:'Origin'},
+                {name:'Type'},
+                {name:'Rating'},
+                {name:'Last Transaction On'}
             ];
             vm.headerAnchor = [
                 {
@@ -73,8 +78,6 @@
                         bpShowByType = bpShowByType || (bp[val] === true);
                     });
                     removeBp = removeBp || ((vm.selectedOrigin.indexOf(bp.bp_country))<=-1);
-
-
                     if(removeBp ||!bpShowByType){
                         vm.bpToRemove.push(bp.bp_ID);
                     }

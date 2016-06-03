@@ -1,7 +1,9 @@
 <div class="col-sm-3" off-click="closeFilter();">
   <div class="dg-filterDropdown">
         <div class="dg-filterDropdownField" ng-click="invertShowOptions();">
-            <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}<span class="caret"></span>
+            <i class="fa fa-filter">&nbsp;&nbsp;</i>{{title}}
+            <span class="caret"></span>
+            <span class="pull-right filter-count" ng-bind="selectedValues.length"></span>
         </div>
         <div class="dg-filterDropdownMenu" id="main-menu{{title}}" ng-show="showOptions">
             <ul class="dg-head">

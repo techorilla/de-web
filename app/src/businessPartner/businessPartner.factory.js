@@ -13,7 +13,7 @@
         .factory('businessPartner', businessPartner);
 
     /* @ngInject */
-    function businessPartner(appConfig, $http, modalFactory, dataService, dropDownConfig){
+    function businessPartner(appConfig, apiEndPoints, modalFactory, dataService, dropDownConfig){
 
         var businessPartner = {};
 
@@ -23,7 +23,9 @@
             getBusinessPartner: getBusinessPartner,
             addBusinessPartner: addBusinessPartner,
             addNewBusinessPartnerContact: addNewBusinessPartnerContact,
+            editBusinessPartnerContact: editBusinessPartnerContact,
             addNewBankAccount: addNewBankAccount,
+            editBankAccount: editBankAccount,
             addBusinessPartnerContact: addBusinessPartnerContact,
             addBusinessPartnerProduct: addBusinessPartnerProduct,
             updateBusinessPartner:updateBusinessPartner,
@@ -62,7 +64,7 @@
         function deleteBusinessPartner(name, id ,callback){
             modalFactory.alertModal(name,'Business Partner', 'Delete').then(function(res){
                 if(res){
-                    dataService.getRequest('deleteBusinessPartner/'+id,callback);
+                    dataService.getRequest(apiEndPoints.businessPartner.delete+id,callback);
                 }
             });
         }
@@ -95,12 +97,20 @@
             return dataService.postRequest('addBusinessPartnerBankDetails', {bankDetails: bankDetails});
         }
 
+        function editBankAccount(bankDetails){
+            return dataService.postRequest('editBusinessPartnerBankDetails', {bankDetails: bankDetails})
+        }
+
         function addBusinessPartnerContact(contact){
             return dataService.postRequest('addBusinessPartnerContact', {contact: contact});
         }
 
         function addNewBusinessPartnerContact(contactPerson){
             return dataService.postRequest('addBusinessPartnerContactPerson', {contactPerson: contactPerson});
+        }
+
+        function editBusinessPartnerContact(contactPerson){
+            return dataService.postRequest('editBusinessPartnerContactPerson', {contactPerson: contactPerson});
         }
 
         function addBusinessPartnerProduct(bpProduct)
@@ -118,12 +128,11 @@
         }
 
         function updateBusinessPartner(businessPartner,callback){
-
             return dataService.postRequest('updateBusinessPartner', {businessPartner: businessPartner}, callback);
         }
 
         function getBusinessPartnerList(){
-            return dataService.getRequest('getBusinessPartnerList');
+            return dataService.getRequest(apiEndPoints.businessPartner.getList);
         }
 
         function getBusinessPartnerContactType(){
@@ -133,6 +142,9 @@
         function getBusinessPartnerComplete(id){
             return dataService.getRequest('getBusinessPartnerFull/'+id);
         }
+
+
+
 
     }
 

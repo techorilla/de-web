@@ -1,10 +1,21 @@
-<div class="login-page" name="form">
+<div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" name="name" ng-model="vm.email" required placeholder="email"/>
-            <input type="password" placeholder="password" required ng-model="vm.pass"/>
+        <form class="login-form" name="vm.signIn" novalidate>
+            <input type="text"
+                   name="email"
+                   ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i"
+                   ng-model="vm.email"
+                   required
+                   placeholder="email"/>
+            <ng-messages for="vm.signIn.email.$error" ng-if='vm.signIn.$submitted'>
+                <div ng-message="required" class="errorValidation2">Please enter your email.</div>
+                <div ng-message="pattern" class="errorValidation2">Please enter a valid email.</div>
+            </ng-messages>
+            <input type="password" placeholder="password" name="password" required ng-model="vm.pass"/>
+            <ng-messages for="vm.signIn.password.$error" ng-if='vm.signIn.$submitted'>
+                <div ng-message="required" class="errorValidation2">Please enter your password.</div>
+            </ng-messages>
             <button ng-click="vm.login()">login</button>
-            <p ng-if="vm.invalidUserNamePass" class="errorValidation">{{vm.message}}</p>
         </form>
     </div>
 </div>

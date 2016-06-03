@@ -86,17 +86,23 @@
 
                 service.userLogOut = function(){
                     this.user = {};
-                    localStorageService.remove('user');
-                    service.ClearCredentials();
-                    var lastState = {
-                        stateOnLogin: $state.current.name,
-                        stateParamsOnLogin: $state.params
-                    };
-                    if($state.current.name !== 'login'){
-                        localStorageService.set('lastState',lastState);
-                    }
-                    $state.go('login');
+                    return $http.post(appConfig.apiHost+'logout')
+                        .success(function (response) {
+                            localStorageService.remove('user');
+                            service.ClearCredentials();
+                            var lastState = {
+                                stateOnLogin: $state.current.name,
+                                stateParamsOnLogin: $state.params
+                            };
+                            if($state.current.name !== 'login'){
+                                localStorageService.set('lastState',lastState);
+                            }
+                            $state.go('login');
+                        });
+
                 };
+
+
 
                 service.getFullUserName = function(){
                     getUserFromLocalStorage();
