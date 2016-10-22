@@ -13,9 +13,9 @@
 		.factory('logs', logs);
 
   /* @ngInject */
-  function logs(dataService){
+  function logs(dataService, $filter, appFormats){
 		return {
-            getAllUsersLogs: getAllUsersLogs,
+            getAllUsersLogsOnDateRange: getAllUsersLogsOnDateRange,
             addNewUserLog: addNewUserLog
 		};
 
@@ -34,8 +34,10 @@
      * @param {int} entity id
      */
 
-		function getAllUsersLogs(){
-
+		function getAllUsersLogsOnDateRange(startDate, endDate){
+            var sDate = $filter('date')(new Date(startDate), appFormats.DBDate);
+            var eDate = $filter('date')(new Date(endDate), appFormats.DBDate);
+            return dataService.getRequest('getAllLogsInDateRange?startDate=' + sDate + '&endDate='+eDate,null);
 		}
 
         function addNewUserLog(){

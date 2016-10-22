@@ -60,7 +60,20 @@
             vm.dataBarChars = undefined;
             vm.timeDrillChanged = timeDrillChanged;
             vm.onDateRangeChanged(vm.dateRange);
+            vm.sellerList = [];
+            vm.buyerList = [];
+            vm.curBuyer = 0;
+            vm.curSeller = 0;
         }
+
+        function nextBusinessPartner(){
+
+        }
+
+        function preBusinessPartner(){
+            
+        }
+
 
         function onDateRangeChanged(dateRange){
             vm.getProductSalesAnalytics(dateRange);
@@ -190,6 +203,46 @@
         }
 
         function calculateAnalytics(filteredData){
+            var groupByBuyer = (_.groupBy(filteredData,'tr_bpBuyerID'));
+            groupByBuyer =  _.orderBy(groupByBuyer, ['length'], ['desc']);
+            var groupBySeller = (_.groupBy(filteredData,'tr_bpSellerID'));
+            groupBySeller =  _.orderBy(groupBySeller, ['length'], ['desc']);
+            var buyerList = [];
+            for(var buyer in groupByBuyer){
+                var buyerDetails = {};
+                buyerDetails['transactions'] = groupByBuyer[buyer].length;
+                buyerDetails['bp_buyer_id'] = groupByBuyer[buyer][0]['tr_bpBuyerID'];
+                buyerDetails['name'] = groupByBuyer[buyer][0]['buyer'];
+                buyerDetails['quantity'] = 0;
+                buyerDetails['volume'] = 0;
+                buyerDetails['commission'] = 0;
+                for(var tran in  groupByBuyer[buyer]){
+                    buyerDetails['quantity'] += groupByBuyer[buyer][tran]['quantity'];
+                    var comm = parseInt((groupByBuyer[buyer][tran]['commission']).replace('$',''));
+                    buyerDetails['volume'] += groupByBuyer[buyer][tran]['quantity'] * groupByBuyer[buyer][tran]['rate'];
+                    buyerDetails['commission'] += comm;
+                }
+                buyerList.push(buyerDetails)
+            }
+            var sellerList = [];
+            for(var seller in groupBySeller){
+                var sellerDetails = {};
+                sellerDetails['transactions'] = groupBySeller[seller].length;
+                sellerDetails['bp_seller_id'] = groupBySeller[seller][0]['tr_bpSellerID'];
+                sellerDetails['name'] = groupBySeller[seller][0]['seller'];
+                sellerDetails['quantity'] = 0;
+                sellerDetails['volume'] = 0;
+                sellerDetails['commission'] = 0;
+                for(var tran in groupBySeller[seller]){
+                    sellerDetails['quantity'] += groupBySeller[seller][tran]['quantity'];
+                    var comm = parseInt((groupBySeller[seller][tran]['commission']).replace('$',''));
+                    sellerDetails['volume'] += groupBySeller[seller][tran]['quantity']*groupBySeller[seller][tran]['rate'];
+                    sellerDetails['commission'] += comm;
+                }
+                sellerList.push(sellerDetails)
+            }
+            vm.sellerList = sellerList;
+            vm.buyerList = buyerList;
             vm.totalVolume = _.sumBy(filteredData, function(tran) {
                 return (tran.quantity * tran.rate);
             });
