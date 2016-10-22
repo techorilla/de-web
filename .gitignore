@@ -8,10 +8,14 @@ dist/
 # Dependency directory
 node_modules/
 app/bower_components/
+projectFilesBackup/
+
 
 #SASS
 .sass-cache
 
 #tmp
 .tmp
+
+.idea/*
 
