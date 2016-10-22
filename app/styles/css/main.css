@@ -1344,6 +1344,13 @@ table td a {
   text-align: left;
 }
 
+/* line 1158, ../partials/_theme.scss */
+.top_navigator {
+  margin-top: 30px;
+  color: #333333;
+  font-size: 15px;
+}
+
 /* line 3, ../partials/_login.scss */
 #loading-bar .bar {
   background: #333;

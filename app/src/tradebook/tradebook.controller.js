@@ -66,7 +66,6 @@
         }
 
         function onDateRangeChanged(dateRange){
-            console.log(dateRange);
             if(true){
                 var startDate = new Date(dateRange.startDate);
                 var endDate = new Date(dateRange.endDate);
