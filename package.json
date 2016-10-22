@@ -32,6 +32,7 @@
     "matchdep": "~0.3.0"
   },
   "dependencies": {
-    "grunt-contrib-compass": "^1.0.3"
+    "grunt-contrib-compass": "^1.0.3",
+    "proxy-middleware": "^0.15.0"
   }
 }
