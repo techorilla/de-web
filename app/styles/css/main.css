@@ -1346,9 +1346,25 @@ table td a {
 
 /* line 1158, ../partials/_theme.scss */
 .top_navigator {
-  margin-top: 30px;
-  color: #333333;
-  font-size: 15px;
+  margin-top: 45px;
+  color: rgba(51, 51, 51, 0.6);
+  font-size: 27px;
+}
+
+/* line 1164, ../partials/_theme.scss */
+.topSummaryBox {
+  padding-top: 10px;
+}
+/* line 1166, ../partials/_theme.scss */
+.topSummaryBox .smallSumBox {
+  float: left;
+  border-left: 2px solid #1691ac;
+  padding-left: 10px;
+  font-weight: bold;
+}
+/* line 1171, ../partials/_theme.scss */
+.topSummaryBox .smallSumBox .heads {
+  color: #F47414;
 }
 
 /* line 3, ../partials/_login.scss */

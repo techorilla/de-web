@@ -2,165 +2,178 @@
 </br>
 
 <div class="row analyticsContent">
-    <div class="col-lg-12 col-xs-12" style="padding-right: 10px;">
-        <filter-bar
-                date-picker-needed="true"
-                date-picker="vm.dateRange"
-                on-date-change="vm.onDateRangeChanged(dateRange)">
-        </filter-bar>
+  <div class="col-lg-12 col-xs-12" style="padding-right: 10px;">
+    <filter-bar
+      date-picker-needed="true"
+      date-picker="vm.dateRange"
+      on-date-change="vm.onDateRangeChanged(dateRange)">
+    </filter-bar>
 
-        <div class="row" style="padding-right: 10px;">
-            <div class="row" style="padding-right: 10px;">
+    <div class="row" style="padding-right: 10px;">
+      <div class="row" style="padding-right: 10px;">
 
-                <page-header heading="Summary" sub-heading="Transactions" style="margin-left:15px"></page-header>
-                <div class="col-xs-12">
-                    <filter-bar
-                            buyer="true"
-                            seller="true"
-                            product="true"
-                            country="true"
-                            on-country-selected-changed="vm.onCountrySelectedChanged(selectedList)"
-                            on-buyers-selected-changed="vm.onBuyersSelectedChanged(selectedList)"
-                            on-sellers-selected-changed="vm.onSellersSelectedChanged(selectedList)"
-                            on-products-selected-changed="vm.onProductsSelectedChanged(selectedList)">
+        <page-header heading="Summary" sub-heading="Transactions" style="margin-left:15px"></page-header>
+        <div class="col-xs-12">
+          <filter-bar
+            buyer="true"
+            seller="true"
+            product="true"
+            country="true"
+            on-country-selected-changed="vm.onCountrySelectedChanged(selectedList)"
+            on-buyers-selected-changed="vm.onBuyersSelectedChanged(selectedList)"
+            on-sellers-selected-changed="vm.onSellersSelectedChanged(selectedList)"
+            on-products-selected-changed="vm.onProductsSelectedChanged(selectedList)">
 
-                    </filter-bar>
+          </filter-bar>
+        </div>
+        <page-blue-container class="col-xs-12 col-md-6" graph-container="true">
+          <div class="row">
+            <div class="">
+              <div class="pull-left top_navigator" ng-click="vm.preBusinessPartner('Buyer')">
+                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+              </div>
+              <div class="col-xs-10 col-xs-offset-1 col-xs-offset-1">
+                <div class="filterHeading2"><b>{{vm.curBuyer+1}} of {{vm.buyerList.length}} Buyers</b></div>
+                <div>
+                  <div class="summaryValue">{{vm.buyerList[vm.curBuyer].name}}</div>
+                  <div class="topSummaryBox col-xs-12">
+                    <div class="smallSumBox col-md-3"><div class="heads">Volume</div>{{vm.buyerList[vm.curBuyer].volume | currency:"$":0}}</div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Quantity</div> {{vm.buyerList[vm.curBuyer].quantity | currency:"":0}}<span>MT</span></div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Commission</div> {{vm.buyerList[vm.curBuyer].commission | currency:"$":0}}</div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Transactions</div> {{vm.buyerList[vm.curBuyer].transactions | currency:"":0}}</div>
+                  </div>
                 </div>
-                <page-blue-container class="col-xs-12 col-md-6" graph-container="true">
-                    <div class="row">
-                        <div class="">
-                            <div class="pull-left top_navigator">
-                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-xs-offset-1">
-                                <div class="filterHeading2">Top Buyers</div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                            </div>
-                            <div class="pull-right top_navigator">
-                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </page-blue-container>
-                <page-blue-container class="col-xs-12 col-md-6" graph-container="true">
-                    <div class="row">
-                        <div class="">
-                            <div class="pull-left top_navigator">
-                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-xs-10 col-xs-offset-1 col-xs-offset-1">
-                                <div class="filterHeading2">Top Sellers</div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                                <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                            </div>
-                            <div class="pull-right top_navigator">
-                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </page-blue-container>
-                <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
-                    <div class="filterHeading2">Quantity</div>
-                    <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
-                </page-blue-container>
-                <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
-                    <div class="filterHeading2">Trade Volume</div>
-                    <div class="summaryValue">{{vm.totalVolume | currency:'$ ':0}}</div>
-                </page-blue-container>
-                <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
-                    <div class="filterHeading2">Net Commission</div>
-                    <div class="summaryValue">{{vm.totalNetCommission | currency:'$ ':0}}</div>
-                </page-blue-container>
+
+              </div>
+              <div class="pull-right top_navigator" ng-click="vm.nextBusinessPartner('Buyer',vm.buyerList)">
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </page-blue-container>
+        <page-blue-container class="col-xs-12 col-md-6" graph-container="true">
+          <div class="row">
+            <div class="">
+              <div class="pull-left top_navigator" ng-click="vm.preBusinessPartner('Seller')">
+                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+              </div>
+              <div class="col-xs-10 col-xs-offset-1 col-xs-offset-1">
+                <div class="filterHeading2"><b>{{vm.curSeller+1}} of {{vm.sellerList.length}} Sellers</b></div>
+                <div>
+                  <div class="summaryValue">{{vm.sellerList[vm.curSeller].name}}</div>
+                  <div class="topSummaryBox col-xs-12">
+                    <div class="smallSumBox col-md-3"><div class="heads">Volume</div>{{vm.sellerList[vm.curSeller].volume | currency:"$":0}}</div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Quantity</div> {{vm.sellerList[vm.curSeller].quantity | currency:"":0}}<span>MT</span></div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Commission</div> {{vm.sellerList[vm.curSeller].commission | currency:"$":0}}</div>
+                    <div class="smallSumBox col-md-3"><div class="heads">Transactions</div> {{vm.sellerList[vm.curSeller].transactions | currency:"":0}}</div>
+                  </div>
+                </div>
+              </div>
 
             </div>
-
-            <div class="row" style="padding-right: 10px;">
-                <page-blue-container class="col-xs-12 col-md-12" graph-container="true">
-                    <div class="filterHeading2">Trade Analytics</div>
-
-                    <div class="form-group col-lg-4 col-xs-12">
-                        <label>Time Drill</label>
-                        <selectize
-                                config="vm.timeDrillConfig"
-                                options='vm.timeDrillOptions'
-                                ng-model="vm.timeDrillBy"
-                                ng-change="vm.timeDrillChanged(vm.timeDrillBy,vm.allTransactions)">
-                        </selectize>
-                    </div>
-                    <!--<canvas id="bar" class="chart chart-bar"-->
-                            <!--ng-if="vm.showTradeBarCharts"-->
-                            <!--chart-data="vm.dataBarChars"-->
-                            <!--chart-legend="false" chart-colours="vm.chartColors"-->
-                            <!--chart-labels="vm.dateLabels" chart-series="vm.seriesBarCharts">-->
-                    <!--</canvas>-->
-                    <charts-legend
-                                   type="bar"
-                                   labels="vm.dateLabels"
-                                   data="vm.dataBarChars"
-                                   colors="vm.chartColors"
-                                   show-chart="vm.showTradeBarCharts"
-                                   series="vm.seriesBarCharts">
-                    </charts-legend>
-                </page-blue-container>
+            <div class="pull-right top_navigator" ng-click="vm.nextBusinessPartner('Seller',vm.sellerList)">
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
             </div>
-        </div>
-
-
-
-
-        <div class="row" style="padding-right: 10px;">
-            <page-header heading="Sales Analytics" sub-heading="Product" style="margin-left:15px"></page-header>
-
-            <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
-                <div class="filterHeading2">Quantity</div>
-                <charts-legend
-                        type="pie"
-                        labels="vm.products"
-                        pie-type="MT"
-                        data="vm.productsQuantity"
-                        colors="vm.chartColors">
-                </charts-legend>
-                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
-                <!--chart-data="vm.productsQuantity" chart-labels="vm.products">-->
-                <!--</canvas>-->
-            </page-blue-container>
-
-            <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
-                <div class="filterHeading2">Volume</div>
-                <charts-legend
-                        type="pie"
-                        pie-type="USD"
-                        labels="vm.products"
-                        data="vm.productsVolume"
-                        colors="vm.chartColors">
-                </charts-legend>
-                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
-                        <!--chart-data="vm.productsVolume" chart-labels="vm.products">-->
-                <!--</canvas>-->
-            </page-blue-container>
-
-
-            <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
-                <div class="filterHeading2">Net Commission</div>
-                <charts-legend
-                        type="pie"
-                        labels="vm.products"
-                        pie-type="USD"
-                        data="vm.productsNetCommission"
-                        colors="vm.chartColors">
-                </charts-legend>
-                <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
-                        <!--chart-data="vm.productsNetCommission" chart-labels="vm.products">-->
-                <!--</canvas>-->
-            </page-blue-container>
-        </div>
+          </div>
+      </div>
+      </page-blue-container>
+      <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
+        <div class="filterHeading2">Quantity</div>
+        <div class="summaryValue">{{vm.totalQuantity | currency:"":0}} <span>MT</span></div>
+      </page-blue-container>
+      <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
+        <div class="filterHeading2">Trade Volume</div>
+        <div class="summaryValue">{{vm.totalVolume | currency:'$ ':0}}</div>
+      </page-blue-container>
+      <page-blue-container class="col-xs-4 col-md-4" graph-container="true">
+        <div class="filterHeading2">Net Commission</div>
+        <div class="summaryValue">{{vm.totalNetCommission | currency:'$ ':0}}</div>
+      </page-blue-container>
 
     </div>
+
+    <div class="row" style="padding-right: 10px;">
+      <page-blue-container class="col-xs-12 col-md-12" graph-container="true">
+        <div class="filterHeading2">Trade Analytics</div>
+
+        <div class="form-group col-lg-4 col-xs-12">
+          <label>Time Drill</label>
+          <selectize
+            config="vm.timeDrillConfig"
+            options='vm.timeDrillOptions'
+            ng-model="vm.timeDrillBy"
+            ng-change="vm.timeDrillChanged(vm.timeDrillBy,vm.allTransactions)">
+          </selectize>
+        </div>
+        <!--<canvas id="bar" class="chart chart-bar"-->
+        <!--ng-if="vm.showTradeBarCharts"-->
+        <!--chart-data="vm.dataBarChars"-->
+        <!--chart-legend="false" chart-colours="vm.chartColors"-->
+        <!--chart-labels="vm.dateLabels" chart-series="vm.seriesBarCharts">-->
+        <!--</canvas>-->
+        <charts-legend
+          type="bar"
+          labels="vm.dateLabels"
+          data="vm.dataBarChars"
+          colors="vm.chartColors"
+          show-chart="vm.showTradeBarCharts"
+          series="vm.seriesBarCharts">
+        </charts-legend>
+      </page-blue-container>
+    </div>
+  </div>
+
+
+
+
+  <div class="row" style="padding-right: 10px;">
+    <page-header heading="Sales Analytics" sub-heading="Product" style="margin-left:15px"></page-header>
+
+    <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
+      <div class="filterHeading2">Quantity</div>
+      <charts-legend
+        type="pie"
+        labels="vm.products"
+        pie-type="MT"
+        data="vm.productsQuantity"
+        colors="vm.chartColors">
+      </charts-legend>
+      <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+      <!--chart-data="vm.productsQuantity" chart-labels="vm.products">-->
+      <!--</canvas>-->
+    </page-blue-container>
+
+    <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
+      <div class="filterHeading2">Volume</div>
+      <charts-legend
+        type="pie"
+        pie-type="USD"
+        labels="vm.products"
+        data="vm.productsVolume"
+        colors="vm.chartColors">
+      </charts-legend>
+      <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+      <!--chart-data="vm.productsVolume" chart-labels="vm.products">-->
+      <!--</canvas>-->
+    </page-blue-container>
+
+
+    <page-blue-container class="col-xs-12 col-md-4" graph-container="true">
+      <div class="filterHeading2">Net Commission</div>
+      <charts-legend
+        type="pie"
+        labels="vm.products"
+        pie-type="USD"
+        data="vm.productsNetCommission"
+        colors="vm.chartColors">
+      </charts-legend>
+      <!--<canvas id="pie" class="chart chart-pie" chart-legend="true" chart-colours="vm.chartColors"-->
+      <!--chart-data="vm.productsNetCommission" chart-labels="vm.products">-->
+      <!--</canvas>-->
+    </page-blue-container>
+  </div>
+
+</div>
 
 </div>
 
